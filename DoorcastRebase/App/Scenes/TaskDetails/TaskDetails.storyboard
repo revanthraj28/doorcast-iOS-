@@ -21,7 +21,6 @@
         <!--Common Task DetailVC-->
         <scene sceneID="u3s-ah-HSr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdH-mn-ahn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CommonTaskDetailVC" id="hmM-88-H8e" customClass="CommonTaskDetailVC" customModule="DoorcastRebase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wRC-Vp-bLk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -192,6 +191,7 @@
                         <outlet property="userNameLabel" destination="I7D-5H-Xk0" id="3Do-s8-QDE"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdH-mn-ahn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1750.7246376811595" y="117.85714285714285"/>
         </scene>
