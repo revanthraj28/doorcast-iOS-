@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="KGk-i7-Jjw" customClass="TaskListTVCell" customModule="DoorcastRebase" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="423" height="132"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="423" height="132"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJQ-Wp-Hc5">
+                        <rect key="frame" x="10" y="10" width="403" height="112"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHH-nK-NvJ">
+                                <rect key="frame" x="12" y="12" width="41.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="designColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEF-0A-Tcd">
+                                <rect key="frame" x="349.5" y="12" width="41.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="designColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dB6-tN-ao5">
+                                <rect key="frame" x="12" y="45" width="349" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-eD-u61">
+                                <rect key="frame" x="373" y="46" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ybl-3h-Qat"/>
+                                    <constraint firstAttribute="width" constant="20" id="hfv-gN-eq3"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="chevron-right-solid"/>
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WYD-jQ-KXC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJM-Bi-lD3">
+                                <rect key="frame" x="12" y="79" width="383" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="CardBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SJM-Bi-lD3" secondAttribute="trailing" constant="8" id="2Rf-bA-x9c"/>
+                            <constraint firstItem="dB6-tN-ao5" firstAttribute="top" secondItem="RHH-nK-NvJ" secondAttribute="bottom" constant="12" id="7XC-ba-1yF"/>
+                            <constraint firstItem="lEF-0A-Tcd" firstAttribute="top" secondItem="NJQ-Wp-Hc5" secondAttribute="top" constant="12" id="Cn7-O2-ox7"/>
+                            <constraint firstAttribute="trailing" secondItem="jVb-eD-u61" secondAttribute="trailing" constant="10" id="DQw-Ie-Vak"/>
+                            <constraint firstItem="RHH-nK-NvJ" firstAttribute="leading" secondItem="NJQ-Wp-Hc5" secondAttribute="leading" constant="12" id="DoC-xq-hKR"/>
+                            <constraint firstAttribute="trailing" secondItem="lEF-0A-Tcd" secondAttribute="trailing" constant="12" id="HFO-73-Q6c"/>
+                            <constraint firstItem="dB6-tN-ao5" firstAttribute="leading" secondItem="NJQ-Wp-Hc5" secondAttribute="leading" constant="12" id="MH2-S0-Mvz"/>
+                            <constraint firstItem="jVb-eD-u61" firstAttribute="leading" secondItem="dB6-tN-ao5" secondAttribute="trailing" constant="12" id="Smk-es-D1k"/>
+                            <constraint firstItem="SJM-Bi-lD3" firstAttribute="leading" secondItem="NJQ-Wp-Hc5" secondAttribute="leading" constant="12" id="Yyd-M7-vLo"/>
+                            <constraint firstItem="jVb-eD-u61" firstAttribute="centerY" secondItem="NJQ-Wp-Hc5" secondAttribute="centerY" id="ggY-db-DjU"/>
+                            <constraint firstItem="lEF-0A-Tcd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RHH-nK-NvJ" secondAttribute="trailing" constant="30" id="j3a-tX-Jdc"/>
+                            <constraint firstItem="RHH-nK-NvJ" firstAttribute="top" secondItem="NJQ-Wp-Hc5" secondAttribute="top" constant="12" id="k6t-A0-lC5"/>
+                            <constraint firstItem="SJM-Bi-lD3" firstAttribute="top" secondItem="dB6-tN-ao5" secondAttribute="bottom" constant="13.5" id="ndf-XG-7MP"/>
+                            <constraint firstAttribute="bottom" secondItem="SJM-Bi-lD3" secondAttribute="bottom" constant="12.5" id="urk-mR-tBC"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NJQ-Wp-Hc5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ATo-Z6-0J9"/>
+                    <constraint firstItem="NJQ-Wp-Hc5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="hWh-3q-fcI"/>
+                    <constraint firstAttribute="bottom" secondItem="NJQ-Wp-Hc5" secondAttribute="bottom" constant="10" id="lAq-64-9Ok"/>
+                    <constraint firstAttribute="trailing" secondItem="NJQ-Wp-Hc5" secondAttribute="trailing" constant="10" id="ryL-6n-Osz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="addressLabel" destination="SJM-Bi-lD3" id="DET-Qa-27X"/>
+                <outlet property="bgView" destination="NJQ-Wp-Hc5" id="6bQ-Eo-TKf"/>
+                <outlet property="propertyNameLabel" destination="RHH-nK-NvJ" id="r6T-HG-FJ4"/>
+                <outlet property="roleLabel" destination="lEF-0A-Tcd" id="E4v-CL-OIg"/>
+                <outlet property="taskNameLabel" destination="dB6-tN-ao5" id="RZT-5G-fNN"/>
+            </connections>
+            <point key="canvasLocation" x="212.31884057971016" y="162.05357142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron-right-solid" width="320" height="512"/>
+        <namedColor name="CardBackgroundColor">
+            <color red="0.93749994039535522" green="0.93749994039535522" blue="0.93749994039535522" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="designColor">
+            <color red="0.40000000596046448" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

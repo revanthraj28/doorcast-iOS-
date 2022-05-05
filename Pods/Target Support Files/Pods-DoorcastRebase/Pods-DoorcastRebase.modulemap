@@ -1,0 +1,6 @@
+framework module Pods_DoorcastRebase {
+  umbrella header "Pods-DoorcastRebase-umbrella.h"
+
+  export *
+  module * { export * }
+}
