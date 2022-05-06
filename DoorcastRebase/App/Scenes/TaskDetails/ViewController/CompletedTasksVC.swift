@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompletedTasksVC: UIViewController,TimerViewDelegate {
+class CompletedTasksVC: UIViewController {
    
 
     @IBOutlet weak var taskListTableView: UITableView!
@@ -37,12 +37,6 @@ class CompletedTasksVC: UIViewController,TimerViewDelegate {
         viewModel.InCompleteListApi(task_type: "complete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
     }
     
-    
-    
-    
-    func didTapOnTimerView(view: TimerView) {
-        print("didTapOnTimerView")
-    }
     
     
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {

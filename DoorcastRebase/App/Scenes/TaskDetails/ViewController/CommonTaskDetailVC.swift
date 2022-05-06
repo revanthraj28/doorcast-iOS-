@@ -22,6 +22,14 @@ class CommonTaskDetailVC: UIViewController {
     @IBOutlet weak var calImageViewHolder: UIView!
     @IBOutlet weak var calImageView: UIImageView!
     @IBOutlet weak var calShowButton: UIButton!
+    
+    
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var notificationViewButton: UIButton!
+    
+    @IBOutlet weak var completedTaskCountHolderView: UIView!
+    @IBOutlet weak var completedTaskCountLabel: UILabel!
+    
     static var newInstance: CommonTaskDetailVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
                                       bundle: nil)
@@ -59,11 +67,23 @@ class CommonTaskDetailVC: UIViewController {
     }
     
     func setupUI() {
-        calImageViewHolder.backgroundColor = .clear
-        calImageView.image = UIImage(named: "chevron-down-solid")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.red)
-        calShowButton.setTitle("", for: .normal)
         
+        calImageViewHolder.layer.cornerRadius = 18
+        calImageViewHolder.clipsToBounds = true
+        calImageViewHolder.backgroundColor = .ThemeColor
+        calendarView.backgroundColor = .clear
+        
+        completedTaskCountHolderView.backgroundColor = UIColor.white
+        completedTaskCountLabel.text = "0"
+        self.calendarView.bringSubviewToFront(self.calImageViewHolder)
+        
+        calImageView.image = UIImage(named: "chevron-down-solid")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.white)
+        calShowButton.setTitle("", for: .normal)
+        calShowButton.backgroundColor = .clear
         self.view.bringSubviewToFront(self.timerView)
+        self.dateLabel.text = Date().MonthDateDayFormatter
+        backButton.setImage(UIImage(named: "chevron-left-solid")?.withTintColor(UIColor.white), for: .normal)
+        notificationViewButton.setImage(UIImage(named: "menu")?.withTintColor(UIColor.white), for: .normal)
     }
     
     @IBAction func incompleteButtonAction(_ sender: Any) {
@@ -97,6 +117,14 @@ class CommonTaskDetailVC: UIViewController {
     }
     
     
+    @IBAction func didTapOnBackButton(_ sender: Any) {
+        self.dismiss(animated: false)
+    }
+    
+    
+    @IBAction func didTapOnNotificationCenterViewButton(_ sender: Any) {
+        print("didTapOnNotificationCenterViewButton")
+    }
     
     
     // MARK: - Helper Methods

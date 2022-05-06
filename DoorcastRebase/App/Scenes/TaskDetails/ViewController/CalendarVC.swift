@@ -52,6 +52,7 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         updateUI()
         setupCalView()
     }
@@ -60,19 +61,18 @@ class CalendarVC: UIViewController {
     func updateUI() {
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        
         holderView.backgroundColor = .white
         holderView.layer.shadowColor = UIColor.lightGray.cgColor
         holderView.layer.shadowOpacity = 1
         holderView.layer.shadowOffset = .zero
         holderView.layer.shadowRadius = 5
         
-        // calendarView.backgroundColor = .yellow
-        
+        doneButtonStyle(Selected: false)
+      
         monthLabel.textColor = .black
         monthLabel.font = UIFont.oswaldMedium(size: 14)
-        
-        // calendarView.backgroundColor = .white
-        
+      
         sundayLabel.textColor = .black
         sundayLabel.font = UIFont.oswaldMedium(size: 12)
         sundayLabel.text = "SU"
@@ -101,12 +101,11 @@ class CalendarVC: UIViewController {
         saturdayLabel.font = UIFont.oswaldMedium(size: 12)
         saturdayLabel.text = "SA"
         
-        self.view.bringSubviewToFront(self.doneButtonHolderView)
-        doneButtonHolderView.backgroundColor = UIColor.ThemeColor
+        
+        doneButtonHolderView.backgroundColor = UIColor.clear
         ButtonDone.setTitle("", for: .normal)
-        ButtonDone.backgroundColor = UIColor.ThemeColor
         
-        
+       
     }
     
     
@@ -230,9 +229,9 @@ class CalendarVC: UIViewController {
             ButtonDone.layer.borderColor = UIColor.lightGray.cgColor
             ButtonDone.tintColor = UIColor.ThemeColor
             // ButtonDone.setImage(UIImage(named: "close"), for: .normal)
-            closeImage.image = UIImage(named: "close")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.white)
+            closeImage.image = UIImage(named: "close")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.ThemeColor)
             
-            doneButtonHolderView.isHidden = true
+            doneButtonHolderView.isHidden = false
         }else {
             ButtonDone.layer.cornerRadius = ButtonDone.frame.size.height / 2
             ButtonDone.layer.backgroundColor = UIColor.ActionsColor.cgColor
@@ -243,7 +242,7 @@ class CalendarVC: UIViewController {
             closeImage.image = UIImage(named: "LeftArrow")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.white)
             
             doneButtonHolderView.isHidden = false
-            doneButtonHolderView.backgroundColor = .lightGray
+            doneButtonHolderView.backgroundColor = .ActionsColor
             doneButtonHolderView.layer.cornerRadius = doneButtonHolderView.frame.size.height / 2
             
         }

@@ -49,7 +49,7 @@ extension UIColor {
     public static var ActionsColor : UIColor {
 
         get {
-            return UIColor(named: "ActionsColor") ?? .clear
+            return UIColor(named: "actionsColor") ?? .clear
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IncompleteTasksVC: UIViewController,TimerViewDelegate {
+class IncompleteTasksVC: UIViewController {
     
     
     @IBOutlet weak var taskListTableView: UITableView!
@@ -18,6 +18,9 @@ class IncompleteTasksVC: UIViewController,TimerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
+        
         configureContents()
     }
     
@@ -41,7 +44,7 @@ class IncompleteTasksVC: UIViewController,TimerViewDelegate {
     
     
     
-    func didTapOnTimerView(view: TimerView) {
+    @objc func didTapOnTimerView(notification:Notification) {
         print("didTapOnTimerView")
     }
     

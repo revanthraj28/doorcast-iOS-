@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol TimerViewDelegate {
-    func didTapOnTimerView(view:TimerView)
-}
+
 
 class TimerView: UIView {
     
@@ -21,7 +19,6 @@ class TimerView: UIView {
     //    @IBOutlet weak var timerActionView: UIView!
     @IBOutlet weak var timerButton: UIButton!
     
-    var delegate: TimerViewDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -40,8 +37,8 @@ class TimerView: UIView {
     
     
     @IBAction func timerButtonAction(_ sender: Any) {
-//        delegate?.didTapOnTimerView(view: self)
         print("Hye")
+        NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
     }
     
     
