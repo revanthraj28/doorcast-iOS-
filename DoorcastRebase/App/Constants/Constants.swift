@@ -20,12 +20,14 @@ let KAcceptValue = "application/json"
 let KAuthorization = "Authorization"
 //let KDEVICE_ID = "DEVICE_ID"
 let KAccesstoken = "Accesstoken"
-let tempAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjQ5MyI.lZlN_1oQldjp7DX7Cah05igwkYhgiYqmru-JNqvAX60"
+//let tempAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjQ5MyI.lZlN_1oQldjp7DX7Cah05igwkYhgiYqmru-JNqvAX60"
 
 let KDeviceID = UIDevice.current.identifierForVendor!.uuidString
 let KDeviceModelName = UIDevice.modelName
 let KOsType = UIDevice.current.systemVersion
 
+let KcommonAccessToken = "Accesstoken"
+let KcommonAccessTokenValue = UserDefaults.standard.string(forKey: "accesstoken") ?? ""
 var BASE_URL = "https://staging.doorcast.tech/api/"
 
 /* URL endpoints */
@@ -33,6 +35,11 @@ struct ApiEndpoints {
     static let crewLoginApi = "exstream_crewlogin"
     static let getOrganizationApi = "get_organizations"
     static let newTaskListApi = "exstream_newtaskList"
+    
+    static let crewlogoutApi = "signout"
+    static let crewpropertyApi = "getproperty_Org"
+    
+    
 }
 
 /*App messages*/
@@ -48,6 +55,9 @@ struct UserDefaultsKeys {
     static var userLoggedIn = "userLoggedIn"
     static var loggedInStatus = "loggedInStatus"
 }
+
+
+
 /*LOCAL JSON FILES*/
 struct LocalJsonFiles {
     static var incompleteTaskDetails = "IncompleteTaskDetails"

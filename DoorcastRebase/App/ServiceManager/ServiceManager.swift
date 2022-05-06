@@ -72,11 +72,12 @@ class ServiceManager {
 
     static func setHeaderForRequest(req: inout URLRequest) {
         req.addValue(KContentTypeValue, forHTTPHeaderField: KContentType)
-//        req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
-        
-        if SessionManager.loginInfo?.data?.accesstoken != "" {
-            req.addValue("\(SessionManager.loginInfo?.data?.accesstoken ?? "")", forHTTPHeaderField: KAccesstoken)
-        }
+       // req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
+        req.addValue(KcommonAccessTokenValue, forHTTPHeaderField: KcommonAccessToken)
+
+//        if SessionManager.loginInfo?.data?.accesstoken != "" {
+//            req.addValue("\(SessionManager.loginInfo?.data?.accesstoken ?? "")", forHTTPHeaderField: KAccesstoken)
+//        }
     }
     
     static func isConnection() -> Bool {

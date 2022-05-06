@@ -22,7 +22,7 @@ extension UIViewController {
     func gotoHomeScreen() {
         DispatchQueue.main.async {
             // V2 Dashboard with 5 tabs
-            let vc = HomeVC.newInstance
+            let vc = OnBoardingVC.newInstance
             self.view.window?.rootViewController = vc
             self.view.window?.makeKeyAndVisible()
         }

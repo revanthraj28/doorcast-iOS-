@@ -17,6 +17,21 @@
 		0771A2BE2823F88400758DD9 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2BC2823F88400758DD9 /* Loader.swift */; };
 		0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2C12823F8FE00758DD9 /* TimerView.swift */; };
 		0771A2C42823F8FE00758DD9 /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2C22823F8FE00758DD9 /* TimerView.xib */; };
+		0771A2CB282519C500758DD9 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2CA282519C400758DD9 /* Dashboard.storyboard */; };
+		0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2CC282519D300758DD9 /* CrewPropertiesVC.swift */; };
+		0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2CD282519D300758DD9 /* OnBoardingVC.swift */; };
+		0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2D0282519E000758DD9 /* GetOrganizationModel.swift */; };
+		0771A2D4282519E000758DD9 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2D1282519E000758DD9 /* LogoutModel.swift */; };
+		0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2D2282519E000758DD9 /* CrewPropertiesModel.swift */; };
+		0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2D6282519F000758DD9 /* CrewPropertyViewModel.swift */; };
+		0771A2DA282519F100758DD9 /* GetOrganizationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2D7282519F000758DD9 /* GetOrganizationsViewModel.swift */; };
+		0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2D8282519F100758DD9 /* LogoutViewModel.swift */; };
+		0771A2E128251A5600758DD9 /* CompanyTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2DF28251A5600758DD9 /* CompanyTVCell.swift */; };
+		0771A2E228251A5600758DD9 /* CompanyTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2E028251A5600758DD9 /* CompanyTVCell.xib */; };
+		0771A2E528251A6100758DD9 /* CrewPropertiesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2E328251A6000758DD9 /* CrewPropertiesTVCell.swift */; };
+		0771A2E628251A6100758DD9 /* CrewPropertiesTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2E428251A6100758DD9 /* CrewPropertiesTVCell.xib */; };
+		0771A2E928251A6900758DD9 /* LabelTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2E728251A6900758DD9 /* LabelTVCell.swift */; };
+		0771A2EA28251A6900758DD9 /* LabelTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2E828251A6900758DD9 /* LabelTVCell.xib */; };
 		4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C838282291870090D088 /* Poppins-BoldItalic.otf */; };
 		4E07C83F282291870090D088 /* Poppins-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C839282291870090D088 /* Poppins-Italic.otf */; };
 		4E07C840282291870090D088 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C83A282291870090D088 /* Poppins-Light.ttf */; };
@@ -88,6 +103,21 @@
 		0771A2BC2823F88400758DD9 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		0771A2C12823F8FE00758DD9 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		0771A2C22823F8FE00758DD9 /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
+		0771A2CA282519C400758DD9 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		0771A2CC282519D300758DD9 /* CrewPropertiesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewPropertiesVC.swift; sourceTree = "<group>"; };
+		0771A2CD282519D300758DD9 /* OnBoardingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingVC.swift; sourceTree = "<group>"; };
+		0771A2D0282519E000758DD9 /* GetOrganizationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOrganizationModel.swift; sourceTree = "<group>"; };
+		0771A2D1282519E000758DD9 /* LogoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
+		0771A2D2282519E000758DD9 /* CrewPropertiesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewPropertiesModel.swift; sourceTree = "<group>"; };
+		0771A2D6282519F000758DD9 /* CrewPropertyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewPropertyViewModel.swift; sourceTree = "<group>"; };
+		0771A2D7282519F000758DD9 /* GetOrganizationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOrganizationsViewModel.swift; sourceTree = "<group>"; };
+		0771A2D8282519F100758DD9 /* LogoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
+		0771A2DF28251A5600758DD9 /* CompanyTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyTVCell.swift; sourceTree = "<group>"; };
+		0771A2E028251A5600758DD9 /* CompanyTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyTVCell.xib; sourceTree = "<group>"; };
+		0771A2E328251A6000758DD9 /* CrewPropertiesTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewPropertiesTVCell.swift; sourceTree = "<group>"; };
+		0771A2E428251A6100758DD9 /* CrewPropertiesTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CrewPropertiesTVCell.xib; sourceTree = "<group>"; };
+		0771A2E728251A6900758DD9 /* LabelTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTVCell.swift; sourceTree = "<group>"; };
+		0771A2E828251A6900758DD9 /* LabelTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelTVCell.xib; sourceTree = "<group>"; };
 		2EE9016442E129AFEDA48CE8 /* Pods-DoorcastRebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.debug.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.debug.xcconfig"; sourceTree = "<group>"; };
 		49568D4212BBCFE74655B342 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E07C838282291870090D088 /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -199,6 +229,84 @@
 				0771A2C22823F8FE00758DD9 /* TimerView.xib */,
 			);
 			path = TimerView;
+			sourceTree = "<group>";
+		};
+		0771A2C5282519AD00758DD9 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2CA282519C400758DD9 /* Dashboard.storyboard */,
+				0771A2C9282519BC00758DD9 /* Scenes */,
+				0771A2C8282519B800758DD9 /* Model */,
+				0771A2C7282519B500758DD9 /* GetOrganizationsViewModel */,
+				0771A2C6282519B200758DD9 /* Views */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		0771A2C6282519B200758DD9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2DE28251A3000758DD9 /* LabelTVCell */,
+				0771A2DD28251A2D00758DD9 /* CrewPropertyTVCell */,
+				0771A2DC28251A2B00758DD9 /* CompanyTVCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0771A2C7282519B500758DD9 /* GetOrganizationsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2D6282519F000758DD9 /* CrewPropertyViewModel.swift */,
+				0771A2D7282519F000758DD9 /* GetOrganizationsViewModel.swift */,
+				0771A2D8282519F100758DD9 /* LogoutViewModel.swift */,
+			);
+			path = GetOrganizationsViewModel;
+			sourceTree = "<group>";
+		};
+		0771A2C8282519B800758DD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2D2282519E000758DD9 /* CrewPropertiesModel.swift */,
+				0771A2D0282519E000758DD9 /* GetOrganizationModel.swift */,
+				0771A2D1282519E000758DD9 /* LogoutModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0771A2C9282519BC00758DD9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2CC282519D300758DD9 /* CrewPropertiesVC.swift */,
+				0771A2CD282519D300758DD9 /* OnBoardingVC.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		0771A2DC28251A2B00758DD9 /* CompanyTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2DF28251A5600758DD9 /* CompanyTVCell.swift */,
+				0771A2E028251A5600758DD9 /* CompanyTVCell.xib */,
+			);
+			path = CompanyTVCell;
+			sourceTree = "<group>";
+		};
+		0771A2DD28251A2D00758DD9 /* CrewPropertyTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2E328251A6000758DD9 /* CrewPropertiesTVCell.swift */,
+				0771A2E428251A6100758DD9 /* CrewPropertiesTVCell.xib */,
+			);
+			path = CrewPropertyTVCell;
+			sourceTree = "<group>";
+		};
+		0771A2DE28251A3000758DD9 /* LabelTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2E728251A6900758DD9 /* LabelTVCell.swift */,
+				0771A2E828251A6900758DD9 /* LabelTVCell.xib */,
+			);
+			path = LabelTVCell;
 			sourceTree = "<group>";
 		};
 		4DE8B99136768865786476B0 /* Frameworks */ = {
@@ -338,6 +446,7 @@
 		E31C92BF2822452600600CEE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				0771A2C5282519AD00758DD9 /* Dashboard */,
 				E34A2D0C28229F7100BF7439 /* TaskDetails */,
 				E347D35428225BF300122C8B /* Home */,
 				E31C92C4282245D100600CEE /* Authentication */,
@@ -578,10 +687,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				072191142823DC1D00116F43 /* Oswald-Medium.ttf in Resources */,
+				0771A2EA28251A6900758DD9 /* LabelTVCell.xib in Resources */,
 				4E07C855282291FB0090D088 /* Oswald-Bold.ttf in Resources */,
 				4E07C856282291FB0090D088 /* Oswald-BoldItalic.ttf in Resources */,
 				4E07C857282291FB0090D088 /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				4E07C858282291FB0090D088 /* Oswald-DemiBold.ttf in Resources */,
+				0771A2E228251A5600758DD9 /* CompanyTVCell.xib in Resources */,
 				4E07C859282291FB0090D088 /* Oswald-Extra-LightItalic.ttf in Resources */,
 				4E07C85A282291FB0090D088 /* Oswald-ExtraLight.ttf in Resources */,
 				4E07C85B282291FB0090D088 /* Oswald-Heavy.ttf in Resources */,
@@ -596,6 +707,7 @@
 				0771A2C42823F8FE00758DD9 /* TimerView.xib in Resources */,
 				4E07C863282291FB0090D088 /* Oswald-Stencil.ttf in Resources */,
 				E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */,
+				0771A2CB282519C500758DD9 /* Dashboard.storyboard in Resources */,
 				E347D35628225BFE00122C8B /* Home.storyboard in Resources */,
 				E31C92C72822464400600CEE /* Authentication.storyboard in Resources */,
 				4E07C843282291870090D088 /* Poppins-Medium.ttf in Resources */,
@@ -606,6 +718,7 @@
 				4E07C83F282291870090D088 /* Poppins-Italic.otf in Resources */,
 				4E07C841282291870090D088 /* Poppins-SemiBold.ttf in Resources */,
 				E31C92B4282244CE00600CEE /* Assets.xcassets in Resources */,
+				0771A2E628251A6100758DD9 /* CrewPropertiesTVCell.xib in Resources */,
 				E31C92AF282244CC00600CEE /* Main.storyboard in Resources */,
 				4E07C842282291870090D088 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -661,6 +774,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */,
+				0771A2D4282519E000758DD9 /* LogoutModel.swift in Sources */,
 				E34A2D132822A05900BF7439 /* IncompleteTasksVC.swift in Sources */,
 				E31C92B2282244CC00600CEE /* DoorcastRebase.xcdatamodeld in Sources */,
 				E347D3632822700D00122C8B /* HomeViewModel.swift in Sources */,
@@ -671,6 +785,7 @@
 				E38D37762822478A00359321 /* LoginVC.swift in Sources */,
 				E347D35E28225FA100122C8B /* UIViewControllerExtension.swift in Sources */,
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
+				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
 				E347D35828225C2700122C8B /* HomeVC.swift in Sources */,
 				E347D35C28225E3E00122C8B /* NSObject+Helper.swift in Sources */,
 				0771A2BD2823F88400758DD9 /* ProgressHUD.swift in Sources */,
@@ -678,21 +793,30 @@
 				0771A2BA2823F38C00758DD9 /* ColorManager.swift in Sources */,
 				E31C92A8282244CC00600CEE /* AppDelegate.swift in Sources */,
 				E34A2D1128229FC800BF7439 /* CommonTaskDetailVC.swift in Sources */,
+				0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */,
+				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
 				E347D34F28224FD900122C8B /* LoginModel.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
+				0771A2E528251A6100758DD9 /* CrewPropertiesTVCell.swift in Sources */,
 				E38D377828224B6600359321 /* Constants.swift in Sources */,
 				E304886E2822ABEF004ECA60 /* Decodable.swift in Sources */,
 				E30488712822AC74004ECA60 /* IncompleteTaskListModel.swift in Sources */,
+				0771A2DA282519F100758DD9 /* GetOrganizationsViewModel.swift in Sources */,
 				E347D36028226B0A00122C8B /* BaseViewModelProtocol.swift in Sources */,
 				E30488732822BFB7004ECA60 /* UIKitHelper.swift in Sources */,
 				E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */,
+				0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */,
+				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
 				0771A2BE2823F88400758DD9 /* Loader.swift in Sources */,
 				4E07C8662822925A0090D088 /* FontManager.swift in Sources */,
 				0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */,
 				E347D351282258AB00122C8B /* DeviceName.swift in Sources */,
+				0771A2E928251A6900758DD9 /* LabelTVCell.swift in Sources */,
 				E347D368282286DA00122C8B /* ButtonExtension.swift in Sources */,
 				E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */,
+				0771A2E128251A5600758DD9 /* CompanyTVCell.swift in Sources */,
 				E304886C2822ABB0004ECA60 /* TaskListViewModel.swift in Sources */,
+				0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */,
 				072191132823D03500116F43 /* CalendarVC.swift in Sources */,
 				E31C92AA282244CC00600CEE /* SceneDelegate.swift in Sources */,
 				E347D34D28224DB300122C8B /* LoginViewModel.swift in Sources */,

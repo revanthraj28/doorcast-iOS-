@@ -56,7 +56,19 @@ extension LoginVC : LoginViewModelProtocol {
     func loginSuccess(loginResponse: LoginModel) {
         // To save login response
         SessionManager.saveSessionInfo(loginResponse: loginResponse)
-        self.gotoHomeScreen()
+        
+        
+       
+        
+        if loginResponse.status_code == 200 {
+            
+            print(loginResponse.data?.accesstoken)
+            
+            UserDefaults.standard.set(loginResponse.data?.accesstoken, forKey: "accesstoken")
+            self.gotoHomeScreen()
+        }
+    
+       
     }
 }
 

@@ -31,8 +31,13 @@ class SessionManager {
             }
         }
     }
+    
+    
     static func logoutUser() {
         defaults.set(nil, forKey: UserDefaultsKeys.userLoggedIn)
         defaults.set(false, forKey: UserDefaultsKeys.loggedInStatus)
     }
+    
+    
+    
 }

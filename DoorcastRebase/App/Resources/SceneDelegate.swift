@@ -54,7 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func goToHome(){
         DispatchQueue.main.async {
             SessionManager.SessionLoginInfo()
-            if let vc = HomeVC.newInstance {
+            if let vc = OnBoardingVC.newInstance {
                 let nav = UINavigationController(rootViewController: vc)
                 self.window?.rootViewController = nav
                 self.window?.makeKeyAndVisible()
