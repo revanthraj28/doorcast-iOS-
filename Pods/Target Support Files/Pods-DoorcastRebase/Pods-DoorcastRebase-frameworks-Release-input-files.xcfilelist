@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase-frameworks.sh
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework

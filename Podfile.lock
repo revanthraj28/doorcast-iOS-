@@ -1,4 +1,5 @@
 PODS:
+  - DropDown (2.3.13)
   - IQKeyboardManager (6.5.9)
   - JTAppleCalendar (7.1.8)
   - MBProgressHUD (1.2.0)
@@ -6,6 +7,7 @@ PODS:
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
+  - DropDown
   - IQKeyboardManager
   - JTAppleCalendar (~> 7.1.6)
   - MBProgressHUD
@@ -14,6 +16,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - DropDown
     - IQKeyboardManager
     - JTAppleCalendar
     - MBProgressHUD
@@ -21,12 +24,13 @@ SPEC REPOS:
     - Toast-Swift
 
 SPEC CHECKSUMS:
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   IQKeyboardManager: 241cc94ccabc9deb8f8bd7d12f00d73288d13ecc
   JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 6508fe371f748cea28b8bd82532dd8d804592d68
+PODFILE CHECKSUM: 56d31de8ca10c5a951b0f21b3a2561d8e53da475
 
 COCOAPODS: 1.11.2
