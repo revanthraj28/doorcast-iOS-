@@ -43,6 +43,8 @@ enum ApiError: Error {
     case unknown
     case endPoint
     case operationFailed
+    case invalidEmail
+    case invalidPassword
     
     var message: String {
         switch self {
@@ -64,6 +66,10 @@ enum ApiError: Error {
             return "Operation failed"
         case .endPoint:
             return "Error creating endpoint"
+        case .invalidEmail:
+            return "Email not found."
+        case .invalidPassword:
+            return "Invalid password"
         }
     }
 }
@@ -72,9 +78,8 @@ class ServiceManager {
 
     static func setHeaderForRequest(req: inout URLRequest) {
         req.addValue(KContentTypeValue, forHTTPHeaderField: KContentType)
-       // req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
-       // req.addValue(KcommonAccessTokenValue, forHTTPHeaderField: KcommonAccessToken)
-
+//        req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
+        
         if SessionManager.loginInfo?.data?.accesstoken != "" {
             req.addValue("\(SessionManager.loginInfo?.data?.accesstoken ?? "")", forHTTPHeaderField: KAccesstoken)
         }
@@ -122,6 +127,7 @@ class ServiceManager {
             completionHandler(false, nil, ApiError.invalidRequest.message)
             return
         }
+        print("Get url = \(urlComponents)")
    
         // Append paramaters to url if present
         if let urlParams = urlParams, !urlParams.isEmpty {
@@ -174,17 +180,25 @@ class ServiceManager {
                 return
             }
             guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-
-                completionHandler(false, nil, ApiError.responseFailed(error).message)
+                print("Error: HTTP request failed, statuscode = \(response.statusCode)")
+                if response.statusCode == 401 {
+                    completionHandler(false, nil, ApiError.invalidEmail.message)
+                } else if response.statusCode == 402 {
+                    completionHandler(false, nil, ApiError.invalidPassword.message)
+                } else {
+                    completionHandler(false, nil, ApiError.responseFailed(error).message)
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {
+                print("Error: Email doesn't exist, status code = \(response.statusCode)")
+                completionHandler(false, nil, ApiError.invalidEmail.message)
                 return
             }
             do {
 //                print(String(data: data, encoding: .utf8)!)
                 guard let result = try JSONDecoder().decode(T?.self, from: data)else {
                     print("Error: Cannot decode the object")
-                    
-
                     completionHandler(false, nil, ApiError.decodeFailed(error!).message)
                     return
                 }
@@ -415,10 +429,17 @@ class ServiceManager {
                 completionHandler(false, nil, ApiError.responseFailed(error).message)
                 return
             }
+            
             guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
                 print("Error: HTTP request failed, status code = \(response.statusCode)")
+                if response.statusCode == 401 {
+                    completionHandler(false, nil, ApiError.invalidEmail.message)
+                } else if response.statusCode == 402 {
+                    completionHandler(false, nil, ApiError.invalidPassword.message)
+                } else {
+                    completionHandler(false, nil, ApiError.responseFailed(error).message)
+                }
                 
-                completionHandler(false, nil, ApiError.responseFailed(error).message)
                 return
             }
             do {

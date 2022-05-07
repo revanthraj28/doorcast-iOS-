@@ -25,7 +25,10 @@ let KDeviceID = UIDevice.current.identifierForVendor!.uuidString
 let KDeviceModelName = UIDevice.modelName
 let KOsType = UIDevice.current.systemVersion
 
-var BASE_URL = "https://staging.doorcast.tech/api/"
+
+let GlobelAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Im94Zm9yZCBjYXBzIg._nKgScZrZagPYMtl2D9cYgxsBV_EoDgqmuMFGDuEAek"
+
+var BASE_URL = defaults.string(forKey: UserDefaultsKeys.Base_url) ?? "https://staging.doorcast.tech/api/"
 
 /* URL endpoints */
 struct ApiEndpoints {
@@ -37,6 +40,10 @@ struct ApiEndpoints {
     
     static let crewlogoutApi = "signout"
     static let crewpropertyApi = "getproperty_Org"
+    
+    static let ForgotPasswordApi = "exstream_forgotPassword"
+    static let ResendOTPApi = "exstream_resendOtp"
+    static let ResetPasswordApi = "exstream_resetPassword"
     
     
 }
@@ -53,6 +60,8 @@ struct Message {
 struct UserDefaultsKeys {
     static var userLoggedIn = "userLoggedIn"
     static var loggedInStatus = "loggedInStatus"
+    static var globalAT = "globalAT"
+    static var Base_url = "Base_url"
 }
 
 

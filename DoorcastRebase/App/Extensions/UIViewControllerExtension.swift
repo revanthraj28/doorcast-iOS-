@@ -19,6 +19,8 @@ extension UIViewController {
             }
         }
     }
+    
+    
     func gotoHomeScreen() {
         DispatchQueue.main.async {
             // V2 Dashboard with 5 tabs
@@ -26,5 +28,15 @@ extension UIViewController {
             self.view.window?.rootViewController = vc
             self.view.window?.makeKeyAndVisible()
         }
+    }
+    
+  
+    
+    
+    func gotoForgotPasswordScreen(){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordVC") as! ForgotPasswordVC
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated:true, completion:nil)
     }
 }

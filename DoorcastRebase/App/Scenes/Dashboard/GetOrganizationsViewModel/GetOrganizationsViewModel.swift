@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol GetOrganizationsModelProtocol {
+protocol GetOrganizationsModelProtocol: BaseViewModelProtocol {
     func organizationDetails(response : GetOrganizationsModel)
 }
 
-class GetOrganizations {
+class GetOrganizationsViewModel {
     var view: GetOrganizationsModelProtocol!
     init(_ view: GetOrganizationsModelProtocol) {
         self.view = view
@@ -20,8 +20,10 @@ class GetOrganizations {
     func getOrganizationApi() {
         
         //https://staging.doorcast.tech/api/get_organizations
+        self.view.showLoader()
         ServiceManager.getApiCall(endPoint: ApiEndpoints.getOrganizationApi, resultType: GetOrganizationsModel.self) { sucess, result, errorMessage in
             DispatchQueue.main.async {
+                self.view.hideLoader()
                 if sucess {
                     guard let resultValue = result else {return}
                     self.view?.organizationDetails(response: resultValue)

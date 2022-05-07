@@ -33,7 +33,7 @@ class CrewPropertiesVC: UIViewController {
     @IBOutlet weak var sideArrowImg: UIImageView!
     @IBOutlet weak var sideArrowBtn: UIButton!
     
-    
+    var getOrganizationsModelData : GetOrganizationsModelData?
     
     var crewproperties: CrewPropertyModel? // model for api
     var CrewPropertiesData  : CrewPropertiesData?
@@ -43,25 +43,19 @@ class CrewPropertiesVC: UIViewController {
     var crewPropertIds = [String]()
     var propertyName: Bool = true
     
-   
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         // written payload here.
         
         self.organizationName.text = self.orgname
         
         var parms = [String: Any]()
-        parms["type"] = type
+        parms["type"] = getOrganizationsModelData?.organization_id
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
         
@@ -95,6 +89,7 @@ class CrewPropertiesVC: UIViewController {
         // to add colors
     
         dateLabel.textColor = UIColor.white
+        lbl_chooseProperties.textColor = UIColor.ThemeColor
         userNameLabel.textColor = UIColor.white
         propertiesTV.backgroundColor = .opaqueSeparator
         view.backgroundColor = .opaqueSeparator
@@ -145,15 +140,12 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         cell.lbl_PropertiesValue.text = data?[indexPath.row].propertyName
         cell.lbl_PropertiesValue.textAlignment = .left
         cell.selectionStyle = .none
-        cell.backgroundColor = .clear
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -164,7 +156,6 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         cell.btn_checked.isHidden = false
         cell.lbl_PropertiesValue.textColor = .white
         showSelectedBackground.backgroundColor = .ThemeColor
-        
         
         propertyName = false
         self.crewPropertIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)

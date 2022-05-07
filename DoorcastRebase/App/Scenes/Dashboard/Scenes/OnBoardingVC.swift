@@ -26,20 +26,16 @@ class OnBoardingVC: UIViewController {
     @IBOutlet weak var allTasksBtn: UIButton!
     @IBOutlet weak var CompanyTV: UITableView!
     
-    
     // To get organization from model
     var crewOrganisations: GetOrganizationsModel?
-    var viewModel : GetOrganizations!
+    var viewModel : GetOrganizationsViewModel!
     
     // for logout api
     var logoutdata : LogoutModel!
     var logoutModel : LogoutViewModel!
     
- 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         usernameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
         
         CompanyTV.backgroundColor = .white
@@ -59,10 +55,8 @@ class OnBoardingVC: UIViewController {
         CompanyTV.register(UINib(nibName: "CompanyTVCell", bundle: nil), forCellReuseIdentifier: "CompanyTVCell")
         
         print("Home Login info = \(SessionManager.loginInfo?.data?.accesstoken)")
-        viewModel = GetOrganizations(self)
+        viewModel = GetOrganizationsViewModel(self)
         viewModel.getOrganizationApi()
-        
-        logoutModel = LogoutViewModel(self)
     }
      
     func updateFonts() {
@@ -70,8 +64,6 @@ class OnBoardingVC: UIViewController {
         allTasksLabel.font = UIFont.oswaldMedium(size: 22)
         dateLabel.font = UIFont.oswaldRegular(size: 18)
         usernameLabel.font = UIFont.oswaldRegular(size: 18)
-        
-        
     }
 
     func updateColor() {
@@ -80,16 +72,13 @@ class OnBoardingVC: UIViewController {
         allTasksView.backgroundColor = UIColor.ThemeColor
         dateLabel.textColor = UIColor.white
         usernameLabel.textColor = UIColor.white
-        
-        
     }
 
     @IBAction func logoutBtnIsTapped(_ sender: Any) {
         // func to be executed when logged out
         print("logoutttt.....")
+        logoutModel = LogoutViewModel(self)
         logoutModel.logoutApi()
-        SessionManager.logoutUser()
-        self.showLogin()
     }
     
     @IBAction func allTasksBtnIsTapped(_ sender: Any) {
@@ -117,6 +106,7 @@ extension OnBoardingVC: UITableViewDelegate, UITableViewDataSource{
         let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "CrewPropertiesVC") as! CrewPropertiesVC
         UserDefaults.standard.set(crewOrganisations?.data?[indexPath.row].organization_id ?? "", forKey: "type")
+        vc.getOrganizationsModelData = crewOrganisations?.data?[indexPath.row]
         vc.type =  crewOrganisations?.data?[indexPath.row].organization_id ?? ""
         vc.orgname = crewOrganisations?.data?[indexPath.row].organization_name ?? ""
         vc.modalPresentationStyle = .fullScreen
@@ -145,8 +135,6 @@ extension OnBoardingVC : GetOrganizationsModelProtocol, LogoutViewModelProtocol 
         print("Organization details = \(response)")
         crewOrganisations = response
         print("org name = \(response.data?.first?.organization_name ?? "")")
-        
-        
         DispatchQueue.main.async {
             self.CompanyTV.reloadData()
         }

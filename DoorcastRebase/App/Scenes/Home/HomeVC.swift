@@ -18,8 +18,6 @@ class HomeVC: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? HomeVC
         return vc
     }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Home Login info = \(SessionManager.loginInfo?.data?.accesstoken)")

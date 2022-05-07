@@ -34,12 +34,95 @@ class LoginVC: UIViewController {
     
     var loginResponseModel : LoginModelData?
     
+    static var newInstance: LoginVC? {
+        let storyboard = UIStoryboard(name: Storyboard.authentication.name,
+                                      bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? LoginVC
+        return vc
+    }
+    
+    var viewModel : LoginViewModel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel = LoginViewModel(self)
+        emailTF.text = "chaitranew@gmail.com"
+        passwordTF.text = "exstream"
+        setupUI()
+        
+    }
+    
+    func setupUI()
+    {
+//        BASE_URL = "https://doorcast.tech/api/"
+        emailTF.textAlignment = .center
+        passwordTF.textAlignment = .center
+        holderView.backgroundColor = UIColor(named: "ThemeColor")
+        docarcastImageLogo.image = UIImage(named: "doorcast_white")
+        logintoLbl.text = "Login To"
+        logintoLbl.font = UIFont.oswaldMedium(size: 16)
+        logintoLbl.textColor = .white
+        renovationTrackerLbl.text = "Renovation Tracker"
+        renovationTrackerLbl.font = UIFont.oswaldMedium(size: 20)
+        serverLbl.text = "Server:"
+        serverLbl.font = UIFont.oswaldMedium(size: 18)
+        dropdownView.backgroundColor = .clear
+        dropDownImage.image = UIImage(named: "chevron-down-solid")
+        dropDownImage.tintColor = UIColor.white
+        dropDownTitleLbl.text = "Production"
+        dropDownTitleLbl.font = UIFont.oswaldMedium(size: 20)
+        dropDownTitleLbl.textColor = .white
+        passwordLbl.text = "Password"
+        passwordLbl.textColor = .white
+        
+        emailAdresslbl.text = "Email Address"
+        emailAdresslbl.textColor = .white
+        
+        emailTF.font = UIFont.oswaldMedium(size: 14)
+        passwordTF.font = UIFont.oswaldMedium(size: 14)
+        
+        emailAdresslbl.font = UIFont.oswaldMedium(size: 16)
+        passwordLbl.font = UIFont.oswaldMedium(size: 16)
+        
+        emailTF.placeholder =  "name@example.com"
+        passwordTF.placeholder = "Password"
+        
+        loginButton.setTitle("LOGIN", for: .normal)
+        loginButton.titleLabel?.font = UIFont.oswaldMedium(size: 16)
+        loginButton.setTitleColor(.black, for: .normal)
+        loginButton.backgroundColor = .white
+        loginButton.layer.cornerRadius = 2
+        loginButton.clipsToBounds = true
+        
+        contactlbl.text = "Contact your supervisor to create your Doorcast account."
+        contactlbl.font = UIFont.oswaldMedium(size: 16)
+        contactlbl.numberOfLines = 0
+        contactlbl.textColor = .white
+        forgetPassBtn.setTitle("Forgot Password?", for: .normal)
+        forgetPassBtn.setTitleColor(.black, for: .normal)
+        forgetPassBtn.titleLabel?.font = UIFont.oswaldMedium(size: 18)
+        
+        versionLabl.text = "Version:...."
+        versionLabl.textColor = .white
+        versionLabl.font = UIFont.oswaldMedium(size: 12)
+        forgetPassBtn.titleLabel?.tintColor = .black
+        
+        emailErrorLabel.textColor = .black
+        passErorrLabel.textColor = .black
+        
+        emailErrorLabel.isHidden = true
+        passErorrLabel.isHidden = true
+        
+        emailErrorLabel.font = UIFont.oswaldRegular(size: 12)
+        passErorrLabel.font = UIFont.oswaldRegular(size: 12)
+        
+        print("loginResponseModel...\(loginResponseModel?.fullname ?? "")")
+    }
     @IBAction func didTapOnDropBtn(_ sender: Any) {
         
         print("server dropdown btn clicked..")
         
         passwordTF.isSecureTextEntry = true
-        
         rightBarDropDown.clipsToBounds = true
         rightBarDropDown.layer.cornerRadius = 10
         rightBarDropDown.layer.shadowColor = UIColor.darkGray.cgColor
@@ -83,102 +166,21 @@ class LoginVC: UIViewController {
         }
     }
     
+    @IBAction func didTapOnForgetPasswordButton(_ sender: Any) {
+        print("didTapOnForgetPasswordButton")
+//        let sb = UIStoryboard(name: "Authentication", bundle: nil)
+//        let vc = sb.instantiateViewController(withIdentifier: "ForgotPasswordVC")
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true)
+        guard let vc = ForgotPasswordVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+//        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func validateLabel(lblName: UILabel, hide: Bool, lblText: String){
         lblName.isHidden = hide
         lblName.text = lblText
-    }
-    
-    
-    
-    static var newInstance: LoginVC? {
-        let storyboard = UIStoryboard(name: Storyboard.authentication.name,
-                                      bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? LoginVC
-        return vc
-    }
-    
-    var viewModel : LoginViewModel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel = LoginViewModel(self)
-        emailTF.text = "chaitranew@gmail.com"
-        passwordTF.text = "exstream"
-        
-        setupUI()
-        
-    }
-    
-    func setupUI()
-    {
-        BASE_URL = "https://doorcast.tech/api/"
-        emailTF.textAlignment = .center
-        passwordTF.textAlignment = .center
-        holderView.backgroundColor = UIColor(named: "ThemeColor")
-        docarcastImageLogo.image = UIImage(named: "doorcast_white")
-        logintoLbl.text = "Login To"
-        logintoLbl.font = UIFont.oswaldMedium(size: 16)
-        logintoLbl.textColor = .white
-        renovationTrackerLbl.text = "Renovation Tracker"
-        renovationTrackerLbl.font = UIFont.oswaldMedium(size: 20)
-        serverLbl.text = "Server:"
-        serverLbl.font = UIFont.oswaldMedium(size: 18)
-        dropdownView.backgroundColor = .clear
-        dropDownImage.image = UIImage(named: "chevron-down-solid")
-        dropDownImage.tintColor = UIColor.white
-        dropDownTitleLbl.text = "Production"
-        dropDownTitleLbl.font = UIFont.oswaldMedium(size: 20)
-        dropDownTitleLbl.textColor = .white
-        
-        dropDownBtn.setTitle("", for: .normal)
-        
-        passwordLbl.text = "Password"
-        passwordLbl.textColor = .white
-        
-        emailAdresslbl.text = "Email Address"
-        emailAdresslbl.textColor = .white
-        
-        emailTF.font = UIFont.oswaldMedium(size: 14)
-        passwordTF.font = UIFont.oswaldMedium(size: 14)
-        
-        
-        emailAdresslbl.font = UIFont.oswaldMedium(size: 16)
-        passwordLbl.font = UIFont.oswaldMedium(size: 16)
-        
-        emailTF.placeholder =  "name@example.com"
-        passwordTF.placeholder = "Password"
-        
-        loginButton.setTitle("LOGIN", for: .normal)
-        loginButton.titleLabel?.font = UIFont.oswaldMedium(size: 16)
-        loginButton.setTitleColor(.black, for: .normal)
-        loginButton.backgroundColor = .white
-        loginButton.layer.cornerRadius = 2
-        loginButton.clipsToBounds = true
-        
-        contactlbl.text = "Contact your supervisor to create your Doorcast account."
-        contactlbl.font = UIFont.oswaldMedium(size: 16)
-        contactlbl.numberOfLines = 0
-        contactlbl.textColor = .white
-        forgetPassBtn.setTitle("Forgot Password?", for: .normal)
-        forgetPassBtn.setTitleColor(.black, for: .normal)
-        forgetPassBtn.titleLabel?.font = UIFont.oswaldMedium(size: 18)
-        
-        versionLabl.text = "Version:...."
-        versionLabl.textColor = .white
-        versionLabl.font = UIFont.oswaldMedium(size: 12)
-        forgetPassBtn.titleLabel?.tintColor = .black
-        
-        emailErrorLabel.textColor = .black
-        passErorrLabel.textColor = .black
-        
-        emailErrorLabel.isHidden = true
-        passErorrLabel.isHidden = true
-        
-        emailErrorLabel.font = UIFont.oswaldRegular(size: 12)
-        passErorrLabel.font = UIFont.oswaldRegular(size: 12)
-        
-        print("loginResponseModel...\(loginResponseModel?.fullname ?? "")")
     }
     
     @IBAction func loginButtonAction(_ sender: Any) {
@@ -194,8 +196,6 @@ class LoginVC: UIViewController {
                 parms["latitude"] = 0.0
                 parms["longitude"] = 0.0
                 parms["device_token"] = "embLbUlYRDChPUTgGUV6Ob:APA91bGvpyfL_W7VC_m7dEaXD-Wr22lgRufMJavjcJg7rGHZfugdgisgbOYz2oz4aUlm8fMJOwu3s5w4sZY31h_py4S6C-TeA2n54tI2nClMtIddA_EuCi-O34CnZxi6aL82EKr4k4Sf"
-                
-                
                 switch self.dropDownTitleLbl.text {
                 case "Production":
                     BASE_URL = "https://doorcast.tech/api/"
@@ -203,7 +203,6 @@ class LoginVC: UIViewController {
                 case "Staging":
                     BASE_URL = "https://staging.doorcast.tech/api/"
                     break
-                    
                 case "Dev":
                     BASE_URL = "https://dev.doorcast.tech/api/"
                     break
@@ -213,9 +212,9 @@ class LoginVC: UIViewController {
                 }
                 print("Baseurl = \(BASE_URL)")
                 
-                defaults.set(BASE_URL ?? "https://doorcast.tech/api/", forKey: "Base_url")
+                defaults.set(BASE_URL ?? "https://doorcast.tech/api/", forKey: UserDefaultsKeys.Base_url)
                 
-                print("Defaults url = \(defaults.string(forKey: "Base_url"))")
+                print("Defaults url = \(defaults.string(forKey: UserDefaultsKeys.Base_url))")
                 
                 
                 viewModel.loginApi(dictParam: parms)
@@ -230,40 +229,11 @@ class LoginVC: UIViewController {
 
 extension LoginVC : LoginViewModelProtocol {
     func loginSuccess(loginResponse: LoginModel) {
-        
         SessionManager.saveSessionInfo(loginResponse: loginResponse)
-        
-        
-        print("status_code..\(SessionManager.loginInfo?.status_code)")
-        print("accesstoken..\(SessionManager.loginInfo?.data?.accesstoken)")
-        
-        
-        if  SessionManager.loginInfo?.status_code == 200 {
-            
-            let Accesstoken = loginResponse.data?.accesstoken
-           // UserDefaults.standard.set(Accesstoken, forKey: "Accesstoken")
-            
-            let fullname = loginResponse.data?.fullname
-            UserDefaults.standard.set(fullname, forKey: "fullname")
-            
-            let email = loginResponse.data?.email
-            UserDefaults.standard.set(email, forKey: "email")
-            
-            let mobilenum = loginResponse.data?.mobile
-            UserDefaults.standard.set(mobilenum, forKey: "mobile")
-            
-            let LoginId = loginResponse.data?.login_id
-            UserDefaults.standard.set(LoginId, forKey: "LoginId")
-            
-            
-            self.gotoHomeScreen()
-        }
-        
-        
-        
-        
+        self.gotoHomeScreen()
     }
 }
+
 extension LoginVC : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

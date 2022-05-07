@@ -34,10 +34,21 @@
 		0771A2EA28251A6900758DD9 /* LabelTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2E828251A6900758DD9 /* LabelTVCell.xib */; };
 		0771A2F72825348600758DD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2EF2825348500758DD9 /* LoginVC.swift */; };
 		0771A2F82825348600758DD9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2F22825348600758DD9 /* LoginViewModel.swift */; };
-		0771A2F92825348600758DD9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2F32825348600758DD9 /* ProfileViewModel.swift */; };
 		0771A2FA2825348600758DD9 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2F52825348600758DD9 /* LoginModel.swift */; };
-		0771A2FB2825348600758DD9 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2F62825348600758DD9 /* ProfileModel.swift */; };
 		0771A2FD2825349B00758DD9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2FC2825349B00758DD9 /* Authentication.storyboard */; };
+		0771A3192825398900758DD9 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3002825398900758DD9 /* ResetPasswordViewModel.swift */; };
+		0771A31A2825398900758DD9 /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3022825398900758DD9 /* ResetPasswordModel.swift */; };
+		0771A31B2825398900758DD9 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3052825398900758DD9 /* ResetPasswordVC.swift */; };
+		0771A31C2825398900758DD9 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3082825398900758DD9 /* ForgotPasswordViewModel.swift */; };
+		0771A31D2825398900758DD9 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A30A2825398900758DD9 /* ForgotPasswordModel.swift */; };
+		0771A31E2825398900758DD9 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A30D2825398900758DD9 /* ForgotPasswordVC.swift */; };
+		0771A31F2825398900758DD9 /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3102825398900758DD9 /* ResendOTPViewModel.swift */; };
+		0771A3202825398900758DD9 /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3122825398900758DD9 /* ResendOTPModel.swift */; };
+		0771A3212825398900758DD9 /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A3152825398900758DD9 /* OtpTVCell.xib */; };
+		0771A3222825398900758DD9 /* OtpTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3162825398900758DD9 /* OtpTVCell.swift */; };
+		0771A3232825398900758DD9 /* OtpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3182825398900758DD9 /* OtpVC.swift */; };
+		0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A324282539C600758DD9 /* TextFieldExtension.swift */; };
+		0771A3272825460600758DD9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3262825460600758DD9 /* ServiceManager.swift */; };
 		4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C838282291870090D088 /* Poppins-BoldItalic.otf */; };
 		4E07C83F282291870090D088 /* Poppins-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C839282291870090D088 /* Poppins-Italic.otf */; };
 		4E07C840282291870090D088 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C83A282291870090D088 /* Poppins-Light.ttf */; };
@@ -74,7 +85,6 @@
 		E31C92B4282244CE00600CEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31C92B3282244CE00600CEE /* Assets.xcassets */; };
 		E31C92B7282244CE00600CEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31C92B5282244CE00600CEE /* LaunchScreen.storyboard */; };
 		E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31C92C92822466700600CEE /* StoryboardExtension.swift */; };
-		E347D34B28224C1B00122C8B /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347D34A28224C1B00122C8B /* ServiceManager.swift */; };
 		E347D351282258AB00122C8B /* DeviceName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347D350282258AB00122C8B /* DeviceName.swift */; };
 		E347D35328225AEB00122C8B /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347D35228225AEB00122C8B /* SessionManager.swift */; };
 		E347D35628225BFE00122C8B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E347D35528225BFE00122C8B /* Home.storyboard */; };
@@ -122,10 +132,21 @@
 		0771A2E828251A6900758DD9 /* LabelTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelTVCell.xib; sourceTree = "<group>"; };
 		0771A2EF2825348500758DD9 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		0771A2F22825348600758DD9 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		0771A2F32825348600758DD9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		0771A2F52825348600758DD9 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		0771A2F62825348600758DD9 /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		0771A2FC2825349B00758DD9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		0771A3002825398900758DD9 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		0771A3022825398900758DD9 /* ResetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
+		0771A3052825398900758DD9 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		0771A3082825398900758DD9 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		0771A30A2825398900758DD9 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
+		0771A30D2825398900758DD9 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		0771A3102825398900758DD9 /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
+		0771A3122825398900758DD9 /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
+		0771A3152825398900758DD9 /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
+		0771A3162825398900758DD9 /* OtpTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpTVCell.swift; sourceTree = "<group>"; };
+		0771A3182825398900758DD9 /* OtpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpVC.swift; sourceTree = "<group>"; };
+		0771A324282539C600758DD9 /* TextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		0771A3262825460600758DD9 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		2EE9016442E129AFEDA48CE8 /* Pods-DoorcastRebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.debug.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.debug.xcconfig"; sourceTree = "<group>"; };
 		49568D4212BBCFE74655B342 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E07C838282291870090D088 /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -167,7 +188,6 @@
 		E31C92B6282244CE00600CEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E31C92B8282244CE00600CEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31C92C92822466700600CEE /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
-		E347D34A28224C1B00122C8B /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		E347D350282258AB00122C8B /* DeviceName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceName.swift; sourceTree = "<group>"; };
 		E347D35228225AEB00122C8B /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		E347D35528225BFE00122C8B /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -317,25 +337,20 @@
 			isa = PBXGroup;
 			children = (
 				0771A2FC2825349B00758DD9 /* Authentication.storyboard */,
-				0771A2F42825348600758DD9 /* Model */,
-				0771A2F02825348600758DD9 /* View */,
-				0771A2ED2825348500758DD9 /* ViewController */,
-				0771A2F12825348600758DD9 /* ViewModel */,
+				0771A2FE2825398900758DD9 /* ResetPassword */,
+				0771A2EE2825348500758DD9 /* Login */,
+				0771A30E2825398900758DD9 /* Otp */,
+				0771A3062825398900758DD9 /* ForgotPassword */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		0771A2ED2825348500758DD9 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0771A2EE2825348500758DD9 /* Login */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		0771A2EE2825348500758DD9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				0771A2F02825348600758DD9 /* View */,
+				0771A2F42825348600758DD9 /* Model */,
+				0771A2F12825348600758DD9 /* ViewModel */,
 				0771A2EF2825348500758DD9 /* LoginVC.swift */,
 			);
 			path = Login;
@@ -352,7 +367,6 @@
 			isa = PBXGroup;
 			children = (
 				0771A2F22825348600758DD9 /* LoginViewModel.swift */,
-				0771A2F32825348600758DD9 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -361,9 +375,144 @@
 			isa = PBXGroup;
 			children = (
 				0771A2F52825348600758DD9 /* LoginModel.swift */,
-				0771A2F62825348600758DD9 /* ProfileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0771A2FE2825398900758DD9 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				0771A2FF2825398900758DD9 /* ViewModel */,
+				0771A3012825398900758DD9 /* Model */,
+				0771A3032825398900758DD9 /* View */,
+				0771A3042825398900758DD9 /* ViewController */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		0771A2FF2825398900758DD9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3002825398900758DD9 /* ResetPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0771A3012825398900758DD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3022825398900758DD9 /* ResetPasswordModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0771A3032825398900758DD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0771A3042825398900758DD9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3052825398900758DD9 /* ResetPasswordVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0771A3062825398900758DD9 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3072825398900758DD9 /* ViewModel */,
+				0771A3092825398900758DD9 /* Model */,
+				0771A30B2825398900758DD9 /* View */,
+				0771A30C2825398900758DD9 /* ViewController */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		0771A3072825398900758DD9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3082825398900758DD9 /* ForgotPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0771A3092825398900758DD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0771A30A2825398900758DD9 /* ForgotPasswordModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0771A30B2825398900758DD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0771A30C2825398900758DD9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0771A30D2825398900758DD9 /* ForgotPasswordVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0771A30E2825398900758DD9 /* Otp */ = {
+			isa = PBXGroup;
+			children = (
+				0771A30F2825398900758DD9 /* ViewModel */,
+				0771A3112825398900758DD9 /* Model */,
+				0771A3132825398900758DD9 /* View */,
+				0771A3172825398900758DD9 /* ViewController */,
+			);
+			path = Otp;
+			sourceTree = "<group>";
+		};
+		0771A30F2825398900758DD9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3102825398900758DD9 /* ResendOTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0771A3112825398900758DD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3122825398900758DD9 /* ResendOTPModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0771A3132825398900758DD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3142825398900758DD9 /* OtpTVCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0771A3142825398900758DD9 /* OtpTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3152825398900758DD9 /* OtpTVCell.xib */,
+				0771A3162825398900758DD9 /* OtpTVCell.swift */,
+			);
+			path = OtpTVCell;
+			sourceTree = "<group>";
+		};
+		0771A3172825398900758DD9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0771A3182825398900758DD9 /* OtpVC.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4DE8B99136768865786476B0 /* Frameworks */ = {
@@ -514,6 +663,7 @@
 		E31C92C02822452C00600CEE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0771A324282539C600758DD9 /* TextFieldExtension.swift */,
 				E347D35928225E1700122C8B /* StringExtension.swift */,
 				E347D35D28225FA100122C8B /* UIViewControllerExtension.swift */,
 				E347D367282286DA00122C8B /* ButtonExtension.swift */,
@@ -568,7 +718,7 @@
 		E31C92C5282245DB00600CEE /* ServiceManager */ = {
 			isa = PBXGroup;
 			children = (
-				E347D34A28224C1B00122C8B /* ServiceManager.swift */,
+				0771A3262825460600758DD9 /* ServiceManager.swift */,
 			);
 			path = ServiceManager;
 			sourceTree = "<group>";
@@ -711,6 +861,7 @@
 				0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */,
 				4E07C862282291FB0090D088 /* Oswald-RegularItalic.ttf in Resources */,
 				0771A2C42823F8FE00758DD9 /* TimerView.xib in Resources */,
+				0771A3212825398900758DD9 /* OtpTVCell.xib in Resources */,
 				4E07C863282291FB0090D088 /* Oswald-Stencil.ttf in Resources */,
 				E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */,
 				0771A2CB282519C500758DD9 /* Dashboard.storyboard in Resources */,
@@ -779,12 +930,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */,
+				0771A3222825398900758DD9 /* OtpTVCell.swift in Sources */,
 				0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */,
 				0771A2D4282519E000758DD9 /* LogoutModel.swift in Sources */,
+				0771A31F2825398900758DD9 /* ResendOTPViewModel.swift in Sources */,
 				E34A2D132822A05900BF7439 /* IncompleteTasksVC.swift in Sources */,
 				E31C92B2282244CC00600CEE /* DoorcastRebase.xcdatamodeld in Sources */,
 				E347D3632822700D00122C8B /* HomeViewModel.swift in Sources */,
-				0771A2FB2825348600758DD9 /* ProfileModel.swift in Sources */,
+				0771A31A2825398900758DD9 /* ResetPasswordModel.swift in Sources */,
 				E31C92AC282244CC00600CEE /* ViewController.swift in Sources */,
 				E347D35328225AEB00122C8B /* SessionManager.swift in Sources */,
 				E34A2D152822A06E00BF7439 /* CompletedTasksVC.swift in Sources */,
@@ -792,13 +946,15 @@
 				E347D35E28225FA100122C8B /* UIViewControllerExtension.swift in Sources */,
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
 				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
+				0771A31D2825398900758DD9 /* ForgotPasswordModel.swift in Sources */,
 				E347D35828225C2700122C8B /* HomeVC.swift in Sources */,
+				0771A3232825398900758DD9 /* OtpVC.swift in Sources */,
 				E347D35C28225E3E00122C8B /* NSObject+Helper.swift in Sources */,
 				0771A2BD2823F88400758DD9 /* ProgressHUD.swift in Sources */,
-				E347D34B28224C1B00122C8B /* ServiceManager.swift in Sources */,
 				0771A2BA2823F38C00758DD9 /* ColorManager.swift in Sources */,
 				E31C92A8282244CC00600CEE /* AppDelegate.swift in Sources */,
 				E34A2D1128229FC800BF7439 /* CommonTaskDetailVC.swift in Sources */,
+				0771A31E2825398900758DD9 /* ForgotPasswordVC.swift in Sources */,
 				0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */,
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
@@ -811,16 +967,19 @@
 				0771A2DA282519F100758DD9 /* GetOrganizationsViewModel.swift in Sources */,
 				0771A2FA2825348600758DD9 /* LoginModel.swift in Sources */,
 				E347D36028226B0A00122C8B /* BaseViewModelProtocol.swift in Sources */,
-				0771A2F92825348600758DD9 /* ProfileViewModel.swift in Sources */,
 				E30488732822BFB7004ECA60 /* UIKitHelper.swift in Sources */,
 				E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */,
 				0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */,
 				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
 				0771A2BE2823F88400758DD9 /* Loader.swift in Sources */,
+				0771A3272825460600758DD9 /* ServiceManager.swift in Sources */,
 				4E07C8662822925A0090D088 /* FontManager.swift in Sources */,
 				0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */,
 				E347D351282258AB00122C8B /* DeviceName.swift in Sources */,
+				0771A31C2825398900758DD9 /* ForgotPasswordViewModel.swift in Sources */,
+				0771A3192825398900758DD9 /* ResetPasswordViewModel.swift in Sources */,
 				0771A2E928251A6900758DD9 /* LabelTVCell.swift in Sources */,
+				0771A31B2825398900758DD9 /* ResetPasswordVC.swift in Sources */,
 				E347D368282286DA00122C8B /* ButtonExtension.swift in Sources */,
 				E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */,
 				0771A2E128251A5600758DD9 /* CompanyTVCell.swift in Sources */,
@@ -828,6 +987,7 @@
 				0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */,
 				072191132823D03500116F43 /* CalendarVC.swift in Sources */,
 				E31C92AA282244CC00600CEE /* SceneDelegate.swift in Sources */,
+				0771A3202825398900758DD9 /* ResendOTPModel.swift in Sources */,
 				E37939D72822A6B8008D83E4 /* TableViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

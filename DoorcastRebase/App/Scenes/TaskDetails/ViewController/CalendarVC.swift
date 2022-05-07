@@ -11,18 +11,12 @@ import JTAppleCalendar
 
 class CalendarVC: UIViewController {
     
-    
-    
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var monthLabel: UILabel!
-    
     @IBOutlet weak var calendarViewHolder: UIView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
-    
-    
     @IBOutlet weak var sundayLabel: UILabel!
     @IBOutlet weak var mondayLabel: UILabel!
     @IBOutlet weak var tuesdayLabel: UILabel!
@@ -31,8 +25,6 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var fridayLabel: UILabel!
     @IBOutlet weak var saturdayLabel: UILabel!
     @IBOutlet weak var labelSelectedDays: UILabel!
-    
-    
     @IBOutlet weak var doneButtonHolderView: UIView!
     @IBOutlet weak var closeImage: UIImageView!
     @IBOutlet weak var ButtonDone: UIButton!
@@ -44,15 +36,10 @@ class CalendarVC: UIViewController {
     var endDate = Date().dateByAddingMonths(months: 12).endOfMonth
     var selectedDays: Date?
     let grayView = UIView()
-    
     var btnDoneActionBool = Bool()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         updateUI()
         setupCalView()
     }
@@ -156,9 +143,6 @@ class CalendarVC: UIViewController {
     func setupMonthLabel(date: Date) {
         monthLabel.text = date.monthYearName
     }
-    
-    
-    
     func handleConfiguration(cell: JTAppleCell?, cellState: CellState) {
         guard let cell = cell as? calendarCVCell else { return }
         handleCellColor(cell: cell, cellState: cellState)
