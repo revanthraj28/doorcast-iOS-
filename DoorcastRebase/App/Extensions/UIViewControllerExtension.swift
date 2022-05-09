@@ -30,6 +30,25 @@ extension UIViewController {
         }
     }
     
+    
+    func gotoProfileScreen() {
+        DispatchQueue.main.async {
+            // V2 Dashboard with 5 tabs
+            let vc = ProfileVC.newInstance
+            self.view.window?.rootViewController = vc
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
+    
+    
+    func gotoNotificationScreen() {
+        DispatchQueue.main.async {
+            // V2 Dashboard with 5 tabs
+            let vc = NotificationCenterVC.newInstance
+            self.view.window?.rootViewController = vc
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
   
     
     

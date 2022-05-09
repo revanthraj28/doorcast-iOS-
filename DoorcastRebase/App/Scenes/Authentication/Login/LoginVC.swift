@@ -46,7 +46,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginViewModel(self)
-        emailTF.text = "chaitranew@gmail.com"
+        emailTF.text = "keerthinew@gmail.com"
         passwordTF.text = "exstream"
         setupUI()
         

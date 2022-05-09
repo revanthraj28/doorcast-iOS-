@@ -10,7 +10,9 @@ import UIKit
 enum Storyboard: String {
     case authentication
     case home
+    case Profile
     case dashboard
+    case Notificationcenter
     case taskDetails
     var name: String {
         return self.rawValue.capitalizingFirstLetter()

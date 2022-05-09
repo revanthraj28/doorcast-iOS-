@@ -56,6 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             SessionManager.SessionLoginInfo()
             if let vc = OnBoardingVC.newInstance {
                 let nav = UINavigationController(rootViewController: vc)
+                nav.isNavigationBarHidden = true
                 self.window?.rootViewController = nav
                 self.window?.makeKeyAndVisible()
             }

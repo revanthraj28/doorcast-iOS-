@@ -19,7 +19,7 @@ class OnBoardingVC: UIViewController {
     @IBOutlet weak var CommonNavBarView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var logoutImg: UIImageView!
+//    @IBOutlet weak var logoutImg: UIImageView!
     @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet weak var allTasksView: UIView!
     @IBOutlet weak var allTasksLabel: UILabel!
@@ -126,8 +126,8 @@ extension OnBoardingVC : GetOrganizationsModelProtocol, LogoutViewModelProtocol 
         
       // api of logout
         DispatchQueue.main.async {
-            SessionManager.logoutUser()
             self.showLogin()
+            SessionManager.logoutUser()
         }
     }
     func organizationDetails(response: GetOrganizationsModel) {

@@ -39,6 +39,7 @@ enum ApiError: Error {
     case invalidRequest
     case decodeFailed(Error)
     case responseFailed(Error?)
+    case serverError
     case nonZeroResultCode(String)
     case unknown
     case endPoint
@@ -70,6 +71,8 @@ enum ApiError: Error {
             return "Email not found."
         case .invalidPassword:
             return "Invalid password"
+        case .serverError:
+            return "Server busy"
         }
     }
 }
@@ -160,6 +163,7 @@ class ServiceManager {
             
             /*Chick session status*/
             guard let response = response as? HTTPURLResponse else {return}
+            print("****** Get api Response status code = \(response.statusCode)")
             if response.statusCode == 403 {
 
                 self.sessionExpired(strCode: "\(response.statusCode)")
@@ -409,7 +413,12 @@ class ServiceManager {
         //        request.setValue("Basic MY_BASIC_AUTH_STRING", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
             /*Chick session status*/
-            guard let response = response as? HTTPURLResponse else {return}
+            guard let response = response as? HTTPURLResponse else {
+                print("Error in response")
+                completionHandler(false, nil, ApiError.serverError.message)
+                return
+            }
+            print("****** Post api Response status code = \(response.statusCode)")
             if response.statusCode == 403 {
                 completionHandler(false, nil, Message.sessionExpired)
                 self.sessionExpired(strCode: "\(response.statusCode)")

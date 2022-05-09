@@ -70,6 +70,14 @@
 		4E07C862282291FB0090D088 /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C849282291B90090D088 /* Oswald-RegularItalic.ttf */; };
 		4E07C863282291FB0090D088 /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C848282291B80090D088 /* Oswald-Stencil.ttf */; };
 		4E07C8662822925A0090D088 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C8652822925A0090D088 /* FontManager.swift */; };
+		4E07C8812828E4D90090D088 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C87A2828E4D90090D088 /* ProfileVC.swift */; };
+		4E07C8822828E4D90090D088 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C87C2828E4D90090D088 /* ProfileViewModel.swift */; };
+		4E07C8832828E4DA0090D088 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C87D2828E4D90090D088 /* Profile.storyboard */; };
+		4E07C8842828E4DA0090D088 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C87F2828E4D90090D088 /* ProfileModel.swift */; };
+		4E07C8872828E92B0090D088 /* Notificationcenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C8862828E92B0090D088 /* Notificationcenter.storyboard */; };
+		4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */; };
+		4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */; };
+		4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */; };
 		E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30488632822A788004ECA60 /* TaskListTVCell.swift */; };
 		E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E30488642822A788004ECA60 /* TaskListTVCell.xib */; };
 		E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = E30488682822A90E004ECA60 /* IncompleteTaskDetails.json */; };
@@ -171,6 +179,14 @@
 		4E07C853282291BA0090D088 /* Oswald-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-LightItalic.ttf"; sourceTree = "<group>"; };
 		4E07C854282291BA0090D088 /* Oswald-DemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-DemiBold.ttf"; sourceTree = "<group>"; };
 		4E07C8652822925A0090D088 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		4E07C87A2828E4D90090D088 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		4E07C87C2828E4D90090D088 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4E07C87D2828E4D90090D088 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		4E07C87F2828E4D90090D088 /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		4E07C8862828E92B0090D088 /* Notificationcenter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notificationcenter.storyboard; sourceTree = "<group>"; };
+		4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterVC.swift; sourceTree = "<group>"; };
+		4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAssignedTVCell.swift; sourceTree = "<group>"; };
+		4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskAssignedTVCell.xib; sourceTree = "<group>"; };
 		E30488632822A788004ECA60 /* TaskListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTVCell.swift; sourceTree = "<group>"; };
 		E30488642822A788004ECA60 /* TaskListTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTVCell.xib; sourceTree = "<group>"; };
 		E30488682822A90E004ECA60 /* IncompleteTaskDetails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IncompleteTaskDetails.json; sourceTree = "<group>"; };
@@ -575,6 +591,76 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		4E07C8792828E4D90090D088 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C87D2828E4D90090D088 /* Profile.storyboard */,
+				4E07C88A2828FF920090D088 /* Views */,
+				4E07C87B2828E4D90090D088 /* ViewModel */,
+				4E07C87E2828E4D90090D088 /* Model */,
+				4E07C8802828E4D90090D088 /* ViewController */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4E07C87B2828E4D90090D088 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C87C2828E4D90090D088 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4E07C87E2828E4D90090D088 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C87F2828E4D90090D088 /* ProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E07C8802828E4D90090D088 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C87A2828E4D90090D088 /* ProfileVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4E07C8852828E8F80090D088 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C8862828E92B0090D088 /* Notificationcenter.storyboard */,
+				4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		4E07C88A2828FF920090D088 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C88B2828FF9F0090D088 /* TVcells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4E07C88B2828FF9F0090D088 /* TVcells */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C88C2828FFB60090D088 /* TaskAssignedTVCll */,
+			);
+			path = TVcells;
+			sourceTree = "<group>";
+		};
+		4E07C88C2828FFB60090D088 /* TaskAssignedTVCll */ = {
+			isa = PBXGroup;
+			children = (
+				4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */,
+				4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */,
+			);
+			path = TaskAssignedTVCll;
+			sourceTree = "<group>";
+		};
 		C18B04CC31F866AB25C2E615 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,6 +738,8 @@
 		E31C92BF2822452600600CEE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4E07C8852828E8F80090D088 /* NotificationCenter */,
+				4E07C8792828E4D90090D088 /* Profile */,
 				0771A2EB2825346400758DD9 /* Authentication */,
 				0771A2C5282519AD00758DD9 /* Dashboard */,
 				E34A2D0C28229F7100BF7439 /* TaskDetails */,
@@ -864,13 +952,16 @@
 				0771A3212825398900758DD9 /* OtpTVCell.xib in Resources */,
 				4E07C863282291FB0090D088 /* Oswald-Stencil.ttf in Resources */,
 				E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */,
+				4E07C8872828E92B0090D088 /* Notificationcenter.storyboard in Resources */,
 				0771A2CB282519C500758DD9 /* Dashboard.storyboard in Resources */,
 				E347D35628225BFE00122C8B /* Home.storyboard in Resources */,
 				4E07C843282291870090D088 /* Poppins-Medium.ttf in Resources */,
 				E34A2D0E28229F9B00BF7439 /* TaskDetails.storyboard in Resources */,
 				4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */,
 				4E07C840282291870090D088 /* Poppins-Light.ttf in Resources */,
+				4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */,
 				E31C92B7282244CE00600CEE /* LaunchScreen.storyboard in Resources */,
+				4E07C8832828E4DA0090D088 /* Profile.storyboard in Resources */,
 				4E07C83F282291870090D088 /* Poppins-Italic.otf in Resources */,
 				0771A2FD2825349B00758DD9 /* Authentication.storyboard in Resources */,
 				4E07C841282291870090D088 /* Poppins-SemiBold.ttf in Resources */,
@@ -930,6 +1021,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E07C8812828E4D90090D088 /* ProfileVC.swift in Sources */,
 				0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */,
 				0771A3222825398900758DD9 /* OtpTVCell.swift in Sources */,
 				0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */,
@@ -947,6 +1039,7 @@
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
 				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
 				0771A31D2825398900758DD9 /* ForgotPasswordModel.swift in Sources */,
+				4E07C8822828E4D90090D088 /* ProfileViewModel.swift in Sources */,
 				E347D35828225C2700122C8B /* HomeVC.swift in Sources */,
 				0771A3232825398900758DD9 /* OtpVC.swift in Sources */,
 				E347D35C28225E3E00122C8B /* NSObject+Helper.swift in Sources */,
@@ -958,6 +1051,7 @@
 				0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */,
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
+				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,
 				0771A2F72825348600758DD9 /* LoginVC.swift in Sources */,
 				0771A2E528251A6100758DD9 /* CrewPropertiesTVCell.swift in Sources */,
 				E38D377828224B6600359321 /* Constants.swift in Sources */,
@@ -971,12 +1065,14 @@
 				E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */,
 				0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */,
 				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
+				4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */,
 				0771A2BE2823F88400758DD9 /* Loader.swift in Sources */,
 				0771A3272825460600758DD9 /* ServiceManager.swift in Sources */,
 				4E07C8662822925A0090D088 /* FontManager.swift in Sources */,
 				0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */,
 				E347D351282258AB00122C8B /* DeviceName.swift in Sources */,
 				0771A31C2825398900758DD9 /* ForgotPasswordViewModel.swift in Sources */,
+				4E07C8842828E4DA0090D088 /* ProfileModel.swift in Sources */,
 				0771A3192825398900758DD9 /* ResetPasswordViewModel.swift in Sources */,
 				0771A2E928251A6900758DD9 /* LabelTVCell.swift in Sources */,
 				0771A31B2825398900758DD9 /* ResetPasswordVC.swift in Sources */,
@@ -1140,7 +1236,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-ios/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele06/Desktop/doorNew/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1171,7 +1267,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-ios/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele06/Desktop/doorNew/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

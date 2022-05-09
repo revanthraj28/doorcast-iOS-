@@ -110,8 +110,9 @@ class CrewPropertiesVC: UIViewController {
         
     }
     @IBAction func menuBtn(_ sender: Any) {
-        
-        
+    
+      gotoNotificationScreen()
+
     }
     
     

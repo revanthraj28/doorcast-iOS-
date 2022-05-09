@@ -9,7 +9,7 @@ import Foundation
 import Network
 import UIKit
 
-protocol CrewPropertyModelProtocol {
+protocol CrewPropertyModelProtocol : BaseViewModelProtocol {
     func CrewPropertyDetails(response : CrewPropertyModel)
 }
 
@@ -37,6 +37,7 @@ class CrewProperties {
                     self.view?.CrewPropertyDetails(response: resultValue)
                 } else {
                     debugPrint(errorMessage ?? "")
+                    self.view.showPositionalToast(message: errorMessage ?? "", position: .bottom)
                 }
             }
         }
