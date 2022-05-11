@@ -2,6 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.955271772314-9g6f599r80l5bksrdnrvefhti88tue4j</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Poppins-Italic.otf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-BoldItalic.otf</string>
+		<string>Oswald-Bold</string>
+		<string>Oswald-BoldItalic</string>
+		<string>Oswald-Extra-LightItalic</string>
+		<string>Oswald-Regular</string>
+		<string>Oswald-Medium.ttf</string>
+		<string>Oswald-MediumItalic.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,20 +47,12 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIAppFonts</key>
+	<key>UIBackgroundModes</key>
 	<array>
-		<string>Poppins-Italic.otf</string>
-		<string>Poppins-Light.ttf</string>
-		<string>Poppins-Medium.ttf</string>
-		<string>Poppins-Regular.ttf</string>
-		<string>Poppins-SemiBold.ttf</string>
-		<string>Poppins-BoldItalic.otf</string>
-		<string>Oswald-Bold</string>
-		<string>Oswald-BoldItalic</string>
-		<string>Oswald-Extra-LightItalic</string>
-		<string>Oswald-Regular</string>
-		<string>Oswald-Medium.ttf</string>
-		<string>Oswald-MediumItalic.ttf</string>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>

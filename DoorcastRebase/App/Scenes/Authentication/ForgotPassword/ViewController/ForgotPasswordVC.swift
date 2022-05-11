@@ -9,14 +9,14 @@ import UIKit
 
 class ForgotPasswordVC: UIViewController {
     
-    @IBOutlet weak var NavBarView: UIView!
-    @IBOutlet weak var changePasswordLBL: UILabel!
-    @IBOutlet weak var declarationLBl: UILabel!
+    @IBOutlet weak var navBarView: UIView!
+    @IBOutlet weak var changePasswordLbl: UILabel!
+    @IBOutlet weak var declarationLbl: UILabel!
     @IBOutlet weak var emailTF: UITextField!
-    @IBOutlet weak var submitBTN: UIButton!
-    @IBOutlet weak var loginLBL: UILabel!
-    @IBOutlet weak var emaileErorLBL: UILabel!
-    @IBOutlet weak var backBTn: UIButton!
+    @IBOutlet weak var submitBtn: UIButton!
+    @IBOutlet weak var loginLbl: UILabel!
+    @IBOutlet weak var emaileErorLbl: UILabel!
+    @IBOutlet weak var backBtn: UIButton!
     
     var ForgotPasswordViewResponce : ForgotPasswordModel?
     var viewModel : ForgotPasswordViewModel!
@@ -27,42 +27,52 @@ class ForgotPasswordVC: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? ForgotPasswordVC
         return vc
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        uiStyle()
-        emaileErorLBL.isHidden = true
+        UIStyle()
+        emaileErorLbl.isHidden = true
         viewModel = ForgotPasswordViewModel(self)
     }
+    
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-    func uiStyle(){
+    
+    func UIStyle(){
         
-        self.loginLBL.font = UIFont.oswaldMedium(size: 20)
-        self.NavBarView.backgroundColor = UIColor.ThemeColor
+        self.loginLbl.font = UIFont.oswaldMedium(size: 20)
+        self.navBarView.backgroundColor = UIColor.ThemeColor
         
-        self.submitBTN.backgroundColor = UIColor.ThemeColor
-        self.submitBTN.setTitle("SUBMIT", for: .normal)
-        self.submitBTN.titleLabel?.font = UIFont.oswaldMedium(size: 18)
-        self.submitBTN.titleLabel?.tintColor = UIColor.white
-        self.submitBTN.layer.cornerRadius = 14
+        self.submitBtn.backgroundColor = UIColor.ThemeColor
+        self.submitBtn.setTitle("SUBMIT", for: .normal)
+        self.submitBtn.titleLabel?.font = UIFont.oswaldMedium(size: 18)
+        self.submitBtn.titleLabel?.tintColor = UIColor.white
+        self.submitBtn.layer.cornerRadius = 14
         
-        self.changePasswordLBL.font = UIFont.oswaldMedium(size: 24)
+        self.changePasswordLbl.font = UIFont.oswaldMedium(size: 24)
         
-        self.declarationLBl.font = UIFont.oswaldMedium(size: 16)
-        self.declarationLBl.numberOfLines = 2
-        self.declarationLBl.text = "Enter the EmailID address associated with your account"
-        self.declarationLBl.textColor = UIColor.ThemeColor
+        submitBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        submitBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        submitBtn.layer.shadowOpacity = 1.0
+        submitBtn.layer.shadowRadius = 0.0
+        submitBtn.layer.masksToBounds = false
+        submitBtn.layer.cornerRadius = 4.0
+        
+        self.declarationLbl.font = UIFont.oswaldMedium(size: 16)
+        self.declarationLbl.numberOfLines = 2
+        self.declarationLbl.text = "Enter the EmailID address associated with your account"
+        self.declarationLbl.textColor = UIColor.ThemeColor
         
         self.emailTF.font = UIFont.oswaldMedium(size: 16)
         self.emailTF.addBottomBorder()
         
-        self.emaileErorLBL.textColor = UIColor.ThemeColor
-        self.emaileErorLBL.font = UIFont.oswaldMedium(size: 14)
+        self.emaileErorLbl.textColor = UIColor.ThemeColor
+        self.emaileErorLbl.font = UIFont.oswaldMedium(size: 14)
         
-        backBTn.titleLabel?.text = ""
+        backBtn.titleLabel?.text = ""
     }
     @IBAction func submitBtnAction(_ sender: Any) {
         if isValidEmail(emailTF.text ?? "email") == true {
@@ -78,54 +88,45 @@ class ForgotPasswordVC: UIViewController {
             }
         }
         if isValidEmail(emailTF.text ?? ""){
-            emaileErorLBL.isHidden = true
+            emaileErorLbl.isHidden = true
         } else {
-            emaileErorLBL.isHidden = false
-            emaileErorLBL.text = "Invalid email"
+            emaileErorLbl.isHidden = false
+            emaileErorLbl.text = "Invalid email"
         }
         
     }
     @IBAction func emailTfAction(_ sender: Any) {
         if isValidEmail(emailTF.text ?? "email") == true {
-            emaileErorLBL.text = ""
-            emaileErorLBL.isHidden = true
+            emaileErorLbl.text = ""
+            emaileErorLbl.isHidden = true
         } else {
-            emaileErorLBL.text = " "
-            emaileErorLBL.isHidden = false
+            emaileErorLbl.text = " "
+            emaileErorLbl.isHidden = false
         }
     }
-    
-    
-    
-    
+
     @IBAction func didTapOnBackButtonAction(_ sender: Any) {
         print("didTapOnBackButtonAction")
-        self.dismiss(animated: true)
+        guard let vc =  LoginVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
-    
-    
 }
-
-
-
-
 
 extension ForgotPasswordVC : ForgotPasswordViewModelProtocol {
     func ForgotPasswordSuccess(ForgotPasswordResponse: ForgotPasswordModel) {
         self.ForgotPasswordViewResponce = ForgotPasswordResponse
         print("forgotpassword responce=\(ForgotPasswordViewResponce)")
-        //        defaults.set("", forKey: UserDefaultsKeys.globalAT)
+//                defaults.set("", forKey: UserDefaultsKeys.globalAT)
         if (ForgotPasswordViewResponce?.status) == true {
-            //            print("success")
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: "OtpVC") as! OtpVC
+            guard let vc = OtpVC.newInstance  else {return}
             vc.otpNumber = ForgotPasswordViewResponce?.data
             vc.EmailAddress = emailTF.text
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated:true, completion:nil)
+            self.present(vc, animated: true)
         } else {
-            emaileErorLBL.isHidden = false
-            emaileErorLBL.text = "Invalid email"
+            emaileErorLbl.isHidden = false
+            emaileErorLbl.text = "Invalid email"
         }
     }
 }

@@ -16,11 +16,16 @@ class OtpVC: UIViewController  {
     var EmailAddress : String?
     
     var timer: Timer!
-//    var count = 60  // 60sec if you want
-//    var resendTimer = Timer()
     
     var viewmodel : ResendOTPViewModel?
     var ResendOTPViewResponce : ResendOTPModel?
+    
+    static var newInstance: OtpVC? {
+        let storyboard = UIStoryboard(name: Storyboard.authentication.name,
+                                      bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? OtpVC
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +36,18 @@ class OtpVC: UIViewController  {
         
     }
     func style(){
-        holderView.layer.cornerRadius = 16
+        holderView.layer.cornerRadius = 10
         tabelView.register(UINib(nibName: "OtpTVCell", bundle: nil), forCellReuseIdentifier: "cell")
         tabelView.delegate = self
         tabelView.dataSource = self
         tabelView.backgroundColor = .clear
         tabelView.showsHorizontalScrollIndicator = false
+        self.tabelView.layer.cornerRadius = 10
         
         self.holderView.backgroundColor = UIColor.AppBackgroundColor
     }
     
-    @IBAction func backBTNAction(_ sender: Any) {
+    @IBAction func backBtnAction(_ sender: Any) {
         gotoForgotPasswordScreen()
     }
     
@@ -55,8 +61,9 @@ extension OtpVC :  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! OtpTVCell
         cell.timeInterval = 60
-        cell.delegate = self
-        cell.delegate1 = self
+        cell.ContniueButtonDelegate = self
+        cell.ResendOtpDelegate = self
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -73,7 +80,7 @@ extension OtpVC : ResendOTPViewModelProtocol {
     
 }
 extension OtpVC : ContniueButtonTVCellDelegate  {
-    func resendOTPBtnisTapped(cell: OtpTVCell) {
+    func resendOtpBtnisTapped(cell: OtpTVCell) {
         var parms = [String: Any]()
         parms["email"] = self.EmailAddress
         parms["otp"] = self.otpNumber
@@ -86,32 +93,29 @@ extension OtpVC : ContniueButtonTVCellDelegate  {
     
     func ContniueButtonIsTapped(cell: OtpTVCell) {
         
-        let data = "\(cell.OTPTF1.text ?? "")\(cell.OTPTF2.text ?? "")\(cell.OTPTF3.text ?? "")\(cell.OTPTF4.text ?? "")"
+        let data = "\(cell.OtpTF1.text ?? "")\(cell.OtpTF2.text ?? "")\(cell.OtpTF3.text ?? "")\(cell.OtpTF4.text ?? "")"
         
-        if cell.OTPTF1.text == "" && cell.OTPTF2.text == "" && cell.OTPTF3.text == "" && cell.OTPTF4.text == "" {
+        if cell.OtpTF1.text == "" && cell.OtpTF2.text == "" && cell.OtpTF3.text == "" && cell.OtpTF4.text == "" {
             
-            cell.errorLBL.isHidden = false
-            cell.errorLBL.text = "Field is Empty"
+            cell.errorLbl.isHidden = false
+            cell.errorLbl.text = "Field is Empty"
             
         } else if otpNumber != data {
             
-            cell.errorLBL.isHidden = false
-            cell.errorLBL.text = "Invalid OTP"
+            cell.errorLbl.isHidden = false
+            cell.errorLbl.text = "Invalid OTP"
             print("failed")
             
         } else {
             
-            cell.errorLBL.isHidden = true
+            cell.errorLbl.isHidden = true
             print("success")
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: "ResetPasswordVC") as! ResetPasswordVC
+            guard let vc = ResetPasswordVC.newInstance else {return}
             vc.EmailAddress = EmailAddress
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated:true, completion:nil)
-            
+            self.present(vc, animated: true)
         }
-        
-        cell.delegate = self
+        cell.ContniueButtonDelegate = self
         
     }
     

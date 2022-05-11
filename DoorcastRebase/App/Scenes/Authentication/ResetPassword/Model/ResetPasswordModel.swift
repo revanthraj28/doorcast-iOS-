@@ -7,13 +7,6 @@
 
 import Foundation
 
-//
-//  ResendOTP.swift
-//  DoorcastRebase
-//
-//  Created by Codebele 07 on 05/05/2022.
-//
-
 struct ResetPasswordModel : Codable {
     let status : Bool?
     let message : String?

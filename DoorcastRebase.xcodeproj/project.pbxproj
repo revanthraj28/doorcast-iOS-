@@ -36,17 +36,6 @@
 		0771A2F82825348600758DD9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2F22825348600758DD9 /* LoginViewModel.swift */; };
 		0771A2FA2825348600758DD9 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A2F52825348600758DD9 /* LoginModel.swift */; };
 		0771A2FD2825349B00758DD9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2FC2825349B00758DD9 /* Authentication.storyboard */; };
-		0771A3192825398900758DD9 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3002825398900758DD9 /* ResetPasswordViewModel.swift */; };
-		0771A31A2825398900758DD9 /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3022825398900758DD9 /* ResetPasswordModel.swift */; };
-		0771A31B2825398900758DD9 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3052825398900758DD9 /* ResetPasswordVC.swift */; };
-		0771A31C2825398900758DD9 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3082825398900758DD9 /* ForgotPasswordViewModel.swift */; };
-		0771A31D2825398900758DD9 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A30A2825398900758DD9 /* ForgotPasswordModel.swift */; };
-		0771A31E2825398900758DD9 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A30D2825398900758DD9 /* ForgotPasswordVC.swift */; };
-		0771A31F2825398900758DD9 /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3102825398900758DD9 /* ResendOTPViewModel.swift */; };
-		0771A3202825398900758DD9 /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3122825398900758DD9 /* ResendOTPModel.swift */; };
-		0771A3212825398900758DD9 /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0771A3152825398900758DD9 /* OtpTVCell.xib */; };
-		0771A3222825398900758DD9 /* OtpTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3162825398900758DD9 /* OtpTVCell.swift */; };
-		0771A3232825398900758DD9 /* OtpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3182825398900758DD9 /* OtpVC.swift */; };
 		0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A324282539C600758DD9 /* TextFieldExtension.swift */; };
 		0771A3272825460600758DD9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3262825460600758DD9 /* ServiceManager.swift */; };
 		4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C838282291870090D088 /* Poppins-BoldItalic.otf */; };
@@ -78,6 +67,18 @@
 		4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */; };
 		4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */; };
 		4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */; };
+		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
+		AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */; };
+		AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */; };
+		AE80FC82282B7B5C00EE5C0C /* OtpTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC75282B7B5C00EE5C0C /* OtpTVCell.swift */; };
+		AE80FC83282B7B5C00EE5C0C /* OtpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC77282B7B5C00EE5C0C /* OtpVC.swift */; };
+		AE80FC84282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC7A282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift */; };
+		AE80FC85282B7B5C00EE5C0C /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC7C282B7B5C00EE5C0C /* ForgotPasswordModel.swift */; };
+		AE80FC86282B7B5C00EE5C0C /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC7E282B7B5C00EE5C0C /* ForgotPasswordVC.swift */; };
+		AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */; };
+		AE80FC90282B7B6800EE5C0C /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */; };
+		AE80FC91282B7B6800EE5C0C /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */; };
+		AEBAE08C282B7FF800CF3791 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEBAE08B282B7FF800CF3791 /* GoogleService-Info.plist */; };
 		E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30488632822A788004ECA60 /* TaskListTVCell.swift */; };
 		E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E30488642822A788004ECA60 /* TaskListTVCell.xib */; };
 		E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = E30488682822A90E004ECA60 /* IncompleteTaskDetails.json */; };
@@ -142,17 +143,6 @@
 		0771A2F22825348600758DD9 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0771A2F52825348600758DD9 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0771A2FC2825349B00758DD9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
-		0771A3002825398900758DD9 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
-		0771A3022825398900758DD9 /* ResetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
-		0771A3052825398900758DD9 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
-		0771A3082825398900758DD9 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
-		0771A30A2825398900758DD9 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
-		0771A30D2825398900758DD9 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		0771A3102825398900758DD9 /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
-		0771A3122825398900758DD9 /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
-		0771A3152825398900758DD9 /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
-		0771A3162825398900758DD9 /* OtpTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpTVCell.swift; sourceTree = "<group>"; };
-		0771A3182825398900758DD9 /* OtpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpVC.swift; sourceTree = "<group>"; };
 		0771A324282539C600758DD9 /* TextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		0771A3262825460600758DD9 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		2EE9016442E129AFEDA48CE8 /* Pods-DoorcastRebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.debug.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +177,19 @@
 		4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterVC.swift; sourceTree = "<group>"; };
 		4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAssignedTVCell.swift; sourceTree = "<group>"; };
 		4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskAssignedTVCell.xib; sourceTree = "<group>"; };
+		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
+		AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
+		AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
+		AE80FC75282B7B5C00EE5C0C /* OtpTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpTVCell.swift; sourceTree = "<group>"; };
+		AE80FC77282B7B5C00EE5C0C /* OtpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpVC.swift; sourceTree = "<group>"; };
+		AE80FC7A282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		AE80FC7C282B7B5C00EE5C0C /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
+		AE80FC7E282B7B5C00EE5C0C /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
+		AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		AEBAE08B282B7FF800CF3791 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AEBAE08D282B802500CF3791 /* DoorcastRebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoorcastRebase.entitlements; sourceTree = "<group>"; };
 		E30488632822A788004ECA60 /* TaskListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTVCell.swift; sourceTree = "<group>"; };
 		E30488642822A788004ECA60 /* TaskListTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTVCell.xib; sourceTree = "<group>"; };
 		E30488682822A90E004ECA60 /* IncompleteTaskDetails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IncompleteTaskDetails.json; sourceTree = "<group>"; };
@@ -353,10 +356,10 @@
 			isa = PBXGroup;
 			children = (
 				0771A2FC2825349B00758DD9 /* Authentication.storyboard */,
-				0771A2FE2825398900758DD9 /* ResetPassword */,
+				AE80FC87282B7B6800EE5C0C /* ResetPassword */,
+				AE80FC78282B7B5C00EE5C0C /* ForgotPassword */,
+				AE80FC6D282B7B5C00EE5C0C /* Otp */,
 				0771A2EE2825348500758DD9 /* Login */,
-				0771A30E2825398900758DD9 /* Otp */,
-				0771A3062825398900758DD9 /* ForgotPassword */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -393,142 +396,6 @@
 				0771A2F52825348600758DD9 /* LoginModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		0771A2FE2825398900758DD9 /* ResetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				0771A2FF2825398900758DD9 /* ViewModel */,
-				0771A3012825398900758DD9 /* Model */,
-				0771A3032825398900758DD9 /* View */,
-				0771A3042825398900758DD9 /* ViewController */,
-			);
-			path = ResetPassword;
-			sourceTree = "<group>";
-		};
-		0771A2FF2825398900758DD9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3002825398900758DD9 /* ResetPasswordViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		0771A3012825398900758DD9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3022825398900758DD9 /* ResetPasswordModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0771A3032825398900758DD9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0771A3042825398900758DD9 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3052825398900758DD9 /* ResetPasswordVC.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		0771A3062825398900758DD9 /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3072825398900758DD9 /* ViewModel */,
-				0771A3092825398900758DD9 /* Model */,
-				0771A30B2825398900758DD9 /* View */,
-				0771A30C2825398900758DD9 /* ViewController */,
-			);
-			path = ForgotPassword;
-			sourceTree = "<group>";
-		};
-		0771A3072825398900758DD9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3082825398900758DD9 /* ForgotPasswordViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		0771A3092825398900758DD9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0771A30A2825398900758DD9 /* ForgotPasswordModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0771A30B2825398900758DD9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0771A30C2825398900758DD9 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0771A30D2825398900758DD9 /* ForgotPasswordVC.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		0771A30E2825398900758DD9 /* Otp */ = {
-			isa = PBXGroup;
-			children = (
-				0771A30F2825398900758DD9 /* ViewModel */,
-				0771A3112825398900758DD9 /* Model */,
-				0771A3132825398900758DD9 /* View */,
-				0771A3172825398900758DD9 /* ViewController */,
-			);
-			path = Otp;
-			sourceTree = "<group>";
-		};
-		0771A30F2825398900758DD9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3102825398900758DD9 /* ResendOTPViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		0771A3112825398900758DD9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3122825398900758DD9 /* ResendOTPModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0771A3132825398900758DD9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3142825398900758DD9 /* OtpTVCell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0771A3142825398900758DD9 /* OtpTVCell */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3152825398900758DD9 /* OtpTVCell.xib */,
-				0771A3162825398900758DD9 /* OtpTVCell.swift */,
-			);
-			path = OtpTVCell;
-			sourceTree = "<group>";
-		};
-		0771A3172825398900758DD9 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0771A3182825398900758DD9 /* OtpVC.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4DE8B99136768865786476B0 /* Frameworks */ = {
@@ -661,6 +528,134 @@
 			path = TaskAssignedTVCll;
 			sourceTree = "<group>";
 		};
+		AE80FC6D282B7B5C00EE5C0C /* Otp */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC6E282B7B5C00EE5C0C /* ViewModel */,
+				AE80FC70282B7B5C00EE5C0C /* Model */,
+				AE80FC72282B7B5C00EE5C0C /* View */,
+				AE80FC76282B7B5C00EE5C0C /* ViewController */,
+			);
+			path = Otp;
+			sourceTree = "<group>";
+		};
+		AE80FC6E282B7B5C00EE5C0C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AE80FC70282B7B5C00EE5C0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE80FC72282B7B5C00EE5C0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC73282B7B5C00EE5C0C /* OtpTVCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE80FC73282B7B5C00EE5C0C /* OtpTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */,
+				AE80FC75282B7B5C00EE5C0C /* OtpTVCell.swift */,
+			);
+			path = OtpTVCell;
+			sourceTree = "<group>";
+		};
+		AE80FC76282B7B5C00EE5C0C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC77282B7B5C00EE5C0C /* OtpVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AE80FC78282B7B5C00EE5C0C /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC79282B7B5C00EE5C0C /* ViewModel */,
+				AE80FC7B282B7B5C00EE5C0C /* Model */,
+				AE80FC7D282B7B5C00EE5C0C /* ViewController */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		AE80FC79282B7B5C00EE5C0C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC7A282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AE80FC7B282B7B5C00EE5C0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC7C282B7B5C00EE5C0C /* ForgotPasswordModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE80FC7D282B7B5C00EE5C0C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC7E282B7B5C00EE5C0C /* ForgotPasswordVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AE80FC87282B7B6800EE5C0C /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC88282B7B6800EE5C0C /* ViewModel */,
+				AE80FC8A282B7B6800EE5C0C /* Model */,
+				AE80FC8C282B7B6800EE5C0C /* View */,
+				AE80FC8D282B7B6800EE5C0C /* ViewController */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		AE80FC88282B7B6800EE5C0C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AE80FC8A282B7B6800EE5C0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE80FC8C282B7B6800EE5C0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE80FC8D282B7B6800EE5C0C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		C18B04CC31F866AB25C2E615 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +710,7 @@
 		E31C92A6282244CC00600CEE /* DoorcastRebase */ = {
 			isa = PBXGroup;
 			children = (
+				AEBAE08D282B802500CF3791 /* DoorcastRebase.entitlements */,
 				E31C92BE2822452000600CEE /* App */,
 				E31C92B5282244CE00600CEE /* LaunchScreen.storyboard */,
 				E31C92B0282244CC00600CEE /* DoorcastRebase.xcdatamodeld */,
@@ -798,6 +794,7 @@
 				E31C92AB282244CC00600CEE /* ViewController.swift */,
 				E31C92AD282244CC00600CEE /* Main.storyboard */,
 				E31C92B8282244CE00600CEE /* Info.plist */,
+				AEBAE08B282B7FF800CF3791 /* GoogleService-Info.plist */,
 				E31C92B3282244CE00600CEE /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -943,13 +940,14 @@
 				4E07C85C282291FB0090D088 /* Oswald-HeavyItalic.ttf in Resources */,
 				4E07C85D282291FB0090D088 /* Oswald-Light.ttf in Resources */,
 				4E07C85E282291FB0090D088 /* Oswald-LightItalic.ttf in Resources */,
+				AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */,
 				4E07C860282291FB0090D088 /* Oswald-MediumItalic.ttf in Resources */,
 				E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */,
 				4E07C861282291FB0090D088 /* Oswald-Regular.ttf in Resources */,
+				AEBAE08C282B7FF800CF3791 /* GoogleService-Info.plist in Resources */,
 				0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */,
 				4E07C862282291FB0090D088 /* Oswald-RegularItalic.ttf in Resources */,
 				0771A2C42823F8FE00758DD9 /* TimerView.xib in Resources */,
-				0771A3212825398900758DD9 /* OtpTVCell.xib in Resources */,
 				4E07C863282291FB0090D088 /* Oswald-Stencil.ttf in Resources */,
 				E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */,
 				4E07C8872828E92B0090D088 /* Notificationcenter.storyboard in Resources */,
@@ -1023,45 +1021,45 @@
 			files = (
 				4E07C8812828E4D90090D088 /* ProfileVC.swift in Sources */,
 				0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */,
-				0771A3222825398900758DD9 /* OtpTVCell.swift in Sources */,
 				0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */,
 				0771A2D4282519E000758DD9 /* LogoutModel.swift in Sources */,
-				0771A31F2825398900758DD9 /* ResendOTPViewModel.swift in Sources */,
 				E34A2D132822A05900BF7439 /* IncompleteTasksVC.swift in Sources */,
 				E31C92B2282244CC00600CEE /* DoorcastRebase.xcdatamodeld in Sources */,
 				E347D3632822700D00122C8B /* HomeViewModel.swift in Sources */,
-				0771A31A2825398900758DD9 /* ResetPasswordModel.swift in Sources */,
 				E31C92AC282244CC00600CEE /* ViewController.swift in Sources */,
 				E347D35328225AEB00122C8B /* SessionManager.swift in Sources */,
 				E34A2D152822A06E00BF7439 /* CompletedTasksVC.swift in Sources */,
 				E347D366282270A600122C8B /* HomeModel.swift in Sources */,
 				E347D35E28225FA100122C8B /* UIViewControllerExtension.swift in Sources */,
+				AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */,
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
 				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
-				0771A31D2825398900758DD9 /* ForgotPasswordModel.swift in Sources */,
 				4E07C8822828E4D90090D088 /* ProfileViewModel.swift in Sources */,
 				E347D35828225C2700122C8B /* HomeVC.swift in Sources */,
-				0771A3232825398900758DD9 /* OtpVC.swift in Sources */,
 				E347D35C28225E3E00122C8B /* NSObject+Helper.swift in Sources */,
 				0771A2BD2823F88400758DD9 /* ProgressHUD.swift in Sources */,
 				0771A2BA2823F38C00758DD9 /* ColorManager.swift in Sources */,
 				E31C92A8282244CC00600CEE /* AppDelegate.swift in Sources */,
+				AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */,
 				E34A2D1128229FC800BF7439 /* CommonTaskDetailVC.swift in Sources */,
-				0771A31E2825398900758DD9 /* ForgotPasswordVC.swift in Sources */,
 				0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */,
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
 				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,
+				AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */,
 				0771A2F72825348600758DD9 /* LoginVC.swift in Sources */,
 				0771A2E528251A6100758DD9 /* CrewPropertiesTVCell.swift in Sources */,
 				E38D377828224B6600359321 /* Constants.swift in Sources */,
+				AE80FC91282B7B6800EE5C0C /* ResetPasswordVC.swift in Sources */,
 				E304886E2822ABEF004ECA60 /* Decodable.swift in Sources */,
 				E30488712822AC74004ECA60 /* IncompleteTaskListModel.swift in Sources */,
 				0771A2F82825348600758DD9 /* LoginViewModel.swift in Sources */,
 				0771A2DA282519F100758DD9 /* GetOrganizationsViewModel.swift in Sources */,
+				AE80FC83282B7B5C00EE5C0C /* OtpVC.swift in Sources */,
 				0771A2FA2825348600758DD9 /* LoginModel.swift in Sources */,
 				E347D36028226B0A00122C8B /* BaseViewModelProtocol.swift in Sources */,
 				E30488732822BFB7004ECA60 /* UIKitHelper.swift in Sources */,
+				AE80FC86282B7B5C00EE5C0C /* ForgotPasswordVC.swift in Sources */,
 				E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */,
 				0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */,
 				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
@@ -1071,19 +1069,19 @@
 				4E07C8662822925A0090D088 /* FontManager.swift in Sources */,
 				0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */,
 				E347D351282258AB00122C8B /* DeviceName.swift in Sources */,
-				0771A31C2825398900758DD9 /* ForgotPasswordViewModel.swift in Sources */,
 				4E07C8842828E4DA0090D088 /* ProfileModel.swift in Sources */,
-				0771A3192825398900758DD9 /* ResetPasswordViewModel.swift in Sources */,
 				0771A2E928251A6900758DD9 /* LabelTVCell.swift in Sources */,
-				0771A31B2825398900758DD9 /* ResetPasswordVC.swift in Sources */,
+				AE80FC85282B7B5C00EE5C0C /* ForgotPasswordModel.swift in Sources */,
+				AE80FC90282B7B6800EE5C0C /* ResetPasswordModel.swift in Sources */,
+				AE80FC82282B7B5C00EE5C0C /* OtpTVCell.swift in Sources */,
 				E347D368282286DA00122C8B /* ButtonExtension.swift in Sources */,
 				E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */,
 				0771A2E128251A5600758DD9 /* CompanyTVCell.swift in Sources */,
+				AE80FC84282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift in Sources */,
 				E304886C2822ABB0004ECA60 /* TaskListViewModel.swift in Sources */,
 				0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */,
 				072191132823D03500116F43 /* CalendarVC.swift in Sources */,
 				E31C92AA282244CC00600CEE /* SceneDelegate.swift in Sources */,
-				0771A3202825398900758DD9 /* ResendOTPModel.swift in Sources */,
 				E37939D72822A6B8008D83E4 /* TableViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1232,11 +1230,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoorcastRebase/DoorcastRebase.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele06/Desktop/doorNew/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS updatedccode/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1249,7 +1248,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinesh.DoorcastRebase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exstreamworktrackerlocation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1263,11 +1262,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoorcastRebase/DoorcastRebase.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele06/Desktop/doorNew/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS updatedccode/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1280,7 +1280,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinesh.DoorcastRebase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exstreamworktrackerlocation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

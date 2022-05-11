@@ -9,25 +9,33 @@ import UIKit
 
 class ResetPasswordVC: UIViewController {
     
-    @IBOutlet weak var HolderView: UIView!
+    @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var newPasswordTF: UITextField!
     @IBOutlet weak var conformPasswordTF: UITextField!
-    @IBOutlet weak var resetPassword: UIButton!
-    @IBOutlet weak var newPasswordErrorLBL: UILabel!
-    @IBOutlet weak var conformPAsswordErrorLBL: UILabel!
+    @IBOutlet weak var resetPasswordBtn: UIButton!
+    @IBOutlet weak var newPasswordErrorLbl: UILabel!
+    @IBOutlet weak var conformPAsswordErrorLbl: UILabel!
     @IBOutlet weak var changeColorView: UIView!
+    @IBOutlet weak var descriptionLbl: UILabel!
     
-    
-    
+    //variables  used to get EmailID
     var EmailAddress : String?
+    
     var viewmodel : ResetpasswordViewModel?
     var ResetPAsswordViewResponce : ResetPasswordModel?
+    
+    static var newInstance: ResetPasswordVC? {
+        let storyboard = UIStoryboard(name: Storyboard.authentication.name,
+                                      bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? ResetPasswordVC
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newPasswordErrorLBL.isHidden = true
-        conformPAsswordErrorLBL.isHidden = true
+        newPasswordErrorLbl.isHidden = true
+        conformPAsswordErrorLbl.isHidden = true
         
         conformPasswordTF.addTarget(self, action: #selector(ResetPasswordVC.textFieldDidChange(_:)), for: .editingChanged)
         newPasswordTF.addTarget(self, action: #selector(ResetPasswordVC.textFieldDidChangenew(_:)), for: .editingChanged)
@@ -35,15 +43,19 @@ class ResetPasswordVC: UIViewController {
         
         viewmodel = ResetpasswordViewModel(self)
         
+        descriptionLbl.numberOfLines = 0
         newPasswordTF.isSecureTextEntry = true
         conformPasswordTF.isSecureTextEntry = true
-        resetPassword.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        resetPassword.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        resetPassword.layer.shadowOpacity = 1.0
-        resetPassword.layer.shadowRadius = 0.0
-        resetPassword.layer.masksToBounds = false
-        resetPassword.layer.cornerRadius = 4.0
-        self.HolderView.backgroundColor = UIColor.AppBackgroundColor
+        
+        resetPasswordBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        resetPasswordBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        resetPasswordBtn.layer.shadowOpacity = 1.0
+        resetPasswordBtn.layer.shadowRadius = 0.0
+        resetPasswordBtn.layer.masksToBounds = false
+        resetPasswordBtn.layer.cornerRadius = 4.0
+        
+        holderView.layer.cornerRadius = 14
+        self.holderView.backgroundColor = UIColor.AppBackgroundColor
         
     }
     func isValidPassword(_ password: String) -> Bool {
@@ -58,42 +70,52 @@ class ResetPasswordVC: UIViewController {
         return passwordCheck.evaluate(with: password)
         
     }
+    // Newpassword textfield Editing did change
     @objc func textFieldDidChange(_ textField: UITextField) {
         if newPasswordTF.text != conformPasswordTF.text {
+            conformPAsswordErrorLbl.isHidden = false
+            conformPAsswordErrorLbl.text = "Password aren't same"
             changeColorView.backgroundColor = .red
         } else {
+            conformPAsswordErrorLbl.isHidden = true
             changeColorView.backgroundColor = .green
         }
     }
+    // checking email formate
     @objc func textFieldDidChangenew(_ textField: UITextField) {
         if isValidPassword(newPasswordTF.text!) == false {
-            newPasswordErrorLBL.isHidden = false
-            newPasswordErrorLBL.text = "Wrong Password"
+            newPasswordErrorLbl.isHidden = false
+            newPasswordErrorLbl.text = "Wrong Password"
         } else {
-            newPasswordErrorLBL.isHidden = true
+            newPasswordErrorLbl.isHidden = true
             
         }
     }
     
+    @IBAction func backToOtpVCBtnAction(_ sender: Any) {
+        guard let vc = OtpVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @IBAction func resetPasswordBTNAction(_ sender: Any) {
         
         if newPasswordTF.text == ""{
-            newPasswordErrorLBL.isHidden = false
-            newPasswordErrorLBL.text = "New password Field is Empty"
+            newPasswordErrorLbl.isHidden = false
+            newPasswordErrorLbl.text = "Newpassword textField is Empty"
         } else
         
         if conformPasswordTF.text == "" {
-            conformPAsswordErrorLBL.isHidden = false
-            conformPAsswordErrorLBL.text = "Conform password Field is Empty"
+            conformPAsswordErrorLbl.isHidden = false
+            conformPAsswordErrorLbl.text = "Conform password textField is Empty"
         } else
         if newPasswordTF.text != conformPasswordTF.text  {
-            conformPAsswordErrorLBL.isHidden = false
-            conformPAsswordErrorLBL.text = "Password aren't same"
+            conformPAsswordErrorLbl.isHidden = false
+            conformPAsswordErrorLbl.text = "Password aren't same"
         } else {
             
-            newPasswordErrorLBL.isHidden = true
-            conformPAsswordErrorLBL.isHidden =  true
+            newPasswordErrorLbl.isHidden = true
+            conformPAsswordErrorLbl.isHidden =  true
             
             var parms = [String: Any]()
             parms["email"] = self.EmailAddress
@@ -104,11 +126,15 @@ class ResetPasswordVC: UIViewController {
         
     }
 }
+// Extension for APi call
 extension ResetPasswordVC : ResetpasswordViewModelProtocol {
     func ResetpasswordSuccess(ResetpasswordResponse: ResetPasswordModel) {
         self.ResetPAsswordViewResponce = ResetpasswordResponse
-        print("reset password=\(ResetPAsswordViewResponce)")
+        print("reset password = \(ResetPAsswordViewResponce)")
         if ResetPAsswordViewResponce?.status == true {
+            guard let vc = LoginVC.newInstance else {return}
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
             defaults.set("", forKey: UserDefaultsKeys.globalAT)
         }
         

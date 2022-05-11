@@ -7,118 +7,106 @@
 
 import UIKit
 
-protocol ContniueButtonTVCellDelegate: class {
-    func ContniueButtonIsTapped(cell: OtpTVCell)
-    func resendOTPBtnisTapped(cell : OtpTVCell)
-}
-
 class OtpTVCell: UITableViewCell , UITextFieldDelegate{
     
-    @IBOutlet weak var EnterOTPLBL: UILabel!
-    @IBOutlet weak var declarationLBL: UILabel!
+    @IBOutlet weak var enterOtpLbl: UILabel!
+    @IBOutlet weak var declarationLbl: UILabel!
+    @IBOutlet weak var OtpTF1: UITextField!
+    @IBOutlet weak var OtpTF2: UITextField!
+    @IBOutlet weak var OtpTF3: UITextField!
+    @IBOutlet weak var OtpTF4: UITextField!
+    @IBOutlet weak var OtpCountLbl: UILabel!
+    @IBOutlet weak var resendOtpBtn: UIButton!
+    @IBOutlet weak var continueBtn: UIButton!
+    @IBOutlet weak var errorLbl: UILabel!
     
-    @IBOutlet weak var OTPTF1: UITextField!
-    @IBOutlet weak var OTPTF2: UITextField!
-    @IBOutlet weak var OTPTF3: UITextField!
-    @IBOutlet weak var OTPTF4: UITextField!
-    
-    @IBOutlet weak var OtpCountLBL: UILabel!
-    
-    @IBOutlet weak var resendOTPBTn: UIButton!
-    @IBOutlet weak var continueBTN: UIButton!
-    
-    @IBOutlet weak var errorLBL: UILabel!
-    
-    weak var delegate : ContniueButtonTVCellDelegate?
-    weak var delegate1 : ContniueButtonTVCellDelegate?
+    weak var ContniueButtonDelegate : ContniueButtonTVCellDelegate?
+    weak var ResendOtpDelegate : ContniueButtonTVCellDelegate?
     
     var timeInterval: Int = 0 {
-            didSet {
-                self.OtpCountLBL.text = "00:\(timeInterval)"
-            }
+        didSet {
+            self.OtpCountLbl.text = "00:\(timeInterval)"
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        uistyles()
+        UIStyles()
         
-        OtpCountLBL.isHidden = true
+        OtpCountLbl.isHidden = true
         
-        OtpCountLBL.textColor = UIColor.ThemeColor
+        OtpCountLbl.textColor = UIColor.ThemeColor
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("CustomCellUpdate"), object: nil)
         
-        continueBTN.addTarget(self, action: #selector(didTapOnContinue), for: .touchUpInside)
-        resendOTPBTn.addTarget(self, action: #selector(didTapOnResend), for: .touchUpInside)
+        continueBtn.addTarget(self, action: #selector(didTapOnContinue), for: .touchUpInside)
+        resendOtpBtn.addTarget(self, action: #selector(didTapOnResend), for: .touchUpInside)
         
-        errorLBL.textColor = UIColor.ThemeColor
+        errorLbl.textColor = UIColor.ThemeColor
         
-        continueBTN.layer.cornerRadius = 16
+        continueBtn.layer.cornerRadius = 16
         
-        OTPTF1.textAlignment = .center
-        OTPTF2.textAlignment = .center
-        OTPTF3.textAlignment = .center
-        OTPTF4.textAlignment = .center
+        OtpTF1.textAlignment = .center
+        OtpTF2.textAlignment = .center
+        OtpTF3.textAlignment = .center
+        OtpTF4.textAlignment = .center
         
-        OTPTF1.delegate = self
-        OTPTF2.delegate = self
-        OTPTF3.delegate = self
-        OTPTF4.delegate = self
+        OtpTF1.delegate = self
+        OtpTF2.delegate = self
+        OtpTF3.delegate = self
+        OtpTF4.delegate = self
         
-        OTPTF1.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
-        OTPTF2.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
-        OTPTF3.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
-        OTPTF4.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        OtpTF1.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        OtpTF2.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        OtpTF3.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        OtpTF4.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         // Initialization code
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
-       }
+    }
     @objc func updateUI() {
         
-       
-            if(timeInterval > 0) {
-                timeInterval = timeInterval - 1
-                OtpCountLBL.isHidden = false
-                
-                resendOTPBTn.alpha = 0.5
-                resendOTPBTn.isUserInteractionEnabled = false
-                
-            }else {
-                resendOTPBTn.alpha = 1
-                resendOTPBTn.isUserInteractionEnabled = true
-                OtpCountLBL.isHidden = true
-            }
         
+        if(timeInterval > 0) {
+            timeInterval = timeInterval - 1
+            OtpCountLbl.isHidden = false
             
-        
-            }
-        
+            resendOtpBtn.alpha = 0.5
+            resendOtpBtn.isUserInteractionEnabled = false
+            
+        }else {
+            resendOtpBtn.alpha = 1
+            resendOtpBtn.isUserInteractionEnabled = true
+            OtpCountLbl.isHidden = true
+        }
+    }
+    
     @objc func textFieldDidChange(textField: UITextField){
         let text = textField.text
         if  text?.count == 1 {
             switch textField{
-            case OTPTF1:
-                OTPTF2.becomeFirstResponder()
-            case OTPTF2:
-                OTPTF3.becomeFirstResponder()
-            case OTPTF3:
-                OTPTF4.becomeFirstResponder()
-            case OTPTF4:
-                OTPTF4.resignFirstResponder()
+            case OtpTF1:
+                OtpTF2.becomeFirstResponder()
+            case OtpTF2:
+                OtpTF3.becomeFirstResponder()
+            case OtpTF3:
+                OtpTF4.becomeFirstResponder()
+            case OtpTF4:
+                OtpTF4.resignFirstResponder()
             default:
                 break
             }
         }
         if  text?.count == 0 {
             switch textField{
-            case OTPTF1:
-                OTPTF1.becomeFirstResponder()
-            case OTPTF2:
-                OTPTF4.becomeFirstResponder()
-            case OTPTF3:
-                OTPTF2.becomeFirstResponder()
-            case OTPTF4:
-                OTPTF3.becomeFirstResponder()
+            case OtpTF1:
+                OtpTF1.becomeFirstResponder()
+            case OtpTF2:
+                OtpTF4.becomeFirstResponder()
+            case OtpTF3:
+                OtpTF2.becomeFirstResponder()
+            case OtpTF4:
+                OtpTF3.becomeFirstResponder()
             default:
                 break
             }
@@ -127,34 +115,57 @@ class OtpTVCell: UITableViewCell , UITextFieldDelegate{
             
         }
     }
+    // how many characters used in TextField
+    func textField1(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let data = ("\(OtpTF1.text ?? "")\(OtpTF2.text ?? "")\(OtpTF3.text ?? "")\(OtpTF4.text ?? "")" )
+        
+        let maxLength = 4
+        let currentString: NSString = data as NSString
+        let newString: NSString =
+        currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
+    
+    
+    // characters allowed in textfield
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string)) else {
+        
+        
+        guard CharacterSet(charactersIn: "1234567890").isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }
         return true
     }
-    func uistyles() {
-        EnterOTPLBL.textColor = .black
-        EnterOTPLBL.font = UIFont.poppinsSemiBold(size: 24)
-        EnterOTPLBL.numberOfLines = 0
-        EnterOTPLBL.textAlignment = .center
-        EnterOTPLBL.text = "Enter OTP"
+    
+    func UIStyles() {
+        enterOtpLbl.textColor = .black
+        enterOtpLbl.font = UIFont.poppinsSemiBold(size: 24)
+        enterOtpLbl.numberOfLines = 0
+        enterOtpLbl.textAlignment = .center
+        enterOtpLbl.text = "Enter OTP"
         
-        errorLBL.isHidden = true
+        errorLbl.isHidden = true
         
-        declarationLBL.textColor = .black
-        declarationLBL.font = UIFont.poppinsRegular(size: 13)
-        declarationLBL.numberOfLines = 0
-        declarationLBL.textAlignment = .center
-        declarationLBL.text = "Enter OTP sent on your registered email address."
+        declarationLbl.textColor = .black
+        declarationLbl.font = UIFont.poppinsRegular(size: 11)
+        declarationLbl.numberOfLines = 0
+        declarationLbl.textAlignment = .center
+        declarationLbl.text = "Enter OTP sent on your registered email address."
         
-        OTPTF1.addBottomBorder()
-        OTPTF2.addBottomBorder()
-        OTPTF3.addBottomBorder()
-        OTPTF4.addBottomBorder()
+        OtpTF1.addBottomBorder()
+        OtpTF2.addBottomBorder()
+        OtpTF3.addBottomBorder()
+        OtpTF4.addBottomBorder()
         
-        continueBTN.backgroundColor = UIColor.ThemeColor
-        continueBTN.titleLabel?.font = UIFont.oswaldMedium(size: 18)
+        resendOtpBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        resendOtpBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        resendOtpBtn.layer.shadowOpacity = 1.0
+        resendOtpBtn.layer.shadowRadius = 0.0
+        resendOtpBtn.layer.masksToBounds = false
+        resendOtpBtn.layer.cornerRadius = 4.0
+        
+        continueBtn.backgroundColor = UIColor.ThemeColor
+        continueBtn.titleLabel?.font = UIFont.oswaldMedium(size: 18)
         
     }
     @objc  func  didTapOnContinue() {
@@ -170,10 +181,15 @@ class OtpTVCell: UITableViewCell , UITextFieldDelegate{
     }
     
     @IBAction func contniueBTNAction(_ sender: Any) {
-        delegate?.ContniueButtonIsTapped(cell: self)
+        ContniueButtonDelegate?.ContniueButtonIsTapped(cell: self)
     }
     @IBAction func resendOTP(_ sender: Any) {
-        delegate1?.resendOTPBtnisTapped(cell: self)
+        ResendOtpDelegate?.resendOtpBtnisTapped(cell: self)
     }
     
+}
+
+protocol ContniueButtonTVCellDelegate: class {
+    func ContniueButtonIsTapped(cell: OtpTVCell)
+    func resendOtpBtnisTapped(cell : OtpTVCell)
 }
