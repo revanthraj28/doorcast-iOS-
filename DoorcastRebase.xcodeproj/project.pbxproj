@@ -38,6 +38,13 @@
 		0771A2FD2825349B00758DD9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2FC2825349B00758DD9 /* Authentication.storyboard */; };
 		0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A324282539C600758DD9 /* TextFieldExtension.swift */; };
 		0771A3272825460600758DD9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3262825460600758DD9 /* ServiceManager.swift */; };
+		135EB042282B8CEA00194216 /* StartTheClockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB041282B8CEA00194216 /* StartTheClockVC.swift */; };
+		135EB044282B8CF400194216 /* TaskDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB043282B8CF400194216 /* TaskDetailsVC.swift */; };
+		135EB046282B8D6200194216 /* TaskDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 135EB045282B8D6200194216 /* TaskDetails.storyboard */; };
+		135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */; };
+		135EB04B282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */; };
+		135EB04E282B8DB100194216 /* SubTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB04D282B8DB100194216 /* SubTaskViewModel.swift */; };
+		135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB04F282B8DC500194216 /* SubTaskModel.swift */; };
 		4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C838282291870090D088 /* Poppins-BoldItalic.otf */; };
 		4E07C83F282291870090D088 /* Poppins-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C839282291870090D088 /* Poppins-Italic.otf */; };
 		4E07C840282291870090D088 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C83A282291870090D088 /* Poppins-Light.ttf */; };
@@ -67,6 +74,7 @@
 		4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */; };
 		4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */; };
 		4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */; };
+		638E5FCC3ED177D7172BAB15 /* Pods_DoorcastRebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */; };
 		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
 		AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */; };
 		AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */; };
@@ -105,13 +113,11 @@
 		E347D3632822700D00122C8B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347D3622822700D00122C8B /* HomeViewModel.swift */; };
 		E347D366282270A600122C8B /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347D365282270A600122C8B /* HomeModel.swift */; };
 		E347D368282286DA00122C8B /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347D367282286DA00122C8B /* ButtonExtension.swift */; };
-		E34A2D0E28229F9B00BF7439 /* TaskDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E34A2D0D28229F9B00BF7439 /* TaskDetails.storyboard */; };
 		E34A2D1128229FC800BF7439 /* CommonTaskDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A2D1028229FC800BF7439 /* CommonTaskDetailVC.swift */; };
 		E34A2D132822A05900BF7439 /* IncompleteTasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A2D122822A05900BF7439 /* IncompleteTasksVC.swift */; };
 		E34A2D152822A06E00BF7439 /* CompletedTasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A2D142822A06E00BF7439 /* CompletedTasksVC.swift */; };
 		E37939D72822A6B8008D83E4 /* TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37939D62822A6B8008D83E4 /* TableViewExtensions.swift */; };
 		E38D377828224B6600359321 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D377728224B6600359321 /* Constants.swift */; };
-		E8E97980C38D73A4F9EE54FE /* Pods_DoorcastRebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49568D4212BBCFE74655B342 /* Pods_DoorcastRebase.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,8 +151,15 @@
 		0771A2FC2825349B00758DD9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		0771A324282539C600758DD9 /* TextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		0771A3262825460600758DD9 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
-		2EE9016442E129AFEDA48CE8 /* Pods-DoorcastRebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.debug.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.debug.xcconfig"; sourceTree = "<group>"; };
-		49568D4212BBCFE74655B342 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		135EB041282B8CEA00194216 /* StartTheClockVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTheClockVC.swift; sourceTree = "<group>"; };
+		135EB043282B8CF400194216 /* TaskDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsVC.swift; sourceTree = "<group>"; };
+		135EB045282B8D6200194216 /* TaskDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TaskDetails.storyboard; path = "../../../../../../Desktop/codebele projects/doorcast-iOS/DoorcastRebase/App/Scenes/TaskDetails/TaskDetails.storyboard"; sourceTree = "<group>"; };
+		135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxInTaskDetailsTVCell.swift; sourceTree = "<group>"; };
+		135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckboxInTaskDetailsTVCell.xib; sourceTree = "<group>"; };
+		135EB04D282B8DB100194216 /* SubTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTaskViewModel.swift; sourceTree = "<group>"; };
+		135EB04F282B8DC500194216 /* SubTaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTaskModel.swift; sourceTree = "<group>"; };
+		3584D486E8CE52563A0F70EA /* Pods-DoorcastRebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.release.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.release.xcconfig"; sourceTree = "<group>"; };
+		467B28FC523D2B33E1C10038 /* Pods-DoorcastRebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.debug.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.debug.xcconfig"; sourceTree = "<group>"; };
 		4E07C838282291870090D088 /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
 		4E07C839282291870090D088 /* Poppins-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.otf"; sourceTree = "<group>"; };
 		4E07C83A282291870090D088 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -177,6 +190,7 @@
 		4E07C8882828E94D0090D088 /* NotificationCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterVC.swift; sourceTree = "<group>"; };
 		4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAssignedTVCell.swift; sourceTree = "<group>"; };
 		4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskAssignedTVCell.xib; sourceTree = "<group>"; };
+		4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
 		AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
 		AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
@@ -218,13 +232,11 @@
 		E347D3622822700D00122C8B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E347D365282270A600122C8B /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E347D367282286DA00122C8B /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
-		E34A2D0D28229F9B00BF7439 /* TaskDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskDetails.storyboard; sourceTree = "<group>"; };
 		E34A2D1028229FC800BF7439 /* CommonTaskDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTaskDetailVC.swift; sourceTree = "<group>"; };
 		E34A2D122822A05900BF7439 /* IncompleteTasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteTasksVC.swift; sourceTree = "<group>"; };
 		E34A2D142822A06E00BF7439 /* CompletedTasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksVC.swift; sourceTree = "<group>"; };
 		E37939D62822A6B8008D83E4 /* TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtensions.swift; sourceTree = "<group>"; };
 		E38D377728224B6600359321 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F9EE38B58608AA247D003B10 /* Pods-DoorcastRebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.release.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8E97980C38D73A4F9EE54FE /* Pods_DoorcastRebase.framework in Frameworks */,
+				638E5FCC3ED177D7172BAB15 /* Pods_DoorcastRebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,8 +254,8 @@
 		072191172823E8D300116F43 /* TVCells */ = {
 			isa = PBXGroup;
 			children = (
-				E30488632822A788004ECA60 /* TaskListTVCell.swift */,
-				E30488642822A788004ECA60 /* TaskListTVCell.xib */,
+				135EB04C282B8D8C00194216 /* TaskListTVCell */,
+				135EB047282B8D8600194216 /* CheckboxInTaskDetailsTVCell */,
 			);
 			path = TVCells;
 			sourceTree = "<group>";
@@ -398,10 +410,28 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4DE8B99136768865786476B0 /* Frameworks */ = {
+		135EB047282B8D8600194216 /* CheckboxInTaskDetailsTVCell */ = {
 			isa = PBXGroup;
 			children = (
-				49568D4212BBCFE74655B342 /* Pods_DoorcastRebase.framework */,
+				135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */,
+				135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */,
+			);
+			path = CheckboxInTaskDetailsTVCell;
+			sourceTree = "<group>";
+		};
+		135EB04C282B8D8C00194216 /* TaskListTVCell */ = {
+			isa = PBXGroup;
+			children = (
+				E30488642822A788004ECA60 /* TaskListTVCell.xib */,
+				E30488632822A788004ECA60 /* TaskListTVCell.swift */,
+			);
+			path = TaskListTVCell;
+			sourceTree = "<group>";
+		};
+		3E727F7AFDDC7C43AD4963F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -659,8 +689,8 @@
 		C18B04CC31F866AB25C2E615 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2EE9016442E129AFEDA48CE8 /* Pods-DoorcastRebase.debug.xcconfig */,
-				F9EE38B58608AA247D003B10 /* Pods-DoorcastRebase.release.xcconfig */,
+				467B28FC523D2B33E1C10038 /* Pods-DoorcastRebase.debug.xcconfig */,
+				3584D486E8CE52563A0F70EA /* Pods-DoorcastRebase.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -677,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				E304886B2822ABB0004ECA60 /* TaskListViewModel.swift */,
+				135EB04D282B8DB100194216 /* SubTaskViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -685,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				E30488702822AC74004ECA60 /* IncompleteTaskListModel.swift */,
+				135EB04F282B8DC500194216 /* SubTaskModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -695,7 +727,7 @@
 				E31C92A6282244CC00600CEE /* DoorcastRebase */,
 				E31C92A5282244CC00600CEE /* Products */,
 				C18B04CC31F866AB25C2E615 /* Pods */,
-				4DE8B99136768865786476B0 /* Frameworks */,
+				3E727F7AFDDC7C43AD4963F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -842,7 +874,7 @@
 				E304886A2822ABA3004ECA60 /* ViewModel */,
 				E37939D12822A5AA008D83E4 /* Views */,
 				E34A2D0F28229F9F00BF7439 /* ViewController */,
-				E34A2D0D28229F9B00BF7439 /* TaskDetails.storyboard */,
+				135EB045282B8D6200194216 /* TaskDetails.storyboard */,
 			);
 			path = TaskDetails;
 			sourceTree = "<group>";
@@ -854,6 +886,8 @@
 				E34A2D122822A05900BF7439 /* IncompleteTasksVC.swift */,
 				E34A2D142822A06E00BF7439 /* CompletedTasksVC.swift */,
 				072191122823D03500116F43 /* CalendarVC.swift */,
+				135EB043282B8CF400194216 /* TaskDetailsVC.swift */,
+				135EB041282B8CEA00194216 /* StartTheClockVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -874,11 +908,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E31C92BB282244CE00600CEE /* Build configuration list for PBXNativeTarget "DoorcastRebase" */;
 			buildPhases = (
-				85EF3EFC066D50089A54D852 /* [CP] Check Pods Manifest.lock */,
+				406AD9E547ADFE2AFB2EAE00 /* [CP] Check Pods Manifest.lock */,
 				E31C92A0282244CC00600CEE /* Sources */,
 				E31C92A1282244CC00600CEE /* Frameworks */,
 				E31C92A2282244CC00600CEE /* Resources */,
-				E969772857B914AC8B0984E1 /* [CP] Embed Pods Frameworks */,
+				463FB6119036A4CF355A58C9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -941,6 +975,7 @@
 				4E07C85D282291FB0090D088 /* Oswald-Light.ttf in Resources */,
 				4E07C85E282291FB0090D088 /* Oswald-LightItalic.ttf in Resources */,
 				AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */,
+				135EB04B282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib in Resources */,
 				4E07C860282291FB0090D088 /* Oswald-MediumItalic.ttf in Resources */,
 				E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */,
 				4E07C861282291FB0090D088 /* Oswald-Regular.ttf in Resources */,
@@ -954,7 +989,6 @@
 				0771A2CB282519C500758DD9 /* Dashboard.storyboard in Resources */,
 				E347D35628225BFE00122C8B /* Home.storyboard in Resources */,
 				4E07C843282291870090D088 /* Poppins-Medium.ttf in Resources */,
-				E34A2D0E28229F9B00BF7439 /* TaskDetails.storyboard in Resources */,
 				4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */,
 				4E07C840282291870090D088 /* Poppins-Light.ttf in Resources */,
 				4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */,
@@ -965,6 +999,7 @@
 				4E07C841282291870090D088 /* Poppins-SemiBold.ttf in Resources */,
 				E31C92B4282244CE00600CEE /* Assets.xcassets in Resources */,
 				0771A2E628251A6100758DD9 /* CrewPropertiesTVCell.xib in Resources */,
+				135EB046282B8D6200194216 /* TaskDetails.storyboard in Resources */,
 				E31C92AF282244CC00600CEE /* Main.storyboard in Resources */,
 				4E07C842282291870090D088 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -973,7 +1008,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		85EF3EFC066D50089A54D852 /* [CP] Check Pods Manifest.lock */ = {
+		406AD9E547ADFE2AFB2EAE00 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -995,7 +1030,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E969772857B914AC8B0984E1 /* [CP] Embed Pods Frameworks */ = {
+		463FB6119036A4CF355A58C9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1033,6 +1068,7 @@
 				E347D35E28225FA100122C8B /* UIViewControllerExtension.swift in Sources */,
 				AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */,
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
+				135EB042282B8CEA00194216 /* StartTheClockVC.swift in Sources */,
 				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
 				4E07C8822828E4D90090D088 /* ProfileViewModel.swift in Sources */,
 				E347D35828225C2700122C8B /* HomeVC.swift in Sources */,
@@ -1044,10 +1080,13 @@
 				E34A2D1128229FC800BF7439 /* CommonTaskDetailVC.swift in Sources */,
 				0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */,
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
+				135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */,
+				135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
 				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,
 				AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */,
 				0771A2F72825348600758DD9 /* LoginVC.swift in Sources */,
+				135EB044282B8CF400194216 /* TaskDetailsVC.swift in Sources */,
 				0771A2E528251A6100758DD9 /* CrewPropertiesTVCell.swift in Sources */,
 				E38D377828224B6600359321 /* Constants.swift in Sources */,
 				AE80FC91282B7B6800EE5C0C /* ResetPasswordVC.swift in Sources */,
@@ -1066,6 +1105,7 @@
 				4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */,
 				0771A2BE2823F88400758DD9 /* Loader.swift in Sources */,
 				0771A3272825460600758DD9 /* ServiceManager.swift in Sources */,
+				135EB04E282B8DB100194216 /* SubTaskViewModel.swift in Sources */,
 				4E07C8662822925A0090D088 /* FontManager.swift in Sources */,
 				0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */,
 				E347D351282258AB00122C8B /* DeviceName.swift in Sources */,
@@ -1226,7 +1266,7 @@
 		};
 		E31C92BC282244CE00600CEE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EE9016442E129AFEDA48CE8 /* Pods-DoorcastRebase.debug.xcconfig */;
+			baseConfigurationReference = 467B28FC523D2B33E1C10038 /* Pods-DoorcastRebase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1235,7 +1275,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS updatedccode/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-09/Documents/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1258,7 +1298,7 @@
 		};
 		E31C92BD282244CE00600CEE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9EE38B58608AA247D003B10 /* Pods-DoorcastRebase.release.xcconfig */;
+			baseConfigurationReference = 3584D486E8CE52563A0F70EA /* Pods-DoorcastRebase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1267,7 +1307,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS updatedccode/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-09/Documents/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

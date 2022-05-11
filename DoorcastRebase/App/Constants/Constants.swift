@@ -45,6 +45,8 @@ struct ApiEndpoints {
     static let ResendOTPApi = "exstream_resendOtp"
     static let ResetPasswordApi = "exstream_resetPassword"
     
+    static let SubTaskListApi = "exstream-sub-task"
+    
     
 }
 
@@ -62,6 +64,12 @@ struct UserDefaultsKeys {
     static var loggedInStatus = "loggedInStatus"
     static var globalAT = "globalAT"
     static var Base_url = "Base_url"
+    static var task_id = "task_id"
+    static var task_id_cipher = "task_id_cipher"
+    static var taskname = "taskname"
+    static var group_id = "group_id"
+    static var task_type = "task_type"
+    static var property_id = "propertyid"
 }
 
 

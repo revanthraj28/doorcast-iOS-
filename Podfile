@@ -8,10 +8,12 @@ pod 'ReachabilitySwift', '~> 4.3.0'
   pod 'IQKeyboardManager'
   pod 'MBProgressHUD'
   pod 'Toast-Swift', '~> 5.0.1'
-pod 'JTAppleCalendar', '~> 7.1.6'
-pod 'DropDown'
-pod 'Firebase/Core'
-pod 'Firebase/Messaging'
+  pod 'JTAppleCalendar', '~> 7.1.6'
+  pod 'DropDown'
+  pod 'FirebaseMessaging'
+  pod 'Firebase'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   # Pods for DoorcastRebase
 
 end
