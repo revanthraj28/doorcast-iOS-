@@ -9,7 +9,6 @@ import UIKit
 
 class IncompleteTasksVC: UIViewController {
     
-    
     @IBOutlet weak var taskListTableView: UITableView!
     @IBOutlet weak var meOrTeamSegment: UISegmentedControl!
     
@@ -43,16 +42,13 @@ class IncompleteTasksVC: UIViewController {
         taskListTableView.delegate = self
         taskListTableView.dataSource = self
         taskListTableView.register(TaskListTVCell.cellNib, forCellReuseIdentifier: TaskListTVCell.cellId)
-        
-        
     }
     
     func configureContents(){
         viewModel = TaskListViewModel(self)
         viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
+        
         mainVC = self.parent as? CommonTaskDetailVC
-        
-        
     }
     
     
@@ -61,14 +57,18 @@ class IncompleteTasksVC: UIViewController {
         print("didTapOnTimerView IncompleteTasksVC")
         
         if timerBool == false {
+            mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
             timerBool = true
         }else {
+            mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
             timer?.invalidate()
             timer = nil
             timerBool = false
         }
+        
     }
+    
     
     @objc func processTimer() {
         
@@ -79,11 +79,10 @@ class IncompleteTasksVC: UIViewController {
         
         DispatchQueue.main.async {
             print("\(hours):\(minutes):\(seconds)")
-            self.mainVC?.timerView.idleTimerValueLbl.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            self.mainVC?.timerView.idleTimeLabelValue.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         }
         
     }
-    
     
     
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {
@@ -96,18 +95,29 @@ class IncompleteTasksVC: UIViewController {
     }
     
 }
+
+
 extension IncompleteTasksVC: TaskListProtocol {
     func showInCompleteTaskList(response: IncompleteTaskListModel?) {
         self.incompleteTaskListModel = response
+        
+        if let count = self.incompleteTaskListModel?.data?.count {
+            if count <= 0 {
+                TableViewHelper.EmptyMessage(message: "No Data Found", tableview: self.taskListTableView, vc: self)
+            }
+        }
         DispatchQueue.main.async {
             self.taskListTableView.reloadData()
         }
     }
 }
 
+
 extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return incompleteTaskListModel?.data?.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,4 +131,5 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
 }
