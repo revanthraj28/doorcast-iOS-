@@ -11,6 +11,8 @@ class OtpVC: UIViewController  {
     
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var tabelView: UITableView!
+    @IBOutlet weak var backButton: UIButton!
+    
     
     var otpNumber : String?
     var EmailAddress : String?
@@ -43,12 +45,15 @@ class OtpVC: UIViewController  {
         tabelView.backgroundColor = .clear
         tabelView.showsHorizontalScrollIndicator = false
         self.tabelView.layer.cornerRadius = 10
+        backButton.setTitle("", for: .normal)
         
         self.holderView.backgroundColor = UIColor.AppBackgroundColor
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
-        gotoForgotPasswordScreen()
+        guard let vc = ForgotPasswordVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
 }

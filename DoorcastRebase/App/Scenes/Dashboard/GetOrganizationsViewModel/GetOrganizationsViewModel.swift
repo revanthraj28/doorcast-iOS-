@@ -19,6 +19,7 @@ class GetOrganizationsViewModel {
     }
     func getOrganizationApi() {
         
+        
         //https://staging.doorcast.tech/api/get_organizations
         self.view.showLoader()
         ServiceManager.getApiCall(endPoint: ApiEndpoints.getOrganizationApi, resultType: GetOrganizationsModel.self) { sucess, result, errorMessage in

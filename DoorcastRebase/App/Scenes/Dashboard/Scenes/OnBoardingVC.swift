@@ -36,6 +36,9 @@ class OnBoardingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         usernameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
         
         CompanyTV.backgroundColor = .white
@@ -51,7 +54,7 @@ class OnBoardingVC: UIViewController {
         CompanyTV.delegate = self
         CompanyTV.dataSource = self
         
-        CompanyTV.register(CompanyTVCell.self, forCellReuseIdentifier: "CompanyTVCell")
+//        CompanyTV.register(CompanyTVCell.self, forCellReuseIdentifier: "CompanyTVCell")
         CompanyTV.register(UINib(nibName: "CompanyTVCell", bundle: nil), forCellReuseIdentifier: "CompanyTVCell")
         
         print("Home Login info = \(SessionManager.loginInfo?.data?.accesstoken)")

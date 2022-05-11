@@ -117,7 +117,7 @@ extension ForgotPasswordVC : ForgotPasswordViewModelProtocol {
     func ForgotPasswordSuccess(ForgotPasswordResponse: ForgotPasswordModel) {
         self.ForgotPasswordViewResponce = ForgotPasswordResponse
         print("forgotpassword responce=\(ForgotPasswordViewResponce)")
-//                defaults.set("", forKey: UserDefaultsKeys.globalAT)
+                defaults.set("", forKey: UserDefaultsKeys.globalAT)
         if (ForgotPasswordViewResponce?.status) == true {
             guard let vc = OtpVC.newInstance  else {return}
             vc.otpNumber = ForgotPasswordViewResponce?.data

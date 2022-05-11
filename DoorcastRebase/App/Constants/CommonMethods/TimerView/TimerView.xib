@@ -13,9 +13,11 @@
             <connections>
                 <outlet property="actionView" destination="8TW-Fr-QR3" id="TTn-4S-npE"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="UIm-f4-Vhw"/>
+                <outlet property="idleTimerValueLbl" destination="Tba-uT-WFx" id="hAO-NU-ble"/>
+                <outlet property="idleTimertitleLbl" destination="TSS-as-Vkp" id="329-rv-yMn"/>
                 <outlet property="timerButton" destination="teh-ym-Zyf" id="Shl-V4-gYl"/>
-                <outlet property="timerLabel" destination="Q6V-7G-qzg" id="Mga-I8-1Oh"/>
-                <outlet property="totalTimeLabel" destination="Cxo-5z-Fco" id="e2c-OU-eEs"/>
+                <outlet property="timerValueLbl" destination="Q6V-7G-qzg" id="Mga-I8-1Oh"/>
+                <outlet property="totalTimeTitleLbl" destination="Cxo-5z-Fco" id="e2c-OU-eEs"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

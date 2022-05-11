@@ -12,11 +12,11 @@ import UIKit
 class TimerView: UIView {
     
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var totalTimeLabel: UILabel!
-    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var totalTimeTitleLbl: UILabel!
+    @IBOutlet weak var timerValueLbl: UILabel!
+    @IBOutlet weak var idleTimertitleLbl: UILabel!
+    @IBOutlet weak var idleTimerValueLbl: UILabel!
     @IBOutlet weak var actionView: UIView!
-    
-    //    @IBOutlet weak var timerActionView: UIView!
     @IBOutlet weak var timerButton: UIButton!
     
     override init(frame: CGRect) {

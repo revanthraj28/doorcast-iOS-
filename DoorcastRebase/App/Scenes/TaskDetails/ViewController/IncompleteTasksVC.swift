@@ -15,6 +15,16 @@ class IncompleteTasksVC: UIViewController {
     
     var viewModel : TaskListViewModel!
     var incompleteTaskListModel : IncompleteTaskListModel?
+    var timerBool = false
+    let bottomView: TimerView = TimerView()
+    var totalSecond = Int()
+    var timer : Timer?
+    var counter = 0
+    var mainVC: CommonTaskDetailVC?
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,13 +50,41 @@ class IncompleteTasksVC: UIViewController {
     func configureContents(){
         viewModel = TaskListViewModel(self)
         viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
+        mainVC = self.parent as? CommonTaskDetailVC
+        
+        
     }
     
     
     
     @objc func didTapOnTimerView(notification:Notification) {
-        print("didTapOnTimerView")
+        print("didTapOnTimerView IncompleteTasksVC")
+        
+        if timerBool == false {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+            timerBool = true
+        }else {
+            timer?.invalidate()
+            timer = nil
+            timerBool = false
+        }
     }
+    
+    @objc func processTimer() {
+        
+        let hours = counter / 3600
+        let minutes = counter / 60 % 60
+        let seconds = counter % 60
+        counter = counter + 1
+        
+        DispatchQueue.main.async {
+            print("\(hours):\(minutes):\(seconds)")
+            self.mainVC?.timerView.idleTimerValueLbl.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        }
+        
+    }
+    
+    
     
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {
         let selectedSegment = sender.selectedSegmentIndex

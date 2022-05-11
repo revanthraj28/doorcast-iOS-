@@ -120,7 +120,7 @@ class ResetPasswordVC: UIViewController {
             var parms = [String: Any]()
             parms["email"] = self.EmailAddress
             parms["password"] = self.conformPasswordTF.text
-            
+            defaults.set(GlobelAccessToken, forKey: UserDefaultsKeys.globalAT)
             self.viewmodel?.ResetPasswordApi(dictParam: parms)
         }
         
