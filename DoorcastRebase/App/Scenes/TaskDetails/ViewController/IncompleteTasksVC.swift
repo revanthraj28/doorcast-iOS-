@@ -79,7 +79,7 @@ class IncompleteTasksVC: UIViewController {
         
         DispatchQueue.main.async {
             print("\(hours):\(minutes):\(seconds)")
-            self.mainVC?.timerView.idleTimeLabelValue.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            self.mainVC?.timerView.idleTimerValueLbl.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         }
         
     }
