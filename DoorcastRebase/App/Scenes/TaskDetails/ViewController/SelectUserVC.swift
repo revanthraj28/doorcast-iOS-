@@ -27,15 +27,13 @@ class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     var isSelected = String()
-    
     var ReassignCrewResponseModel : reassignCrewModel?
     var vmodel : ReassignCrewViewModel?
-    
     var getCrewResponseModel : CrewModel?
     var ViewModel : CrewViewModel?
-    
     var ForceFinishResponseModel : ForceFinishModel?
     var ViewModel1 : ForceFinishViewModel?
+    var parms = [String: Any]()
     
     static var newInstance: SelectUserVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -49,7 +47,6 @@ class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         if isSelected == "Reassign Crew"{
             
-            
             cancelView.isHidden = true
             addUserView.alpha = 1.0
             addUserBtn.isUserInteractionEnabled = true
@@ -59,16 +56,7 @@ class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             userTV.allowsMultipleSelection = false
             userTV.reloadData()
             
-            
-            var parms = [String: Any]()
-            
-            parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
-            parms["property_id"] = defaults.string(forKey: UserDefaultsKeys.property_id)
-            parms["type"] = defaults.string(forKey: UserDefaultsKeys.task_type)
-            
-            self.vmodel?.ReassignCrewApi(dictParam: parms)
-            
-            
+            ReassignCrewCallAPI()
             
         }  else if  isSelected == "Add Crew"{
             
@@ -76,40 +64,44 @@ class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             addUserView.alpha = 1.0
             addUserBtn.isUserInteractionEnabled = true
             addUserView.addCornerRadiusWithShadow(color: .lightGray, borderColor: .clear, cornerRadius: addUserView.layer.frame.size.width / 2)
-            //            addUserImage.image = UIImage(named: "cancel")
             userTV.allowsMultipleSelection = false
             
+            AddCrewCallApi()
             
-            var parms = [String: Any]()
-            
-            parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
-            parms["property_id"] = defaults.string(forKey: UserDefaultsKeys.property_id)
-            
-            
-            self.ViewModel?.CrewApi(dictParam: parms)
             
         } else if isSelected == "Force Finish"{
             cancelView.isHidden = false
             addUserView.alpha = 1.0
             addUserBtn.isUserInteractionEnabled = true
             addUserView.addCornerRadiusWithShadow(color: .lightGray, borderColor: .clear, cornerRadius: addUserView.layer.frame.size.width / 2)
-            
             userTV.allowsMultipleSelection = false
             
-            
-            var parms = [String: Any]()
-            
-            parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
-            parms["property_id"] = defaults.string(forKey: UserDefaultsKeys.property_id)
-            parms["type"] = defaults.string(forKey: UserDefaultsKeys.task_type)
-            
-            self.ViewModel1?.ForceFinishApi(dictParam: parms)
-            
+            ForceFinishCallAPI()
         }
         else {
             self.addUserView.alpha = 0.6
             self.addUserBtn.isUserInteractionEnabled = false
         }
+    }
+    
+    func ReassignCrewCallAPI() {
+        parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
+        parms["property_id"] = defaults.string(forKey: UserDefaultsKeys.property_id)
+        parms["type"] = defaults.string(forKey: UserDefaultsKeys.task_type)
+        self.vmodel?.ReassignCrewApi(dictParam: parms)
+    }
+    
+    func AddCrewCallApi() {
+        parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
+        parms["property_id"] = defaults.string(forKey: UserDefaultsKeys.property_id)
+        self.ViewModel?.CrewApi(dictParam: parms)
+    }
+    
+    func ForceFinishCallAPI() {
+        parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
+        parms["property_id"] = defaults.string(forKey: UserDefaultsKeys.property_id)
+        parms["type"] = defaults.string(forKey: UserDefaultsKeys.task_type)
+        self.ViewModel1?.ForceFinishApi(dictParam: parms)
     }
     
     
@@ -122,8 +114,6 @@ class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         emptyMessageLabel.isHidden = true
         updateUI()
-        
-        print("isSelected.....\(isSelected)")
         
         userTV.delegate = self
         userTV.dataSource = self
@@ -223,28 +213,25 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
 {
     func ForceFinishSuccess(ForceFinishResponse: ForceFinishModel) {
         self.ForceFinishResponseModel = ForceFinishResponse
-        print("ForceFinishResponseModel----\(ForceFinishResponseModel?.data?.first?.crew_name)")
-        userTV.reloadData()
+        
+        DispatchQueue.main.async {
+            self.userTV.reloadData()
+        }
     }
     
     func CrewSuccess(CrewResponse: CrewModel) {
-        
-        
         self.getCrewResponseModel = CrewResponse
-        print("response....... \(getCrewResponseModel?.data?.first?.propertyUser_name )")
-        userTV.reloadData()
-        
-        
+        DispatchQueue.main.async {
+            self.userTV.reloadData()
+        }
     }
     
     
     func ReassignCrewSuccess(ReassignCrewResponse: reassignCrewModel) {
         self.ReassignCrewResponseModel = ReassignCrewResponse
-        print("ReassignCrewResponseModel.....\(ReassignCrewResponseModel?.data?.first?.crew_name )")
-        
-        
-        
-        userTV.reloadData()
+        DispatchQueue.main.async {
+            self.userTV.reloadData()
+        }
         
     }
     
@@ -252,7 +239,6 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if isSelected == "Force Finish" {
-            print("ForceFinish.....")
             
             let cell = userTV.cellForRow(at: indexPath) as! LabelTVCell
             cell.holderView.backgroundColor = UIColor(named: "inactiveStateColor")?.withAlphaComponent(0.5)
