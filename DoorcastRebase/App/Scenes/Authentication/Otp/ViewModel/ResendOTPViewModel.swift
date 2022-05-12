@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ResendOTPViewModelProtocol {
+protocol ResendOTPViewModelProtocol:BaseViewModelProtocol {
     func ResendOTPSuccess(ResendOTPResponse : ResendOTPModel)
 }
 
@@ -20,8 +20,10 @@ class ResendOTPViewModel {
         let paramsDict = NSDictionary(dictionary : dictParam)
         print("Params = \(paramsDict)")
         
-        print("SessionManager.loginInfo?.data?.accesstoken = \(SessionManager.loginInfo?.data?.accesstoken)")
+        self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.ResendOTPApi, parameters: paramsDict as NSDictionary, resultType: ResendOTPModel.self) { sucess, result, errorMessage in
+            
+            self.view.hideLoader()
             DispatchQueue.main.async {
                 if sucess {
                     guard let response = result else {return}

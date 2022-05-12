@@ -26,6 +26,21 @@ class TaskDetailsVC: UIViewController {
     @IBOutlet weak var sidearrowImage: UIImageView!
     @IBOutlet weak var sidearrowButton: UIButton!
     
+    @IBOutlet weak var ForceFinishBtn: UIButton!
+    @IBOutlet weak var ForceFinishLabel: UILabel!
+    @IBOutlet weak var ForceFinishImage: UIImageView!
+    @IBOutlet weak var ForceFinishBgView: UIView!
+    @IBOutlet weak var AddCrewBtn: UIButton!
+    @IBOutlet weak var AddCrewLabel: UILabel!
+    @IBOutlet weak var AddCrewImage: UIImageView!
+    @IBOutlet weak var ReassignLabel: UILabel!
+    @IBOutlet weak var ReassignImage: UIImageView!
+    @IBOutlet weak var reasignBgView: UIView!
+    @IBOutlet weak var editBackgroundView: UIView!
+    
+    @IBOutlet weak var addcrewBgView: UIView!
+    @IBOutlet weak var ReassignBtn: UIButton!
+    
     
     var subTaskList: TaskDataModel?
     var subTaskListViewModel : SubTaskListViewModel?
@@ -33,6 +48,9 @@ class TaskDetailsVC: UIViewController {
     var taskname:String?
     var address:String?
     var propertyname:String?
+    
+    var isVisible = false
+    
     static var newInstance: TaskDetailsVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
                                       bundle: nil)
@@ -47,7 +65,7 @@ class TaskDetailsVC: UIViewController {
         companyLabel.text = self.propertyname
         propertyAddresLabel.text = self.address
         
-        
+        editBackgroundView.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -92,12 +110,67 @@ class TaskDetailsVC: UIViewController {
     
     @IBAction func moreButtonAction(_ sender: Any) {
         
+        
+        if isVisible == false
+        {
+            editBackgroundView.isHidden = false
+            isVisible = true
+        }else{
+            
+            editBackgroundView.isHidden = true
+            isVisible = false
+        }
+        
+        
     }
-
+    
+    
+    @IBAction func reassignBtnAction(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "TaskDetails", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
+        vc.isSelected = "Reassign Crew"
+        vc.modalPresentationStyle = .popover
+        self.present(vc, animated:true, completion:nil)
+        
+        
+    }
+    
+    
+    
+    @IBAction func addCrewBtnAction(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "TaskDetails", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
+        vc.isSelected = "Add Crew"
+        vc.modalPresentationStyle = .popover
+        self.present(vc, animated:true, completion:nil)
+        
+        
+        
+    }
+    
+    @IBAction func forceFinishBtnAction(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "TaskDetails", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
+        vc.isSelected = "Force Finish"
+        vc.modalPresentationStyle = .popover
+        self.present(vc, animated:true, completion:nil)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     @IBAction func sidearrowButtonAction(_ sender: Any) {
-//        guard let vc = IncompleteTasksVC.newInstance else {return}
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true)
+        //        guard let vc = IncompleteTasksVC.newInstance else {return}
+        //        vc.modalPresentationStyle = .fullScreen
+        //        self.present(vc, animated: true)
     }
     
 }
@@ -111,10 +184,15 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = taskDetailsTableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as! CheckboxInTaskDetailsTVCell
-        let data = subtaskDetail?.data?.subtask?[indexPath.row]
-        cell.numbersLabel.text = data?.sub_task_name
-        return cell
+        var commonCell = UITableViewCell()
+        if let cell = taskDetailsTableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as? CheckboxInTaskDetailsTVCell {
+            
+            let data = subtaskDetail?.data?.subtask?[indexPath.row]
+            cell.numbersLabel.text = data?.sub_task_name
+            
+            commonCell = cell
+        }
+        return commonCell
         
     }
     
@@ -124,24 +202,28 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = taskDetailsTableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as! CheckboxInTaskDetailsTVCell
-        if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
-
-            cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
-
-        } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
-            cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+        
+        if let cell = taskDetailsTableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as? CheckboxInTaskDetailsTVCell {
+            
+            if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
+                cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
+            } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
+                cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+            }
+            gotoNextScreen()
         }
-
-        guard let vc = StartTheClockVC.newInstance else {return}
-        vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: true)
-        
-        
     }
     
     
+    func gotoNextScreen() {
+        guard let vc = StartTheClockVC.newInstance else {return}
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true)
+    }
 }
+
+
+
 
 extension TaskDetailsVC : SubTaskListProtocol {
     func subTaskList(response: SubtaskDetailModel?) {

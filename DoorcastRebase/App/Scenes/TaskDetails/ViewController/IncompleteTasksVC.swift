@@ -21,6 +21,15 @@ class IncompleteTasksVC: UIViewController {
     var counter = 0
     var mainVC: CommonTaskDetailVC?
     
+    static var newInstance: IncompleteTasksVC? {
+        let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
+                                      bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? IncompleteTasksVC
+        return vc
+    }
+    
+ 
+    
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
@@ -103,7 +112,7 @@ extension IncompleteTasksVC: TaskListProtocol {
         
         if let count = self.incompleteTaskListModel?.data?.count {
             if count <= 0 {
-                TableViewHelper.EmptyMessage(message: "No Data Found", tableview: self.taskListTableView, vc: self)
+                TableViewHelper.EmptyMessage(message: "No Tasks Assigned", tableview: self.taskListTableView, vc: self)
             }
         }
         DispatchQueue.main.async {
@@ -131,5 +140,22 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = TaskDetailsVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        if let incompleteData = incompleteTaskListModel?.data?[indexPath.row] {
+            defaults.set(incompleteData.task_id, forKey: UserDefaultsKeys.task_id)
+            defaults.set(incompleteData.task_id_cipher, forKey: UserDefaultsKeys.task_id_cipher)
+            defaults.set(incompleteData.taskname, forKey: UserDefaultsKeys.taskname)
+            defaults.set(incompleteData.group_id, forKey: UserDefaultsKeys.group_id)
+            defaults.set(incompleteData.propertyid, forKey: UserDefaultsKeys.property_id)
+            
+        }
+        self.present(vc, animated: true)
+        
+    }
+    
+    
     
 }

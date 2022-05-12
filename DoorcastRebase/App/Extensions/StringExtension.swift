@@ -142,4 +142,23 @@ extension NSMutableAttributedString {
         finalString.append(attributedString2)
         return finalString
     }
+    
+    
+    
+}
+
+extension UIView
+{
+    
+    func addCornerRadiusWithShadow(color: UIColor, borderColor: UIColor, cornerRadius: CGFloat) {
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 2.0
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = 1.0
+        self.layer.masksToBounds = false
+    }
+    
 }

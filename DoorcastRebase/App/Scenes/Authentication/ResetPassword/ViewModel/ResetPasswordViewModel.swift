@@ -8,7 +8,7 @@
 import Foundation
 
 
-protocol ResetpasswordViewModelProtocol {
+protocol ResetpasswordViewModelProtocol:BaseViewModelProtocol {
     func ResetpasswordSuccess(ResetpasswordResponse : ResetPasswordModel)
 }
 
@@ -21,8 +21,10 @@ class ResetpasswordViewModel {
         let paramsDict = NSDictionary(dictionary : dictParam)
         print("Params = \(paramsDict)")
         
-        print("SessionManager.loginInfo?.data?.accesstoken = \(SessionManager.loginInfo?.data?.accesstoken)")
+        self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.ResetPasswordApi, parameters: paramsDict as NSDictionary, resultType: ResetPasswordModel.self) { sucess, result, errorMessage in
+            
+            self.view.hideLoader()
             DispatchQueue.main.async {
                 if sucess {
                     guard let response = result else {return}

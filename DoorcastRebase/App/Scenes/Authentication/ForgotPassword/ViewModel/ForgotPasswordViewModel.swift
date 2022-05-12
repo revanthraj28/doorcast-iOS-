@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ForgotPasswordViewModelProtocol {
+protocol ForgotPasswordViewModelProtocol:BaseViewModelProtocol {
     func ForgotPasswordSuccess(ForgotPasswordResponse : ForgotPasswordModel)
 }
 
@@ -20,8 +20,10 @@ class ForgotPasswordViewModel {
         let paramsDict = NSDictionary(dictionary : dictParam)
         print("Params = \(paramsDict)")
         
-        print("SessionManager.loginInfo?.data?.accesstoken = \(SessionManager.loginInfo?.data?.accesstoken)")
+        self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.ForgotPasswordApi, parameters: paramsDict as NSDictionary, resultType: ForgotPasswordModel.self) { sucess, result, errorMessage in
+            
+            self.view.hideLoader()
             DispatchQueue.main.async {
                 if sucess {
                     guard let response = result else {return}

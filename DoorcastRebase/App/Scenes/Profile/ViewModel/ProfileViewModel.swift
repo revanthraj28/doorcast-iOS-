@@ -9,7 +9,7 @@
 
 import Foundation
 
-protocol ProfileViewModelProtocol {
+protocol ProfileViewModelProtocol:BaseViewModelProtocol {
     func ProfileSuccess(ProfileResponse : ProfileModel)
 }
 
@@ -22,7 +22,10 @@ class ProfileViewModel {
         let paramsDict = NSDictionary(dictionary:dictParam)
         print("Parameters = \(paramsDict)")
        
+        self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.UpdateProfilenApi, parameters: paramsDict as NSDictionary, resultType: ProfileModel.self) { sucess, result, errorMessage in
+            
+            self.view.hideLoader()
             DispatchQueue.main.async {
                 if sucess {
                     guard let response = result else {return}

@@ -21,6 +21,8 @@ let KAuthorization = "Authorization"
 //let KDEVICE_ID = "DEVICE_ID"
 let KAccesstoken = "Accesstoken"
 
+
+
 let KDeviceID = UIDevice.current.identifierForVendor!.uuidString
 let KDeviceModelName = UIDevice.modelName
 let KOsType = UIDevice.current.systemVersion
@@ -47,6 +49,11 @@ struct ApiEndpoints {
     
     static let SubTaskListApi = "exstream-sub-task"
     
+    static let ReassignCrewApi = "exstream_getUserCompeltedTask"
+    static let getCrewListApi = "exstream_getCrewList"
+    
+    static let forceFinishApi = "exstream_getInprogressTaskUser"
+    
     
 }
 
@@ -70,6 +77,8 @@ struct UserDefaultsKeys {
     static var group_id = "group_id"
     static var task_type = "task_type"
     static var property_id = "propertyid"
+    static var crew_list = "crew_list"
+    static var task_list = "task_list"
 }
 
 
@@ -77,4 +86,5 @@ struct UserDefaultsKeys {
 /*LOCAL JSON FILES*/
 struct LocalJsonFiles {
     static var incompleteTaskDetails = "IncompleteTaskDetails"
+    static var ForceFinish = "ForceFinish"
 }

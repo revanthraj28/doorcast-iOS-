@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,20 +20,27 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cpa-rt-BiU">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="71"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-QE-cak">
-                                <rect key="frame" x="20" y="41" width="41.5" height="15"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskChecked" translatesAutoresizingMaskIntoConstraints="NO" id="cef-CK-RwX">
+                                <rect key="frame" x="294" y="23" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="Yn8-js-ORk"/>
+                                    <constraint firstAttribute="height" constant="25" id="A81-Y4-Taf"/>
+                                    <constraint firstAttribute="width" constant="25" id="tLP-Ag-Uv3"/>
                                 </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V24-7j-mfq">
+                                <rect key="frame" x="30" y="25" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="9Wn-QE-cak" secondAttribute="bottom" constant="15" id="466-QB-kYN"/>
-                            <constraint firstItem="9Wn-QE-cak" firstAttribute="leading" secondItem="Cpa-rt-BiU" secondAttribute="leading" constant="20" id="c1L-eX-wHh"/>
+                            <constraint firstItem="V24-7j-mfq" firstAttribute="top" secondItem="Cpa-rt-BiU" secondAttribute="top" constant="25" id="8rJ-Fs-2no"/>
+                            <constraint firstAttribute="height" constant="71" id="WFd-bZ-MJO"/>
+                            <constraint firstItem="V24-7j-mfq" firstAttribute="leading" secondItem="Cpa-rt-BiU" secondAttribute="leading" constant="30" id="nLY-mz-1UQ"/>
+                            <constraint firstItem="cef-CK-RwX" firstAttribute="centerY" secondItem="V24-7j-mfq" secondAttribute="centerY" id="ner-Fq-rwp"/>
+                            <constraint firstAttribute="trailing" secondItem="cef-CK-RwX" secondAttribute="trailing" constant="24" id="uUy-hZ-ZY3"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -47,15 +53,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="commomLabel" destination="9Wn-QE-cak" id="XQX-T1-Jwy"/>
+                <outlet property="checkImage" destination="cef-CK-RwX" id="mQd-cJ-WMo"/>
+                <outlet property="commomLabel" destination="V24-7j-mfq" id="7vY-0N-JZ9"/>
                 <outlet property="holderView" destination="Cpa-rt-BiU" id="lVh-pq-zhJ"/>
             </connections>
             <point key="canvasLocation" x="154.34782608695653" y="100.78125"/>
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="taskChecked" width="55" height="55"/>
     </resources>
 </document>

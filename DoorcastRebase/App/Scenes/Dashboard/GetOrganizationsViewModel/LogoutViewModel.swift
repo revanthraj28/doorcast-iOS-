@@ -8,7 +8,7 @@
 import Foundation
 
 
-protocol LogoutViewModelProtocol {
+protocol LogoutViewModelProtocol:BaseViewModelProtocol {
     func logoutSuccess(logoutResponse : LogoutModel)
 }
 
@@ -18,14 +18,17 @@ class LogoutViewModel {
         self.view = view
     }
     func logoutApi(){
+        
+        self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.crewlogoutApi, parameters:nil, resultType: LogoutModel.self) { sucess, result, errorMessage in
             
-                if sucess {
-                    guard let response = result else {return}
-                    self.view.logoutSuccess(logoutResponse: response)
-                } else {
-                    print("error = \(errorMessage ?? "")")
-                }
+            self.view.hideLoader()
+            if sucess {
+                guard let response = result else {return}
+                self.view.logoutSuccess(logoutResponse: response)
+            } else {
+                print("error = \(errorMessage ?? "")")
+            }
             
         }
     }

@@ -19,6 +19,7 @@ class LoginViewModel {
     func loginApi(dictParam: [String: Any]){
         let paramsDict = NSDictionary(dictionary:dictParam)
         print("Parameters = \(paramsDict)")
+        
         self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.crewLoginApi, parameters: paramsDict as NSDictionary, resultType: LoginModel.self) { sucess, result, errorMessage in
             DispatchQueue.main.async {

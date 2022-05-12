@@ -18,15 +18,8 @@ class SubTaskListViewModel {
     init(_ view: SubTaskListProtocol) {
         self.view = view
     }
-    /*
-     {
-     "task_id":" ",
-     "task_id_check":"all",
-     "group_id":"all",
-     "type":"44",
     
-     }
-     */
+    
     func SubTaskListApi(task_id: String, task_id_check: String, group_id: String, type: String){
         let dict =  ["task_id": task_id_check , "task_id_check": task_id, "group_id": group_id, "type": type ]
         
@@ -44,8 +37,6 @@ class SubTaskListViewModel {
             }
         }
     }
-    
-
     
 }
 

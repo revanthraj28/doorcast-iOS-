@@ -28,10 +28,10 @@ class CrewProperties {
         print("Parameters = \(paramsDict)")
         
         //https://staging.doorcast.tech/api/get_organizations
-    
+        self.view.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.crewpropertyApi, parameters : paramsDict as NSDictionary, resultType: CrewPropertyModel.self) { sucess, result, errorMessage in
             DispatchQueue.main.async {
-//                self.view?.hideLoader()
+                //                self.view?.hideLoader()
                 if sucess {
                     guard let resultValue = result else {return}
                     self.view?.CrewPropertyDetails(response: resultValue)
