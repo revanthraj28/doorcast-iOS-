@@ -12,10 +12,6 @@ import UIKit
 class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    
-    
-    
-    
     @IBOutlet var emptyMessageLabel: UILabel!
     @IBOutlet var holderView: UIView!
     @IBOutlet var titleBackground: UIView!

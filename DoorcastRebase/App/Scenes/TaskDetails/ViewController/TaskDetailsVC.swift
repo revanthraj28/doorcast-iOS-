@@ -161,16 +161,8 @@ class TaskDetailsVC: UIViewController {
     }
     
     
-    
-    
-    
-    
-    
-    
     @IBAction func sidearrowButtonAction(_ sender: Any) {
-        //        guard let vc = IncompleteTasksVC.newInstance else {return}
-        //        vc.modalPresentationStyle = .fullScreen
-        //        self.present(vc, animated: true)
+        
     }
     
 }
