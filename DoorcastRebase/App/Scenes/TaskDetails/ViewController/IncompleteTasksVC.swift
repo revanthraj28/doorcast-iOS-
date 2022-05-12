@@ -56,7 +56,7 @@ class IncompleteTasksVC: UIViewController {
     func configureContents(){
         viewModel = TaskListViewModel(self)
         viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
-        
+        defaults.set("me", forKey: UserDefaultsKeys.task_type)
         mainVC = self.parent as? CommonTaskDetailVC
     }
     
@@ -97,9 +97,13 @@ class IncompleteTasksVC: UIViewController {
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {
         let selectedSegment = sender.selectedSegmentIndex
         if selectedSegment == 0 {
+            
             viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
+            defaults.set("me", forKey: UserDefaultsKeys.task_type)
         } else {
+            
             viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "team")
+            defaults.set("team", forKey: UserDefaultsKeys.task_type)
         }
     }
     
@@ -131,6 +135,7 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListTVCell.cellId, for: indexPath) as! TaskListTVCell
+        cell.selectionStyle = .none
         if let incompleteData = incompleteTaskListModel?.data?[indexPath.row] {
             cell.configureUI(modelData: incompleteData)
         }

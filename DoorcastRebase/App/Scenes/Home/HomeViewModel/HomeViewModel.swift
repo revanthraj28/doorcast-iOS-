@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol HomeViewModelProtocol {
+protocol HomeViewModelProtocol:BaseViewModelProtocol {
     func organizationDetails(response : HomeModel)
 }
 
@@ -16,9 +16,11 @@ class HomeViewModel {
         self.view = view
     }
     func getApi() {
-        //https://staging.doorcast.tech/api/get_organizations
+        
+        self.view.showLoader()
         ServiceManager.getApiCall(endPoint: ApiEndpoints.getOrganizationApi, resultType: HomeModel.self) { sucess, result, errorMessage in
             DispatchQueue.main.async {
+                self.view.hideLoader()
                 if sucess {
                     guard let resultValue = result else {return}
                     self.view?.organizationDetails(response: resultValue)

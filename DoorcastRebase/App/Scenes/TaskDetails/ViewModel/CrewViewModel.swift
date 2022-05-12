@@ -23,8 +23,10 @@ class CrewViewModel {
         print("Parameters = \(paramsDict)")
         self.view?.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.getCrewListApi, parameters: paramsDict as NSDictionary, resultType: CrewModel.self) { sucess, result, errorMessage in
+            
+            self.view?.hideLoader()
             DispatchQueue.main.async {
-                self.view?.hideLoader()
+                
                 if sucess {
                     guard let response = result else {return}
                     self.view.CrewSuccess(CrewResponse: response)
