@@ -37,7 +37,8 @@ class HomeVC: UIViewController {
         guard let vc = CommonTaskDetailVC.newInstance else {return}
        // self.navigationController?.pushViewController(vc, animated: true)
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+      //  self.present(vc, animated: true, completion: nil)
+        presentDetail(vc)
     }
 }
 

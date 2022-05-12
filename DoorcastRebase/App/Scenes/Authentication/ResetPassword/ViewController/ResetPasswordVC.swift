@@ -95,7 +95,8 @@ class ResetPasswordVC: UIViewController {
     @IBAction func backToOtpVCBtnAction(_ sender: Any) {
         guard let vc = OtpVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+       // self.present(vc, animated: true, completion: nil)
+        presentDetail(vc)
     }
     
     @IBAction func resetPasswordBTNAction(_ sender: Any) {
@@ -134,7 +135,8 @@ extension ResetPasswordVC : ResetpasswordViewModelProtocol {
         if ResetPAsswordViewResponce?.status == true {
             guard let vc = LoginVC.newInstance else {return}
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+          //  self.present(vc, animated: true)
+            presentDetail(vc)
             defaults.set("", forKey: UserDefaultsKeys.globalAT)
         }
         

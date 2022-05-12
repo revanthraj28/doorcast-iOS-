@@ -15,6 +15,7 @@ class IncompleteTasksVC: UIViewController {
     var viewModel : TaskListViewModel!
     var incompleteTaskListModel : IncompleteTaskListModel?
     var timerBool = false
+    var tastListShowBool = true
     let bottomView: TimerView = TimerView()
     var totalSecond = Int()
     var timer : Timer?
@@ -63,7 +64,9 @@ class IncompleteTasksVC: UIViewController {
     
     
     @objc func didTapOnTimerView(notification:Notification) {
-        print("didTapOnTimerView IncompleteTasksVC")
+       
+        self.taskListTableView.isUserInteractionEnabled = true
+        self.taskListTableView.alpha = 1
         
         if timerBool == false {
             mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
@@ -87,7 +90,6 @@ class IncompleteTasksVC: UIViewController {
         counter = counter + 1
         
         DispatchQueue.main.async {
-            print("\(hours):\(minutes):\(seconds)")
             self.mainVC?.timerView.idleTimerValueLbl.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         }
         
@@ -117,6 +119,8 @@ extension IncompleteTasksVC: TaskListProtocol {
         if let count = self.incompleteTaskListModel?.data?.count {
             if count <= 0 {
                 TableViewHelper.EmptyMessage(message: "No Tasks Assigned", tableview: self.taskListTableView, vc: self)
+            }else {
+                TableViewHelper.EmptyMessage(message: "", tableview: self.taskListTableView, vc: self)
             }
         }
         DispatchQueue.main.async {
@@ -136,9 +140,13 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListTVCell.cellId, for: indexPath) as! TaskListTVCell
         cell.selectionStyle = .none
+        self.taskListTableView.isUserInteractionEnabled = false
+        self.taskListTableView.alpha = 0.3
         if let incompleteData = incompleteTaskListModel?.data?[indexPath.row] {
             cell.configureUI(modelData: incompleteData)
         }
+        
+        
         return cell
     }
     
@@ -157,8 +165,8 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.propertyid, forKey: UserDefaultsKeys.property_id)
             
         }
-        self.present(vc, animated: true)
-        
+       // self.present(vc, animated: true)
+        presentDetail(vc)
     }
     
     

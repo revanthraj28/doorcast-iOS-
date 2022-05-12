@@ -113,7 +113,8 @@ class CommonTaskDetailVC: UIViewController {
         let sb = UIStoryboard(name: "TaskDetails", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CalendarVC")
         vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: false)
+      //  self.present(vc, animated: false)
+        presentDetail(vc)
     }
     
     

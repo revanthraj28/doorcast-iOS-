@@ -113,7 +113,8 @@ extension OnBoardingVC: UITableViewDelegate, UITableViewDataSource{
         vc.type =  crewOrganisations?.data?[indexPath.row].organization_id ?? ""
         vc.orgname = crewOrganisations?.data?[indexPath.row].organization_name ?? ""
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+      //  self.present(vc, animated: true, completion: nil)
+        presentDetail(vc)
         
         print(crewOrganisations?.data?[indexPath.row].organization_id ?? "")
         

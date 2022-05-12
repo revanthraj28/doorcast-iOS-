@@ -131,9 +131,8 @@ class TaskDetailsVC: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Reassign Crew"
         vc.modalPresentationStyle = .popover
-        self.present(vc, animated:true, completion:nil)
-        
-        
+     //   self.present(vc, animated:true, completion:nil)
+        presentDetail(vc)
     }
     
     
@@ -144,10 +143,8 @@ class TaskDetailsVC: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Add Crew"
         vc.modalPresentationStyle = .popover
-        self.present(vc, animated:true, completion:nil)
-        
-        
-        
+      //  self.present(vc, animated:true, completion:nil)
+        presentDetail(vc)
     }
     
     @IBAction func forceFinishBtnAction(_ sender: Any) {
@@ -156,13 +153,13 @@ class TaskDetailsVC: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Force Finish"
         vc.modalPresentationStyle = .popover
-        self.present(vc, animated:true, completion:nil)
-        
+      //  self.present(vc, animated:true, completion:nil)
+        presentDetail(vc)
     }
     
     
     @IBAction func sidearrowButtonAction(_ sender: Any) {
-        
+        dismissDetail()
     }
     
 }
@@ -210,7 +207,8 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     func gotoNextScreen() {
         guard let vc = StartTheClockVC.newInstance else {return}
         vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: true)
+       // self.present(vc, animated: true)
+        presentDetail(vc)
     }
 }
 

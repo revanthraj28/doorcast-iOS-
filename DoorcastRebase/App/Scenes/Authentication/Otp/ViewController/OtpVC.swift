@@ -53,7 +53,8 @@ class OtpVC: UIViewController  {
     @IBAction func backBtnAction(_ sender: Any) {
         guard let vc = ForgotPasswordVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+      //  self.present(vc, animated: true)
+        presentDetail(vc)
     }
     
 }
@@ -118,7 +119,8 @@ extension OtpVC : ContniueButtonTVCellDelegate  {
             guard let vc = ResetPasswordVC.newInstance else {return}
             vc.EmailAddress = EmailAddress
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+           // self.present(vc, animated: true)
+            presentDetail(vc)
         }
         cell.ContniueButtonDelegate = self
         

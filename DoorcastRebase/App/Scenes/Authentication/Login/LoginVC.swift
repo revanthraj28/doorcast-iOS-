@@ -174,7 +174,8 @@ class LoginVC: UIViewController {
 //        self.present(vc, animated: true)
         guard let vc = ForgotPasswordVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+       // self.present(vc, animated: true)
+        presentDetail(vc)
 //        self.navigationController?.pushViewController(vc, animated: true)
     }
     

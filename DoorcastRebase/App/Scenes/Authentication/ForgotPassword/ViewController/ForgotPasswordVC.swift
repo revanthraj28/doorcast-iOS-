@@ -109,7 +109,8 @@ class ForgotPasswordVC: UIViewController {
         print("didTapOnBackButtonAction")
         guard let vc =  LoginVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+       // self.present(vc, animated: true, completion: nil)
+        presentDetail(vc)
     }
 }
 
@@ -123,7 +124,8 @@ extension ForgotPasswordVC : ForgotPasswordViewModelProtocol {
             vc.otpNumber = ForgotPasswordViewResponce?.data
             vc.EmailAddress = emailTF.text
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+          //  self.present(vc, animated: true)
+            presentDetail(vc)
         } else {
             emaileErorLbl.isHidden = false
             emaileErorLbl.text = "Invalid email"

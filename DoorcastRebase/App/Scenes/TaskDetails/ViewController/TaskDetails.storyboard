@@ -790,7 +790,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ev0-iq-sOL">
-                                        <rect key="frame" x="53" y="24" width="292" height="83"/>
+                                        <rect key="frame" x="61" y="30" width="292" height="82"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="vHa-Z6-gLd">
                                                 <rect key="frame" x="8" y="10" width="278" height="63"/>
@@ -928,26 +928,27 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="vHa-Z6-gLd" secondAttribute="bottom" constant="10" id="6rH-7Y-TiE"/>
-                                            <constraint firstAttribute="trailing" secondItem="vHa-Z6-gLd" secondAttribute="trailing" constant="6" id="CKp-4L-jb7"/>
-                                            <constraint firstItem="vHa-Z6-gLd" firstAttribute="top" secondItem="Ev0-iq-sOL" secondAttribute="top" constant="10" id="LST-87-b6z"/>
-                                            <constraint firstItem="vHa-Z6-gLd" firstAttribute="leading" secondItem="Ev0-iq-sOL" secondAttribute="leading" constant="8" id="U9J-I6-cbH"/>
-                                            <constraint firstAttribute="height" constant="83" id="dYQ-Sj-vW8"/>
+                                            <constraint firstAttribute="bottom" secondItem="vHa-Z6-gLd" secondAttribute="bottom" constant="9" id="7jr-KM-a1e"/>
+                                            <constraint firstItem="vHa-Z6-gLd" firstAttribute="top" secondItem="Ev0-iq-sOL" secondAttribute="top" constant="10" id="KZA-Mc-aD3"/>
+                                            <constraint firstAttribute="height" constant="82" id="QGC-jh-867"/>
+                                            <constraint firstAttribute="trailing" secondItem="vHa-Z6-gLd" secondAttribute="trailing" constant="6" id="h9K-Jg-Xoi"/>
+                                            <constraint firstAttribute="width" constant="292" id="nyd-gB-LYc"/>
+                                            <constraint firstItem="vHa-Z6-gLd" firstAttribute="leading" secondItem="Ev0-iq-sOL" secondAttribute="leading" constant="8" id="xlX-mY-L09"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
-                                    <constraint firstItem="Ev0-iq-sOL" firstAttribute="top" secondItem="cfZ-U2-SLo" secondAttribute="top" constant="24" id="AgQ-S6-KbC"/>
+                                    <constraint firstItem="Ev0-iq-sOL" firstAttribute="centerX" secondItem="cfZ-U2-SLo" secondAttribute="centerX" id="2X4-Ha-8Xn"/>
+                                    <constraint firstItem="Ev0-iq-sOL" firstAttribute="top" secondItem="cfZ-U2-SLo" secondAttribute="top" constant="30" id="9Ay-Tk-Yy6"/>
                                     <constraint firstItem="aMg-or-dhv" firstAttribute="leading" secondItem="cfZ-U2-SLo" secondAttribute="leading" constant="20" id="DIv-b4-1wd"/>
                                     <constraint firstAttribute="trailing" secondItem="jYs-mM-RGa" secondAttribute="trailing" constant="26" id="DLS-Xe-vdy"/>
-                                    <constraint firstItem="jYs-mM-RGa" firstAttribute="leading" secondItem="Ev0-iq-sOL" secondAttribute="trailing" constant="8" symbolic="YES" id="Fqh-NX-6g8"/>
                                     <constraint firstAttribute="trailing" secondItem="2JI-Sn-zMU" secondAttribute="trailing" constant="26" id="Tfq-oJ-2Kw"/>
                                     <constraint firstItem="jYs-mM-RGa" firstAttribute="top" secondItem="cfZ-U2-SLo" secondAttribute="top" constant="12" id="ap1-QD-sgO"/>
+                                    <constraint firstItem="Ev0-iq-sOL" firstAttribute="centerX" secondItem="cfZ-U2-SLo" secondAttribute="centerX" id="bwu-8W-SFq"/>
                                     <constraint firstItem="aMg-or-dhv" firstAttribute="top" secondItem="cfZ-U2-SLo" secondAttribute="top" constant="12" id="g0J-4d-mnP"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ev0-iq-sOL" secondAttribute="bottom" constant="18" id="k6B-Md-2Vo"/>
                                     <constraint firstItem="2JI-Sn-zMU" firstAttribute="top" secondItem="jYs-mM-RGa" secondAttribute="bottom" constant="24" id="lvo-0X-n9V"/>
-                                    <constraint firstItem="Ev0-iq-sOL" firstAttribute="leading" secondItem="cfZ-U2-SLo" secondAttribute="leading" constant="53" id="pgV-pI-8Wx"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ev0-iq-sOL" secondAttribute="bottom" constant="23" id="xg0-pA-v1S"/>
                                 </constraints>
                             </view>
                         </subviews>

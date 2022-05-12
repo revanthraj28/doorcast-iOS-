@@ -101,8 +101,8 @@ class CrewPropertiesVC: UIViewController {
         let sb = UIStoryboard(name: "TaskDetails", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CommonTaskDetailVC")
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false)
-        
+      //  self.present(vc, animated: false)
+        presentDetail(vc)
     }
     
     @IBAction func ShowSelectedProperties(_ sender: Any) {
@@ -121,7 +121,8 @@ class CrewPropertiesVC: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "OnBoardingVC") as! OnBoardingVC
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+       // self.present(vc, animated: true, completion: nil)
+        presentDetail(vc)
     }
 }
 
