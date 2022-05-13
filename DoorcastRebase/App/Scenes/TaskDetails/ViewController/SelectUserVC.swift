@@ -224,6 +224,13 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
         DispatchQueue.main.async {
             self.userTV.reloadData()
         }
+        
+        if getCrewResponseModel?.data?.count == 0
+        {
+            self.emptyMessageLabel.isHidden = false
+            self.emptyMessageLabel.text = "No data found"
+            self.userTV.isHidden = true
+        }
     }
     
     

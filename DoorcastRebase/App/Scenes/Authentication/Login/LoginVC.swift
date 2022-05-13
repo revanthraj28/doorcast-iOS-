@@ -196,7 +196,7 @@ class LoginVC: UIViewController {
                 parms["os_type"] = KOsType
                 parms["latitude"] = 0.0
                 parms["longitude"] = 0.0
-                parms["device_token"] = "embLbUlYRDChPUTgGUV6Ob:APA91bGvpyfL_W7VC_m7dEaXD-Wr22lgRufMJavjcJg7rGHZfugdgisgbOYz2oz4aUlm8fMJOwu3s5w4sZY31h_py4S6C-TeA2n54tI2nClMtIddA_EuCi-O34CnZxi6aL82EKr4k4Sf"
+                parms["device_token"] = "\(UserDefaults.standard.string(forKey: "DeviceToken") ?? "")"
                 switch self.dropDownTitleLbl.text {
                 case "Production":
                     BASE_URL = "https://doorcast.tech/api/"
