@@ -15,6 +15,7 @@ class OnBoardingVC: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? OnBoardingVC
         return vc
     }
+    @IBOutlet weak var logoutHolderView: UIView!
     
     @IBOutlet weak var CommonNavBarView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -37,7 +38,7 @@ class OnBoardingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        logoutHolderView.layer.cornerRadius = logoutHolderView.frame.size.height / 2
         
         usernameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
         
@@ -108,20 +109,17 @@ extension OnBoardingVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         print("chaitraaa")
   
-        // to move to next screen and move id's to next screen 
+        // to move to next screen and move id's to next screen
         
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "CrewPropertiesVC") as! CrewPropertiesVC
+        guard let vc = CrewPropertiesVC.newInstance else {return}
+        
         UserDefaults.standard.set(crewOrganisations?.data?[indexPath.row].organization_id ?? "", forKey: "type")
         vc.getOrganizationsModelData = crewOrganisations?.data?[indexPath.row]
         vc.type =  crewOrganisations?.data?[indexPath.row].organization_id ?? ""
         vc.orgname = crewOrganisations?.data?[indexPath.row].organization_name ?? ""
         vc.modalPresentationStyle = .fullScreen
-      //  self.present(vc, animated: true, completion: nil)
-        presentDetail(vc)
-        
+        self.present(vc, animated: true, completion: nil)
         print(crewOrganisations?.data?[indexPath.row].organization_id ?? "")
         
    }

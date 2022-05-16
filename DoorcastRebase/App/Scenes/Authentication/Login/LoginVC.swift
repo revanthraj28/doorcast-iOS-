@@ -43,6 +43,14 @@ class LoginVC: UIViewController {
     
     var viewModel : LoginViewModel!
     
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        defaults.set("", forKey: UserDefaultsKeys.globalAT)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginViewModel(self)
@@ -170,7 +178,7 @@ class LoginVC: UIViewController {
 
         guard let vc = ForgotPasswordVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
         
     }
     

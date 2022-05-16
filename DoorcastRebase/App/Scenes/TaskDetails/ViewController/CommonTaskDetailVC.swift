@@ -35,6 +35,7 @@ class CommonTaskDetailVC: UIViewController {
     
     var crewPropertyIds = [String]()
     
+    
     static var newInstance: CommonTaskDetailVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
                                       bundle: nil)
@@ -119,8 +120,8 @@ class CommonTaskDetailVC: UIViewController {
         let sb = UIStoryboard(name: "TaskDetails", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CalendarVC")
         vc.modalPresentationStyle = .overCurrentContext
-      //  self.present(vc, animated: false)
-        presentDetail(vc)
+        self.present(vc, animated: false)
+        
     }
     
     

@@ -24,8 +24,6 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
-        
-        
         FirebaseApp.configure()
         registerForPush()
         application.registerForRemoteNotifications()

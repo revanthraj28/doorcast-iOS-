@@ -83,14 +83,18 @@ class ServiceManager {
         req.addValue(KContentTypeValue, forHTTPHeaderField: KContentType)
         //        req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
         
-        
+
         
         if defaults.string(forKey: UserDefaultsKeys.globalAT) != "" {
+            
             req.addValue("\(defaults.string(forKey: UserDefaultsKeys.globalAT) ?? "")", forHTTPHeaderField: KAccesstoken)
         } else
         if SessionManager.loginInfo?.data?.accesstoken != "" {
+            
             req.addValue("\(SessionManager.loginInfo?.data?.accesstoken ?? "")", forHTTPHeaderField: KAccesstoken)
         }
+        
+        
        
     }
     

@@ -188,7 +188,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Reassign Crew"
         vc.modalPresentationStyle = .popover
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -199,7 +199,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Add Crew"
         vc.modalPresentationStyle = .popover
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func forceFinishBtnAction(_ sender: Any) {
@@ -208,7 +208,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Force Finish"
         vc.modalPresentationStyle = .popover
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -261,7 +261,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     func gotoNextScreen() {
         guard let vc = StartTheClockVC.newInstance else {return}
         vc.modalPresentationStyle = .overCurrentContext
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

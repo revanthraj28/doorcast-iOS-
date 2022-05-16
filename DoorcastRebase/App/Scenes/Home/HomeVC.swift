@@ -35,10 +35,9 @@ class HomeVC: UIViewController {
     @IBAction func goToTaskDetailsButtonAction(_ sender: Any) {
         print("ert")
         guard let vc = CommonTaskDetailVC.newInstance else {return}
-       // self.navigationController?.pushViewController(vc, animated: true)
         vc.modalPresentationStyle = .fullScreen
-      //  self.present(vc, animated: true, completion: nil)
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
+    
     }
 }
 

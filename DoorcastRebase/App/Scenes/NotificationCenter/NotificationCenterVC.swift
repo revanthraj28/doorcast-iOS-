@@ -10,17 +10,11 @@ import UIKit
 class NotificationCenterVC: UIViewController {
     
     static var newInstance: NotificationCenterVC? {
-        let storyboard = UIStoryboard(name: Storyboard.Notificationcenter.name,
+        let storyboard = UIStoryboard(name: Storyboard.notificationcenter.name,
                                       bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? NotificationCenterVC
         return vc
     }
-    
-    
-    
-    
-    
-    
     
     @IBOutlet weak var noticationCenterLbl: UILabel!
     @IBOutlet weak var separatorLabel: UILabel!
@@ -47,13 +41,15 @@ class NotificationCenterVC: UIViewController {
 
     @IBAction func closeButtonAction(_ sender: Any) {
         
-        dismiss(animated: false, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 
     @IBAction func profileButtonAction(_ sender: Any) {
-        
-        gotoProfileScreen()
+    
+        guard let vc = ProfileVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
         
     }
 }
