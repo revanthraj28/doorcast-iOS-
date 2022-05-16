@@ -12,6 +12,7 @@
 		072191162823DE0900116F43 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072191152823DE0900116F43 /* DateExtension.swift */; };
 		0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072191192823E8F200116F43 /* calendarCVCell.swift */; };
 		0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0721911A2823E8F300116F43 /* calendarCVCell.xib */; };
+		073A097F28320F8F0069EA8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 073A097E28320F8F0069EA8B /* GoogleService-Info.plist */; };
 		07689C20282C1B350058A5A9 /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07689C1F282C1B350058A5A9 /* TableViewHelper.swift */; };
 		07712BCC282CCB370074F948 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCB282CCB370074F948 /* SelectUserVC.swift */; };
 		07712BD0282CCB850074F948 /* CrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCD282CCB840074F948 /* CrewViewModel.swift */; };
@@ -94,7 +95,6 @@
 		AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */; };
 		AE80FC90282B7B6800EE5C0C /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */; };
 		AE80FC91282B7B6800EE5C0C /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */; };
-		AEBAE08C282B7FF800CF3791 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEBAE08B282B7FF800CF3791 /* GoogleService-Info.plist */; };
 		E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30488632822A788004ECA60 /* TaskListTVCell.swift */; };
 		E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E30488642822A788004ECA60 /* TaskListTVCell.xib */; };
 		E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = E30488682822A90E004ECA60 /* IncompleteTaskDetails.json */; };
@@ -133,6 +133,7 @@
 		072191152823DE0900116F43 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		072191192823E8F200116F43 /* calendarCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarCVCell.swift; sourceTree = "<group>"; };
 		0721911A2823E8F300116F43 /* calendarCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = calendarCVCell.xib; sourceTree = "<group>"; };
+		073A097E28320F8F0069EA8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07689C1F282C1B350058A5A9 /* TableViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
 		07712BCB282CCB370074F948 /* SelectUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
 		07712BCD282CCB840074F948 /* CrewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewViewModel.swift; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 		AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
 		AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
-		AEBAE08B282B7FF800CF3791 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEBAE08D282B802500CF3791 /* DoorcastRebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoorcastRebase.entitlements; sourceTree = "<group>"; };
 		E30488632822A788004ECA60 /* TaskListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTVCell.swift; sourceTree = "<group>"; };
 		E30488642822A788004ECA60 /* TaskListTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTVCell.xib; sourceTree = "<group>"; };
@@ -849,7 +849,7 @@
 				E31C92AB282244CC00600CEE /* ViewController.swift */,
 				E31C92AD282244CC00600CEE /* Main.storyboard */,
 				E31C92B8282244CE00600CEE /* Info.plist */,
-				AEBAE08B282B7FF800CF3791 /* GoogleService-Info.plist */,
+				073A097E28320F8F0069EA8B /* GoogleService-Info.plist */,
 				E31C92B3282244CE00600CEE /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -1002,7 +1002,6 @@
 				4E07C860282291FB0090D088 /* Oswald-MediumItalic.ttf in Resources */,
 				E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */,
 				4E07C861282291FB0090D088 /* Oswald-Regular.ttf in Resources */,
-				AEBAE08C282B7FF800CF3791 /* GoogleService-Info.plist in Resources */,
 				0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */,
 				4E07C862282291FB0090D088 /* Oswald-RegularItalic.ttf in Resources */,
 				07712BDE282CCE850074F948 /* LabelTVCell.xib in Resources */,
@@ -1025,6 +1024,7 @@
 				E31C92B4282244CE00600CEE /* Assets.xcassets in Resources */,
 				0771A2E628251A6100758DD9 /* CrewPropertiesTVCell.xib in Resources */,
 				E31C92AF282244CC00600CEE /* Main.storyboard in Resources */,
+				073A097F28320F8F0069EA8B /* GoogleService-Info.plist in Resources */,
 				4E07C842282291870090D088 /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1307,7 +1307,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1320,7 +1320,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exstreamworktrackerlocation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exstreamworker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1339,7 +1339,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1352,7 +1352,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exstreamworktrackerlocation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exstreamworker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

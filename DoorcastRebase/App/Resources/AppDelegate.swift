@@ -8,37 +8,142 @@
 import UIKit
 import CoreData
 import Firebase
-import FirebaseMessaging
-import UserNotifications
-import Messages
-import FirebaseCore
-import FirebaseAnalytics
-
+import Foundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
     
     let gcmMessageIDKey = "gcm.Message_ID"
-    
+    var aps: NSDictionary?
     var window: UIWindow?
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+       
         
         
         FirebaseApp.configure()
-        //firebase notification
-        self.registerForFirebaseNotification(application: application)
+        registerForPush()
+        application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
         
-        if let notificationData = launchOptions?[.remoteNotification] as? String{
-            
+        
+        if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: AnyObject] {
+            if let aps1 = userInfo["aps"] as? NSDictionary {
+                print(aps1)
+            }
         }
         
         return true
     }
     
-    // MARK: UISceneSession Lifecycle
+    static var standard : AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
     
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Create url which from we will get fresh data
+        if let url = URL(string: "https://www.vialyx.com") {
+            // Send request
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, respone, error) in
+                // Check Data
+                guard let `data` = data else { completionHandler(.failed); return }
+                // Get result from data
+                let result = String(data: data, encoding: .utf8)
+                // Print result into console
+                print("performFetchWithCompletionHandler result: \(String(describing: result))")
+                // Call background fetch completion with .newData result
+                completionHandler(.newData)
+            }).resume()
+        }
+    }
+    
+    
+    
+    func registerForPush() {
+        // Register for Push notifications
+        UNUserNotificationCenter.current().delegate = self
+        // request Permissions
+        UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .badge, .alert], completionHandler: {granted, error in
+            if granted {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        })
+    }
+    
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("%@: failed to register for remote notifications: %@", self.description, error.localizedDescription)
+    }
+    
+    
+    
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //        CleverTap.sharedInstance()?.setPushToken(deviceToken)
+        NSLog("%@: registered for remote notifications: %@", self.description, deviceToken.description)
+        print(deviceToken.debugDescription)
+        Messaging.messaging().apnsToken = deviceToken
+        print(deviceToken)
+    }
+    
+    
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        
+        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        UserDefaults.standard.set(fcmToken, forKey: "FCMToken")
+        // TODO: If necessary send token to application server.
+        // No
+    }
+    
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        NSLog("%@: did receive notification response: %@", self.description, response.notification.request.content.userInfo)
+        completionHandler()
+        
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        NSLog("%@: will present notification: %@", self.description, notification.request.content.userInfo)
+        
+        
+        
+        completionHandler([.list, .sound, .banner])
+    }
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        NSLog("%@: did receive remote notification completionhandler: %@", self.description, userInfo)
+        completionHandler(UIBackgroundFetchResult.newData)
+        print("userInfo:::\(userInfo)")
+    }
+    
+    
+    
+    func pushNotificationTapped(withCustomExtras customExtras: [AnyHashable : Any]!) {
+        NSLog("pushNotificationTapped: customExtras: ", customExtras)
+        //        NotificationCenter.default.post(name: NSNotification.Name("versionCheck"), object: nil)
+    }
+    
+    
+    // MARK: UISceneSession Lifecyclz
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
@@ -50,10 +155,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
-    
-    
-    
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -98,100 +199,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-    
-    
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("i am not available in simulator \(error)")
-    }
-    
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
-        print(deviceToken)
-    }
-    
-    func registerForFirebaseNotification(application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        application.registerForRemoteNotifications()
-    }
-    
-    
-}
-
-
-
-
-// Push Notificaion
-extension AppDelegate:MessagingDelegate{
-    
-    
-    //MessagingDelegate
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        
-        
-        defaults.set(fcmToken ?? "", forKey: "DeviceToken")
-        print("DeviceToken_DeviceID : \(fcmToken ?? "")")
-    }
-    
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        
-        let userInfo = notification.request.content.userInfo
-        print("willPresent : \(userInfo)")
-        Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        
-        
-        completionHandler([.list, .banner, .sound])
-    }
-    
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        
-        let userInfo = response.notification.request.content.userInfo
-        print("didReceive : \(userInfo)")
-        
-        
-        
-        completionHandler()
-    }
-    
-    
-    func application(application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        
-        // application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
-        
-        //Add badge to app icon
-        UNUserNotificationCenter.current().requestAuthorization(options: .badge)
-        { (granted, error) in
-            if error == nil {
-                // success!
-                // application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
-            }
-        }
-        
-    }
-    
-    
     
 }

@@ -167,16 +167,11 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func didTapOnForgetPasswordButton(_ sender: Any) {
-        print("didTapOnForgetPasswordButton")
-//        let sb = UIStoryboard(name: "Authentication", bundle: nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "ForgotPasswordVC")
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true)
+
         guard let vc = ForgotPasswordVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-       // self.present(vc, animated: true)
         presentDetail(vc)
-//        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     func validateLabel(lblName: UILabel, hide: Bool, lblText: String){
@@ -196,7 +191,7 @@ class LoginVC: UIViewController {
                 parms["os_type"] = KOsType
                 parms["latitude"] = 0.0
                 parms["longitude"] = 0.0
-                parms["device_token"] = "\(UserDefaults.standard.string(forKey: "DeviceToken") ?? "")"
+                parms["device_token"] = "\(UserDefaults.standard.string(forKey: "FCMToken") ?? "")"
                 switch self.dropDownTitleLbl.text {
                 case "Production":
                     BASE_URL = "https://doorcast.tech/api/"
