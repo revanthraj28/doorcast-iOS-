@@ -66,6 +66,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="gAX-3L-VKO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="43T-NE-maY"/>
                     <constraint firstAttribute="bottom" secondItem="gAX-3L-VKO" secondAttribute="bottom" id="bhW-Fh-jbv"/>
@@ -74,6 +75,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="PropertiesHolderView" destination="gAX-3L-VKO" id="m7b-fo-uEp"/>
                 <outlet property="btn_checked" destination="GlR-Pu-AGL" id="9of-mS-ExD"/>

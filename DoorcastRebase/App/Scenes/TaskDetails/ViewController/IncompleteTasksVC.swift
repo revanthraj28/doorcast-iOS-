@@ -22,6 +22,7 @@ class IncompleteTasksVC: UIViewController {
     var counter = 0
     var mainVC: CommonTaskDetailVC?
     var crewPropertyIds = [String]()
+    var showproperty = String()
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -35,7 +36,8 @@ class IncompleteTasksVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         let crewpropertyIds = self.crewPropertyIds
-        print("crewPropertyIds == \(crewPropertyIds)")
+        print("crewPropertyIds == \(crewPropertyIds.joined(separator: ","))")
+        print("crewPropertyIds all == \(crewPropertyALLIds.joined(separator: ","))")
         
         NotificationCenter.default.removeObserver(self)
     }
@@ -61,7 +63,13 @@ class IncompleteTasksVC: UIViewController {
     
     func configureContents(){
         viewModel = TaskListViewModel(self)
-        viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
+        let arr = crewPropertyIds.joined(separator: ",")
+        if showproperty == "all" {
+            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
+        } else {
+            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
+        }
+   
         defaults.set("me", forKey: UserDefaultsKeys.task_type)
         mainVC = self.parent as? CommonTaskDetailVC
     }
@@ -170,8 +178,8 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.propertyid, forKey: UserDefaultsKeys.property_id)
             
         }
-       // self.present(vc, animated: true)
-        presentDetail(vc)
+        self.present(vc, animated: true)
+      
     }
     
     

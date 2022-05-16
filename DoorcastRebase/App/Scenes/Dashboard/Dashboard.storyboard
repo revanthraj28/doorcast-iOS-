@@ -47,30 +47,39 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBd-UA-BaN">
-                                        <rect key="frame" x="287" y="50" width="25" height="25"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHJ-mu-zs9">
+                                        <rect key="frame" x="288" y="49" width="22" height="22"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CW0-Qs-ssO">
+                                                <rect key="frame" x="5" y="5" width="12" height="12"/>
+                                                <color key="tintColor" name="ThemeColor"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="power-off-solid"/>
+                                                <connections>
+                                                    <action selector="logoutBtnIsTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="U8d-S2-UW5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="CTN-h6-swM"/>
-                                            <constraint firstAttribute="height" constant="25" id="abm-fy-mYw"/>
+                                            <constraint firstAttribute="height" constant="22" id="FmM-34-tC2"/>
+                                            <constraint firstAttribute="trailing" secondItem="CW0-Qs-ssO" secondAttribute="trailing" constant="5" id="SXW-cm-DuG"/>
+                                            <constraint firstItem="CW0-Qs-ssO" firstAttribute="top" secondItem="RHJ-mu-zs9" secondAttribute="top" constant="5" id="ZMh-ys-0Bi"/>
+                                            <constraint firstAttribute="bottom" secondItem="CW0-Qs-ssO" secondAttribute="bottom" constant="5" id="ahX-Zf-haS"/>
+                                            <constraint firstAttribute="width" constant="22" id="cM1-lY-zMH"/>
+                                            <constraint firstItem="CW0-Qs-ssO" firstAttribute="leading" secondItem="RHJ-mu-zs9" secondAttribute="leading" constant="5" id="iqq-9j-fiV"/>
                                         </constraints>
-                                        <color key="tintColor" red="0.6705882353" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="power" catalog="system"/>
-                                        <connections>
-                                            <action selector="logoutBtnIsTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6QY-Le-kFt"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.6705882352941176" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="fBd-UA-BaN" firstAttribute="top" secondItem="Toi-VA-Omk" secondAttribute="top" constant="50" id="ClC-ca-iaS"/>
                                     <constraint firstItem="w3e-Gr-tMp" firstAttribute="leading" secondItem="Toi-VA-Omk" secondAttribute="leading" constant="12" id="D8O-y6-CRi"/>
                                     <constraint firstAttribute="height" constant="90" id="JFB-EK-CFJ"/>
                                     <constraint firstItem="84Q-uc-9gc" firstAttribute="top" secondItem="Toi-VA-Omk" secondAttribute="top" constant="50" id="aiA-6E-MEa"/>
                                     <constraint firstAttribute="trailing" secondItem="84Q-uc-9gc" secondAttribute="trailing" constant="49" id="fBv-SU-721"/>
-                                    <constraint firstAttribute="trailing" secondItem="fBd-UA-BaN" secondAttribute="trailing" constant="8" id="lTf-ro-jxS"/>
+                                    <constraint firstItem="RHJ-mu-zs9" firstAttribute="top" secondItem="Toi-VA-Omk" secondAttribute="top" constant="49" id="k3B-aO-QRv"/>
                                     <constraint firstItem="w3e-Gr-tMp" firstAttribute="top" secondItem="Toi-VA-Omk" secondAttribute="top" constant="50" id="nvZ-F0-7ks"/>
+                                    <constraint firstAttribute="trailing" secondItem="RHJ-mu-zs9" secondAttribute="trailing" constant="10" id="oM2-8j-cCM"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gpe-yZ-GJ9">
@@ -134,7 +143,8 @@
                         <outlet property="allTasksLabel" destination="F9r-aZ-jD2" id="I0w-8U-yMk"/>
                         <outlet property="allTasksView" destination="RTF-xD-0jx" id="GtJ-dS-D8R"/>
                         <outlet property="dateLabel" destination="w3e-Gr-tMp" id="T6R-72-KQ7"/>
-                        <outlet property="logoutBtn" destination="fBd-UA-BaN" id="kNo-Xk-btn"/>
+                        <outlet property="logoutBtn" destination="CW0-Qs-ssO" id="V2i-u4-3C1"/>
+                        <outlet property="logoutHolderView" destination="RHJ-mu-zs9" id="Ova-cz-sQ3"/>
                         <outlet property="usernameLabel" destination="84Q-uc-9gc" id="bFO-qr-pMM"/>
                     </connections>
                 </viewController>
@@ -152,7 +162,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="chC-1m-rho">
                                 <rect key="frame" x="15" y="181" width="290" height="222"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Properties" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iig-PB-Dfc">
                                 <rect key="frame" x="20" y="85" width="280" height="26"/>
@@ -313,7 +323,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="46j-dL-cAZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
                             <constraint firstItem="46j-dL-cAZ" firstAttribute="bottom" secondItem="Xbi-rs-ir1" secondAttribute="bottom" constant="20" id="1qR-sd-G4M"/>
                             <constraint firstItem="9jt-zJ-Y72" firstAttribute="leading" secondItem="46j-dL-cAZ" secondAttribute="leading" id="4PF-1F-my3"/>
@@ -361,13 +371,16 @@
         <image name="chevron-left-solid" width="320" height="512"/>
         <image name="chevron-right-solid" width="320" height="512"/>
         <image name="menu" width="50" height="50"/>
-        <image name="power" catalog="system" width="128" height="124"/>
+        <image name="power-off-solid" width="512" height="512"/>
         <namedColor name="AppBackgroundColor">
             <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ThemeColor">
             <color red="0.67100000381469727" green="0.0" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

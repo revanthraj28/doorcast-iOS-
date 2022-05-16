@@ -26,7 +26,9 @@ let KAccesstoken = "Accesstoken"
 let KDeviceID = UIDevice.current.identifierForVendor!.uuidString
 let KDeviceModelName = UIDevice.modelName
 let KOsType = UIDevice.current.systemVersion
-
+var showproperty = String()
+var crewPropertyIds = [String]()
+var crewPropertyALLIds = [String]()
 
 let GlobelAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Im94Zm9yZCBjYXBzIg._nKgScZrZagPYMtl2D9cYgxsBV_EoDgqmuMFGDuEAek"
 

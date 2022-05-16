@@ -8,16 +8,11 @@
 import UIKit
 
 class ProfileVC: UIViewController,ProfileViewModelProtocol {
-    static var newInstance: ProfileVC? {
-        let storyboard = UIStoryboard(name: Storyboard.Profile.name,
-                                      bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? ProfileVC
-        return vc
-    }
     
+   
     @IBOutlet weak var saveBtn: UIButton!
     
-    @IBOutlet weak var backImage: UIImageView!
+   // @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var navBarView: UIView!
@@ -47,10 +42,21 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     var email = SessionManager.loginInfo?.data?.email
     var fullName =  SessionManager.loginInfo?.data?.fullname
     var mobile = SessionManager.loginInfo?.data?.mobile
+    
+    
+    
     var selected: Bool = true
     var employee_id: String? = ""
     var ProfileResponseModel : ProfileModelData?
     var vmodel : ProfileViewModel?
+    
+    static var newInstance: ProfileVC? {
+        let storyboard = UIStoryboard(name: Storyboard.profile.name,
+                                      bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? ProfileVC
+        return vc
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +66,7 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
         
     }
     
-    func setupUI()
-    {
+    func setupUI(){
         
         resetpasswordButton.isEnabled = true
         nameErrorLabel.isHidden = true
@@ -102,13 +107,13 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
         
         dateLbl.text = Date().MonthDateDayFormatter?.uppercased()
         
-        backImage.image = UIImage(named: "chevron-left-solid")
     }
     
     
     @IBAction func backButtonAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        //dismiss(animated: false, completion: nil)
+//        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: false, completion: nil)
+    
     }
     
     
@@ -176,14 +181,24 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     
     
     func ProfileSuccess(ProfileResponse: ProfileModel) {
-        print("ProfileResponse....\(ProfileResponse.data)")
+        print("ProfileResponse....\(ProfileResponse)")
+       
         rightView.isHidden = true
         leftView.isHidden =  false
         editButtonView.isHidden = false
         editButtonImage.isHidden = false
-        NameLabel.text = ProfileResponse.data?.full_name
-        numberLabel.text = ProfileResponse.data?.mobile
-        emailLabel.text = ProfileResponse.data?.email
+      
+        
+        DispatchQueue.main.async { [self] in
+            
+//            print("nameeelabel == \(SessionManager.loginInfo?.data?.fullname)")
+            NameLabel.text = ProfileResponse.data?.full_name
+            numberLabel.text = ProfileResponse.data?.mobile
+            emailLabel.text = ProfileResponse.data?.email
+        
+
+        }
+        
     }
     
 }

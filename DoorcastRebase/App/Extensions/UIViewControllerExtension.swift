@@ -40,18 +40,6 @@ extension UIViewController {
         }
     }
     
-    
-    func gotoNotificationScreen() {
-        DispatchQueue.main.async {
-            // V2 Dashboard with 5 tabs
-            let vc = NotificationCenterVC.newInstance
-            self.view.window?.rootViewController = vc
-            self.view.window?.makeKeyAndVisible()
-        }
-    }
-    
-    
-    
     func gotoForgotPasswordScreen(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordVC") as! ForgotPasswordVC
