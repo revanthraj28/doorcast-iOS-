@@ -23,7 +23,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-       
+        
         
         
         FirebaseApp.configure()
@@ -66,10 +66,10 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     
     func registerForPush() {
         // Register for Push notifications
-        UNUserNotificationCenter.current().delegate = self
         // request Permissions
         UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .badge, .alert], completionHandler: {granted, error in
             if granted {
+                UNUserNotificationCenter.current().delegate = self
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
@@ -112,8 +112,22 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         
         NSLog("%@: did receive notification response: %@", self.description, response.notification.request.content.userInfo)
-        completionHandler()
-        
+        //        completionHandler()
+        if let aps = response.notification.request.content.userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                let title = alert["title"] as? String
+                if let message = alert["body"] as? NSString {
+                    print(message)
+                    switch message {
+                    case "Someone has logged in with your credeentials" :
+                        goToLogin()
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+        }
     }
     
     
@@ -122,10 +136,25 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         NSLog("%@: will present notification: %@", self.description, notification.request.content.userInfo)
-        
-        
-        
         completionHandler([.list, .sound, .banner])
+        
+        if let aps = notification.request.content.userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                print("notification alert: \(alert)")
+                let title = alert["title"] as? String
+                if let message = alert["body"] as? NSString {
+                    print(message)
+                    switch message {
+                    case "Someone has logged in with your credeentials","Admin has removed you from the organisation":
+                        goToLogin()
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
     }
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any],
@@ -198,6 +227,23 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    
+    func goToLogin(){
+        
+        
+        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+        
+        DispatchQueue.main.async {
+            if let vc = LoginVC.newInstance {
+                let nav = UINavigationController(rootViewController: vc)
+                nav.isNavigationBarHidden = true
+                self.window?.rootViewController = nav
+                self.window?.makeKeyAndVisible()
+            }
+        }
+        
     }
     
 }
