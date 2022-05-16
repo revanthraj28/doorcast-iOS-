@@ -52,6 +52,11 @@ class LoginVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        defaults.set("", forKey: UserDefaultsKeys.globalAT)
+    }
+    
     func setupUI()
     {
 //        BASE_URL = "https://doorcast.tech/api/"
