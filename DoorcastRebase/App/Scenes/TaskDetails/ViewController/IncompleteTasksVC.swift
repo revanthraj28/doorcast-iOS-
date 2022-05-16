@@ -64,6 +64,7 @@ class IncompleteTasksVC: UIViewController {
     func configureContents(){
         viewModel = TaskListViewModel(self)
         let arr = crewPropertyIds.joined(separator: ",")
+        
         if showproperty == "all" {
             viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
         } else {
