@@ -8,15 +8,6 @@
 import UIKit
 
 class CrewPropertiesVC: UIViewController {
-
-   
-    
-    static var newInstance: OnBoardingVC? {
-        let storyboard = UIStoryboard(name: Storyboard.home.name,
-                                      bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? OnBoardingVC
-        return vc
-    }
     
     @IBOutlet weak var propertiesTV: UITableView!
     @IBOutlet weak var lbl_chooseProperties: UILabel!
@@ -33,6 +24,13 @@ class CrewPropertiesVC: UIViewController {
     @IBOutlet weak var sideArrowImg: UIImageView!
     @IBOutlet weak var sideArrowBtn: UIButton!
     
+    static var newInstance: OnBoardingVC? {
+        let storyboard = UIStoryboard(name: Storyboard.home.name,
+                                      bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? OnBoardingVC
+        return vc
+    }
+    
     var getOrganizationsModelData : GetOrganizationsModelData?
     
     var crewproperties: CrewPropertyModel? // model for api
@@ -40,8 +38,13 @@ class CrewPropertiesVC: UIViewController {
     var crewviewModel : CrewProperties?
     var type = String()
     var orgname = String()
-    var crewPropertIds = [String]()
+    var crewPropertyIds = [String]()
     var propertyName: Bool = true
+    var propertyId = [String]()
+    var allpropertyId = String()
+    
+    
+  
     
     override func viewWillAppear(_ animated: Bool) {
         // written payload here.
@@ -51,6 +54,11 @@ class CrewPropertiesVC: UIViewController {
         var parms = [String: Any]()
         parms["type"] = getOrganizationsModelData?.organization_id
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
+        
+//        allpropertyId = data?[indexPath.row].propertyName
+//        self.crewPropertIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
+
+//        allpropertyId = CrewPropertiesData?.propertyData?[indexpath.row].propertyID
         
     }
     
@@ -107,8 +115,17 @@ class CrewPropertiesVC: UIViewController {
     
     @IBAction func ShowSelectedProperties(_ sender: Any) {
         
+        let arr = crewPropertyIds.joined(separator: ",")
+//         let propertyId =
+//        let arrayOfPropertyId = crewPropertIds
         
+        let storyboard = UIStoryboard(name: "TaskDetails", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CommonTaskDetailVC") as! CommonTaskDetailVC
+        vc.crewPropertyIds = self.crewPropertyIds
+        vc.modalPresentationStyle = .fullScreen
+        presentDetail(vc)
     }
+    
     @IBAction func menuBtn(_ sender: Any) {
     
       gotoNotificationScreen()
@@ -160,14 +177,18 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         showSelectedBackground.backgroundColor = .ThemeColor
         
         propertyName = false
-        self.crewPropertIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
-        
+        self.crewPropertyIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
+//        print(crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)
+        print("creeeeeww == \(crewPropertyIds)")
+
         // to change the color when selected the view of showSelectedBackground
-           if crewPropertIds.count > 0 {
+           if crewPropertyIds.count > 0 {
             showSelectedBackground.backgroundColor = .ThemeColor
+        selectedPropertiesBtn.isUserInteractionEnabled = true
             
         }else{
             showSelectedBackground.backgroundColor = .gray
+            selectedPropertiesBtn.isUserInteractionEnabled = false
             
         }
         
@@ -182,22 +203,22 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         propertyName = true
        
         
-      
-        
         let item = crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID
         let itemToRemove = item
-        if let index = crewPropertIds.firstIndex(of: itemToRemove!)
+        if let index = crewPropertyIds.firstIndex(of: itemToRemove!)
         {
-            crewPropertIds.remove(at: index)
+            self.crewPropertyIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
         }
-        print(crewPropertIds.count)
+        print( crewPropertyIds.count)
         
         // to change the color when deselected the view of showSelectedBackground
-        if crewPropertIds.count > 0 {
+        if crewPropertyIds.count > 0 {
             showSelectedBackground.backgroundColor = .ThemeColor
+            selectedPropertiesBtn.isUserInteractionEnabled = true
             
         }else{
             showSelectedBackground.backgroundColor = .gray
+            selectedPropertiesBtn.isUserInteractionEnabled = false
             
         }
         
@@ -223,3 +244,4 @@ extension CrewPropertiesVC : CrewPropertyModelProtocol{
         
     }
 }
+

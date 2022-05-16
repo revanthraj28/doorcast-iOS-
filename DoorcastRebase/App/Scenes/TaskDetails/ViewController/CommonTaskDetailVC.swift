@@ -30,6 +30,11 @@ class CommonTaskDetailVC: UIViewController {
     @IBOutlet weak var completedTaskCountHolderView: UIView!
     @IBOutlet weak var completedTaskCountLabel: UILabel!
     
+    
+    
+    
+    var crewPropertyIds = [String]()
+    
     static var newInstance: CommonTaskDetailVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
                                       bundle: nil)
@@ -40,6 +45,7 @@ class CommonTaskDetailVC: UIViewController {
     private lazy var incompleteViewController: IncompleteTasksVC = {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name, bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "IncompleteTasksVC") as! IncompleteTasksVC
+        viewController.crewPropertyIds = crewPropertyIds
         self.add(asChildViewController: viewController)
         return viewController
     }()

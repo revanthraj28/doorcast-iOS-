@@ -129,15 +129,17 @@ class ResetPasswordVC: UIViewController {
 }
 // Extension for APi call
 extension ResetPasswordVC : ResetpasswordViewModelProtocol {
+    
     func ResetpasswordSuccess(ResetpasswordResponse: ResetPasswordModel) {
         self.ResetPAsswordViewResponce = ResetpasswordResponse
-        print("reset password = \(ResetPAsswordViewResponce)")
+        print("reset password = \(ResetPAsswordViewResponce?.status)")
+        
         if ResetPAsswordViewResponce?.status == true {
+            defaults.set("", forKey: UserDefaultsKeys.globalAT)
             guard let vc = LoginVC.newInstance else {return}
             vc.modalPresentationStyle = .fullScreen
-          //  self.present(vc, animated: true)
             presentDetail(vc)
-            defaults.set("", forKey: UserDefaultsKeys.globalAT)
+            
         }
         
     }

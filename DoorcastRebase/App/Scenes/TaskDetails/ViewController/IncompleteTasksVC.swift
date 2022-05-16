@@ -21,6 +21,7 @@ class IncompleteTasksVC: UIViewController {
     var timer : Timer?
     var counter = 0
     var mainVC: CommonTaskDetailVC?
+    var crewPropertyIds = [String]()
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -32,6 +33,10 @@ class IncompleteTasksVC: UIViewController {
  
     
     override func viewWillDisappear(_ animated: Bool) {
+        
+        let crewpropertyIds = self.crewPropertyIds
+        print("crewPropertyIds == \(crewPropertyIds)")
+        
         NotificationCenter.default.removeObserver(self)
     }
     

@@ -50,15 +50,15 @@ enum ApiError: Error {
     var message: String {
         switch self {
         case .networkError:
-           return Message.internetConnectionError
+            return Message.internetConnectionError
         case .invalidRequest:
             return "Invalid request"
         case .decodeFailed(_):
             return "An error has occurred. Please try again."
-//            return "Decoding failed \(error.localizedDescription)"
+            //            return "Decoding failed \(error.localizedDescription)"
         case .responseFailed(_):
-//            return "Failed to get the response \(error?.localizedDescription ?? "error")"
-              return "Failed to get a response"
+            //            return "Failed to get the response \(error?.localizedDescription ?? "error")"
+            return "Failed to get a response"
         case .nonZeroResultCode(let message):
             return message
         case .unknown:
@@ -78,20 +78,20 @@ enum ApiError: Error {
 }
 
 class ServiceManager {
-
+    
     static func setHeaderForRequest(req: inout URLRequest) {
         req.addValue(KContentTypeValue, forHTTPHeaderField: KContentType)
-//        req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
-//        if defaults.string(forKey: UserDefaultsKeys.globalAT) != "" {
-//            req.addValue("\(defaults.string(forKey: UserDefaultsKeys.globalAT) ?? "")", forHTTPHeaderField: KAccesstoken)
-//        } else
+        //        req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
+        
+        
+        
+        if defaults.string(forKey: UserDefaultsKeys.globalAT) != "" {
+            req.addValue("\(defaults.string(forKey: UserDefaultsKeys.globalAT) ?? "")", forHTTPHeaderField: KAccesstoken)
+        } else
         if SessionManager.loginInfo?.data?.accesstoken != "" {
             req.addValue("\(SessionManager.loginInfo?.data?.accesstoken ?? "")", forHTTPHeaderField: KAccesstoken)
         }
-//        else {
-//
-//        }
-        print("Access token = \(SessionManager.loginInfo?.data?.accesstoken)")
+       
     }
     
     static func isConnection() -> Bool {
@@ -102,7 +102,7 @@ class ServiceManager {
         return true
     }
     
-
+    
     static func isConnectionWif() -> Bool {
         let reachability = Reachability()
         if reachability!.connection == .wifi {
@@ -110,15 +110,15 @@ class ServiceManager {
         }
         return false
     }
-
+    
     static func sessionExpired(strCode: String) {
-//        DispatchQueue.main.async {
-////            debugPrint("Error code=====\(strCode)")
-//            DataModel.shared.logout()
-//            sceneDelegate.window?.rootViewController?.showAlert(message: Message.sessionExpired, actionBlock: {
-//                sceneDelegate.gotoDashboardScreen()
-//            })
-//        }
+        //        DispatchQueue.main.async {
+        ////            debugPrint("Error code=====\(strCode)")
+        //            DataModel.shared.logout()
+        //            sceneDelegate.window?.rootViewController?.showAlert(message: Message.sessionExpired, actionBlock: {
+        //                sceneDelegate.gotoDashboardScreen()
+        //            })
+        //        }
     }
     
     static func getApiCall<T: Decodable>(endPoint: String, urlParams: Dictionary<String,String>? = nil, resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
@@ -129,15 +129,15 @@ class ServiceManager {
             completionHandler(false, nil, ApiError.networkError.message)
             return
         }
-
+        
         guard var urlComponents = URLComponents(string: "\(BASE_URL)\(endPoint)") else {
             print("Error: cannot create URL")
-//            SwiftLogger.writeToFile(message: "\n \(ApiError.invalidRequest.message)")
+            //            SwiftLogger.writeToFile(message: "\n \(ApiError.invalidRequest.message)")
             completionHandler(false, nil, ApiError.invalidRequest.message)
             return
         }
         print("Get url = \(urlComponents)")
-   
+        
         // Append paramaters to url if present
         if let urlParams = urlParams, !urlParams.isEmpty {
             var queryItemsArray:[URLQueryItem] = []
@@ -155,7 +155,7 @@ class ServiceManager {
         
         // Create the url request
         var request = URLRequest(url: completeEndpointURL)
-//        SwiftLogger.writeToFile(message: "\n \(kEndPoint) \(completeEndpointURL) \n ")
+        //        SwiftLogger.writeToFile(message: "\n \(kEndPoint) \(completeEndpointURL) \n ")
         request.httpMethod = HTTPMethod.get.rawValue
         
         /* set reqeust header and platform*/
@@ -171,7 +171,7 @@ class ServiceManager {
             guard let response = response as? HTTPURLResponse else {return}
             print("****** Get api Response status code = \(response.statusCode)")
             if response.statusCode == 403 {
-
+                
                 self.sessionExpired(strCode: "\(response.statusCode)")
                 return
             }
@@ -179,13 +179,13 @@ class ServiceManager {
             guard error == nil else {
                 print("Error: error calling GET")
                 print(error!)
-
+                
                 completionHandler(false, nil, ApiError.responseFailed(error).message)
                 return
             }
             guard let data = data else {
                 print("Error: Did not receive data")
-
+                
                 completionHandler(false, nil, ApiError.responseFailed(error).message)
                 return
             }
@@ -206,20 +206,20 @@ class ServiceManager {
                 return
             }
             do {
-//                print(String(data: data, encoding: .utf8)!)
+                //                print(String(data: data, encoding: .utf8)!)
                 guard let result = try JSONDecoder().decode(T?.self, from: data)else {
                     print("Error: Cannot decode the object")
                     completionHandler(false, nil, ApiError.decodeFailed(error!).message)
                     return
                 }
                 let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-
+                
                 completionHandler(true, result, nil)
             } catch {
                 print("Error: Trying to convert JSON data to string")
                 print(error.localizedDescription)
                 print(error)
-
+                
                 completionHandler(false, nil, ApiError.unknown.message)
                 return
             }
@@ -231,13 +231,13 @@ class ServiceManager {
         
         if !isConnection() {
             print("Error: you are offline")
-
+            
             completionHandler(false, nil, ApiError.networkError.message)
             return
         }
         guard let strurl = URL(string: "\(BASE_URL)\(endPoint)") else {
             print("Error: cannot create URL")
-
+            
             completionHandler(false, nil, ApiError.invalidRequest.message)
             return
         }
@@ -279,7 +279,7 @@ class ServiceManager {
             }
             guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
                 print("Error: HTTP request failed")
-                 
+                
                 completionHandler(false, nil, ApiError.responseFailed(error).message)
                 return
             }
@@ -306,61 +306,61 @@ class ServiceManager {
     }
     
     /*
-    static func getApiCallForForPlaying<T: Decodable>(endPoint: String, resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
-        
-        if !isConnection() {
-            print("Error: you are offline")
-            completionHandler(false, nil, ApiError.networkError.message)
-            return
-        }
-        guard let strurl = URL(string: "\(endPoint)") else {
-            print("Error: cannot create URL")
-            completionHandler(false, nil, ApiError.invalidRequest.message)
-            return
-        }
-        // Create the url request
-        var request = URLRequest(url: strurl)
-        //        if let authToken = DataModel.shared.sessionId {
-        //            request.addValue("\(authToken)", forHTTPHeaderField: "Authorization")
-        //        }
-        request.httpMethod = HTTPMethod.get.rawValue
-        
-        // If you are using Basic Authentication uncomment the follow line and add your base64 string
-        //        request.setValue("Basic MY_BASIC_AUTH_STRING", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print("Error: error calling GET")
-                print(error!)
-                completionHandler(false, nil, ApiError.responseFailed(error).message)
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                completionHandler(false, nil, ApiError.responseFailed(error).message)
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                completionHandler(false, nil, ApiError.responseFailed(error).message)
-                return
-            }
-            do {
-                guard let result = try JSONDecoder().decode(T?.self, from: data)else {
-                    print("Error: Cannot decode the object")
-                    completionHandler(false, nil, ApiError.decodeFailed(error!).message)
-                    return
-                }
-                completionHandler(true, result, nil)
-            } catch {
-                print("Error: Trying to convert JSON data to string")
-                print(error.localizedDescription)
-                print(error)
-                completionHandler(false, nil, ApiError.unknown.message)
-                return
-            }
-        }.resume()
-    }
-*/
+     static func getApiCallForForPlaying<T: Decodable>(endPoint: String, resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
+     
+     if !isConnection() {
+     print("Error: you are offline")
+     completionHandler(false, nil, ApiError.networkError.message)
+     return
+     }
+     guard let strurl = URL(string: "\(endPoint)") else {
+     print("Error: cannot create URL")
+     completionHandler(false, nil, ApiError.invalidRequest.message)
+     return
+     }
+     // Create the url request
+     var request = URLRequest(url: strurl)
+     //        if let authToken = DataModel.shared.sessionId {
+     //            request.addValue("\(authToken)", forHTTPHeaderField: "Authorization")
+     //        }
+     request.httpMethod = HTTPMethod.get.rawValue
+     
+     // If you are using Basic Authentication uncomment the follow line and add your base64 string
+     //        request.setValue("Basic MY_BASIC_AUTH_STRING", forHTTPHeaderField: "Authorization")
+     URLSession.shared.dataTask(with: request) { data, response, error in
+     guard error == nil else {
+     print("Error: error calling GET")
+     print(error!)
+     completionHandler(false, nil, ApiError.responseFailed(error).message)
+     return
+     }
+     guard let data = data else {
+     print("Error: Did not receive data")
+     completionHandler(false, nil, ApiError.responseFailed(error).message)
+     return
+     }
+     guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+     print("Error: HTTP request failed")
+     completionHandler(false, nil, ApiError.responseFailed(error).message)
+     return
+     }
+     do {
+     guard let result = try JSONDecoder().decode(T?.self, from: data)else {
+     print("Error: Cannot decode the object")
+     completionHandler(false, nil, ApiError.decodeFailed(error!).message)
+     return
+     }
+     completionHandler(true, result, nil)
+     } catch {
+     print("Error: Trying to convert JSON data to string")
+     print(error.localizedDescription)
+     print(error)
+     completionHandler(false, nil, ApiError.unknown.message)
+     return
+     }
+     }.resume()
+     }
+     */
     
     static func postOrPutApiCall<T: Decodable>(authorization: Bool = false, endPoint: String, urlParams: Dictionary<String,String>? = nil, parameters: NSDictionary? = nil, methodType: HTTPMethod = .post, resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
         if !isConnection() {
@@ -377,7 +377,7 @@ class ServiceManager {
             completionHandler(false, nil, ApiError.invalidRequest.message)
             return
         }
-   
+        
         // Append paramaters to url if present
         if let urlParams = urlParams, !urlParams.isEmpty {
             var queryItemsArray:[URLQueryItem] = []
@@ -458,8 +458,8 @@ class ServiceManager {
                 return
             }
             do {
-//                debugPrint("header=====\(response.allHeaderFields)")
-//                print(String(data: data, encoding: .utf8)!)
+                //                debugPrint("header=====\(response.allHeaderFields)")
+                //                print(String(data: data, encoding: .utf8)!)
                 guard let result = try JSONDecoder().decode(T?.self, from: data)else {
                     print("Error: Cannot decode the object")
                     
@@ -467,8 +467,8 @@ class ServiceManager {
                     return
                 }
                 if let authToken =  response.allHeaderFields["Authorization"] as? String {
-//                    debugPrint("header=====\(authToken)")
-//                    DataModel.shared.authToken = authToken
+                    //                    debugPrint("header=====\(authToken)")
+                    //                    DataModel.shared.authToken = authToken
                 }
                 let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
@@ -495,7 +495,7 @@ class ServiceManager {
             completionHandler(false, nil, ApiError.invalidRequest.message)
             return
         }
-   
+        
         // Append paramaters to url if present
         if let urlParams = urlParams, !urlParams.isEmpty {
             var queryItemsArray:[URLQueryItem] = []
@@ -523,9 +523,9 @@ class ServiceManager {
         
         ///Add a access Token
         
-//        if let authToken = DataModel.shared.sessionId {
-//            request.addValue("\(authToken)", forHTTPHeaderField: KAuthorization)
-//        }
+        //        if let authToken = DataModel.shared.sessionId {
+        //            request.addValue("\(authToken)", forHTTPHeaderField: KAuthorization)
+        //        }
         
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
         // And the boundary is also set here
@@ -537,7 +537,7 @@ class ServiceManager {
         data.append("Content-Type: \(fileContentType)\r\n\r\n".data(using: .utf8)!)
         data.append(fileData)
         data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-
+        
         // Send a POST request to the URL, with the data we created earlier
         print(request)
         session.uploadTask(with: request, from: data, completionHandler: { (data, response, error) in
@@ -573,104 +573,104 @@ class ServiceManager {
                 }
             }}).resume()
     }
- 
     
-//    static func uploadImage<T: Decodable>(paramName: String, fileName: String, image: UIImage , resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
-//
-//
-//        let urlPath = "\(BASE_URL)\(endPoint)"
-//        guard let finalURL = URL(string: urlPath) else {
-//            print("Error creating endpoint")
-//
-//            return
-//        }
-//
-//        // generate boundary string using a unique per-app string
-//
-//        let boundary = UUID().uuidString
-//
-//        let session = URLSession.shared
-//
-//        // Set the URLRequest to POST and to the specified URL
-//
-//        var urlRequest = URLRequest(url: finalURL)
-//
-//
-//        urlRequest.httpMethod = HTTPMethod.post.rawValue
-//
-////        if let authToken = DataModel.shared.sessionId {
-////            urlRequest.addValue("\(authToken)", forHTTPHeaderField: KAuthorization)
-////        }
-////        if let deviceId = DataModel.shared.deviceId {
-////            urlRequest.addValue("\(deviceId)", forHTTPHeaderField: KDEVICE_ID)
-////        }
-//
-//
-//        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
-//        // And the boundary is also set here
-//        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: KContentType)
-//        var data = Data()
-//
-//        // Add the image data to the raw http request data
-//        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-//        data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-//        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-//        if let imageData = image.jpegData(compressionQuality: 1.0) {
-//            data.append(imageData)
-//        }
-//        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-//
-//        // Send a POST request to the URL, with the data we created earlier
-//        print(urlRequest)
-//        session.uploadTask(with: urlRequest, from: data, completionHandler: { (data, response, error) in
-//            do {
-//                /*Chick session status*/
-//                guard let response = response as? HTTPURLResponse else {return}
-//                if response.statusCode == 403 {
-//
-//                    self.sessionExpired(strCode: "\(response.statusCode)")
-//                    return
-//                }
-//
-//                //do whatever want with the response here
-//                guard error == nil else {
-//                    print("Error: error calling GET")
-//                    print(error!)
-//
-//                    completionHandler(false, nil, ApiError.responseFailed(error).message)
-//                    return
-//                }
-//                guard let data = data else {
-//                    print("Error: Did not receive data")
-//
-//                    completionHandler(false, nil, ApiError.responseFailed(error).message)
-//                    return
-//                }
-//                guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-//                    print("Error: HTTP request failed")
-//
-//                    completionHandler(false, nil, ApiError.responseFailed(error).message)
-//                    return
-//                }
-//                do {
-//                    guard let result = try JSONDecoder().decode(T?.self, from: data)else {
-//                        print("Error: Cannot decode the object")
-//
-//                        completionHandler(false, nil, ApiError.decodeFailed(error!).message)
-//                        return
-//                    }
-//                    print(result)
-//                    let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-//
-//                    completionHandler(true, result, nil)
-//                } catch {
-//                    print("Error: Trying to convert JSON data to string")
-//
-//                    completionHandler(false, nil, ApiError.unknown.message)
-//                    return
-//                }
-//            }}).resume()
-//    }
+    
+    //    static func uploadImage<T: Decodable>(paramName: String, fileName: String, image: UIImage , resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
+    //
+    //
+    //        let urlPath = "\(BASE_URL)\(endPoint)"
+    //        guard let finalURL = URL(string: urlPath) else {
+    //            print("Error creating endpoint")
+    //
+    //            return
+    //        }
+    //
+    //        // generate boundary string using a unique per-app string
+    //
+    //        let boundary = UUID().uuidString
+    //
+    //        let session = URLSession.shared
+    //
+    //        // Set the URLRequest to POST and to the specified URL
+    //
+    //        var urlRequest = URLRequest(url: finalURL)
+    //
+    //
+    //        urlRequest.httpMethod = HTTPMethod.post.rawValue
+    //
+    ////        if let authToken = DataModel.shared.sessionId {
+    ////            urlRequest.addValue("\(authToken)", forHTTPHeaderField: KAuthorization)
+    ////        }
+    ////        if let deviceId = DataModel.shared.deviceId {
+    ////            urlRequest.addValue("\(deviceId)", forHTTPHeaderField: KDEVICE_ID)
+    ////        }
+    //
+    //
+    //        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+    //        // And the boundary is also set here
+    //        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: KContentType)
+    //        var data = Data()
+    //
+    //        // Add the image data to the raw http request data
+    //        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+    //        data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+    //        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+    //        if let imageData = image.jpegData(compressionQuality: 1.0) {
+    //            data.append(imageData)
+    //        }
+    //        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+    //
+    //        // Send a POST request to the URL, with the data we created earlier
+    //        print(urlRequest)
+    //        session.uploadTask(with: urlRequest, from: data, completionHandler: { (data, response, error) in
+    //            do {
+    //                /*Chick session status*/
+    //                guard let response = response as? HTTPURLResponse else {return}
+    //                if response.statusCode == 403 {
+    //
+    //                    self.sessionExpired(strCode: "\(response.statusCode)")
+    //                    return
+    //                }
+    //
+    //                //do whatever want with the response here
+    //                guard error == nil else {
+    //                    print("Error: error calling GET")
+    //                    print(error!)
+    //
+    //                    completionHandler(false, nil, ApiError.responseFailed(error).message)
+    //                    return
+    //                }
+    //                guard let data = data else {
+    //                    print("Error: Did not receive data")
+    //
+    //                    completionHandler(false, nil, ApiError.responseFailed(error).message)
+    //                    return
+    //                }
+    //                guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+    //                    print("Error: HTTP request failed")
+    //
+    //                    completionHandler(false, nil, ApiError.responseFailed(error).message)
+    //                    return
+    //                }
+    //                do {
+    //                    guard let result = try JSONDecoder().decode(T?.self, from: data)else {
+    //                        print("Error: Cannot decode the object")
+    //
+    //                        completionHandler(false, nil, ApiError.decodeFailed(error!).message)
+    //                        return
+    //                    }
+    //                    print(result)
+    //                    let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+    //
+    //                    completionHandler(true, result, nil)
+    //                } catch {
+    //                    print("Error: Trying to convert JSON data to string")
+    //
+    //                    completionHandler(false, nil, ApiError.unknown.message)
+    //                    return
+    //                }
+    //            }}).resume()
+    //    }
     
     static func deleteApiCall<T: Decodable>(endPoint: String, resultType: T.Type, completionHandler:@escaping(Bool, _ result: T?, String?) -> Void) {
         if !isConnection() {
@@ -691,9 +691,9 @@ class ServiceManager {
         var request = URLRequest(url: strurl)
         request.httpMethod = HTTPMethod.delete.rawValue
         
-//        if let deviceId = DataModel.shared.deviceId {
-//            request.addValue("\(deviceId)", forHTTPHeaderField: KDEVICE_ID)
-//        }
+        //        if let deviceId = DataModel.shared.deviceId {
+        //            request.addValue("\(deviceId)", forHTTPHeaderField: KDEVICE_ID)
+        //        }
         // If you are using Basic Authentication uncomment the follow line and add your base64 string
         //        request.setValue("Basic MY_BASIC_AUTH_STRING", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in

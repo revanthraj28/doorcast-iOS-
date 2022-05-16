@@ -13,7 +13,7 @@ class CrewPropertiesTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.contentView.backgroundColor = .clear
+        self.contentView.backgroundColor = .white
         lbl_PropertiesValue.textColor = .black
         lbl_PropertiesValue.numberOfLines = 0
         lbl_PropertiesValue.textAlignment = .center
