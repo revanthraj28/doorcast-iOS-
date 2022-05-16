@@ -9,6 +9,22 @@ import Foundation
 import UIKit
 
 extension String {
+    
+    
+    func maxLength(length: Int) -> String {
+        var str = self
+        let nsString = str as NSString
+        if nsString.length >= length {
+            str = nsString.substring(with:
+                                        NSRange(
+                                            location: 0,
+                                            length: nsString.length > length ? length : nsString.length)
+            )
+        }
+        return  str
+    }
+    
+    
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + dropFirst()
     }
@@ -72,7 +88,7 @@ extension String{
         
         return myMutableString as NSAttributedString
     }
-
+    
     func validateAsPhone() -> Bool {
         let phoneRegEx = "^[0-9'@s]{10}$"
         
@@ -92,19 +108,19 @@ extension String{
     public func isValidPassword() -> Bool {
         let passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: self)
-       
+        
     }
     
-  
+    
     func validateAsPhoneNumber() -> Bool {
         
-    let phoneRegEx = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-    let phoneTest = NSPredicate(format:"SELF MATCHES[c] %@", phoneRegEx)
-    return phoneTest.evaluate(with: self)
+        let phoneRegEx = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+        let phoneTest = NSPredicate(format:"SELF MATCHES[c] %@", phoneRegEx)
+        return phoneTest.evaluate(with: self)
         
           }
-
-
+    
+    
 }
 extension NSMutableAttributedString {
     

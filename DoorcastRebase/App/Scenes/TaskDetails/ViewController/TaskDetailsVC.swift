@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class TaskDetailsVC: UIViewController {
+class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     @IBOutlet weak var taskDetailsTableView: UITableView!
     @IBOutlet weak var commonNavBar: UIView!
@@ -49,6 +50,13 @@ class TaskDetailsVC: UIViewController {
     var address:String?
     var propertyname:String?
     
+    let locationManager = CLLocationManager()
+    var locationOne = CLLocation()
+    let locationTwo = CLLocation()
+    var latdistance = Double()
+    var longdistance = Double()
+    var coordinates = [CLLocationCoordinate2D]()
+    
     var isVisible = false
     
     static var newInstance: TaskDetailsVC? {
@@ -58,9 +66,9 @@ class TaskDetailsVC: UIViewController {
         return vc
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.setupLoactionMgr()
         taskName.text =  self.taskname
         companyLabel.text = self.propertyname
         propertyAddresLabel.text = self.address
@@ -72,8 +80,59 @@ class TaskDetailsVC: UIViewController {
         super.viewDidLoad()
         
         subTaskListViewModel = SubTaskListViewModel(self)
+        
         setupui()
         
+    }
+    
+    func setupLoactionMgr() {
+        
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+        switch manager.authorizationStatus {
+        case .authorizedAlways:
+            return
+        case .authorizedWhenInUse:
+            return
+        case .denied:
+            return
+        case .restricted :
+            locationManager.requestWhenInUseAuthorization()
+        case .notDetermined :
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        
+        var currentLocation = CLLocation(latitude:  locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0)
+        
+        var DestinationLocation = CLLocation(latitude: latdistance, longitude: longdistance)
+        var distance = currentLocation.distance(from: DestinationLocation)
+        
+        print(String(format: "The distance to my buddy is %.01fm", distance))
+        distanceLabel.text = "\(distance) ".maxLength(length: 3)
+        
+        if distance < 500 {
+            print("less then 500")
+        }
+        
+        print("displayed location\(distanceLabel)")
     }
     
     func setupui(){
@@ -96,8 +155,6 @@ class TaskDetailsVC: UIViewController {
         let group_id = defaults.string(forKey: UserDefaultsKeys.group_id)
         let task_type = defaults.string(forKey: UserDefaultsKeys.task_type)
         let property_id = defaults.string(forKey: UserDefaultsKeys.property_id)
-        print("taskId = \(taskId), task_id_check = \(task_id_check), group_id = \(group_id), task_type = \(task_type)")
-        //        let taskId = defaults.string(forKey: UserDefaultsKeys.task_id)
         subTaskListViewModel?.SubTaskListApi(task_id: taskId ?? "", task_id_check: task_id_check ?? "" , group_id: group_id ?? "" , type: task_type ?? "" )
         
         
@@ -105,14 +162,14 @@ class TaskDetailsVC: UIViewController {
     
     
     @IBAction func menuButtonAction(_ sender: Any) {
+        
     }
     
     
     @IBAction func moreButtonAction(_ sender: Any) {
         
         
-        if isVisible == false
-        {
+        if isVisible == false {
             editBackgroundView.isHidden = false
             isVisible = true
         }else{
@@ -131,7 +188,6 @@ class TaskDetailsVC: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Reassign Crew"
         vc.modalPresentationStyle = .popover
-     //   self.present(vc, animated:true, completion:nil)
         presentDetail(vc)
     }
     
@@ -143,7 +199,6 @@ class TaskDetailsVC: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Add Crew"
         vc.modalPresentationStyle = .popover
-      //  self.present(vc, animated:true, completion:nil)
         presentDetail(vc)
     }
     
@@ -153,7 +208,6 @@ class TaskDetailsVC: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "SelectUserVC") as! SelectUserVC
         vc.isSelected = "Force Finish"
         vc.modalPresentationStyle = .popover
-      //  self.present(vc, animated:true, completion:nil)
         presentDetail(vc)
     }
     
@@ -207,22 +261,19 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     func gotoNextScreen() {
         guard let vc = StartTheClockVC.newInstance else {return}
         vc.modalPresentationStyle = .overCurrentContext
-       // self.present(vc, animated: true)
         presentDetail(vc)
     }
 }
-
-
-
 
 extension TaskDetailsVC : SubTaskListProtocol {
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
+        latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
+        longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
             self.taskDetailsTableView.reloadData()
         }
     }
-    
-    
+
 }
