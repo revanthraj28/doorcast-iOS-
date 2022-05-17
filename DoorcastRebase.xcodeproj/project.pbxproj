@@ -48,6 +48,8 @@
 		0771A2FD2825349B00758DD9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2FC2825349B00758DD9 /* Authentication.storyboard */; };
 		0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A324282539C600758DD9 /* TextFieldExtension.swift */; };
 		0771A3272825460600758DD9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3262825460600758DD9 /* ServiceManager.swift */; };
+		133A3AFB2833B8630054C75B /* CommonAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A3AF92833B8630054C75B /* CommonAlertVC.swift */; };
+		133A3AFC2833B8630054C75B /* CommonAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133A3AFA2833B8630054C75B /* CommonAlertVC.xib */; };
 		135EB042282B8CEA00194216 /* StartTheClockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB041282B8CEA00194216 /* StartTheClockVC.swift */; };
 		135EB044282B8CF400194216 /* TaskDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB043282B8CF400194216 /* TaskDetailsVC.swift */; };
 		135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */; };
@@ -171,6 +173,8 @@
 		0771A2FC2825349B00758DD9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		0771A324282539C600758DD9 /* TextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		0771A3262825460600758DD9 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		133A3AF92833B8630054C75B /* CommonAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlertVC.swift; sourceTree = "<group>"; };
+		133A3AFA2833B8630054C75B /* CommonAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonAlertVC.xib; sourceTree = "<group>"; };
 		135EB041282B8CEA00194216 /* StartTheClockVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTheClockVC.swift; sourceTree = "<group>"; };
 		135EB043282B8CF400194216 /* TaskDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsVC.swift; sourceTree = "<group>"; };
 		135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxInTaskDetailsTVCell.swift; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 		0771A2BF2823F8E000758DD9 /* CommonMethods */ = {
 			isa = PBXGroup;
 			children = (
+				133A3AF82833B8460054C75B /* CommonAlertVC */,
 				0771A2C02823F8EF00758DD9 /* TimerView */,
 				13891FE128327EAC005DE6A6 /* CommonMethods.swift */,
 			);
@@ -429,6 +434,15 @@
 				0771A2F52825348600758DD9 /* LoginModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		133A3AF82833B8460054C75B /* CommonAlertVC */ = {
+			isa = PBXGroup;
+			children = (
+				133A3AF92833B8630054C75B /* CommonAlertVC.swift */,
+				133A3AFA2833B8630054C75B /* CommonAlertVC.xib */,
+			);
+			path = CommonAlertVC;
 			sourceTree = "<group>";
 		};
 		135EB047282B8D8600194216 /* CheckboxInTaskDetailsTVCell */ = {
@@ -1007,6 +1021,7 @@
 				135EB04B282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib in Resources */,
 				4E07C860282291FB0090D088 /* Oswald-MediumItalic.ttf in Resources */,
 				E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */,
+				133A3AFC2833B8630054C75B /* CommonAlertVC.xib in Resources */,
 				4E07C861282291FB0090D088 /* Oswald-Regular.ttf in Resources */,
 				0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */,
 				4E07C862282291FB0090D088 /* Oswald-RegularItalic.ttf in Resources */,
@@ -1115,6 +1130,7 @@
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
 				135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */,
 				135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */,
+				133A3AFB2833B8630054C75B /* CommonAlertVC.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
 				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,
 				072937992833A0EB002F15D5 /* speechBubble.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Network
 
 class IncompleteTasksVC: UIViewController {
     
@@ -26,6 +27,7 @@ class IncompleteTasksVC: UIViewController {
     var mainVC: CommonTaskDetailVC?
     var crewPropertyIds = [String]()
     var roleName = String()
+    var loginID = String()
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -238,6 +240,16 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         
+       
+
+        if self.loginID == incompleteTaskListModel?.data?[indexPath.row].crew_id  {
+            cell.roleLabel.text = self.incompleteTaskListModel?.data?[indexPath.row].role_name ?? "" + " • "
+        } else {
+            cell.roleLabel.text = self.incompleteTaskListModel?.data?[indexPath.row].role_name
+        }
+        
+        
+
         return cell
     }
     
