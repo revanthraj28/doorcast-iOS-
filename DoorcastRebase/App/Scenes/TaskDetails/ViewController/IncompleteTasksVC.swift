@@ -178,6 +178,8 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListTVCell.cellId, for: indexPath) as! TaskListTVCell
+        
+        
         cell.selectionStyle = .none
         self.taskListTableView.isUserInteractionEnabled = false
         self.taskListTableView.alpha = 0.3
@@ -185,9 +187,6 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             cell.configureUI(modelData: incompleteData)
         }
         
-        
-       
-
         if self.loginID == incompleteTaskListModel?.data?[indexPath.row].crew_id  {
             cell.roleLabel.text = self.incompleteTaskListModel?.data?[indexPath.row].role_name ?? "" + " • "
         } else {
