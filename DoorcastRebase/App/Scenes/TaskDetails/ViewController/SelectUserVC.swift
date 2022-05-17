@@ -111,6 +111,7 @@ class SelectUserVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         vmodel = ReassignCrewViewModel(self)
         ViewModel = CrewViewModel(self)
         ViewModel1 = ForceFinishViewModel(self)
+        print("response11 = \(ForceFinishResponseModel?.data)")
         
         emptyMessageLabel.isHidden = true
         updateUI()

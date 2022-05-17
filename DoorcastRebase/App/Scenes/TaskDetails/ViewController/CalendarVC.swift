@@ -38,6 +38,13 @@ class CalendarVC: UIViewController {
     let grayView = UIView()
     var btnDoneActionBool = Bool()
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        changeStatusBarColor(with: .ThemeColor)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
