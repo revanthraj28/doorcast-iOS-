@@ -44,13 +44,13 @@ class CrewPropertiesVC: UIViewController {
     // var crewPropertyIds = [String]()
     var propertyName: Bool = true
     var propertyId = [String]()
-   
-
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         // written payload here.
         
-        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")?.uppercased()
         
         crewPropertyALLIds.removeAll()
         crewPropertyIds.removeAll()
@@ -61,19 +61,19 @@ class CrewPropertiesVC: UIViewController {
         parms["type"] = getOrganizationsModelData?.organization_id
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
         changeStatusBarColor(with: .ThemeColor)
-
+        
         
         showSelectedBackground.backgroundColor = .gray
         selectedPropertiesBtn.isUserInteractionEnabled = false
-}
+    }
     
- 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
-       
+        // userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+        
         
         crewviewModel = CrewProperties(self)
         
@@ -116,12 +116,12 @@ class CrewPropertiesVC: UIViewController {
     }
     
     @IBAction func didTapOnAllProperties(_ sender: Any) {
-  
+        
         let sb = UIStoryboard(name: "TaskDetails", bundle: nil)
         
         let vc = sb.instantiateViewController(withIdentifier: "CommonTaskDetailVC")
         vc.modalPresentationStyle = .fullScreen
- 
+        
         showproperty = "all"
         self.present(vc, animated: true, completion: nil)
     }
@@ -151,8 +151,8 @@ class CrewPropertiesVC: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "OnBoardingVC") as! OnBoardingVC
         vc.modalPresentationStyle = .fullScreen
-         self.present(vc, animated: true, completion: nil)
- 
+        self.present(vc, animated: true, completion: nil)
+        
     }
 }
 

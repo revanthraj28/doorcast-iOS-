@@ -38,7 +38,7 @@ extension UIFont {
     }
     
     public static func oswaldLightItalic(size: CGFloat) -> UIFont {
-      return UIFont(name: "Oswald-LightItalic", size: size)!
+        return UIFont(name: "Oswald-LightItalic", size: size) ?? UIFont.systemFont(ofSize: 12)
     }
     
     public static func oswaldRegular(size: CGFloat) -> UIFont {

@@ -29,6 +29,7 @@ let KOsType = UIDevice.current.systemVersion
 var showproperty = String()
 var crewPropertyIds = [String]()
 var crewPropertyALLIds = [String]()
+var timerBool = false
 
 let GlobelAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Im94Zm9yZCBjYXBzIg._nKgScZrZagPYMtl2D9cYgxsBV_EoDgqmuMFGDuEAek"
 

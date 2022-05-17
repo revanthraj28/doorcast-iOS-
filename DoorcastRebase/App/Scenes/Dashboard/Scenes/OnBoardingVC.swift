@@ -38,7 +38,10 @@ class OnBoardingVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        usernameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+        
+        usernameLabel.text = UserDefaults.standard.string(forKey: "fullname")?.uppercased()
+        
+        
     }
     
     override func viewDidLoad() {

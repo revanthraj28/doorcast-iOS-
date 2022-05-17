@@ -12,6 +12,7 @@
 		072191162823DE0900116F43 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072191152823DE0900116F43 /* DateExtension.swift */; };
 		0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072191192823E8F200116F43 /* calendarCVCell.swift */; };
 		0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0721911A2823E8F300116F43 /* calendarCVCell.xib */; };
+		072937992833A0EB002F15D5 /* speechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072937982833A0EB002F15D5 /* speechBubble.swift */; };
 		073A097F28320F8F0069EA8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 073A097E28320F8F0069EA8B /* GoogleService-Info.plist */; };
 		07689C20282C1B350058A5A9 /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07689C1F282C1B350058A5A9 /* TableViewHelper.swift */; };
 		07712BCC282CCB370074F948 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCB282CCB370074F948 /* SelectUserVC.swift */; };
@@ -134,6 +135,7 @@
 		072191152823DE0900116F43 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		072191192823E8F200116F43 /* calendarCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarCVCell.swift; sourceTree = "<group>"; };
 		0721911A2823E8F300116F43 /* calendarCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = calendarCVCell.xib; sourceTree = "<group>"; };
+		072937982833A0EB002F15D5 /* speechBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = speechBubble.swift; sourceTree = "<group>"; };
 		073A097E28320F8F0069EA8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07689C1F282C1B350058A5A9 /* TableViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
 		07712BCB282CCB370074F948 /* SelectUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 		E31C92C22822453800600CEE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				072937982833A0EB002F15D5 /* speechBubble.swift */,
 				4E07C864282292490090D088 /* Font */,
 				E31C92C92822466700600CEE /* StoryboardExtension.swift */,
 				E347D350282258AB00122C8B /* DeviceName.swift */,
@@ -1114,6 +1117,7 @@
 				135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
 				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,
+				072937992833A0EB002F15D5 /* speechBubble.swift in Sources */,
 				AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */,
 				0771A2F72825348600758DD9 /* LoginVC.swift in Sources */,
 				135EB044282B8CF400194216 /* TaskDetailsVC.swift in Sources */,
@@ -1311,7 +1315,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1343,7 +1347,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
