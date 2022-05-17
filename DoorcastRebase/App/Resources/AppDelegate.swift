@@ -32,6 +32,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         Messaging.messaging().delegate = self
         
         
+        
         if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: AnyObject] {
             if let aps1 = userInfo["aps"] as? NSDictionary {
                 print(aps1)

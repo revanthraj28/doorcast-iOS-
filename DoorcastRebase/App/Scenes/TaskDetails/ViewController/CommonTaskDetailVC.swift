@@ -58,8 +58,15 @@ class CommonTaskDetailVC: UIViewController {
         return viewController
     }()
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        changeStatusBarColor(with: .ThemeColor)
+    }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldRegular(size: 18)
         configureUI()
         setupUI()
     }
@@ -72,7 +79,7 @@ class CommonTaskDetailVC: UIViewController {
         remove(asChildViewController: completeViewController)
         add(asChildViewController: incompleteViewController)
     }
-    
+
     func setupUI() {
         
         calImageViewHolder.layer.cornerRadius = 18
@@ -132,6 +139,9 @@ class CommonTaskDetailVC: UIViewController {
     
     @IBAction func didTapOnNotificationCenterViewButton(_ sender: Any) {
         print("didTapOnNotificationCenterViewButton")
+        guard let vc = NotificationCenterVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     

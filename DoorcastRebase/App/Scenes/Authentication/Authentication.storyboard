@@ -231,7 +231,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rdh-pC-xOL" secondAttribute="trailing" id="23O-Ks-hKj"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rdh-pC-xOL" secondAttribute="bottom" id="eQu-YE-6MY"/>
+                            <constraint firstAttribute="bottom" secondItem="rdh-pC-xOL" secondAttribute="bottom" constant="34" id="eQu-YE-6MY"/>
                             <constraint firstItem="rdh-pC-xOL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xw4-gG-4nc"/>
                             <constraint firstItem="S4b-m6-Nvf" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="yoS-YS-dgP"/>
                             <constraint firstItem="rdh-pC-xOL" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="zjJ-nc-j7E"/>

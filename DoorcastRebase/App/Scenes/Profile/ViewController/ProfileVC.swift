@@ -58,6 +58,10 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        changeStatusBarColor(with: .ThemeColor)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

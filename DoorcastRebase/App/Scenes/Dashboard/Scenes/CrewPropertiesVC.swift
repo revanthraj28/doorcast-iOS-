@@ -44,7 +44,8 @@ class CrewPropertiesVC: UIViewController {
     // var crewPropertyIds = [String]()
     var propertyName: Bool = true
     var propertyId = [String]()
-//    var allpropertyId = String()
+   
+
     
     override func viewWillAppear(_ animated: Bool) {
         // written payload here.
@@ -59,7 +60,8 @@ class CrewPropertiesVC: UIViewController {
         var parms = [String: Any]()
         parms["type"] = getOrganizationsModelData?.organization_id
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
-        
+        changeStatusBarColor(with: .ThemeColor)
+
         
         showSelectedBackground.backgroundColor = .gray
         selectedPropertiesBtn.isUserInteractionEnabled = false
@@ -73,6 +75,8 @@ class CrewPropertiesVC: UIViewController {
         crewviewModel = CrewProperties(self)
         
         dateLabel.text =  Date().MonthDateDayFormatter?.uppercased()
+        userNameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldRegular(size: 18)
         
         propertiesTV.allowsSelection = true
         propertiesTV.delegate = self
@@ -168,11 +172,6 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         cell.lbl_PropertiesValue.textColor = .black
         cell.selectionStyle = .none
         crewPropertyALLIds.append(data?[indexPath.row].propertyID ?? "")
-        
-        
-        
-        
-        
         return cell
     }
     
