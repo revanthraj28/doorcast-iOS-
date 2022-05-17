@@ -18,15 +18,7 @@ class TaskListViewModel {
     init(_ view: TaskListProtocol) {
         self.view = view
     }
-    /*
-     {
-         "task_type":"incomplete",
-     "from_date":"all",
-     "to_date":"all",
-     "propertyid":"44",
-     "crew_members":"me"
-     }
-     */
+    
     func InCompleteListApi(task_type: String, from_date: String, to_date: String, propertyid: String, crew_members: String){
         let dict =  ["task_type": task_type , "from_date": from_date, "to_date": to_date, "propertyid": propertyid, "crew_members": crew_members]
         print("Dict = \(dict)")

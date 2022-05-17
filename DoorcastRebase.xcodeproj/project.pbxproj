@@ -12,6 +12,7 @@
 		072191162823DE0900116F43 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072191152823DE0900116F43 /* DateExtension.swift */; };
 		0721911B2823E8F300116F43 /* calendarCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072191192823E8F200116F43 /* calendarCVCell.swift */; };
 		0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0721911A2823E8F300116F43 /* calendarCVCell.xib */; };
+		072937992833A0EB002F15D5 /* speechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072937982833A0EB002F15D5 /* speechBubble.swift */; };
 		073A097F28320F8F0069EA8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 073A097E28320F8F0069EA8B /* GoogleService-Info.plist */; };
 		07689C20282C1B350058A5A9 /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07689C1F282C1B350058A5A9 /* TableViewHelper.swift */; };
 		07712BCC282CCB370074F948 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCB282CCB370074F948 /* SelectUserVC.swift */; };
@@ -47,12 +48,15 @@
 		0771A2FD2825349B00758DD9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0771A2FC2825349B00758DD9 /* Authentication.storyboard */; };
 		0771A325282539C600758DD9 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A324282539C600758DD9 /* TextFieldExtension.swift */; };
 		0771A3272825460600758DD9 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771A3262825460600758DD9 /* ServiceManager.swift */; };
+		133A3AFB2833B8630054C75B /* CommonAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A3AF92833B8630054C75B /* CommonAlertVC.swift */; };
+		133A3AFC2833B8630054C75B /* CommonAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133A3AFA2833B8630054C75B /* CommonAlertVC.xib */; };
 		135EB042282B8CEA00194216 /* StartTheClockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB041282B8CEA00194216 /* StartTheClockVC.swift */; };
 		135EB044282B8CF400194216 /* TaskDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB043282B8CF400194216 /* TaskDetailsVC.swift */; };
 		135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */; };
 		135EB04B282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */; };
 		135EB04E282B8DB100194216 /* SubTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB04D282B8DB100194216 /* SubTaskViewModel.swift */; };
 		135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB04F282B8DC500194216 /* SubTaskModel.swift */; };
+		13891FE228327EAC005DE6A6 /* CommonMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13891FE128327EAC005DE6A6 /* CommonMethods.swift */; };
 		13B3EC60282BC3970068200B /* TaskDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B3EC5F282BC3970068200B /* TaskDetails.storyboard */; };
 		4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C838282291870090D088 /* Poppins-BoldItalic.otf */; };
 		4E07C83F282291870090D088 /* Poppins-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C839282291870090D088 /* Poppins-Italic.otf */; };
@@ -135,6 +139,7 @@
 		072191152823DE0900116F43 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		072191192823E8F200116F43 /* calendarCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarCVCell.swift; sourceTree = "<group>"; };
 		0721911A2823E8F300116F43 /* calendarCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = calendarCVCell.xib; sourceTree = "<group>"; };
+		072937982833A0EB002F15D5 /* speechBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = speechBubble.swift; sourceTree = "<group>"; };
 		073A097E28320F8F0069EA8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07689C1F282C1B350058A5A9 /* TableViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
 		07712BCB282CCB370074F948 /* SelectUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
@@ -170,12 +175,15 @@
 		0771A2FC2825349B00758DD9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		0771A324282539C600758DD9 /* TextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		0771A3262825460600758DD9 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		133A3AF92833B8630054C75B /* CommonAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlertVC.swift; sourceTree = "<group>"; };
+		133A3AFA2833B8630054C75B /* CommonAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonAlertVC.xib; sourceTree = "<group>"; };
 		135EB041282B8CEA00194216 /* StartTheClockVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTheClockVC.swift; sourceTree = "<group>"; };
 		135EB043282B8CF400194216 /* TaskDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsVC.swift; sourceTree = "<group>"; };
 		135EB048282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxInTaskDetailsTVCell.swift; sourceTree = "<group>"; };
 		135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckboxInTaskDetailsTVCell.xib; sourceTree = "<group>"; };
 		135EB04D282B8DB100194216 /* SubTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTaskViewModel.swift; sourceTree = "<group>"; };
 		135EB04F282B8DC500194216 /* SubTaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTaskModel.swift; sourceTree = "<group>"; };
+		13891FE128327EAC005DE6A6 /* CommonMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMethods.swift; sourceTree = "<group>"; };
 		13B3EC5F282BC3970068200B /* TaskDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskDetails.storyboard; sourceTree = "<group>"; };
 		3584D486E8CE52563A0F70EA /* Pods-DoorcastRebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.release.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.release.xcconfig"; sourceTree = "<group>"; };
 		467B28FC523D2B33E1C10038 /* Pods-DoorcastRebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.debug.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -301,7 +309,9 @@
 		0771A2BF2823F8E000758DD9 /* CommonMethods */ = {
 			isa = PBXGroup;
 			children = (
+				133A3AF82833B8460054C75B /* CommonAlertVC */,
 				0771A2C02823F8EF00758DD9 /* TimerView */,
+				13891FE128327EAC005DE6A6 /* CommonMethods.swift */,
 			);
 			path = CommonMethods;
 			sourceTree = "<group>";
@@ -428,6 +438,15 @@
 				0771A2F52825348600758DD9 /* LoginModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		133A3AF82833B8460054C75B /* CommonAlertVC */ = {
+			isa = PBXGroup;
+			children = (
+				133A3AF92833B8630054C75B /* CommonAlertVC.swift */,
+				133A3AFA2833B8630054C75B /* CommonAlertVC.xib */,
+			);
+			path = CommonAlertVC;
 			sourceTree = "<group>";
 		};
 		135EB047282B8D8600194216 /* CheckboxInTaskDetailsTVCell */ = {
@@ -833,6 +852,7 @@
 		E31C92C22822453800600CEE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				072937982833A0EB002F15D5 /* speechBubble.swift */,
 				4E07C864282292490090D088 /* Font */,
 				E31C92C92822466700600CEE /* StoryboardExtension.swift */,
 				E347D350282258AB00122C8B /* DeviceName.swift */,
@@ -1007,6 +1027,7 @@
 				135EB04B282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib in Resources */,
 				4E07C860282291FB0090D088 /* Oswald-MediumItalic.ttf in Resources */,
 				E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */,
+				133A3AFC2833B8630054C75B /* CommonAlertVC.xib in Resources */,
 				4E07C861282291FB0090D088 /* Oswald-Regular.ttf in Resources */,
 				0721911C2823E8F300116F43 /* calendarCVCell.xib in Resources */,
 				4E07C862282291FB0090D088 /* Oswald-RegularItalic.ttf in Resources */,
@@ -1099,6 +1120,7 @@
 				AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */,
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
 				135EB042282B8CEA00194216 /* StartTheClockVC.swift in Sources */,
+				13891FE228327EAC005DE6A6 /* CommonMethods.swift in Sources */,
 				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
 				07712BD7282CCB930074F948 /* CrewModel.swift in Sources */,
 				4E07C8822828E4D90090D088 /* ProfileViewModel.swift in Sources */,
@@ -1114,8 +1136,10 @@
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
 				135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */,
 				135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */,
+				133A3AFB2833B8630054C75B /* CommonAlertVC.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
 				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,
+				072937992833A0EB002F15D5 /* speechBubble.swift in Sources */,
 				AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */,
 				0771A2F72825348600758DD9 /* LoginVC.swift in Sources */,
 				135EB044282B8CF400194216 /* TaskDetailsVC.swift in Sources */,
@@ -1315,7 +1339,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS(new)/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1347,7 +1371,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS(new)/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

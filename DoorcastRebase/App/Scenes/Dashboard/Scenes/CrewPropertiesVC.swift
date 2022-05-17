@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+
+
 class CrewPropertiesVC: UIViewController {
     
     @IBOutlet weak var propertiesTV: UITableView!
@@ -24,10 +27,10 @@ class CrewPropertiesVC: UIViewController {
     @IBOutlet weak var sideArrowImg: UIImageView!
     @IBOutlet weak var sideArrowBtn: UIButton!
     
-    static var newInstance: OnBoardingVC? {
-        let storyboard = UIStoryboard(name: Storyboard.home.name,
+    static var newInstance: CrewPropertiesVC? {
+        let storyboard = UIStoryboard(name: Storyboard.dashboard.name,
                                       bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? OnBoardingVC
+        let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? CrewPropertiesVC
         return vc
     }
     
@@ -38,39 +41,52 @@ class CrewPropertiesVC: UIViewController {
     var crewviewModel : CrewProperties?
     var type = String()
     var orgname = String()
-    var crewPropertyIds = [String]()
+    // var crewPropertyIds = [String]()
     var propertyName: Bool = true
     var propertyId = [String]()
-    var allpropertyId = String()
     
     
-  
     
     override func viewWillAppear(_ animated: Bool) {
         // written payload here.
         
-        self.organizationName.text = self.orgname
+        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")?.uppercased()
         
+        crewPropertyALLIds.removeAll()
+        crewPropertyIds.removeAll()
+        showproperty = ""
+        
+        self.organizationName.text = self.orgname
         var parms = [String: Any]()
         parms["type"] = getOrganizationsModelData?.organization_id
         defaults.set(getOrganizationsModelData?.organization_id,forKey: UserDefaultsKeys.org_id)
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
+        changeStatusBarColor(with: .ThemeColor)
         
+        
+        showSelectedBackground.backgroundColor = .gray
+        selectedPropertiesBtn.isUserInteractionEnabled = false
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+        // userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+        
         
         crewviewModel = CrewProperties(self)
         
         dateLabel.text =  Date().MonthDateDayFormatter?.uppercased()
+        userNameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldRegular(size: 18)
         
         propertiesTV.allowsSelection = true
         propertiesTV.delegate = self
         propertiesTV.dataSource = self
         propertiesTV.allowsMultipleSelection = true
+        
         
         propertiesTV.register(CompanyTVCell.self, forCellReuseIdentifier: "CrewPropertiesTVCell")
         propertiesTV.register(UINib(nibName: "CrewPropertiesTVCell", bundle: nil), forCellReuseIdentifier: "CrewPropertiesTVCell")
@@ -83,15 +99,15 @@ class CrewPropertiesVC: UIViewController {
     
     func updateFonts() {
         // to add fonts
-    dateLabel.font = UIFont.oswaldRegular(size: 18)
-    userNameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldRegular(size: 18)
+        userNameLabel.font = UIFont.oswaldRegular(size: 18)
         
     }
     
     
     func updateColor() {
         // to add colors
-    
+        
         dateLabel.textColor = UIColor.white
         lbl_chooseProperties.textColor = UIColor.ThemeColor
         userNameLabel.textColor = UIColor.white
@@ -103,29 +119,31 @@ class CrewPropertiesVC: UIViewController {
     @IBAction func didTapOnAllProperties(_ sender: Any) {
         
         let sb = UIStoryboard(name: "TaskDetails", bundle: nil)
+        
         let vc = sb.instantiateViewController(withIdentifier: "CommonTaskDetailVC")
         vc.modalPresentationStyle = .fullScreen
-      //  self.present(vc, animated: false)
-        presentDetail(vc)
+        
+        showproperty = "all"
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func ShowSelectedProperties(_ sender: Any) {
         
         let arr = crewPropertyIds.joined(separator: ",")
-//         let propertyId =
-//        let arrayOfPropertyId = crewPropertIds
+        
         
         let storyboard = UIStoryboard(name: "TaskDetails", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "CommonTaskDetailVC") as! CommonTaskDetailVC
-        vc.crewPropertyIds = self.crewPropertyIds
+        vc.crewPropertyIds = crewPropertyIds
+        showproperty = "selected"
         vc.modalPresentationStyle = .fullScreen
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func menuBtn(_ sender: Any) {
-    
-      gotoNotificationScreen()
-
+        guard let vc = NotificationCenterVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -134,8 +152,8 @@ class CrewPropertiesVC: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "OnBoardingVC") as! OnBoardingVC
         vc.modalPresentationStyle = .fullScreen
-       // self.present(vc, animated: true, completion: nil)
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
+        
     }
 }
 
@@ -154,7 +172,10 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         let data = crewproperties?.data[indexPath.section].propertyData
         cell.lbl_PropertiesValue.text = data?[indexPath.row].propertyName
         cell.lbl_PropertiesValue.textAlignment = .left
+        cell.PropertiesHolderView.backgroundColor = .white
+        cell.lbl_PropertiesValue.textColor = .black
         cell.selectionStyle = .none
+        crewPropertyALLIds.append(data?[indexPath.row].propertyID ?? "")
         return cell
     }
     
@@ -173,14 +194,14 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
         showSelectedBackground.backgroundColor = .ThemeColor
         
         propertyName = false
-        self.crewPropertyIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
-//        print(crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)
+        crewPropertyIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
+        //        print(crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)
         print("creeeeeww == \(crewPropertyIds)")
-
+        
         // to change the color when selected the view of showSelectedBackground
-           if crewPropertyIds.count > 0 {
+        if crewPropertyIds.count > 0 {
             showSelectedBackground.backgroundColor = .ThemeColor
-        selectedPropertiesBtn.isUserInteractionEnabled = true
+            selectedPropertiesBtn.isUserInteractionEnabled = true
             
         }else{
             showSelectedBackground.backgroundColor = .gray
@@ -192,20 +213,26 @@ extension CrewPropertiesVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        
         let cell = tableView.cellForRow(at: indexPath) as! CrewPropertiesTVCell
-        cell.PropertiesHolderView.backgroundColor = .white
+        
         cell.btn_checked.isHidden = true
         cell.lbl_PropertiesValue.textColor = .black
+        cell.PropertiesHolderView.backgroundColor = .white
         propertyName = true
-       
         
-        let item = crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID
-        let itemToRemove = item
-        if let index = crewPropertyIds.firstIndex(of: itemToRemove!)
-        {
-            self.crewPropertyIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
+        let propertyID = crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID
+        var deselectedIndex:Int?
+        for (index,value) in crewPropertyIds.enumerated() {
+            if value == propertyID {
+                deselectedIndex = index
+            }
         }
-        print( crewPropertyIds.count)
+        
+        
+        crewPropertyIds.remove(at:deselectedIndex ?? 0)
+        print( crewPropertyIds)
         
         // to change the color when deselected the view of showSelectedBackground
         if crewPropertyIds.count > 0 {

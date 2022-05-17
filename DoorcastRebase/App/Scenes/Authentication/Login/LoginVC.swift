@@ -43,6 +43,15 @@ class LoginVC: UIViewController {
     
     var viewModel : LoginViewModel!
     
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        changeStatusBarColor(with: .ThemeColor)
+        defaults.set("", forKey: UserDefaultsKeys.globalAT)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginViewModel(self)
@@ -51,11 +60,12 @@ class LoginVC: UIViewController {
         setupUI()
         
     }
+
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        defaults.set("", forKey: UserDefaultsKeys.globalAT)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        defaults.set("", forKey: UserDefaultsKeys.globalAT)
+//    }
     
     func setupUI()
     {
@@ -175,7 +185,7 @@ class LoginVC: UIViewController {
 
         guard let vc = ForgotPasswordVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
-        presentDetail(vc)
+        self.present(vc, animated: true, completion: nil)
         
     }
     
@@ -230,6 +240,11 @@ class LoginVC: UIViewController {
 
 extension LoginVC : LoginViewModelProtocol {
     func loginSuccess(loginResponse: LoginModel) {
+        
+        print("loginResponse \(loginResponse)")
+        UserDefaults.standard.set(loginResponse.data?.fullname, forKey: "fullname")
+        UserDefaults.standard.set(loginResponse.data?.mobile, forKey: "mobile")
+        UserDefaults.standard.set(loginResponse.data?.email, forKey: "email")
         SessionManager.saveSessionInfo(loginResponse: loginResponse)
         self.gotoHomeScreen()
     }

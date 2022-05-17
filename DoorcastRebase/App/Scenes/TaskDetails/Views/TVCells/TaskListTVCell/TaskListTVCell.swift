@@ -15,6 +15,7 @@ class TaskListTVCell: UITableViewCell {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var taskNameLabel: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,7 +33,21 @@ class TaskListTVCell: UITableViewCell {
         roleLabel.text = modelData.role_name
         propertyNameLabel.text = modelData.propertyname
         taskNameLabel.text = "\(modelData.unit ?? "") • \(modelData.taskname ?? "")"//1-A • Task-New QA 1
+   
+     
+        
+       
+       
+    
+    
     }
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func nextButtonAction(_ sender: Any) {
     }

@@ -8,39 +8,44 @@
 import UIKit
 
 class CommonTaskDetailVC: UIViewController {
-
+    
     @IBOutlet weak var incompleteButton: UIButton!
     @IBOutlet weak var parentSegmentView: UIView!
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var timerView: TimerView!
-    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendarView: UIView!
-    
-    
     @IBOutlet weak var calImageViewHolder: UIView!
     @IBOutlet weak var calImageView: UIImageView!
     @IBOutlet weak var calShowButton: UIButton!
-    
-    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var notificationViewButton: UIButton!
-    
     @IBOutlet weak var completedTaskCountHolderView: UIView!
     @IBOutlet weak var completedTaskCountLabel: UILabel!
     
     
     
+    @IBOutlet weak var speechView: SpeechBubble!
+    @IBOutlet weak var startDaylbl: UILabel!
+    @IBOutlet weak var startDayButton: UIButton!
+    @IBOutlet weak var dayAlertlbl: UILabel!
+    
+    
+   
     
     var crewPropertyIds = [String]()
+    
     
     static var newInstance: CommonTaskDetailVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
                                       bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? CommonTaskDetailVC
         return vc
+        
+        
     }
+    
     
     private lazy var incompleteViewController: IncompleteTasksVC = {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name, bundle: Bundle.main)
@@ -57,8 +62,18 @@ class CommonTaskDetailVC: UIViewController {
         return viewController
     }()
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")?.capitalized
+        changeStatusBarColor(with: .ThemeColor)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldRegular(size: 18)
         configureUI()
         setupUI()
     }
@@ -66,7 +81,8 @@ class CommonTaskDetailVC: UIViewController {
     func configureUI(){
         navigationController?.navigationBar.isHidden = true
         calendarView.isHidden = true
-        userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+        // userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+        
         setSegmentedUI(selectedButton: incompleteButton, UnSelectButton: completeButton)
         remove(asChildViewController: completeViewController)
         add(asChildViewController: incompleteViewController)
@@ -90,6 +106,24 @@ class CommonTaskDetailVC: UIViewController {
         self.dateLabel.text = Date().MonthDateDayFormatter
         backButton.setImage(UIImage(named: "chevron-left-solid")?.withTintColor(UIColor.white), for: .normal)
         notificationViewButton.setImage(UIImage(named: "menu")?.withTintColor(UIColor.white), for: .normal)
+        
+        
+        
+        self.parentSegmentView.bringSubviewToFront(self.speechView)
+        speechView.backgroundColor = UIColor.clear
+        speechView.isHidden = true
+        startDaylbl.text = "Start day"
+        startDaylbl.textColor = UIColor.white
+        startDaylbl.textAlignment = .center
+        startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
+        
+        dayAlertlbl.backgroundColor = UIColor.ThemeColor
+        dayAlertlbl.isHidden = true
+        dayAlertlbl.text = "Your day has beeen started"
+        dayAlertlbl.textAlignment = .center
+        dayAlertlbl.font = UIFont.oswaldLightItalic(size: 15)
+        
+        
     }
     
     @IBAction func incompleteButtonAction(_ sender: Any) {
@@ -119,19 +153,43 @@ class CommonTaskDetailVC: UIViewController {
         let sb = UIStoryboard(name: "TaskDetails", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CalendarVC")
         vc.modalPresentationStyle = .overCurrentContext
-      //  self.present(vc, animated: false)
-        presentDetail(vc)
+        self.present(vc, animated: false)
+        
     }
     
     
     @IBAction func didTapOnBackButton(_ sender: Any) {
-        self.dismiss(animated: false)
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "gotoOnBoardingVC"), object: startDaylbl.text ?? "")
     }
     
     
     @IBAction func didTapOnNotificationCenterViewButton(_ sender: Any) {
         print("didTapOnNotificationCenterViewButton")
+        guard let vc = NotificationCenterVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
+    
+    
+    
+    @IBAction func startStopDayAction(_ sender: Any) {
+        print("startStopDayAction")
+       
+        
+        if startDaylbl.text == "Start day" {
+            
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
+            startDaylbl.text = "Stop daay"
+        }else {
+            
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
+            startDaylbl.text = "Start day"
+        }
+        
+        
+        
+    }
+    
     
     
     // MARK: - Helper Methods

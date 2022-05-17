@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -111,7 +111,7 @@
                                                                 <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
-                                                                    <action selector="emailEditingChangedAction:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="g71-pL-46h"/>
+                                                                    <action selector="didEmailEditingBegin:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="6XR-Ll-4Dh"/>
                                                                 </connections>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ljg-sX-Xis">
@@ -230,8 +230,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJR-7o-Am2">
-                                                        <rect key="frame" x="44" y="15.5" width="27" height="19.5"/>
-                                                        <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="14"/>
+                                                        <rect key="frame" x="44" y="13" width="35" height="24.5"/>
+                                                        <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -245,7 +245,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="chevron-left-solid"/>
                                                         <connections>
-                                                            <action selector="backButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JoH-Jd-gbW"/>
+                                                            <action selector="backButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Js-B6-u04"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -297,7 +297,7 @@
                     <connections>
                         <outlet property="NameLabel" destination="2Ee-NE-yjY" id="HBn-ez-ilP"/>
                         <outlet property="Nametxtfld" destination="h3m-57-1s2" id="vF4-8l-bXG"/>
-                        <outlet property="backBtn" destination="cTg-dO-jQm" id="m5a-DR-com"/>
+                        <outlet property="backBtn" destination="cTg-dO-jQm" id="XaL-jy-Yp1"/>
                         <outlet property="dateLbl" destination="rJR-7o-Am2" id="bJi-cW-cbk"/>
                         <outlet property="editButton" destination="Kw7-Fr-Irh" id="mT9-84-JVm"/>
                         <outlet property="editButtonImage" destination="vvp-Go-Te2" id="pLF-pt-mLK"/>

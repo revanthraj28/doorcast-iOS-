@@ -10,7 +10,7 @@ import Foundation
 struct LoginModel : Codable {
     let status_code : Int?
     let message : String?
-    let data : LoginModelData?
+    var data : LoginModelData?
 
     enum CodingKeys: String, CodingKey {
 
@@ -31,7 +31,7 @@ struct LoginModel : Codable {
 struct LoginModelData : Codable {
     let login_id : String?
     let accesstoken : String?
-    let fullname : String?
+    var fullname : String?
     let email : String?
     let mobile : String?
     let doj : String?
