@@ -49,10 +49,10 @@ class CrewPropertiesVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // written payload here.
         
+        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+        
         crewPropertyALLIds.removeAll()
         crewPropertyIds.removeAll()
-        
-        
         showproperty = ""
         
         self.organizationName.text = self.orgname
@@ -65,10 +65,13 @@ class CrewPropertiesVC: UIViewController {
         selectedPropertiesBtn.isUserInteractionEnabled = false
 }
     
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+       // userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+       
         
         crewviewModel = CrewProperties(self)
         

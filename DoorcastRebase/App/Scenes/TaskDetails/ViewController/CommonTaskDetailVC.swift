@@ -58,6 +58,13 @@ class CommonTaskDetailVC: UIViewController {
         return viewController
     }()
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -67,7 +74,8 @@ class CommonTaskDetailVC: UIViewController {
     func configureUI(){
         navigationController?.navigationBar.isHidden = true
         calendarView.isHidden = true
-        userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+       // userNameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+       
         setSegmentedUI(selectedButton: incompleteButton, UnSelectButton: completeButton)
         remove(asChildViewController: completeViewController)
         add(asChildViewController: incompleteViewController)

@@ -35,12 +35,20 @@ class OnBoardingVC: UIViewController {
     var logoutdata : LogoutModel!
     var logoutModel : LogoutViewModel!
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        usernameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         logoutHolderView.layer.cornerRadius = logoutHolderView.frame.size.height / 2
         
-        usernameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+      //  usernameLabel.text = SessionManager.loginInfo?.data?.fullname?.uppercased() ?? ""
+     //   usernameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+        
         
         CompanyTV.backgroundColor = .white
         view.backgroundColor = .white

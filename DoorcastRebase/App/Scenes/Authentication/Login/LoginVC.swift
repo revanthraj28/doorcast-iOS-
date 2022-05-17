@@ -238,6 +238,9 @@ class LoginVC: UIViewController {
 
 extension LoginVC : LoginViewModelProtocol {
     func loginSuccess(loginResponse: LoginModel) {
+        
+        print("loginResponse \(loginResponse)")
+        UserDefaults.standard.set(loginResponse.data?.fullname, forKey: "fullname")
         SessionManager.saveSessionInfo(loginResponse: loginResponse)
         self.gotoHomeScreen()
     }

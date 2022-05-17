@@ -99,7 +99,7 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
         nameErrorLabel.isHidden = true
         emailtxtfld.isUserInteractionEnabled = false
         
-        Nametxtfld.text = fullName
+        Nametxtfld.text = UserDefaults.standard.string(forKey: "fullname")
         emailtxtfld.text = email
         phonenumtxtfld.text = mobile
         
@@ -183,6 +183,8 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     func ProfileSuccess(ProfileResponse: ProfileModel) {
         print("ProfileResponse....\(ProfileResponse)")
        
+      //  SessionManager.saveSessionInfo(loginResponse: loginResponse)
+        
         rightView.isHidden = true
         leftView.isHidden =  false
         editButtonView.isHidden = false
@@ -193,6 +195,8 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
             
 //            print("nameeelabel == \(SessionManager.loginInfo?.data?.fullname)")
             NameLabel.text = ProfileResponse.data?.full_name
+            UserDefaults.standard.set(ProfileResponse.data?.full_name, forKey: "fullname")
+            
             numberLabel.text = ProfileResponse.data?.mobile
             emailLabel.text = ProfileResponse.data?.email
         

@@ -45,7 +45,6 @@ struct ProfileModelData : Codable {
         case mobile = "mobile"
         case employee_id = "employee_id"
         
-        
     }
 
     init(from decoder: Decoder) throws {
