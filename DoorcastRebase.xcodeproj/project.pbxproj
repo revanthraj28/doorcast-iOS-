@@ -84,6 +84,8 @@
 		4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */; };
 		4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */; };
 		638E5FCC3ED177D7172BAB15 /* Pods_DoorcastRebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */; };
+		AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */; };
+		AE198CCF2833A10D00252A74 /* ForceStopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCE2833A10D00252A74 /* ForceStopModel.swift */; };
 		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
 		AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */; };
 		AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */; };
@@ -208,6 +210,8 @@
 		4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAssignedTVCell.swift; sourceTree = "<group>"; };
 		4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskAssignedTVCell.xib; sourceTree = "<group>"; };
 		4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopViewModel.swift; sourceTree = "<group>"; };
+		AE198CCE2833A10D00252A74 /* ForceStopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopModel.swift; sourceTree = "<group>"; };
 		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
 		AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
 		AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
@@ -727,6 +731,7 @@
 				07712BCF282CCB850074F948 /* ReassignCrewViewModel.swift */,
 				E304886B2822ABB0004ECA60 /* TaskListViewModel.swift */,
 				135EB04D282B8DB100194216 /* SubTaskViewModel.swift */,
+				AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -739,6 +744,7 @@
 				07712BD3282CCB930074F948 /* ReassignCrewModel.swift */,
 				E30488702822AC74004ECA60 /* IncompleteTaskListModel.swift */,
 				135EB04F282B8DC500194216 /* SubTaskModel.swift */,
+				AE198CCE2833A10D00252A74 /* ForceStopModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1152,7 +1158,9 @@
 				AE80FC84282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift in Sources */,
 				E304886C2822ABB0004ECA60 /* TaskListViewModel.swift in Sources */,
 				0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */,
+				AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */,
 				072191132823D03500116F43 /* CalendarVC.swift in Sources */,
+				AE198CCF2833A10D00252A74 /* ForceStopModel.swift in Sources */,
 				E31C92AA282244CC00600CEE /* SceneDelegate.swift in Sources */,
 				E37939D72822A6B8008D83E4 /* TableViewExtensions.swift in Sources */,
 			);

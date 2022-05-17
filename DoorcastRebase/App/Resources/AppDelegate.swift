@@ -25,12 +25,10 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
-        
         FirebaseApp.configure()
         registerForPush()
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
-        
         
         if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: AnyObject] {
             if let aps1 = userInfo["aps"] as? NSDictionary {
@@ -62,8 +60,6 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         }
     }
     
-    
-    
     func registerForPush() {
         // Register for Push notifications
         // request Permissions
@@ -77,13 +73,9 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         })
     }
     
-    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         NSLog("%@: failed to register for remote notifications: %@", self.description, error.localizedDescription)
     }
-    
-    
-    
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //        CleverTap.sharedInstance()?.setPushToken(deviceToken)
@@ -92,8 +84,6 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         Messaging.messaging().apnsToken = deviceToken
         print(deviceToken)
     }
-    
-    
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
@@ -104,8 +94,6 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         // TODO: If necessary send token to application server.
         // No
     }
-    
-    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
@@ -156,6 +144,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         }
         
     }
+    
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -163,8 +152,6 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         completionHandler(UIBackgroundFetchResult.newData)
         print("userInfo:::\(userInfo)")
     }
-    
-    
     
     func pushNotificationTapped(withCustomExtras customExtras: [AnyHashable : Any]!) {
         NSLog("pushNotificationTapped: customExtras: ", customExtras)

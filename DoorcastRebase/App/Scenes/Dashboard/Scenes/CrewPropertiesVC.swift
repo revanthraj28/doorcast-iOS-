@@ -53,12 +53,8 @@ class CrewPropertiesVC: UIViewController {
         
         var parms = [String: Any]()
         parms["type"] = getOrganizationsModelData?.organization_id
+        defaults.set(getOrganizationsModelData?.organization_id,forKey: UserDefaultsKeys.org_id)
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
-        
-//        allpropertyId = data?[indexPath.row].propertyName
-//        self.crewPropertIds.append((crewproperties?.data[indexPath.section].propertyData[indexPath.row].propertyID)!)
-
-//        allpropertyId = CrewPropertiesData?.propertyData?[indexpath.row].propertyID
         
     }
     
