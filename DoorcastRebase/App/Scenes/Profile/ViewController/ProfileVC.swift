@@ -9,10 +9,10 @@ import UIKit
 
 class ProfileVC: UIViewController,ProfileViewModelProtocol {
     
-   
+    
     @IBOutlet weak var saveBtn: UIButton!
     
-   // @IBOutlet weak var backImage: UIImageView!
+    // @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var navBarView: UIView!
@@ -20,7 +20,6 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var leftView: UIView!
-    
     @IBOutlet weak var resetpasswordButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var editButtonImage: UIImageView!
@@ -28,23 +27,16 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     @IBOutlet weak var phonenumtxtfld: UITextField!
     @IBOutlet weak var emailtxtfld: UITextField!
     @IBOutlet weak var Nametxtfld: UITextField!
-    
     @IBOutlet weak var rightView: UIView!
-    
     @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var yourProfile: UILabel!
-    
     @IBOutlet weak var phonenumErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
     
     
-    
-    var email = SessionManager.loginInfo?.data?.email
-    var fullName =  SessionManager.loginInfo?.data?.fullname
-    var mobile = SessionManager.loginInfo?.data?.mobile
-    
-    
-    
+    var email = String()
+    var fullName =  String()
+    var mobile = String()
     var selected: Bool = true
     var employee_id: String? = ""
     var ProfileResponseModel : ProfileModelData?
@@ -55,6 +47,20 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
                                       bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? ProfileVC
         return vc
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        Nametxtfld.text = UserDefaults.standard.string(forKey: "fullname")
+        emailtxtfld.text = UserDefaults.standard.string(forKey: "email")
+        phonenumtxtfld.text = UserDefaults.standard.string(forKey: "mobile")
+        
+        NameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+        emailLabel.text = UserDefaults.standard.string(forKey: "email")
+        numberLabel.text = UserDefaults.standard.string(forKey: "mobile")
+        
     }
     
     
@@ -75,17 +81,12 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
         phonenumErrorLabel.isHidden = true
         emailErrorLabel.isHidden = true
         editButtonView.layer.cornerRadius = editButtonView.frame.height/2
-        print("employee_id...\( SessionManager.loginInfo?.data?.login_id)")
         Nametxtfld.addBottomBorder()
+        emailtxtfld.addBottomBorder()
         phonenumtxtfld.addBottomBorder()
         editButtonImage.image = UIImage(named: "MicrosoftTeams-image")
         resetpasswordButton.layer.cornerRadius = 5
         saveBtn.layer.cornerRadius = 5
-        
-        
-        NameLabel.text = fullName
-        emailLabel.text = email
-        numberLabel.text = mobile
         
         phonenumtxtfld.delegate = self
         emailtxtfld.delegate = self
@@ -97,13 +98,9 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
         emailtxtfld.font = UIFont.oswaldMedium(size: 16)
         
         nameErrorLabel.isHidden = true
-        emailtxtfld.isUserInteractionEnabled = false
+        emailtxtfld.isUserInteractionEnabled = true
         
-        Nametxtfld.text = UserDefaults.standard.string(forKey: "fullname")
-        emailtxtfld.text = email
-        phonenumtxtfld.text = mobile
         
-        print("employee_id\(employee_id)")
         
         dateLbl.text = Date().MonthDateDayFormatter?.uppercased()
         
@@ -111,9 +108,8 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     
     
     @IBAction func backButtonAction(_ sender: Any) {
-//        self.navigationController?.popViewController(animated: true)
         dismiss(animated: false, completion: nil)
-    
+        
     }
     
     
@@ -130,12 +126,22 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     
     @IBAction func didNameEditingBegin(_ sender: Any) {
         
-        if Nametxtfld.text != ""
-        {
+        if Nametxtfld.text != "" {
             validateLabel(lblName: nameErrorLabel, hide: true, lblText: "")
         }
         
     }
+    
+    
+    @IBAction func didEmailEditingBegin(_ sender: Any) {
+        
+        if emailtxtfld.text != "" {
+            validateLabel(lblName: emailErrorLabel, hide: true, lblText: "")
+        }
+        
+    }
+    
+    
     @IBAction func didTaponEditButton(_ sender: Any) {
         
         leftView.isHidden = true
@@ -157,50 +163,52 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     
     @IBAction func didTapOnSaveBtn(_ sender: Any) {
         
-        print("tap on save btn")
-        if Nametxtfld.text == "" {
+        
+        if Nametxtfld.text?.isEmpty == true || Nametxtfld.text == "" {
             validateLabel(lblName: nameErrorLabel, hide: false, lblText: "Enter Name")
-        }
-        else {
+        }else if emailtxtfld.text?.isEmpty == true || emailtxtfld.text == "" {
+            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Eamil")
+        }else if emailtxtfld.text?.isValidEmail() == false {
+            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Valid Email")
+        }else if phonenumtxtfld.text?.isEmpty == true || phonenumtxtfld.text == "" {
+            validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Mobile Number")
+        }else if phonenumtxtfld.text?.validateAsPhoneNumber() == false {
+            validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Valid  Mobile Number")
+        }else {
+            var parms = [String: Any]()
+            parms["email"] = self.emailtxtfld.text
+            parms["full_name"] = self.Nametxtfld.text
+            parms["mobile"] = self.phonenumtxtfld.text
+            parms["employee_id"] = SessionManager.loginInfo?.data?.login_id
             
-            if phonenumtxtfld.text?.validateAsPhoneNumber() == false {
-                validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Valid Number")
-            } else {
-                
-                var parms = [String: Any]()
-                parms["email"] = self.emailtxtfld.text
-                parms["full_name"] = self.Nametxtfld.text
-                parms["mobile"] = self.phonenumtxtfld.text
-                parms["employee_id"] = SessionManager.loginInfo?.data?.login_id
-                
-                self.vmodel?.ProfileApi(dictParam: parms)
-            }
+            self.vmodel?.ProfileApi(dictParam: parms)
         }
+        
     }
     
     
     
     func ProfileSuccess(ProfileResponse: ProfileModel) {
         print("ProfileResponse....\(ProfileResponse)")
-       
-      //  SessionManager.saveSessionInfo(loginResponse: loginResponse)
         
         rightView.isHidden = true
         leftView.isHidden =  false
         editButtonView.isHidden = false
         editButtonImage.isHidden = false
-      
         
-        DispatchQueue.main.async { [self] in
+        
+        DispatchQueue.main.async {[self] in
             
-//            print("nameeelabel == \(SessionManager.loginInfo?.data?.fullname)")
-            NameLabel.text = ProfileResponse.data?.full_name
+            
             UserDefaults.standard.set(ProfileResponse.data?.full_name, forKey: "fullname")
+            UserDefaults.standard.set(ProfileResponse.data?.mobile, forKey: "mobile")
+            UserDefaults.standard.set(ProfileResponse.data?.email, forKey: "email")
             
-            numberLabel.text = ProfileResponse.data?.mobile
-            emailLabel.text = ProfileResponse.data?.email
-        
-
+            NameLabel.text = UserDefaults.standard.string(forKey: "fullname")
+            emailLabel.text = UserDefaults.standard.string(forKey: "email")
+            numberLabel.text = UserDefaults.standard.string(forKey: "mobile")
+            
+            
         }
         
     }
@@ -208,6 +216,8 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
 }
 
 extension ProfileVC: UITextFieldDelegate {
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if Nametxtfld.text == ""{
@@ -217,6 +227,8 @@ extension ProfileVC: UITextFieldDelegate {
             nameErrorLabel.text = ""
         }
     }
+    
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField == self.phonenumtxtfld) {
             let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)

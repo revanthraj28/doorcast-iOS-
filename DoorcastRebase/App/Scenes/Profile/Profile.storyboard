@@ -111,7 +111,7 @@
                                                                 <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
-                                                                    <action selector="emailEditingChangedAction:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="g71-pL-46h"/>
+                                                                    <action selector="didEmailEditingBegin:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="6XR-Ll-4Dh"/>
                                                                 </connections>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ljg-sX-Xis">
