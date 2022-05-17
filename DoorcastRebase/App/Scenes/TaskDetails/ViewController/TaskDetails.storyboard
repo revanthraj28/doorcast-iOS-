@@ -277,6 +277,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="meOrTeamHeightConstraint" destination="fDo-Un-h9Y" id="tKj-Bh-AEF"/>
                         <outlet property="meOrTeamSegment" destination="pj8-H5-f6t" id="8CT-46-pav"/>
                         <outlet property="taskListTableView" destination="bWC-Jm-wCh" id="sUy-Hz-ZwT"/>
                     </connections>

@@ -95,9 +95,10 @@ class OnBoardingVC: UIViewController {
     
     @IBAction func allTasksBtnIsTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "TaskDetails", bundle: nil)
-        if let testController = storyboard.instantiateViewController(withIdentifier :"CommonTaskDetailVC") as? CommonTaskDetailVC {
-            testController.modalPresentationStyle = .overCurrentContext
-            self.present(testController, animated: true)
+        if let vc = storyboard.instantiateViewController(withIdentifier :"CommonTaskDetailVC") as? CommonTaskDetailVC {
+            showproperty = "all"
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: true)
         }
                
     }

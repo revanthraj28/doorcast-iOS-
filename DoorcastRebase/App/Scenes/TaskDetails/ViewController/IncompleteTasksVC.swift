@@ -12,8 +12,10 @@ class IncompleteTasksVC: UIViewController {
     @IBOutlet weak var taskListTableView: UITableView!
     @IBOutlet weak var meOrTeamSegment: UISegmentedControl!
     
+    @IBOutlet weak var meOrTeamHeightConstraint: NSLayoutConstraint!
     var viewModel : TaskListViewModel!
     var incompleteTaskListModel : IncompleteTaskListModel?
+    var IncompleteTaskList : IncompleteTaskListModelData?
     var timerBool = false
     var tastListShowBool = true
     let bottomView: TimerView = TimerView()
@@ -22,7 +24,8 @@ class IncompleteTasksVC: UIViewController {
     var counter = 0
     var mainVC: CommonTaskDetailVC?
     var crewPropertyIds = [String]()
-    var showproperty = String()
+  //   var showproperty = String()
+    var roleName = String()
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -31,13 +34,13 @@ class IncompleteTasksVC: UIViewController {
         return vc
     }
     
- 
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         
         let crewpropertyIds = self.crewPropertyIds
         print("crewPropertyIds == \(crewPropertyIds.joined(separator: ","))")
-        print("crewPropertyIds all == \(crewPropertyALLIds.joined(separator: ","))")
+        
         
         NotificationCenter.default.removeObserver(self)
     }
@@ -47,11 +50,28 @@ class IncompleteTasksVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
         
-        configureContents()
+        
+        print("crewPropertyIds all == \(crewPropertyALLIds.joined(separator: ","))")
+        
+        
+        if showproperty == "all" {
+            
+            
+            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
+        } else {
+            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
+        }
+        
+        defaults.set("me", forKey: UserDefaultsKeys.task_type)
+        mainVC = self.parent as? CommonTaskDetailVC
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = TaskListViewModel(self)
+        
         configureUI()
     }
     
@@ -62,23 +82,15 @@ class IncompleteTasksVC: UIViewController {
     }
     
     func configureContents(){
-        viewModel = TaskListViewModel(self)
-        let arr = crewPropertyIds.joined(separator: ",")
         
-        if showproperty == "all" {
-            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
-        } else {
-            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
-        }
-   
-        defaults.set("me", forKey: UserDefaultsKeys.task_type)
-        mainVC = self.parent as? CommonTaskDetailVC
+        //        let arr = crewPropertyIds.joined(separator: ",")
+        
     }
     
     
     
     @objc func didTapOnTimerView(notification:Notification) {
-       
+        
         self.taskListTableView.isUserInteractionEnabled = true
         self.taskListTableView.alpha = 1
         
@@ -130,6 +142,16 @@ extension IncompleteTasksVC: TaskListProtocol {
     func showInCompleteTaskList(response: IncompleteTaskListModel?) {
         self.incompleteTaskListModel = response
         
+        
+        if self.incompleteTaskListModel?.data?.first?.role_name ?? "" == "CrewLead"
+        {
+            meOrTeamHeightConstraint.constant = 0
+            meOrTeamSegment.isHidden = true
+        } else {
+            meOrTeamHeightConstraint.constant = 40
+            meOrTeamSegment.isHidden = false
+        }
+        
         if let count = self.incompleteTaskListModel?.data?.count {
             if count <= 0 {
                 TableViewHelper.EmptyMessage(message: "No Tasks Assigned", tableview: self.taskListTableView, vc: self)
@@ -137,6 +159,8 @@ extension IncompleteTasksVC: TaskListProtocol {
                 TableViewHelper.EmptyMessage(message: "", tableview: self.taskListTableView, vc: self)
             }
         }
+        
+        
         DispatchQueue.main.async {
             self.taskListTableView.reloadData()
         }
@@ -180,7 +204,7 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             
         }
         self.present(vc, animated: true)
-      
+        
     }
     
     

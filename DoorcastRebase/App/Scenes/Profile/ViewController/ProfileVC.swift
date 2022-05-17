@@ -61,6 +61,7 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
         emailLabel.text = UserDefaults.standard.string(forKey: "email")
         numberLabel.text = UserDefaults.standard.string(forKey: "mobile")
         
+        changeStatusBarColor(with: .ThemeColor)
     }
     
     

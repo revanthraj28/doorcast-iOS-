@@ -47,6 +47,7 @@ class LoginVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        changeStatusBarColor(with: .ThemeColor)
         defaults.set("", forKey: UserDefaultsKeys.globalAT)
     }
     
@@ -59,6 +60,7 @@ class LoginVC: UIViewController {
         setupUI()
         
     }
+
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
