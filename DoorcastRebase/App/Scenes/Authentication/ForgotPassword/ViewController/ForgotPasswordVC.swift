@@ -19,6 +19,7 @@ class ForgotPasswordVC: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     
     var ForgotPasswordViewResponce : ForgotPasswordModel?
+    
     var viewModel : ForgotPasswordViewModel!
     
     static var newInstance: ForgotPasswordVC? {

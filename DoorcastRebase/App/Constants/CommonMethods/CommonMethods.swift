@@ -12,10 +12,10 @@ import UIKit
 var statusBar = UIView()
 
 func changeStatusBarColor(with color: UIColor) {
-
-        let statusBar = UIView(frame: UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
-
-        statusBar.backgroundColor = color
-        UIApplication.shared.windows.first?.addSubview(statusBar)
-
-    }
+    
+    let statusBar = UIView(frame: UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+    
+    statusBar.backgroundColor = color
+    UIApplication.shared.windows.first?.addSubview(statusBar)
+    
+}
