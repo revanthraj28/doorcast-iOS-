@@ -53,10 +53,14 @@ struct ApiEndpoints {
     static let SubTaskListApi = "exstream-sub-task"
     
     static let ReassignCrewApi = "exstream_getUserCompeltedTask"
+    
     static let getCrewListApi = "exstream_getCrewList"
+    static let AddCrewApi = "exstream_add_crew"
     
     static let forceFinishApi = "exstream_getInprogressTaskUser"
     static let forceStop = "exstream_forceStop"
+    
+    
     
 }
 
