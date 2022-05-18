@@ -9,7 +9,6 @@ import UIKit
 
 class CompletedTasksVC: UIViewController {
     
-    
     @IBOutlet weak var taskListTableView: UITableView!
     @IBOutlet weak var meOrTeamSegment: UISegmentedControl!
     @IBOutlet weak var meOrTeamHeightConstraint: NSLayoutConstraint!
@@ -22,7 +21,6 @@ class CompletedTasksVC: UIViewController {
     var timer : Timer?
     var counter = 0
     var mainVC: CommonTaskDetailVC?
-    var crewPropertyIds = [String]()
     var roleName = String()
     var loginID = String()
     var selectedSegmentIndex = Int()
@@ -35,6 +33,8 @@ class CompletedTasksVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("crewPropertyALLIds  \(crewPropertyIds.joined(separator: ","))")
         
         self.selectedSegmentIndex = meOrTeamSegment.selectedSegmentIndex
         self.selectedSegmentTitle = meOrTeamSegment.titleForSegment(at: self.selectedSegmentIndex) ?? ""
@@ -54,8 +54,16 @@ class CompletedTasksVC: UIViewController {
         taskListTableView.delegate = self
         taskListTableView.dataSource = self
         taskListTableView.register(TaskListTVCell.cellNib, forCellReuseIdentifier: TaskListTVCell.cellId)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        //  taskListTableView.addGestureRecognizer(tap)
+        
+        
     }
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        self.mainVC?.speechView.isHidden = true
+    }
     
     func observeNotifcations(){
         
@@ -67,13 +75,37 @@ class CompletedTasksVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(gotoOnBoardingVC(notification:)), name: NSNotification.Name.init(rawValue: "gotoOnBoardingVC"), object: nil)
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(tofromdate(notification:)), name: NSNotification.Name.init(rawValue: "tofromdate"), object: nil)
+        
+        
+        
     }
     
     func configureContents(){
-
+        
         callApi()
         mainVC = self.parent as? CommonTaskDetailVC
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
+        
+    }
+    
+    
+    var calBool = false
+    var calStartDate = String()
+    var calEndDate = String()
+    
+    @objc func tofromdate(notification:Notification) {
+        print("tofromdate tofromdate tofromdate")
+        
+        
+        let userinfo = notification.userInfo as? [String:Any]
+        calBool = userinfo?["calBool"] as? Bool ?? false
+        calStartDate = userinfo?["fromDate"] as? String ?? ""
+        calEndDate = userinfo?["toDate"] as? String ?? ""
+        
+        callApi()
+        
     }
     
     
@@ -96,7 +128,7 @@ class CompletedTasksVC: UIViewController {
     
     @objc func dayTaskAction(notification:Notification) {
         
-      
+        
         print("dayTaskAction CompletedTasksVC")
         mainVC?.speechView.isHidden = true
         
@@ -157,40 +189,52 @@ class CompletedTasksVC: UIViewController {
     func callApi() {
         
         
-        if self.selectedSegmentIndex == 0 {
-            
-            if showproperty == "all" {
-                
-                
-                viewModel.InCompleteListApi(task_type: "complete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
-            } else {
-                
-                
-                viewModel.InCompleteListApi(task_type: "complete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
-            }
-            
-            defaults.set("me", forKey: UserDefaultsKeys.task_type)
-            
+        if self.calBool == true {
+            callViewModelAPI(fromDate: "\(self.calStartDate)", todate: "\(calEndDate)")
         }else {
+            callViewModelAPI(fromDate: "all", todate: "all")
+        }
+        
+    
+        func callViewModelAPI(fromDate:String,todate:String) {
             
-            
-            if showproperty == "all" {
+            if self.selectedSegmentIndex == 0 {
+                
+                if showproperty == "all" {
+                    
+                    
+                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
+                } else {
+                    
+                    
+                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
+                }
+                
+                defaults.set("me", forKey: UserDefaultsKeys.task_type)
+                
+            }else {
                 
                 
-                viewModel.InCompleteListApi(task_type: "complete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "team")
-            } else {
+                if showproperty == "all" {
+                    
+                    
+                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "team")
+                } else {
+                    
+                    
+                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
+                }
                 
+                defaults.set("team", forKey: UserDefaultsKeys.task_type)
                 
-                viewModel.InCompleteListApi(task_type: "complete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
             }
-            
-            defaults.set("team", forKey: UserDefaultsKeys.task_type)
-            
         }
         
         
         
     }
+    
+    
     
     
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {
@@ -251,7 +295,7 @@ extension CompletedTasksVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListTVCell.cellId, for: indexPath) as! TaskListTVCell
         cell.selectionStyle = .none
-       
+        
         if let incompleteData = completeTaskListModel?.data?[indexPath.row] {
             cell.configureUI(modelData: incompleteData, task: "complete")
         }

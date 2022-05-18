@@ -24,7 +24,6 @@ class IncompleteTasksVC: UIViewController {
     var timer : Timer?
     var counter = 0
     var mainVC: CommonTaskDetailVC?
-    var crewPropertyIds = [String]()
     var roleName = String()
     var loginID = String()
     var selectedSegmentIndex = Int()
@@ -79,9 +78,7 @@ class IncompleteTasksVC: UIViewController {
     
     
     func configureContents() {
-        print("crewPropertyIds all == \(crewPropertyALLIds.joined(separator: ","))")
-        
-        
+       
         callApi()
         
         mainVC = self.parent as? CommonTaskDetailVC

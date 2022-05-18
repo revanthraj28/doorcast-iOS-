@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+
+
 class CommonTaskDetailVC: UIViewController {
     
     @IBOutlet weak var incompleteButton: UIButton!
@@ -35,7 +38,8 @@ class CommonTaskDetailVC: UIViewController {
     
     
     var crewPropertyIds = [String]()
-    
+   
+   
     
     static var newInstance: CommonTaskDetailVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -50,7 +54,7 @@ class CommonTaskDetailVC: UIViewController {
     private lazy var incompleteViewController: IncompleteTasksVC = {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name, bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "IncompleteTasksVC") as! IncompleteTasksVC
-        viewController.crewPropertyIds = crewPropertyIds
+        //viewController.crewPropertyIds = crewPropertyIds
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -65,6 +69,7 @@ class CommonTaskDetailVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
         if let fullname = UserDefaults.standard.string(forKey: "fullname") {
             userNameLabel.text = fullname.uppercased()
         }
@@ -149,8 +154,7 @@ class CommonTaskDetailVC: UIViewController {
     }
     
     
-    
-    
+
     @IBAction func didTapOnCalenderShowButton(_ sender: Any) {
         print("didTapOnCalenderShowButton")
         
@@ -184,7 +188,7 @@ class CommonTaskDetailVC: UIViewController {
             
             self.dayAlertlbl.fadeIn()
             self.dayAlertlbl.fadeOut()
-            
+         
             
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
             startDaylbl.text = "Stop daay"

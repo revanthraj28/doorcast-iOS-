@@ -38,6 +38,8 @@ class CalendarVC: UIViewController {
     let grayView = UIView()
     var btnDoneActionBool = Bool()
     
+    var calstartDate = String()
+    var calendDate = String()
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,10 +65,10 @@ class CalendarVC: UIViewController {
         holderView.layer.shadowRadius = 5
         
         doneButtonStyle(Selected: false)
-      
+        
         monthLabel.textColor = .black
         monthLabel.font = UIFont.oswaldMedium(size: 14)
-      
+        
         sundayLabel.textColor = .black
         sundayLabel.font = UIFont.oswaldMedium(size: 12)
         sundayLabel.text = "SU"
@@ -99,7 +101,7 @@ class CalendarVC: UIViewController {
         doneButtonHolderView.backgroundColor = UIColor.clear
         ButtonDone.setTitle("", for: .normal)
         
-       
+        
     }
     
     
@@ -150,6 +152,8 @@ class CalendarVC: UIViewController {
     func setupMonthLabel(date: Date) {
         monthLabel.text = date.monthYearName
     }
+    
+    
     func handleConfiguration(cell: JTAppleCell?, cellState: CellState) {
         guard let cell = cell as? calendarCVCell else { return }
         handleCellColor(cell: cell, cellState: cellState)
@@ -160,9 +164,18 @@ class CalendarVC: UIViewController {
             doneButtonStyle(Selected: false)
         }else if calendarView.selectedDates.count == 1 {
             labelSelectedDays.text = "\(cellState.date.customDateStringFormat("dd/MM/YYYY"))"
+            
+            calstartDate = "\(cellState.date.customDateStringFormat("dd/MM/YYYY"))"
+            calendDate = "\(cellState.date.customDateStringFormat("dd/MM/YYYY"))"
+            
             doneButtonStyle(Selected: true)
         }else {
             labelSelectedDays.text = "\(calendarView.selectedDates.first?.customDateStringFormat("dd/MM/YYYY") ?? "") - \(calendarView.selectedDates.last?.customDateStringFormat("dd/MM/YYYY") ?? "")"
+            
+            calstartDate = calendarView.selectedDates.first?.customDateStringFormat("dd/MM/YYYY") ?? ""
+            calendDate = calendarView.selectedDates.last?.customDateStringFormat("dd/MM/YYYY") ?? ""
+            
+           
             doneButtonStyle(Selected: true)
         }
     }
@@ -280,7 +293,11 @@ class CalendarVC: UIViewController {
         selectedfirstDate = nil
         selectedlastDate = nil
         
-        //    (self.parent as? CalendarViewProtocol)?.CloseCalendarAction()
+        defaults.set(true, forKey: "calSelectedBool")
+        
+        let userInfo = ["calBool":true,"fromDate":"\(calstartDate)","toDate":"\(calendDate)"] as [String : Any]
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "tofromdate"), object: nil,userInfo: userInfo)
+        
         self.dismiss(animated: true)
     }
     
