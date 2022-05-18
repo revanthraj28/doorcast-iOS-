@@ -96,8 +96,6 @@ class CompletedTasksVC: UIViewController {
     var calEndDate = String()
     
     @objc func tofromdate(notification:Notification) {
-        print("tofromdate tofromdate tofromdate")
-        
         
         let userinfo = notification.userInfo as? [String:Any]
         calBool = userinfo?["calBool"] as? Bool ?? false

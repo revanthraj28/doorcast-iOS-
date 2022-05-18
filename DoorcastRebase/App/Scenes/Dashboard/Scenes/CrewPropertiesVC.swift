@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class CrewPropertiesVC: UIViewController {
     
     @IBOutlet weak var propertiesTV: UITableView!

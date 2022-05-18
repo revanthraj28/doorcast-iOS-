@@ -44,8 +44,8 @@ extension UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordVC") as! ForgotPasswordVC
         vc.modalPresentationStyle = .fullScreen
-       // self.present(vc, animated:true, completion:nil)
-        presentDetail(vc)
+        self.present(vc, animated:true, completion:nil)
+       // presentDetail(vc)
     }
     
     
