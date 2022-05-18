@@ -32,7 +32,7 @@ class CommonTaskDetailVC: UIViewController {
     @IBOutlet weak var dayAlertlbl: UILabel!
     
     
-   
+    
     
     var crewPropertyIds = [String]()
     
@@ -65,7 +65,9 @@ class CommonTaskDetailVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        userNameLabel.text = UserDefaults.standard.string(forKey: "fullname")?.capitalized
+        if let fullname = UserDefaults.standard.string(forKey: "fullname") {
+            userNameLabel.text = fullname.uppercased()
+        }
         changeStatusBarColor(with: .ThemeColor)
     }
     
@@ -117,11 +119,13 @@ class CommonTaskDetailVC: UIViewController {
         startDaylbl.textAlignment = .center
         startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
         
-        dayAlertlbl.backgroundColor = UIColor.ThemeColor
+        
+        dayAlertlbl.textColor = UIColor.white
+        dayAlertlbl.backgroundColor = UIColor.red
         dayAlertlbl.isHidden = true
         dayAlertlbl.text = "Your day has beeen started"
         dayAlertlbl.textAlignment = .center
-        dayAlertlbl.font = UIFont.oswaldLightItalic(size: 15)
+        dayAlertlbl.font = UIFont.oswaldLightItalic(size: 25)
         
         
     }
@@ -174,7 +178,9 @@ class CommonTaskDetailVC: UIViewController {
     
     @IBAction func startStopDayAction(_ sender: Any) {
         print("startStopDayAction")
-       
+        
+        self.dayAlertlbl.fadeIn()
+        self.dayAlertlbl.fadeOut()
         
         if startDaylbl.text == "Start day" {
             
@@ -185,8 +191,6 @@ class CommonTaskDetailVC: UIViewController {
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
             startDaylbl.text = "Start day"
         }
-        
-        
         
     }
     
@@ -214,3 +218,5 @@ class CommonTaskDetailVC: UIViewController {
         viewController.removeFromParent()
     }
 }
+
+

@@ -359,7 +359,7 @@
                                     <segment title="Team"/>
                                 </segments>
                                 <connections>
-                                    <action selector="selectionSegment:" destination="XMr-OQ-c2j" eventType="valueChanged" id="RRI-JK-xry"/>
+                                    <action selector="selectionSegment:" destination="XMr-OQ-c2j" eventType="valueChanged" id="qAN-1a-H0o"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SCA-15-fdy">
@@ -383,6 +383,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="meOrTeamHeightConstraint" destination="GfL-34-HEe" id="HS5-CL-pIx"/>
+                        <outlet property="meOrTeamSegment" destination="Ori-Sk-nBm" id="wgT-vt-jLO"/>
                         <outlet property="taskListTableView" destination="SCA-15-fdy" id="Ort-3o-jOq"/>
                     </connections>
                 </viewController>

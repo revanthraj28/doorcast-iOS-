@@ -14,7 +14,7 @@ enum Storyboard: String {
     case dashboard
     case notificationcenter
     case taskDetails
-    case commonAlert
+    case CommonAlert
     var name: String {
         return self.rawValue.capitalizingFirstLetter()
     }

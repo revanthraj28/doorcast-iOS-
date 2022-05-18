@@ -17,7 +17,7 @@ class CommonAlertVC: UIViewController {
     
     
     static var newInstance: CommonAlertVC? {
-        let storyboard = UIStoryboard(name: Storyboard.commonAlert.name,
+        let storyboard = UIStoryboard(name: Storyboard.CommonAlert.name,
                                       bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? CommonAlertVC
         return vc
@@ -26,7 +26,22 @@ class CommonAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        
+        setupUI()
+    }
+    
+    
+    func setupUI() {
+        
+        alertLabel.text = "If you go back day will be stopped"
+        alertLabel.textAlignment = .center
+        alertLabel.textColor = UIColor.LabelMainTitleColor
+        alertLabel.font = UIFont.oswaldRegular(size: 18)
+        
+        okButton.setTitle("OK", for: .normal)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .ThemeColor
     }
     
    
@@ -37,7 +52,9 @@ class CommonAlertVC: UIViewController {
     
 
     @IBAction func okButtonAction(_ sender: Any) {
-        
+        guard let vc = OnBoardingVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
 }

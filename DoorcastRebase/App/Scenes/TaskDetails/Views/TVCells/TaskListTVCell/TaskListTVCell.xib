@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -42,43 +43,46 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dB6-tN-ao5">
-                                <rect key="frame" x="12" y="40.5" width="349" height="29"/>
+                                <rect key="frame" x="12" y="40.5" width="46" height="29"/>
                                 <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-eD-u61">
-                                <rect key="frame" x="373" y="46" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Ybl-3h-Qat"/>
-                                    <constraint firstAttribute="width" constant="20" id="hfv-gN-eq3"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="chevron-right-solid"/>
-                                <connections>
-                                    <action selector="nextButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WYD-jQ-KXC"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJM-Bi-lD3">
                                 <rect key="frame" x="12" y="83" width="383" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tf-Jx-run">
+                                <rect key="frame" x="371" y="45" width="20" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-fz-q6y">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oDg-fz-q6y" secondAttribute="trailing" id="D0Y-yw-sTa"/>
+                                    <constraint firstItem="oDg-fz-q6y" firstAttribute="leading" secondItem="7tf-Jx-run" secondAttribute="leading" id="Te9-V6-H5n"/>
+                                    <constraint firstAttribute="width" constant="20" id="X7o-SA-0Xn"/>
+                                    <constraint firstAttribute="bottom" secondItem="oDg-fz-q6y" secondAttribute="bottom" id="Yo1-ln-qX2"/>
+                                    <constraint firstItem="oDg-fz-q6y" firstAttribute="top" secondItem="7tf-Jx-run" secondAttribute="top" id="uJN-6D-vaw"/>
+                                    <constraint firstAttribute="height" constant="20" id="umh-H7-VoL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="CardBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7tf-Jx-run" secondAttribute="trailing" constant="12" id="18z-2A-w0a"/>
                             <constraint firstAttribute="trailing" secondItem="SJM-Bi-lD3" secondAttribute="trailing" constant="8" id="2Rf-bA-x9c"/>
                             <constraint firstItem="dB6-tN-ao5" firstAttribute="top" secondItem="RHH-nK-NvJ" secondAttribute="bottom" constant="12" id="7XC-ba-1yF"/>
                             <constraint firstItem="lEF-0A-Tcd" firstAttribute="top" secondItem="NJQ-Wp-Hc5" secondAttribute="top" constant="12" id="Cn7-O2-ox7"/>
-                            <constraint firstAttribute="trailing" secondItem="jVb-eD-u61" secondAttribute="trailing" constant="10" id="DQw-Ie-Vak"/>
                             <constraint firstItem="RHH-nK-NvJ" firstAttribute="leading" secondItem="NJQ-Wp-Hc5" secondAttribute="leading" constant="12" id="DoC-xq-hKR"/>
                             <constraint firstAttribute="trailing" secondItem="lEF-0A-Tcd" secondAttribute="trailing" constant="12" id="HFO-73-Q6c"/>
                             <constraint firstItem="dB6-tN-ao5" firstAttribute="leading" secondItem="NJQ-Wp-Hc5" secondAttribute="leading" constant="12" id="MH2-S0-Mvz"/>
-                            <constraint firstItem="jVb-eD-u61" firstAttribute="leading" secondItem="dB6-tN-ao5" secondAttribute="trailing" constant="12" id="Smk-es-D1k"/>
+                            <constraint firstItem="7tf-Jx-run" firstAttribute="centerY" secondItem="dB6-tN-ao5" secondAttribute="centerY" id="UGo-LA-fmM"/>
                             <constraint firstItem="SJM-Bi-lD3" firstAttribute="leading" secondItem="NJQ-Wp-Hc5" secondAttribute="leading" constant="12" id="Yyd-M7-vLo"/>
-                            <constraint firstItem="jVb-eD-u61" firstAttribute="centerY" secondItem="NJQ-Wp-Hc5" secondAttribute="centerY" id="ggY-db-DjU"/>
                             <constraint firstItem="lEF-0A-Tcd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RHH-nK-NvJ" secondAttribute="trailing" constant="30" id="j3a-tX-Jdc"/>
                             <constraint firstItem="RHH-nK-NvJ" firstAttribute="top" secondItem="NJQ-Wp-Hc5" secondAttribute="top" constant="12" id="k6t-A0-lC5"/>
                             <constraint firstItem="SJM-Bi-lD3" firstAttribute="top" secondItem="dB6-tN-ao5" secondAttribute="bottom" constant="13.5" id="ndf-XG-7MP"/>
@@ -97,7 +101,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="addressLabel" destination="SJM-Bi-lD3" id="DET-Qa-27X"/>
+                <outlet property="arrowImage" destination="oDg-fz-q6y" id="uCc-hj-rAE"/>
                 <outlet property="bgView" destination="NJQ-Wp-Hc5" id="6bQ-Eo-TKf"/>
+                <outlet property="imageHolderView" destination="7tf-Jx-run" id="EnN-ih-5Ok"/>
                 <outlet property="propertyNameLabel" destination="RHH-nK-NvJ" id="r6T-HG-FJ4"/>
                 <outlet property="roleLabel" destination="lEF-0A-Tcd" id="E4v-CL-OIg"/>
                 <outlet property="taskNameLabel" destination="dB6-tN-ao5" id="RZT-5G-fNN"/>
@@ -106,12 +112,14 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chevron-right-solid" width="320" height="512"/>
         <namedColor name="CardBackgroundColor">
             <color red="0.93699997663497925" green="0.93699997663497925" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="designColor">
             <color red="0.40000000596046448" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

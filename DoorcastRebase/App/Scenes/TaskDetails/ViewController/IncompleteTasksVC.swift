@@ -21,13 +21,14 @@ class IncompleteTasksVC: UIViewController {
     
     var tastListShowBool = true
     let bottomView: TimerView = TimerView()
-    var totalSecond = Int()
     var timer : Timer?
     var counter = 0
     var mainVC: CommonTaskDetailVC?
     var crewPropertyIds = [String]()
     var roleName = String()
     var loginID = String()
+    var selectedSegmentIndex = Int()
+    var selectedSegmentTitle = String()
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -36,13 +37,16 @@ class IncompleteTasksVC: UIViewController {
         return vc
     }
     
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.selectedSegmentIndex = meOrTeamSegment.selectedSegmentIndex
+        self.selectedSegmentTitle = meOrTeamSegment.titleForSegment(at: self.selectedSegmentIndex) ?? ""
         
         observeNotifcations()
         configureContents()
@@ -78,14 +82,8 @@ class IncompleteTasksVC: UIViewController {
         print("crewPropertyIds all == \(crewPropertyALLIds.joined(separator: ","))")
         
         
+        callApi()
         
-        if showproperty == "all" {
-            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
-        } else {
-            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
-        }
-        
-        defaults.set("me", forKey: UserDefaultsKeys.task_type)
         mainVC = self.parent as? CommonTaskDetailVC
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
         
@@ -95,7 +93,7 @@ class IncompleteTasksVC: UIViewController {
             self.taskListTableView.alpha = 1
         }else {
             self.taskListTableView.isUserInteractionEnabled = false
-            self.taskListTableView.alpha = 0.3
+            self.taskListTableView.alpha = 0.4
         }
     }
     
@@ -108,7 +106,9 @@ class IncompleteTasksVC: UIViewController {
             
         }else {
             
-            
+            guard let vc = CommonAlertVC.newInstance else {return}
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: false)
         }
         
     }
@@ -177,17 +177,50 @@ class IncompleteTasksVC: UIViewController {
     }
     
     
-    @IBAction func selectionSegment(_ sender: UISegmentedControl) {
-        let selectedSegment = sender.selectedSegmentIndex
-        if selectedSegment == 0 {
+    func callApi() {
+        
+        
+        if self.selectedSegmentIndex == 0 {
             
-            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "me")
+            if showproperty == "all" {
+                
+                
+                viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
+            } else {
+                
+                
+                viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
+            }
+            
             defaults.set("me", forKey: UserDefaultsKeys.task_type)
-        } else {
             
-            viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "44", crew_members: "team")
+        }else {
+            
+            
+            if showproperty == "all" {
+                
+                
+                viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "team")
+            } else {
+                
+                
+                viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
+            }
+            
             defaults.set("team", forKey: UserDefaultsKeys.task_type)
+            
         }
+        
+        
+        
+    }
+    
+    
+    @IBAction func selectionSegment(_ sender: UISegmentedControl) {
+        self.selectedSegmentIndex = sender.selectedSegmentIndex
+        self.selectedSegmentTitle = sender.titleForSegment(at: self.selectedSegmentIndex) ?? ""
+        
+        callApi()
     }
     
 }
@@ -199,13 +232,15 @@ extension IncompleteTasksVC: TaskListProtocol {
         
         print(self.incompleteTaskListModel)
         
-        if self.incompleteTaskListModel?.data?.first?.role_name ?? "" == "CrewLead"
-        {
-            meOrTeamHeightConstraint.constant = 0
-            meOrTeamSegment.isHidden = true
-        } else {
+        
+        self.roleName = self.incompleteTaskListModel?.data?.first?.role_name ?? ""
+        
+        if self.incompleteTaskListModel?.data?.first?.role_name ?? "" == "CrewLead"{
             meOrTeamHeightConstraint.constant = 40
             meOrTeamSegment.isHidden = false
+        } else {
+            meOrTeamHeightConstraint.constant = 0
+            meOrTeamSegment.isHidden = true
         }
         
         if let count = self.incompleteTaskListModel?.data?.count {
@@ -236,20 +271,24 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         if let incompleteData = incompleteTaskListModel?.data?[indexPath.row] {
-            cell.configureUI(modelData: incompleteData)
+            cell.configureUI(modelData: incompleteData, task: "incomplete")
         }
         
         
-       
-
-        if self.loginID == incompleteTaskListModel?.data?[indexPath.row].crew_id  {
-            cell.roleLabel.text = self.incompleteTaskListModel?.data?[indexPath.row].role_name ?? "" + " • "
-        } else {
+        
+        if  self.roleName == "CrewLead" && UserDefaults.standard.string(forKey: "loginid") == incompleteTaskListModel?.data?[indexPath.row].crew_id {
+            
+            
+            if self.selectedSegmentTitle == "Team" {
+                cell.roleLabel.text = "\(self.incompleteTaskListModel?.data?[indexPath.row].role_name ?? "") •"
+            }else {
+                cell.roleLabel.text = self.incompleteTaskListModel?.data?[indexPath.row].role_name
+            }
+        }else {
             cell.roleLabel.text = self.incompleteTaskListModel?.data?[indexPath.row].role_name
         }
         
         
-
         return cell
     }
     

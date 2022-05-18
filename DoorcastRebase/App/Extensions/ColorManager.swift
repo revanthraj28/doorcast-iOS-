@@ -25,7 +25,7 @@ extension UIColor {
     public static var InactiveStateColor : UIColor {
 
         get {
-            return UIColor(named: "InactiveStateColor")!
+            return UIColor(named: "InactiveStateColor") ?? UIColor.clear
         }
     }
     public static var ErrorLabelColor : UIColor {

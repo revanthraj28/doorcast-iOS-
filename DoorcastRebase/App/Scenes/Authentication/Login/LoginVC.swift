@@ -245,6 +245,8 @@ extension LoginVC : LoginViewModelProtocol {
         UserDefaults.standard.set(loginResponse.data?.fullname, forKey: "fullname")
         UserDefaults.standard.set(loginResponse.data?.mobile, forKey: "mobile")
         UserDefaults.standard.set(loginResponse.data?.email, forKey: "email")
+        UserDefaults.standard.set(loginResponse.data?.login_id, forKey: "loginid")
+        
         SessionManager.saveSessionInfo(loginResponse: loginResponse)
         self.gotoHomeScreen()
     }

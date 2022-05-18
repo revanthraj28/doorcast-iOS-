@@ -112,7 +112,7 @@ extension String{
     }
     
     
-     
+    
     
     func validateAsPhoneNumber() -> Bool {
         
@@ -124,10 +124,10 @@ extension String{
     
     
     func isValidEmail() -> Bool {
-            // here, `try!` will always succeed because the pattern is valid
-            let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
-            return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
-        }
+        // here, `try!` will always succeed because the pattern is valid
+        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
     
     
 }
@@ -186,4 +186,48 @@ extension UIView
         self.layer.masksToBounds = false
     }
     
+    
+    
+    func fadeIn(duration: TimeInterval = 1.5, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in }) {
+        self.alpha = 0.0
+        
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.transitionCurlDown, animations: {
+            self.isHidden = false
+            self.alpha = 1.0
+        }, completion: completion)
+    }
+    
+    func fadeOut(duration: TimeInterval = 3.5, delay: TimeInterval = 0.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in }) {
+        self.alpha = 1.0
+        
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.transitionCurlDown, animations: {
+            self.alpha = 0.0
+        }) { (completed) in
+            self.isHidden = true
+            completion(true)
+        }
+    }
+    
+}
+
+
+extension UIImage {
+    func imageWithColor(color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        color.setFill()
+
+        let context = UIGraphicsGetCurrentContext()
+        context?.translateBy(x: 0, y: self.size.height)
+        context?.scaleBy(x: 1.0, y: -1.0)
+        context?.setBlendMode(CGBlendMode.normal)
+
+        let rect = CGRect(origin: .zero, size: CGSize(width: self.size.width, height: self.size.height))
+        context?.clip(to: rect, mask: self.cgImage!)
+        context?.fill(rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
 }
