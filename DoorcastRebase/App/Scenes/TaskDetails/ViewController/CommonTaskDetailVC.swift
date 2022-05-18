@@ -179,15 +179,16 @@ class CommonTaskDetailVC: UIViewController {
     @IBAction func startStopDayAction(_ sender: Any) {
         print("startStopDayAction")
         
-        self.dayAlertlbl.fadeIn()
-        self.dayAlertlbl.fadeOut()
         
         if startDaylbl.text == "Start day" {
+            
+            self.dayAlertlbl.fadeIn()
+            self.dayAlertlbl.fadeOut()
+            
             
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
             startDaylbl.text = "Stop daay"
         }else {
-            
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
             startDaylbl.text = "Start day"
         }

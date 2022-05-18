@@ -35,6 +35,7 @@ class CompletedTasksVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.selectedSegmentIndex = meOrTeamSegment.selectedSegmentIndex
         self.selectedSegmentTitle = meOrTeamSegment.titleForSegment(at: self.selectedSegmentIndex) ?? ""
         
@@ -69,14 +70,10 @@ class CompletedTasksVC: UIViewController {
     }
     
     func configureContents(){
-        print("crewPropertyIds all == \(crewPropertyALLIds.joined(separator: ","))")
-        
-        
+
         callApi()
-        
         mainVC = self.parent as? CommonTaskDetailVC
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
-        
     }
     
     
@@ -99,8 +96,8 @@ class CompletedTasksVC: UIViewController {
     
     @objc func dayTaskAction(notification:Notification) {
         
-        // self.speechView.isHidden = true
-        
+      
+        print("dayTaskAction CompletedTasksVC")
         mainVC?.speechView.isHidden = true
         
         if let day = notification.object as? String {
@@ -114,10 +111,7 @@ class CompletedTasksVC: UIViewController {
                 timerBool = true
                 
                 
-                
             }else {
-                
-                
                 
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
                 

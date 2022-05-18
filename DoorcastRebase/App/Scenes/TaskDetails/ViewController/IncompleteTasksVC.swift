@@ -116,10 +116,7 @@ class IncompleteTasksVC: UIViewController {
     
     @objc func dayTaskAction(notification:Notification) {
         
-        // self.speechView.isHidden = true
-        
         mainVC?.speechView.isHidden = true
-        
         if let day = notification.object as? String {
             if day == "Start day" {
                 
@@ -129,19 +126,13 @@ class IncompleteTasksVC: UIViewController {
                 
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
                 timerBool = true
-                
-                
-                
+        
             }else {
-                
-                
-                
+        
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
-                
                 timer?.invalidate()
                 timer = nil
                 timerBool = false
-                
                 gotoBackScreen()
                 
             }
@@ -156,8 +147,7 @@ class IncompleteTasksVC: UIViewController {
         self.present(vc, animated: true)
     }
     
-    
-    
+
     @objc func didTapOnTimerView(notification:Notification) {
         mainVC?.speechView.isHidden = false
     }
