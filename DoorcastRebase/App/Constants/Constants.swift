@@ -86,8 +86,10 @@ struct UserDefaultsKeys {
     static var property_id = "propertyid"
     static var crew_list = "crew_list"
     static var task_list = "task_list"
-    
+    static var address = "address"
     static var org_id  = "org_id"
+    static var propertyname = "propertyname"
+    static var role_name = "role_name"
 }
 
 
