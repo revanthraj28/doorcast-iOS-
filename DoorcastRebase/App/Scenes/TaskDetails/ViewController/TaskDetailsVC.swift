@@ -69,9 +69,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         self.setupLoactionMgr()
-        taskName.text =  self.taskname
-        companyLabel.text = self.propertyname
-        propertyAddresLabel.text = self.address
+        taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
+        companyLabel.text = defaults.string(forKey: UserDefaultsKeys.propertyname)
+        propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
         
         editBackgroundView.isHidden = true
     }

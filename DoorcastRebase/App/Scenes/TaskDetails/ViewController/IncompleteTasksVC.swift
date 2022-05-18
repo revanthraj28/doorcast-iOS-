@@ -266,7 +266,9 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.taskname, forKey: UserDefaultsKeys.taskname)
             defaults.set(incompleteData.group_id, forKey: UserDefaultsKeys.group_id)
             defaults.set(incompleteData.propertyid, forKey: UserDefaultsKeys.property_id)
-            
+            defaults.set(incompleteData.address, forKey: UserDefaultsKeys.address)
+            defaults.set(incompleteData.propertyname, forKey: UserDefaultsKeys.propertyname)
+            defaults.set(incompleteData.role_name, forKey: UserDefaultsKeys.role_name)
         }
         self.present(vc, animated: true)
         
