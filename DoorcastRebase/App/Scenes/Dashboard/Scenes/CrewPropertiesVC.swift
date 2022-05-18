@@ -59,6 +59,7 @@ class CrewPropertiesVC: UIViewController {
         self.organizationName.text = self.orgname
         var parms = [String: Any]()
         parms["type"] = getOrganizationsModelData?.organization_id
+        defaults.set(getOrganizationsModelData?.organization_id,forKey: UserDefaultsKeys.org_id)
         crewviewModel?.CrewPropertiesApi(dictParam: parms)
         changeStatusBarColor(with: .ThemeColor)
         

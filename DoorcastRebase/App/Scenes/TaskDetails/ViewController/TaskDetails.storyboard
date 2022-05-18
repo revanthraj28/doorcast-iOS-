@@ -1212,7 +1212,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select crew members." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21B-tt-sF4">
                                                 <rect key="frame" x="15" y="5" width="275" height="40"/>
                                                 <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="26"/>
-                                                <color key="textColor" name="designColor"/>
+                                                <color key="textColor" name="ThemeColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>

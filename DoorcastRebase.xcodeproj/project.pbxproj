@@ -88,6 +88,8 @@
 		4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */; };
 		4E07C8902828FFB60090D088 /* TaskAssignedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */; };
 		638E5FCC3ED177D7172BAB15 /* Pods_DoorcastRebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */; };
+		AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */; };
+		AE198CCF2833A10D00252A74 /* ForceStopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCE2833A10D00252A74 /* ForceStopModel.swift */; };
 		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
 		AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */; };
 		AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */; };
@@ -99,6 +101,8 @@
 		AE80FC8F282B7B6800EE5C0C /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */; };
 		AE80FC90282B7B6800EE5C0C /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */; };
 		AE80FC91282B7B6800EE5C0C /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */; };
+		AE812F8B2834CE1700AE6606 /* AddCrewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE812F8A2834CE1700AE6606 /* AddCrewModel.swift */; };
+		AE812F8D2834CEA100AE6606 /* AddCrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE812F8C2834CEA100AE6606 /* AddCrewViewModel.swift */; };
 		E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30488632822A788004ECA60 /* TaskListTVCell.swift */; };
 		E30488662822A788004ECA60 /* TaskListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E30488642822A788004ECA60 /* TaskListTVCell.xib */; };
 		E30488692822A90E004ECA60 /* IncompleteTaskDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = E30488682822A90E004ECA60 /* IncompleteTaskDetails.json */; };
@@ -216,6 +220,8 @@
 		4E07C88D2828FFB60090D088 /* TaskAssignedTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAssignedTVCell.swift; sourceTree = "<group>"; };
 		4E07C88E2828FFB60090D088 /* TaskAssignedTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskAssignedTVCell.xib; sourceTree = "<group>"; };
 		4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopViewModel.swift; sourceTree = "<group>"; };
+		AE198CCE2833A10D00252A74 /* ForceStopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopModel.swift; sourceTree = "<group>"; };
 		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
 		AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
 		AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
@@ -227,6 +233,8 @@
 		AE80FC89282B7B6800EE5C0C /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		AE80FC8B282B7B6800EE5C0C /* ResetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
 		AE80FC8E282B7B6800EE5C0C /* ResetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		AE812F8A2834CE1700AE6606 /* AddCrewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCrewModel.swift; sourceTree = "<group>"; };
+		AE812F8C2834CEA100AE6606 /* AddCrewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCrewViewModel.swift; sourceTree = "<group>"; };
 		AEBAE08D282B802500CF3791 /* DoorcastRebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoorcastRebase.entitlements; sourceTree = "<group>"; };
 		E30488632822A788004ECA60 /* TaskListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTVCell.swift; sourceTree = "<group>"; };
 		E30488642822A788004ECA60 /* TaskListTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTVCell.xib; sourceTree = "<group>"; };
@@ -746,6 +754,8 @@
 				07712BCF282CCB850074F948 /* ReassignCrewViewModel.swift */,
 				E304886B2822ABB0004ECA60 /* TaskListViewModel.swift */,
 				135EB04D282B8DB100194216 /* SubTaskViewModel.swift */,
+				AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */,
+				AE812F8C2834CEA100AE6606 /* AddCrewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -758,6 +768,8 @@
 				07712BD3282CCB930074F948 /* ReassignCrewModel.swift */,
 				E30488702822AC74004ECA60 /* IncompleteTaskListModel.swift */,
 				135EB04F282B8DC500194216 /* SubTaskModel.swift */,
+				AE198CCE2833A10D00252A74 /* ForceStopModel.swift */,
+				AE812F8A2834CE1700AE6606 /* AddCrewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1118,6 +1130,7 @@
 				0771A2CF282519D300758DD9 /* OnBoardingVC.swift in Sources */,
 				07712BD7282CCB930074F948 /* CrewModel.swift in Sources */,
 				4E07C8822828E4D90090D088 /* ProfileViewModel.swift in Sources */,
+				AE812F8D2834CEA100AE6606 /* AddCrewViewModel.swift in Sources */,
 				E347D35828225C2700122C8B /* HomeVC.swift in Sources */,
 				E347D35C28225E3E00122C8B /* NSObject+Helper.swift in Sources */,
 				07712BCC282CCB370074F948 /* SelectUserVC.swift in Sources */,
@@ -1128,6 +1141,7 @@
 				E34A2D1128229FC800BF7439 /* CommonTaskDetailVC.swift in Sources */,
 				0771A2D3282519E000758DD9 /* GetOrganizationModel.swift in Sources */,
 				0771A2DB282519F100758DD9 /* LogoutViewModel.swift in Sources */,
+				AE812F8B2834CE1700AE6606 /* AddCrewModel.swift in Sources */,
 				135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */,
 				135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */,
 				133A3AFB2833B8630054C75B /* CommonAlertVC.swift in Sources */,
@@ -1176,7 +1190,9 @@
 				AE80FC84282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift in Sources */,
 				E304886C2822ABB0004ECA60 /* TaskListViewModel.swift in Sources */,
 				0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */,
+				AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */,
 				072191132823D03500116F43 /* CalendarVC.swift in Sources */,
+				AE198CCF2833A10D00252A74 /* ForceStopModel.swift in Sources */,
 				E31C92AA282244CC00600CEE /* SceneDelegate.swift in Sources */,
 				E37939D72822A6B8008D83E4 /* TableViewExtensions.swift in Sources */,
 			);
@@ -1331,7 +1347,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS(new)/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1363,7 +1379,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS(new)/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

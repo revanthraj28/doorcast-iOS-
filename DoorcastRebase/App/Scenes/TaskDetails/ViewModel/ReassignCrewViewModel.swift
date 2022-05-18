@@ -19,6 +19,7 @@ class ReassignCrewViewModel {
     }
     func ReassignCrewApi(dictParam: [String: Any]){
         let paramsDict = NSDictionary(dictionary:dictParam)
+        
         print("Parameters.... = \(paramsDict)")
         self.view?.showLoader()
         ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.ReassignCrewApi, parameters: paramsDict as NSDictionary, resultType: reassignCrewModel.self) { sucess, result, errorMessage in

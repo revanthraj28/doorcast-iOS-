@@ -53,9 +53,13 @@ struct ApiEndpoints {
     static let SubTaskListApi = "exstream-sub-task"
     
     static let ReassignCrewApi = "exstream_getUserCompeltedTask"
+    
     static let getCrewListApi = "exstream_getCrewList"
+    static let AddCrewApi = "exstream_add_crew"
     
     static let forceFinishApi = "exstream_getInprogressTaskUser"
+    static let forceStop = "exstream_forceStop"
+    
     
     
 }
@@ -82,6 +86,8 @@ struct UserDefaultsKeys {
     static var property_id = "propertyid"
     static var crew_list = "crew_list"
     static var task_list = "task_list"
+    
+    static var org_id  = "org_id"
 }
 
 
