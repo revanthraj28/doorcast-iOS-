@@ -69,9 +69,15 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         self.setupLoactionMgr()
+        
         taskName.text =  self.taskname
         companyLabel.text = self.propertyname
         propertyAddresLabel.text = self.address
+
+        
+        setupui()
+        
+        taskName.text = subtaskDetail?.data?.taskdetails?.taskname
         
         editBackgroundView.isHidden = true
     }
@@ -81,7 +87,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         subTaskListViewModel = SubTaskListViewModel(self)
         
-        setupui()
+       
         
     }
     
@@ -269,6 +275,7 @@ extension TaskDetailsVC : SubTaskListProtocol {
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
+        print("subtaskDetailresponse = \(response)")
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
