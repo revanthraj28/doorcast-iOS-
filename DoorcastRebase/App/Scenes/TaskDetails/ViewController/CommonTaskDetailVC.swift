@@ -26,9 +26,6 @@ class CommonTaskDetailVC: UIViewController {
     @IBOutlet weak var notificationViewButton: UIButton!
     @IBOutlet weak var completedTaskCountHolderView: UIView!
     @IBOutlet weak var completedTaskCountLabel: UILabel!
-    
-    
-    
     @IBOutlet weak var speechView: SpeechBubble!
     @IBOutlet weak var startDaylbl: UILabel!
     @IBOutlet weak var startDayButton: UIButton!
@@ -76,6 +73,7 @@ class CommonTaskDetailVC: UIViewController {
         if let fullname = UserDefaults.standard.string(forKey: "fullname") {
             userNameLabel.text = fullname.uppercased()
         }
+        
         changeStatusBarColor(with: .ThemeColor)
     }
     

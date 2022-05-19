@@ -45,9 +45,6 @@ class IncompleteTasksVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("location lat :\(KLat)")
-        print("location long :\(KLong)")
-        
         self.selectedSegmentIndex = meOrTeamSegment.selectedSegmentIndex
         self.selectedSegmentTitle = meOrTeamSegment.titleForSegment(at: self.selectedSegmentIndex) ?? ""
         
@@ -169,30 +166,20 @@ class IncompleteTasksVC: UIViewController {
         if self.selectedSegmentIndex == 0 {
             
             if showproperty == "all" {
-                
-                
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
             } else {
-                
-                
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
             }
-            
             defaults.set("me", forKey: UserDefaultsKeys.task_type)
             
         }else {
             
             
             if showproperty == "all" {
-                
-                
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "team")
             } else {
-                
-                
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
             }
-            
             defaults.set("team", forKey: UserDefaultsKeys.task_type)
             
         }

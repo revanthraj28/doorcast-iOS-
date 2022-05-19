@@ -41,6 +41,9 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         }
         
         
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackgroundActive(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForegroundActive(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         setupLocationManager()
         
         return true
@@ -242,32 +245,41 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         
     }
     
+    
+    
+    @objc private func applicationDidEnterBackgroundActive (_ notification: Notification) {
+        self.locationManager?.startMonitoringSignificantLocationChanges()
+    }
+    
+    @objc private func applicationWillEnterForegroundActive (_ notification: Notification) {
+        self.locationManager?.startUpdatingLocation()
+    }
+    
 }
 
 
 
 extension AppDelegate:CLLocationManagerDelegate {
     
-    
-    
     func setupLocationManager(){
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         self.locationManager?.requestAlwaysAuthorization()
         locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager?.startUpdatingLocation()
-        
+        locationManager?.startUpdatingLocation()        
     }
     
     // Below method will provide you current location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        print(" locationManager appdelegate")
         let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
         
         KLat = String(locationValue.latitude)
         KLong = String(locationValue.longitude)
         
-        locationManager?.stopUpdatingLocation()
+        // locationManager?.stopUpdatingLocation()
+        NotificationCenter.default.post(name: NSNotification.Name("updateLocation"), object: nil)
         
     }
     
@@ -275,6 +287,10 @@ extension AppDelegate:CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error")
     }
+    
+    
+    
+    
 }
 
 
