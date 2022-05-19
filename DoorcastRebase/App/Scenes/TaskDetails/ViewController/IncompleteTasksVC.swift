@@ -80,6 +80,19 @@ class IncompleteTasksVC: UIViewController {
         
     }
     
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+            self.callApi()
+        }else{
+            print("Internet Connection not Available!")
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
+    }
+    
+    
     
     func configureContents() {
        
@@ -203,10 +216,12 @@ class IncompleteTasksVC: UIViewController {
     
     
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {
+        CheckInternetConnection()
         self.selectedSegmentIndex = sender.selectedSegmentIndex
         self.selectedSegmentTitle = sender.titleForSegment(at: self.selectedSegmentIndex) ?? ""
         
         callApi()
+        
     }
     
 }

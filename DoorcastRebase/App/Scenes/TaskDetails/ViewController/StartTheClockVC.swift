@@ -33,6 +33,7 @@ class StartTheClockVC: UIViewController {
 
         updateUI()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        CheckInternetConnection()
     }
     
     
@@ -54,6 +55,19 @@ class StartTheClockVC: UIViewController {
     
         
     }
+    
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+        }else{
+            print("Internet Connection not Available!")
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
+    }
+    
+    
     
     
 
