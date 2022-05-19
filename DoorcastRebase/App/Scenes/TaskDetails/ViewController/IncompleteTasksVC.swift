@@ -28,6 +28,7 @@ class IncompleteTasksVC: UIViewController {
     var loginID = String()
     var selectedSegmentIndex = Int()
     var selectedSegmentTitle = String()
+    var seconds = 0
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -43,6 +44,9 @@ class IncompleteTasksVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("location lat :\(KLat)")
+        print("location long :\(KLong)")
         
         self.selectedSegmentIndex = meOrTeamSegment.selectedSegmentIndex
         self.selectedSegmentTitle = meOrTeamSegment.titleForSegment(at: self.selectedSegmentIndex) ?? ""
@@ -115,20 +119,27 @@ class IncompleteTasksVC: UIViewController {
         
         mainVC?.speechView.isHidden = true
         if let day = notification.object as? String {
+            
             if day == "Start day" {
+                
+                defaults.set("start", forKey: "daytype")
+                self.viewModel.startOrStopDayTask()
                 
                 self.taskListTableView.isUserInteractionEnabled = true
                 self.taskListTableView.alpha = 1
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
                 
-                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+                mainVC?.runTimer()
                 timerBool = true
         
             }else {
+                
+                defaults.set("stop", forKey: "daytype")
+                self.viewModel.startOrStopDayTask()
         
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
-                timer?.invalidate()
-                timer = nil
+//                timer?.invalidate()
+//                timer = nil
                 timerBool = false
                 gotoBackScreen()
                 
@@ -150,19 +161,7 @@ class IncompleteTasksVC: UIViewController {
     }
     
     
-    @objc func processTimer() {
-        
-        let hours = counter / 3600
-        let minutes = counter / 60 % 60
-        let seconds = counter % 60
-        counter = counter + 1
-        
-        DispatchQueue.main.async {
-            self.mainVC?.timerView.idleTimerValueLbl.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-        }
-        
-    }
-    
+
     
     func callApi() {
         
@@ -214,6 +213,8 @@ class IncompleteTasksVC: UIViewController {
 
 
 extension IncompleteTasksVC: TaskListProtocol {
+    
+    
     func showInCompleteTaskList(response: IncompleteTaskListModel?) {
         self.incompleteTaskListModel = response
         
@@ -243,6 +244,19 @@ extension IncompleteTasksVC: TaskListProtocol {
             self.taskListTableView.reloadData()
         }
     }
+    
+    
+    
+    func CrewTaskLogResponse(response: CrewTaskLogModel?) {
+        print(response?.data?.idealtime ?? "")
+        
+        self.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "")
+        
+        
+    }
+    
+    
+    
 }
 
 

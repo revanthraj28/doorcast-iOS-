@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class CompletedTasksVC: UIViewController {
     
@@ -18,7 +19,6 @@ class CompletedTasksVC: UIViewController {
     
     var tastListShowBool = true
     let bottomView: TimerView = TimerView()
-    var timer : Timer?
     var counter = 0
     var mainVC: CommonTaskDetailVC?
     var roleName = String()
@@ -59,13 +59,13 @@ class CompletedTasksVC: UIViewController {
         taskListTableView.register(TaskListTVCell.cellNib, forCellReuseIdentifier: TaskListTVCell.cellId)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        self.view.addGestureRecognizer(tap)
+        // self.view.addGestureRecognizer(tap)
         
         
     }
     
     
-  
+    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         self.mainVC?.speechView.isHidden = true
@@ -84,7 +84,7 @@ class CompletedTasksVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(tofromdate(notification:)), name: NSNotification.Name.init(rawValue: "tofromdate"), object: nil)
         
-
+        
     }
     
     func configureContents(){
@@ -137,7 +137,7 @@ class CompletedTasksVC: UIViewController {
                 self.taskListTableView.alpha = 1
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
                 
-                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+                mainVC?.runTimer()
                 timerBool = true
                 
                 
@@ -145,8 +145,8 @@ class CompletedTasksVC: UIViewController {
                 
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
                 
-                timer?.invalidate()
-                timer = nil
+                //                timer?.invalidate()
+                //                timer = nil
                 timerBool = false
                 
                 gotoBackScreen()
@@ -170,22 +170,10 @@ class CompletedTasksVC: UIViewController {
     }
     
     
-    @objc func processTimer() {
-        
-        let hours = counter / 3600
-        let minutes = counter / 60 % 60
-        let seconds = counter % 60
-        counter = counter + 1
-        
-        DispatchQueue.main.async {
-            self.mainVC?.timerView.idleTimerValueLbl.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-        }
-        
-    }
+    
     
     
     func callApi() {
-        
         
         if self.calBool == true {
             callViewModelAPI(fromDate: "\(self.calStartDate)", todate: "\(calEndDate)")
@@ -193,44 +181,44 @@ class CompletedTasksVC: UIViewController {
             callViewModelAPI(fromDate: "all", todate: "all")
         }
         
-    
-        func callViewModelAPI(fromDate:String,todate:String) {
-            
-            if self.selectedSegmentIndex == 0 {
-                
-                if showproperty == "all" {
-                    
-                    
-                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
-                } else {
-                    
-                    
-                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
-                }
-                
-                defaults.set("me", forKey: UserDefaultsKeys.task_type)
-                
-            }else {
-                
-                
-                if showproperty == "all" {
-                    
-                    
-                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "team")
-                } else {
-                    
-                    
-                    viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
-                }
-                
-                defaults.set("team", forKey: UserDefaultsKeys.task_type)
-                
-            }
-        }
-        
-        
-        
     }
+    
+    
+    
+    func callViewModelAPI(fromDate:String,todate:String) {
+        
+        if self.selectedSegmentIndex == 0 {
+            
+            if showproperty == "all" {
+                
+                viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
+            } else {
+                
+                
+                viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
+            }
+            
+            defaults.set("me", forKey: UserDefaultsKeys.task_type)
+            
+        }else {
+            
+            
+            if showproperty == "all" {
+                
+                
+                viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "team")
+            } else {
+                
+                
+                viewModel.InCompleteListApi(task_type: "complete", from_date: "\(fromDate)", to_date: "\(todate)", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
+            }
+            
+            defaults.set("team", forKey: UserDefaultsKeys.task_type)
+            
+        }
+    }
+    
+    
     
     
     
@@ -248,12 +236,17 @@ class CompletedTasksVC: UIViewController {
 
 
 extension CompletedTasksVC: TaskListProtocol {
+    
+    func CrewTaskLogResponse(response: CrewTaskLogModel?) {
+        print(response?.data?.idealtime)
+    }
+    
     func showInCompleteTaskList(response: IncompleteTaskListModel?) {
         self.completeTaskListModel = response
         
-        print(self.completeTaskListModel)
+        print(self.completeTaskListModel as Any)
         
-        mainVC?.completedTaskCountLabel.text = String(self.completeTaskListModel?.data?.count ?? 0) ?? ""
+        mainVC?.completedTaskCountLabel.text = String(self.completeTaskListModel?.data?.count ?? 0)
         self.roleName = self.completeTaskListModel?.data?.first?.role_name ?? ""
         
         if self.completeTaskListModel?.data?.first?.role_name ?? "" == "CrewLead"{

@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import Firebase
 import Foundation
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     let gcmMessageIDKey = "gcm.Message_ID"
     var aps: NSDictionary?
     var window: UIWindow?
+    var locationManager:CLLocationManager?
+    var currentLocation:CLLocation?
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -24,6 +27,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
         
         FirebaseApp.configure()
         registerForPush()
@@ -35,6 +39,9 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                 print(aps1)
             }
         }
+        
+        
+        setupLocationManager()
         
         return true
     }
@@ -99,6 +106,8 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         
+        
+        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
         NSLog("%@: did receive notification response: %@", self.description, response.notification.request.content.userInfo)
         //        completionHandler()
         if let aps = response.notification.request.content.userInfo["aps"] as? NSDictionary {
@@ -123,6 +132,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
         NSLog("%@: will present notification: %@", self.description, notification.request.content.userInfo)
         completionHandler([.list, .sound, .banner])
         
@@ -219,8 +229,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     
     func goToLogin(){
         
-        
-        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+        //        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
         
         DispatchQueue.main.async {
             if let vc = LoginVC.newInstance {
@@ -234,3 +243,40 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     }
     
 }
+
+
+
+extension AppDelegate:CLLocationManagerDelegate {
+    
+    
+    
+    func setupLocationManager(){
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        self.locationManager?.requestAlwaysAuthorization()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager?.startUpdatingLocation()
+        
+    }
+    
+    // Below method will provide you current location.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
+        
+        KLat = String(locationValue.latitude)
+        KLong = String(locationValue.longitude)
+        
+        locationManager?.stopUpdatingLocation()
+        
+    }
+    
+    // Below Mehtod will print error if not able to update location.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error")
+    }
+}
+
+
+//latitude = "15.151565551757812";
+//longitude = "76.92289389955027";

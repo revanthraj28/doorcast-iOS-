@@ -204,8 +204,8 @@ class LoginVC: UIViewController {
                 parms["device_id"] = KDeviceID
                 parms["device"] = KDeviceModelName
                 parms["os_type"] = KOsType
-                parms["latitude"] = 0.0
-                parms["longitude"] = 0.0
+                parms["latitude"] = KLat
+                parms["longitude"] = KLong
                 parms["device_token"] = "\(UserDefaults.standard.string(forKey: "FCMToken") ?? "")"
                 switch self.dropDownTitleLbl.text {
                 case "Production":

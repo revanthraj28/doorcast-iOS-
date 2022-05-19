@@ -30,6 +30,8 @@ var showproperty = String()
 var crewPropertyIds = [String]()
 var crewPropertyALLIds = [String]()
 var timerBool = false
+var KLat = String()
+var KLong = String()
 
 let GlobelAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Im94Zm9yZCBjYXBzIg._nKgScZrZagPYMtl2D9cYgxsBV_EoDgqmuMFGDuEAek"
 
@@ -61,7 +63,7 @@ struct ApiEndpoints {
     static let forceStop = "exstream_forceStop"
     
     
-    
+    static let startDayCrewTask = "exstream_crewTaskLog"
 }
 
 /*App messages*/

@@ -38,8 +38,9 @@ class CommonTaskDetailVC: UIViewController {
     
     
     var crewPropertyIds = [String]()
-   
-   
+    var timer : Timer?
+    var seconds = 0
+    
     
     static var newInstance: CommonTaskDetailVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -69,7 +70,6 @@ class CommonTaskDetailVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
         
         self.view.bringSubviewToFront(self.speechView)
         
@@ -117,8 +117,6 @@ class CommonTaskDetailVC: UIViewController {
         backButton.setImage(UIImage(named: "chevron-left-solid")?.withTintColor(UIColor.white), for: .normal)
         notificationViewButton.setImage(UIImage(named: "menu")?.withTintColor(UIColor.white), for: .normal)
         
-        
-        
         self.parentSegmentView.bringSubviewToFront(self.speechView)
         speechView.backgroundColor = UIColor.clear
         speechView.isHidden = true
@@ -126,7 +124,6 @@ class CommonTaskDetailVC: UIViewController {
         startDaylbl.textColor = UIColor.white
         startDaylbl.textAlignment = .center
         startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
-        
         
         dayAlertlbl.textColor = UIColor.white
         dayAlertlbl.backgroundColor = UIColor.red
@@ -141,6 +138,7 @@ class CommonTaskDetailVC: UIViewController {
     @IBAction func incompleteButtonAction(_ sender: Any) {
         setSegmentedUI(selectedButton: incompleteButton, UnSelectButton: completeButton)
         calendarView.isHidden = true
+        self.speechView.isHidden = true
         remove(asChildViewController: completeViewController)
         add(asChildViewController: incompleteViewController)
     }
@@ -148,6 +146,7 @@ class CommonTaskDetailVC: UIViewController {
     @IBAction func completedButtonAction(_ sender: Any) {
         setSegmentedUI(selectedButton: completeButton, UnSelectButton: incompleteButton)
         calendarView.isHidden = false
+        self.speechView.isHidden = true
         remove(asChildViewController: incompleteViewController)
         add(asChildViewController: completeViewController)
     }
@@ -157,7 +156,7 @@ class CommonTaskDetailVC: UIViewController {
     }
     
     
-
+    
     @IBAction func didTapOnCalenderShowButton(_ sender: Any) {
         print("didTapOnCalenderShowButton")
         
@@ -191,7 +190,7 @@ class CommonTaskDetailVC: UIViewController {
             
             self.dayAlertlbl.fadeIn()
             self.dayAlertlbl.fadeOut()
-         
+            
             
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
             startDaylbl.text = "Stop day"
@@ -228,3 +227,29 @@ class CommonTaskDetailVC: UIViewController {
 }
 
 
+
+
+
+extension CommonTaskDetailVC {
+    
+    
+    func runTimer() {
+        if !(timer?.isValid ?? false) {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        }else {
+            timer?.invalidate()
+        }
+    }
+    
+    @objc func updateTimer() {
+        seconds += 1
+        self.timerView.idleTimerValueLbl.text = timeString(time: TimeInterval(seconds))
+    }
+    
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+    }
+}
