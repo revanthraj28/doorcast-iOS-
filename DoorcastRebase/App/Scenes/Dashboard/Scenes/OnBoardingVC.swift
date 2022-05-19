@@ -95,19 +95,19 @@ class OnBoardingVC: UIViewController {
         
         CheckInternetConnection()
         print("logoutttt.....")
-//        logoutModel = LogoutViewModel(self)
-//        logoutModel.logoutApi()
+        logoutModel = LogoutViewModel(self)
+        logoutModel.logoutApi()
     }
     
-    func logoutBtnApi() {
-    logoutModel = LogoutViewModel(self)
-    logoutModel.logoutApi()
-  }
+//    func logoutBtnApi() {
+//    logoutModel = LogoutViewModel(self)
+//    logoutModel.logoutApi()
+//  }
     
     func CheckInternetConnection() {
         if ServiceManager.isConnection() == true {
             print("Internet Connection Available!")
-            self.logoutBtnApi()
+//            self.logoutBtnApi()
         }else{
             print("Internet Connection not Available!")
             self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
