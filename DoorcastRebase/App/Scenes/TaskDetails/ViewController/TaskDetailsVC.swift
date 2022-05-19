@@ -38,9 +38,16 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var ReassignImage: UIImageView!
     @IBOutlet weak var reasignBgView: UIView!
     @IBOutlet weak var editBackgroundView: UIView!
-    
     @IBOutlet weak var addcrewBgView: UIView!
     @IBOutlet weak var ReassignBtn: UIButton!
+    
+    @IBOutlet weak var TimerView: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var tickMarkView: UIView!
+    @IBOutlet weak var tickImage: UIImageView!
+    @IBOutlet weak var tickButton: UIButton!
+    @IBOutlet weak var playpauseView: UIView!
+    @IBOutlet weak var playpauseButton: UIButton!
     
     
     var subTaskList: TaskDataModel?
@@ -69,6 +76,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         self.setupLoactionMgr()
+        setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
         companyLabel.text = defaults.string(forKey: UserDefaultsKeys.propertyname)
         propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
@@ -141,6 +149,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         moreView.layer.cornerRadius = 18
         sidearrowView.layer.cornerRadius = 18
+        
+        
+        tickMarkView.layer.cornerRadius = 25
+        playpauseView.layer.cornerRadius = 25
         
         
         taskDetailsTableView.delegate = self
