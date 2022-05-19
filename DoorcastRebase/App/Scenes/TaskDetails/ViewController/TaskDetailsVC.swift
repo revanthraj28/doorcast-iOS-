@@ -81,7 +81,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         subTaskListViewModel = SubTaskListViewModel(self)
         
-        setupui()
+       
         
     }
     
@@ -269,6 +269,7 @@ extension TaskDetailsVC : SubTaskListProtocol {
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
+        print("subtaskDetailresponse = \(response)")
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {

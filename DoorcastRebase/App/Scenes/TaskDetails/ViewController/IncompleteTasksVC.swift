@@ -255,6 +255,8 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListTVCell.cellId, for: indexPath) as! TaskListTVCell
+        
+        
         cell.selectionStyle = .none
         
         if let incompleteData = incompleteTaskListModel?.data?[indexPath.row] {
