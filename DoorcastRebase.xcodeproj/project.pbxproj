@@ -90,6 +90,8 @@
 		638E5FCC3ED177D7172BAB15 /* Pods_DoorcastRebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */; };
 		AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */; };
 		AE198CCF2833A10D00252A74 /* ForceStopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCE2833A10D00252A74 /* ForceStopModel.swift */; };
+		AE59F457283620D70051D426 /* ReassignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59F456283620D60051D426 /* ReassignModel.swift */; };
+		AE59F459283620EE0051D426 /* ReassignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59F458283620ED0051D426 /* ReassignViewModel.swift */; };
 		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
 		AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */; };
 		AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */; };
@@ -222,6 +224,8 @@
 		4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopViewModel.swift; sourceTree = "<group>"; };
 		AE198CCE2833A10D00252A74 /* ForceStopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopModel.swift; sourceTree = "<group>"; };
+		AE59F456283620D60051D426 /* ReassignModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReassignModel.swift; sourceTree = "<group>"; };
+		AE59F458283620ED0051D426 /* ReassignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReassignViewModel.swift; sourceTree = "<group>"; };
 		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
 		AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
 		AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
@@ -756,6 +760,7 @@
 				135EB04D282B8DB100194216 /* SubTaskViewModel.swift */,
 				AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */,
 				AE812F8C2834CEA100AE6606 /* AddCrewViewModel.swift */,
+				AE59F458283620ED0051D426 /* ReassignViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -770,6 +775,7 @@
 				135EB04F282B8DC500194216 /* SubTaskModel.swift */,
 				AE198CCE2833A10D00252A74 /* ForceStopModel.swift */,
 				AE812F8A2834CE1700AE6606 /* AddCrewModel.swift */,
+				AE59F456283620D60051D426 /* ReassignModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1118,10 +1124,12 @@
 				E34A2D132822A05900BF7439 /* IncompleteTasksVC.swift in Sources */,
 				E31C92B2282244CC00600CEE /* DoorcastRebase.xcdatamodeld in Sources */,
 				E347D3632822700D00122C8B /* HomeViewModel.swift in Sources */,
+				AE59F457283620D70051D426 /* ReassignModel.swift in Sources */,
 				E31C92AC282244CC00600CEE /* ViewController.swift in Sources */,
 				E347D35328225AEB00122C8B /* SessionManager.swift in Sources */,
 				E34A2D152822A06E00BF7439 /* CompletedTasksVC.swift in Sources */,
 				E347D366282270A600122C8B /* HomeModel.swift in Sources */,
+				AE59F459283620EE0051D426 /* ReassignViewModel.swift in Sources */,
 				E347D35E28225FA100122C8B /* UIViewControllerExtension.swift in Sources */,
 				AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */,
 				072191162823DE0900116F43 /* DateExtension.swift in Sources */,
@@ -1347,7 +1355,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1379,7 +1387,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

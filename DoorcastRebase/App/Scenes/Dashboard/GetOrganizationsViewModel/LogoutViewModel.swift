@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 
 protocol LogoutViewModelProtocol:BaseViewModelProtocol {
@@ -24,6 +25,8 @@ class LogoutViewModel {
             
             self.view.hideLoader()
             if sucess {
+                let center = UNUserNotificationCenter.current()
+                center.removeAllDeliveredNotifications()
                 guard let response = result else {return}
                 self.view.logoutSuccess(logoutResponse: response)
             } else {

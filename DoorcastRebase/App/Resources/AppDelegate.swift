@@ -107,8 +107,11 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                 if let message = alert["body"] as? NSString {
                     print(message)
                     switch message {
-                    case "Someone has logged in with your credeentials" :
+                    case "Someone has logged in with your credeentials","Task is added","Task Reassigned" :
                         goToLogin()
+                        break
+                    case "Task is added for the crew" :
+                        gotoCommonTaskDetailVC()
                         break
                     default:
                         break
@@ -135,6 +138,9 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                     switch message {
                     case "Someone has logged in with your credeentials","Admin has removed you from the organisation":
                         goToLogin()
+                        break
+                    case "Task is added for the crew" :
+                        gotoCommonTaskDetailVC()
                         break
                     default:
                         break
@@ -224,6 +230,20 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         
         DispatchQueue.main.async {
             if let vc = LoginVC.newInstance {
+                let nav = UINavigationController(rootViewController: vc)
+                nav.isNavigationBarHidden = true
+                self.window?.rootViewController = nav
+                self.window?.makeKeyAndVisible()
+            }
+        }
+        
+    }
+    func gotoCommonTaskDetailVC(){
+        
+        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+        
+        DispatchQueue.main.async {
+            if let vc = CommonTaskDetailVC.newInstance {
                 let nav = UINavigationController(rootViewController: vc)
                 nav.isNavigationBarHidden = true
                 self.window?.rootViewController = nav
