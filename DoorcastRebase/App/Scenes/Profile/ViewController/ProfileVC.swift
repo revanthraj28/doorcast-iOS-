@@ -11,8 +11,6 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     
     
     @IBOutlet weak var saveBtn: UIButton!
-    
-    // @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var navBarView: UIView!
@@ -158,35 +156,72 @@ class ProfileVC: UIViewController,ProfileViewModelProtocol {
     }
     
     
+    
+    
     @IBAction func didTaponResetPasswordButton(_ sender: Any) {
         
     }
     
     @IBAction func didTapOnSaveBtn(_ sender: Any) {
+        CheckInternetConnection()
         
+//        if Nametxtfld.text?.isEmpty == true || Nametxtfld.text == "" {
+//            validateLabel(lblName: nameErrorLabel, hide: false, lblText: "Enter Name")
+//        }else if emailtxtfld.text?.isEmpty == true || emailtxtfld.text == "" {
+//            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Eamil")
+//        }else if emailtxtfld.text?.isValidEmail() == false {
+//            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Valid Email")
+//        }else if phonenumtxtfld.text?.isEmpty == true || phonenumtxtfld.text == "" {
+//            validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Mobile Number")
+//        }else if phonenumtxtfld.text?.validateAsPhoneNumber() == false {
+//            validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Valid  Mobile Number")
+//        }else {
+//            var parms = [String: Any]()
+//            parms["email"] = self.emailtxtfld.text
+//            parms["full_name"] = self.Nametxtfld.text
+//            parms["mobile"] = self.phonenumtxtfld.text
+//            parms["employee_id"] = SessionManager.loginInfo?.data?.login_id
+//
+//            self.vmodel?.ProfileApi(dictParam: parms)
+//        }
+//
+    }
+    func saveButton() {
+    
+    if Nametxtfld.text?.isEmpty == true || Nametxtfld.text == "" {
+        validateLabel(lblName: nameErrorLabel, hide: false, lblText: "Enter Name")
+    }else if emailtxtfld.text?.isEmpty == true || emailtxtfld.text == "" {
+        validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Eamil")
+    }else if emailtxtfld.text?.isValidEmail() == false {
+        validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Valid Email")
+    }else if phonenumtxtfld.text?.isEmpty == true || phonenumtxtfld.text == "" {
+        validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Mobile Number")
+    }else if phonenumtxtfld.text?.validateAsPhoneNumber() == false {
+        validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Valid  Mobile Number")
+    }else {
+        var parms = [String: Any]()
+        parms["email"] = self.emailtxtfld.text
+        parms["full_name"] = self.Nametxtfld.text
+        parms["mobile"] = self.phonenumtxtfld.text
+        parms["employee_id"] = SessionManager.loginInfo?.data?.login_id
         
-        if Nametxtfld.text?.isEmpty == true || Nametxtfld.text == "" {
-            validateLabel(lblName: nameErrorLabel, hide: false, lblText: "Enter Name")
-        }else if emailtxtfld.text?.isEmpty == true || emailtxtfld.text == "" {
-            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Eamil")
-        }else if emailtxtfld.text?.isValidEmail() == false {
-            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Valid Email")
-        }else if phonenumtxtfld.text?.isEmpty == true || phonenumtxtfld.text == "" {
-            validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Mobile Number")
-        }else if phonenumtxtfld.text?.validateAsPhoneNumber() == false {
-            validateLabel(lblName: phonenumErrorLabel, hide: false, lblText: "Enter Valid  Mobile Number")
-        }else {
-            var parms = [String: Any]()
-            parms["email"] = self.emailtxtfld.text
-            parms["full_name"] = self.Nametxtfld.text
-            parms["mobile"] = self.phonenumtxtfld.text
-            parms["employee_id"] = SessionManager.loginInfo?.data?.login_id
-            
-            self.vmodel?.ProfileApi(dictParam: parms)
-        }
-        
+        self.vmodel?.ProfileApi(dictParam: parms)
     }
     
+    }
+    
+    
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+            self.saveButton()
+        }else{
+            print("Internet Connection not Available!")
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
+    }
     
     
     func ProfileSuccess(ProfileResponse: ProfileModel) {

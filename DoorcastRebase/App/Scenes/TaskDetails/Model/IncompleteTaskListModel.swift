@@ -6,22 +6,24 @@
 //
 
 import Foundation
+
+
 struct IncompleteTaskListModel : Codable {
     let status : Bool?
     let message : String?
     let data : [IncompleteTaskListModelData]?
     let time : IncompleteTaskListModelTime?
     let login_id : String?
-
+    
     enum CodingKeys: String, CodingKey {
-
+        
         case status = "status"
         case message = "message"
         case data = "data"
         case time = "time"
         case login_id = "login_id"
     }
-
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         status = try values.decodeIfPresent(Bool.self, forKey: .status)
@@ -30,8 +32,10 @@ struct IncompleteTaskListModel : Codable {
         time = try values.decodeIfPresent(IncompleteTaskListModelTime.self, forKey: .time)
         login_id = try values.decodeIfPresent(String.self, forKey: .login_id)
     }
-
+    
 }
+
+
 struct IncompleteTaskListModelData : Codable {
     let taskname : String?
     let task_id : String?
@@ -40,23 +44,23 @@ struct IncompleteTaskListModelData : Codable {
     let task_description : String?
     let task_add_date : String?
     let task_start_date : String?
-//    let task_close_date : String?
+    //    let task_close_date : String?
     let photo_required : String?
-//    let close_summary : String?
+    //    let close_summary : String?
     let propertyname : String?
     let propertyid : String?
     let address : String?
     let proporty_onboard_date : String?
-//    let completed_status : String?
+    //    let completed_status : String?
     let latitude : String?
     let longitude : String?
     let role_id : String?
     let role_name : String?
     let unit : String?
     let crew_id : String?
-
+    
     enum CodingKeys: String, CodingKey {
-
+        
         case taskname = "taskname"
         case task_id = "task_id"
         case group_id = "group_id"
@@ -64,14 +68,14 @@ struct IncompleteTaskListModelData : Codable {
         case task_description = "task_description"
         case task_add_date = "task_add_date"
         case task_start_date = "task_start_date"
-//        case task_close_date = "task_close_date"
+        //        case task_close_date = "task_close_date"
         case photo_required = "photo_required"
-//        case close_summary = "close_summary"
+        //        case close_summary = "close_summary"
         case propertyname = "propertyname"
         case propertyid = "propertyid"
         case address = "address"
         case proporty_onboard_date = "proporty_onboard_date"
-//        case completed_status = "completed_status"
+        //        case completed_status = "completed_status"
         case latitude = "latitude"
         case longitude = "longitude"
         case role_id = "role_id"
@@ -79,7 +83,7 @@ struct IncompleteTaskListModelData : Codable {
         case unit = "unit"
         case crew_id = "crew_id"
     }
-
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         taskname = try values.decodeIfPresent(String.self, forKey: .taskname)
@@ -89,14 +93,14 @@ struct IncompleteTaskListModelData : Codable {
         task_description = try values.decodeIfPresent(String.self, forKey: .task_description)
         task_add_date = try values.decodeIfPresent(String.self, forKey: .task_add_date)
         task_start_date = try values.decodeIfPresent(String.self, forKey: .task_start_date)
-//        task_close_date = try values.decodeIfPresent(String.self, forKey: .task_close_date)
+        //        task_close_date = try values.decodeIfPresent(String.self, forKey: .task_close_date)
         photo_required = try values.decodeIfPresent(String.self, forKey: .photo_required)
-//        close_summary = try values.decodeIfPresent(String.self, forKey: .close_summary)
+        //        close_summary = try values.decodeIfPresent(String.self, forKey: .close_summary)
         propertyname = try values.decodeIfPresent(String.self, forKey: .propertyname)
         propertyid = try values.decodeIfPresent(String.self, forKey: .propertyid)
         address = try values.decodeIfPresent(String.self, forKey: .address)
         proporty_onboard_date = try values.decodeIfPresent(String.self, forKey: .proporty_onboard_date)
-//        completed_status = try values.decodeIfPresent(String.self, forKey: .completed_status)
+        //        completed_status = try values.decodeIfPresent(String.self, forKey: .completed_status)
         latitude = try values.decodeIfPresent(String.self, forKey: .latitude)
         longitude = try values.decodeIfPresent(String.self, forKey: .longitude)
         role_id = try values.decodeIfPresent(String.self, forKey: .role_id)
@@ -104,26 +108,77 @@ struct IncompleteTaskListModelData : Codable {
         unit = try values.decodeIfPresent(String.self, forKey: .unit)
         crew_id = try values.decodeIfPresent(String.self, forKey: .crew_id)
     }
-
+    
 }
 
 struct IncompleteTaskListModelTime : Codable {
     let working_time : String?
     let ideal_time : String?
     let day_status : Bool?
-
+    
     enum CodingKeys: String, CodingKey {
-
+        
         case working_time = "working_time"
         case ideal_time = "ideal_time"
         case day_status = "day_status"
     }
-
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         working_time = try values.decodeIfPresent(String.self, forKey: .working_time)
         ideal_time = try values.decodeIfPresent(String.self, forKey: .ideal_time)
         day_status = try values.decodeIfPresent(Bool.self, forKey: .day_status)
     }
+    
+    
+}
 
+
+
+
+
+struct CrewTaskLogModel : Codable {
+    let status : Bool?
+    let message : String?
+    let data : CrewTaskLogModelData?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case status = "status"
+        case message = "message"
+        case data = "data"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        status = try values.decodeIfPresent(Bool.self, forKey: .status)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
+        data = try values.decodeIfPresent(CrewTaskLogModelData.self, forKey: .data)
+    }
+    
+}
+
+
+
+struct CrewTaskLogModelData : Codable {
+    
+    let idealtime : String?
+    let individualtaskworkingtime : String?
+    let workingtime : String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case idealtime = "ideal_time"
+        case individualtaskworkingtime = "individual_taskworking_time"
+        case workingtime = "working_time"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        idealtime = try values.decodeIfPresent(String.self, forKey: .idealtime)
+        individualtaskworkingtime = try values.decodeIfPresent(String.self, forKey: .individualtaskworkingtime)
+        workingtime = try values.decodeIfPresent(String.self, forKey: .workingtime)
+    }
+    
 }

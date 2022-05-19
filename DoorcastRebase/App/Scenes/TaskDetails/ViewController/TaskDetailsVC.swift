@@ -38,9 +38,16 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var ReassignImage: UIImageView!
     @IBOutlet weak var reasignBgView: UIView!
     @IBOutlet weak var editBackgroundView: UIView!
-    
     @IBOutlet weak var addcrewBgView: UIView!
     @IBOutlet weak var ReassignBtn: UIButton!
+    
+    @IBOutlet weak var TimerView: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var tickMarkView: UIView!
+    @IBOutlet weak var tickImage: UIImageView!
+    @IBOutlet weak var tickButton: UIButton!
+    @IBOutlet weak var playpauseView: UIView!
+    @IBOutlet weak var playpauseButton: UIButton!
     
     
     var subTaskList: TaskDataModel?
@@ -58,6 +65,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var coordinates = [CLLocationCoordinate2D]()
     
     var isVisible = false
+    var mainVC: CommonTaskDetailVC?
     
     static var newInstance: TaskDetailsVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -68,80 +76,63 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.setupLoactionMgr()
+        // self.parentvc = self.parent as? CommonTaskDetailVC ?? UIViewController()
+        
+        // updateLocation
+        NotificationCenter.default.addObserver(self, selector: #selector(setDistanceFromCurrentLocation(notification:)), name: NSNotification.Name.init(rawValue: "updateLocation"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
+        
+        setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
         companyLabel.text = defaults.string(forKey: UserDefaultsKeys.propertyname)
         propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
         
         editBackgroundView.isHidden = true
+        
+    }
+    
+    
+    
+    @objc func dayTaskAction(notification:Notification) {
+        
+        print("dayTaskAction")
+        mainVC?.timerView.timerButton.setImage(UIImage(named: ""), for: .normal)
+    }
+    
+    
+    
+    @objc func setDistanceFromCurrentLocation(notification:Notification) {
+        
+        print("setDistanceFromCurrentLocation")
+        
+        let DestinationLocation = CLLocation(latitude: latdistance, longitude: longdistance)
+        let currentLocation = CLLocation(latitude: Double(KLat) ?? 0.0, longitude: Double(KLong) ?? 0.0)
+        let distance = DestinationLocation.distance(from: currentLocation)
+        
+        print(String(format: "The distance to my buddy is %.01fm", distance))
+        distanceLabel.text = "\(Int(distance))"
+        
+        if distance > 500 {
+            print("less then 500")
+        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         subTaskListViewModel = SubTaskListViewModel(self)
-        
-        setupui()
-        
     }
     
-    func setupLoactionMgr() {
-        
-        // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-    }
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        
-        switch manager.authorizationStatus {
-        case .authorizedAlways:
-            return
-        case .authorizedWhenInUse:
-            return
-        case .denied:
-            return
-        case .restricted :
-            locationManager.requestWhenInUseAuthorization()
-        case .notDetermined :
-            locationManager.requestWhenInUseAuthorization()
-        default:
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        
-        var currentLocation = CLLocation(latitude:  locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0)
-        
-        var DestinationLocation = CLLocation(latitude: latdistance, longitude: longdistance)
-        var distance = currentLocation.distance(from: DestinationLocation)
-        
-        print(String(format: "The distance to my buddy is %.01fm", distance))
-        distanceLabel.text = "\(distance) ".maxLength(length: 3)
-        
-        if distance < 500 {
-            print("less then 500")
-        }
-        
-        print("displayed location\(distanceLabel)")
-    }
     
     func setupui(){
         dateLabel.text =  Date().MonthDateDayFormatter?.uppercased()
-        distanceLabel.text = "1111"
         
         moreView.layer.cornerRadius = 18
         sidearrowView.layer.cornerRadius = 18
         
+        tickMarkView.layer.cornerRadius = 25
+        playpauseView.layer.cornerRadius = 25
         
         taskDetailsTableView.delegate = self
         taskDetailsTableView.dataSource = self
@@ -162,7 +153,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     
     @IBAction func menuButtonAction(_ sender: Any) {
-        
+        guard let vc = NotificationCenterVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -269,11 +262,13 @@ extension TaskDetailsVC : SubTaskListProtocol {
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
+        print("subtaskDetailresponse = \(response)")
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
             self.taskDetailsTableView.reloadData()
         }
     }
-
+    
 }
+

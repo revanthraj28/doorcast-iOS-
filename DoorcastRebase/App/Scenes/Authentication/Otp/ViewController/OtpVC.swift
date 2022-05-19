@@ -87,6 +87,20 @@ extension OtpVC : ResendOTPViewModelProtocol {
 }
 extension OtpVC : ContniueButtonTVCellDelegate  {
     func resendOtpBtnisTapped(cell: OtpTVCell) {
+        CheckInternetConnection()
+//        var parms = [String: Any]()
+//        parms["email"] = self.EmailAddress
+//        parms["otp"] = self.otpNumber
+//
+//        self.timer = Timer(timeInterval: 1.0, target: self, selector: #selector(fireCellsUpdate), userInfo: nil, repeats: true)
+//        RunLoop.current.add(self.timer, forMode: RunLoop.Mode.common)
+//
+//        self.viewmodel?.ResendOTPApi(dictParam: parms)
+    }
+    
+    func resendOtpBtn() {
+    func resendOtpBtnisTapped(cell: OtpTVCell) {
+        
         var parms = [String: Any]()
         parms["email"] = self.EmailAddress
         parms["otp"] = self.otpNumber
@@ -97,7 +111,26 @@ extension OtpVC : ContniueButtonTVCellDelegate  {
         self.viewmodel?.ResendOTPApi(dictParam: parms)
     }
     
+    }
+    
+    
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+            self.resendOtpBtn()
+        }else{
+            print("Internet Connection not Available!")
+           
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
+    }
+    
+    
+    
     func ContniueButtonIsTapped(cell: OtpTVCell) {
+       
         
         let data = "\(cell.OtpTF1.text ?? "")\(cell.OtpTF2.text ?? "")\(cell.OtpTF3.text ?? "")\(cell.OtpTF4.text ?? "")"
         

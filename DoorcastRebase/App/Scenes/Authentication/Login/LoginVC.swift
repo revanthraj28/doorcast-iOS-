@@ -30,6 +30,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordLbl: UILabel!
     @IBOutlet weak var emailAdresslbl: UILabel!
     
+    
     let rightBarDropDown = DropDown()
     
     var loginResponseModel : LoginModelData?
@@ -194,6 +195,58 @@ class LoginVC: UIViewController {
         lblName.text = lblText
     }
     
+    
+    
+    func logincallApi() {
+      
+        if emailTF.text != "" {
+            if passwordTF.text != "" {
+                
+                var parms = [String: Any]()
+                parms["email"] = emailTF.text ?? ""
+                parms["password"] = passwordTF.text ?? ""
+                parms["device_id"] = KDeviceID
+                parms["device"] = KDeviceModelName
+                parms["os_type"] = KOsType
+                parms["latitude"] = 0.0
+                parms["longitude"] = 0.0
+                parms["device_token"] = "\(UserDefaults.standard.string(forKey: "FCMToken") ?? "")"
+                switch self.dropDownTitleLbl.text {
+                case "Production":
+                    BASE_URL = "https://doorcast.tech/api/"
+                    break
+                case "Staging":
+                    BASE_URL = "https://staging.doorcast.tech/api/"
+                    break
+                case "Dev":
+                    BASE_URL = "https://dev.doorcast.tech/api/"
+                    break
+                default:
+                    BASE_URL = "https://doorcast.tech/api/"
+                    break
+                }
+                print("Baseurl = \(BASE_URL)")
+                
+                defaults.set(BASE_URL ?? "https://doorcast.tech/api/", forKey: UserDefaultsKeys.Base_url)
+                
+                print("Defaults url = \(defaults.string(forKey: UserDefaultsKeys.Base_url))")
+                
+                
+                viewModel.loginApi(dictParam: parms)
+            } else {
+                validateLabel(lblName: passErorrLabel, hide: false, lblText: "Enter Password")
+            }
+        } else {
+            validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Email")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     @IBAction func loginButtonAction(_ sender: Any) {
         if emailTF.text != "" {
             if passwordTF.text != "" {
@@ -261,3 +314,4 @@ extension LoginVC : UITextFieldDelegate {
         self.view.endEditing(true)
     }
 }
+

@@ -40,6 +40,16 @@ extension UIViewController {
         }
     }
     
+    
+    func gotoNotificationCenterVC() {
+        DispatchQueue.main.async {
+            // V2 Dashboard with 5 tabs
+            let vc = NotificationCenterVC.newInstance
+            self.view.window?.rootViewController = vc
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
+    
     func gotoForgotPasswordScreen(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordVC") as! ForgotPasswordVC
@@ -69,4 +79,16 @@ extension UIViewController {
         self.view.window!.layer.add(transition, forKey: kCATransition)
         dismiss(animated: false)
     }
+    
+   
+        func showAlertOnWindow(title: String? = nil, message: String? = nil, titles: [String] = ["OK"], completionHanlder: ((_ title: String) -> Void)? = nil) {
+            
+            let alert = UIAlertController(title: title ?? "", message: message, preferredStyle: UIAlertController.Style.alert)
+            for title in titles {
+                alert.addAction(UIAlertAction(title: title, style: UIAlertAction.Style.default, handler: { (action) in
+                    completionHanlder?(title)
+                }))
+            }
+            present(alert, animated: true, completion: nil)
+        }
 }

@@ -141,6 +141,7 @@ class CrewPropertiesVC: UIViewController {
         guard let vc = NotificationCenterVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
+        
     }
     
     

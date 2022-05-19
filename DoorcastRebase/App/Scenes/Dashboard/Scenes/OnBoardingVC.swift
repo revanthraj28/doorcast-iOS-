@@ -72,6 +72,7 @@ class OnBoardingVC: UIViewController {
         print("Home Login info = \(SessionManager.loginInfo?.data?.accesstoken)")
         viewModel = GetOrganizationsViewModel(self)
         viewModel.getOrganizationApi()
+        CheckInternetConnection()
     }
      
     func updateFonts() {
@@ -91,9 +92,28 @@ class OnBoardingVC: UIViewController {
 
     @IBAction func logoutBtnIsTapped(_ sender: Any) {
         // func to be executed when logged out
+        
+        CheckInternetConnection()
         print("logoutttt.....")
         logoutModel = LogoutViewModel(self)
         logoutModel.logoutApi()
+    }
+    
+//    func logoutBtnApi() {
+//    logoutModel = LogoutViewModel(self)
+//    logoutModel.logoutApi()
+//  }
+    
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+//            self.logoutBtnApi()
+        }else{
+            print("Internet Connection not Available!")
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
     }
     
     @IBAction func allTasksBtnIsTapped(_ sender: Any) {
