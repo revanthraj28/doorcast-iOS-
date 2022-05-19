@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OtpTVCell: UITableViewCell , UITextFieldDelegate{
+class OtpTVCell: UITableViewCell , UITextFieldDelegate {
     
     @IBOutlet weak var enterOtpLbl: UILabel!
     @IBOutlet weak var declarationLbl: UILabel!
@@ -126,6 +126,11 @@ class OtpTVCell: UITableViewCell , UITextFieldDelegate{
         return newString.length <= maxLength
     }
     
+   
+    
+    
+    
+    
     
     // characters allowed in textfield
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -169,6 +174,7 @@ class OtpTVCell: UITableViewCell , UITextFieldDelegate{
         
     }
     @objc  func  didTapOnContinue() {
+       
         
     }
     @objc func didTapOnResend(){

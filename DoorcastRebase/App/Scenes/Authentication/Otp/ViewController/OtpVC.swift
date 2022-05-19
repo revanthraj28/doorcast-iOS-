@@ -97,7 +97,10 @@ extension OtpVC : ContniueButtonTVCellDelegate  {
         self.viewmodel?.ResendOTPApi(dictParam: parms)
     }
     
+
+    
     func ContniueButtonIsTapped(cell: OtpTVCell) {
+       
         
         let data = "\(cell.OtpTF1.text ?? "")\(cell.OtpTF2.text ?? "")\(cell.OtpTF3.text ?? "")\(cell.OtpTF4.text ?? "")"
         
