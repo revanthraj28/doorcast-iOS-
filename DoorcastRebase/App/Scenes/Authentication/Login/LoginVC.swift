@@ -30,6 +30,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordLbl: UILabel!
     @IBOutlet weak var emailAdresslbl: UILabel!
     
+    
     let rightBarDropDown = DropDown()
     
     var loginResponseModel : LoginModelData?
@@ -60,24 +61,13 @@ class LoginVC: UIViewController {
         setupUI()
         
     }
-    
-    func CheckInternetConnection() {
-        if ServiceManager.isConnection() == true {
-            print("Internet Connection Available!")
-                self.logincallApi()
-        }else{
-            print("Internet Connection not Available!")
-           
-            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
-                self.CheckInternetConnection()
-            }
-        }
-    }
-    
-    
-    
 
-
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        defaults.set("", forKey: UserDefaultsKeys.globalAT)
+//    }
+    
     func setupUI()
     {
 //        BASE_URL = "https://doorcast.tech/api/"
@@ -258,7 +248,6 @@ class LoginVC: UIViewController {
     
     
     @IBAction func loginButtonAction(_ sender: Any) {
-        CheckInternetConnection()
         if emailTF.text != "" {
             if passwordTF.text != "" {
                 
@@ -268,8 +257,8 @@ class LoginVC: UIViewController {
                 parms["device_id"] = KDeviceID
                 parms["device"] = KDeviceModelName
                 parms["os_type"] = KOsType
-                parms["latitude"] = KLat
-                parms["longitude"] = KLong
+                parms["latitude"] = 0.0
+                parms["longitude"] = 0.0
                 parms["device_token"] = "\(UserDefaults.standard.string(forKey: "FCMToken") ?? "")"
                 switch self.dropDownTitleLbl.text {
                 case "Production":
@@ -325,3 +314,4 @@ extension LoginVC : UITextFieldDelegate {
         self.view.endEditing(true)
     }
 }
+
