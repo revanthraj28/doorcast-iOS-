@@ -70,6 +70,9 @@ class CommonTaskDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        self.view.bringSubviewToFront(self.speechView)
+        
         if let fullname = UserDefaults.standard.string(forKey: "fullname") {
             userNameLabel.text = fullname.uppercased()
         }
@@ -191,7 +194,7 @@ class CommonTaskDetailVC: UIViewController {
          
             
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
-            startDaylbl.text = "Stop daay"
+            startDaylbl.text = "Stop day"
         }else {
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: startDaylbl.text ?? "")
             startDaylbl.text = "Start day"

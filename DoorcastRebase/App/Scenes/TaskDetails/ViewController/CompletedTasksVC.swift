@@ -25,7 +25,9 @@ class CompletedTasksVC: UIViewController {
     var loginID = String()
     var selectedSegmentIndex = Int()
     var selectedSegmentTitle = String()
-    
+    var calBool = false
+    var calStartDate = String()
+    var calEndDate = String()
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -51,15 +53,19 @@ class CompletedTasksVC: UIViewController {
     }
     
     func configureUI(){
+        
         taskListTableView.delegate = self
         taskListTableView.dataSource = self
         taskListTableView.register(TaskListTVCell.cellNib, forCellReuseIdentifier: TaskListTVCell.cellId)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        //  taskListTableView.addGestureRecognizer(tap)
+        self.view.addGestureRecognizer(tap)
         
         
     }
+    
+    
+  
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         self.mainVC?.speechView.isHidden = true
@@ -78,8 +84,7 @@ class CompletedTasksVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(tofromdate(notification:)), name: NSNotification.Name.init(rawValue: "tofromdate"), object: nil)
         
-        
-        
+
     }
     
     func configureContents(){
@@ -89,11 +94,6 @@ class CompletedTasksVC: UIViewController {
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
         
     }
-    
-    
-    var calBool = false
-    var calStartDate = String()
-    var calEndDate = String()
     
     @objc func tofromdate(notification:Notification) {
         
