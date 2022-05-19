@@ -95,6 +95,20 @@ class CompletedTasksVC: UIViewController {
         
     }
     
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+            self.callApi()
+        }else{
+            print("Internet Connection not Available!")
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
+    }
+    
+    
+    
     @objc func tofromdate(notification:Notification) {
         
         let userinfo = notification.userInfo as? [String:Any]
@@ -108,7 +122,7 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func gotoOnBoardingVC(notification:Notification) {
-        
+        CheckInternetConnection()
         if timerBool == false {
             guard let vc = OnBoardingVC.newInstance else {return}
             vc.modalPresentationStyle = .fullScreen
@@ -126,7 +140,7 @@ class CompletedTasksVC: UIViewController {
     
     @objc func dayTaskAction(notification:Notification) {
         
-        
+        CheckInternetConnection()
         print("dayTaskAction CompletedTasksVC")
         mainVC?.speechView.isHidden = true
         
@@ -158,6 +172,7 @@ class CompletedTasksVC: UIViewController {
     
     
     func gotoBackScreen() {
+       
         guard let vc = OnBoardingVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -166,6 +181,7 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func didTapOnTimerView(notification:Notification) {
+        CheckInternetConnection()
         mainVC?.speechView.isHidden = false
     }
     

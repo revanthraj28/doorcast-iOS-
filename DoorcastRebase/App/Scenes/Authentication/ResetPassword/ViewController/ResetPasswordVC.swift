@@ -58,6 +58,47 @@ class ResetPasswordVC: UIViewController {
         self.holderView.backgroundColor = UIColor.AppBackgroundColor
         
     }
+    func resendOtp() {
+        if newPasswordTF.text == ""{
+            newPasswordErrorLbl.isHidden = false
+            newPasswordErrorLbl.text = "Newpassword textField is Empty"
+        } else
+        
+        if conformPasswordTF.text == "" {
+            conformPAsswordErrorLbl.isHidden = false
+            conformPAsswordErrorLbl.text = "Conform password textField is Empty"
+        } else
+        if newPasswordTF.text != conformPasswordTF.text  {
+            conformPAsswordErrorLbl.isHidden = false
+            conformPAsswordErrorLbl.text = "Password aren't same"
+        } else {
+            
+            newPasswordErrorLbl.isHidden = true
+            conformPAsswordErrorLbl.isHidden =  true
+            
+            var parms = [String: Any]()
+            parms["email"] = self.EmailAddress
+            parms["password"] = self.conformPasswordTF.text
+            defaults.set(GlobelAccessToken, forKey: UserDefaultsKeys.globalAT)
+            self.viewmodel?.ResetPasswordApi(dictParam: parms)
+        }
+        
+    }
+    
+    func CheckInternetConnection() {
+        if ServiceManager.isConnection() == true {
+            print("Internet Connection Available!")
+            self.resendOtp()
+        }else{
+            print("Internet Connection not Available!")
+           
+            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
+                self.CheckInternetConnection()
+            }
+        }
+    }
+    
+    
     func isValidPassword(_ password: String) -> Bool {
         // least one uppercase,
         // least one digit
@@ -99,73 +140,35 @@ class ResetPasswordVC: UIViewController {
    
     }
     
-    func CheckInternetConnection() {
-        if ServiceManager.isConnection() == true {
-            print("Internet Connection Available!")
-            self.resendOtp()
-        }else{
-            print("Internet Connection not Available!")
-           
-            self.showAlertOnWindow(title: "No Internet Connection!", message: "Please check your internet connection and try again", titles: ["retry"]) { (key) in
-                self.CheckInternetConnection()
-            }
-        }
-    }
+   
     
-    func resendOtp() {
-        if newPasswordTF.text == ""{
-            newPasswordErrorLbl.isHidden = false
-            newPasswordErrorLbl.text = "Newpassword textField is Empty"
-        } else
-        
-        if conformPasswordTF.text == "" {
-            conformPAsswordErrorLbl.isHidden = false
-            conformPAsswordErrorLbl.text = "Conform password textField is Empty"
-        } else
-        if newPasswordTF.text != conformPasswordTF.text  {
-            conformPAsswordErrorLbl.isHidden = false
-            conformPAsswordErrorLbl.text = "Password aren't same"
-        } else {
-            
-            newPasswordErrorLbl.isHidden = true
-            conformPAsswordErrorLbl.isHidden =  true
-            
-            var parms = [String: Any]()
-            parms["email"] = self.EmailAddress
-            parms["password"] = self.conformPasswordTF.text
-            defaults.set(GlobelAccessToken, forKey: UserDefaultsKeys.globalAT)
-            self.viewmodel?.ResetPasswordApi(dictParam: parms)
-        }
-        
-    }
-    
+ 
     
     @IBAction func resetPasswordBTNAction(_ sender: Any) {
-        
-        
-        if newPasswordTF.text == ""{
-            newPasswordErrorLbl.isHidden = false
-            newPasswordErrorLbl.text = "Newpassword textField is Empty"
-        } else
-        
-        if conformPasswordTF.text == "" {
-            conformPAsswordErrorLbl.isHidden = false
-            conformPAsswordErrorLbl.text = "Conform password textField is Empty"
-        } else
-        if newPasswordTF.text != conformPasswordTF.text  {
-            conformPAsswordErrorLbl.isHidden = false
-            conformPAsswordErrorLbl.text = "Password aren't same"
-        } else {
-            
-            newPasswordErrorLbl.isHidden = true
-            conformPAsswordErrorLbl.isHidden =  true
-            
-            var parms = [String: Any]()
-            parms["email"] = self.EmailAddress
-            parms["password"] = self.conformPasswordTF.text
-            defaults.set(GlobelAccessToken, forKey: UserDefaultsKeys.globalAT)
-            self.viewmodel?.ResetPasswordApi(dictParam: parms)
-        }
+        CheckInternetConnection()
+//        if newPasswordTF.text == ""{
+//            newPasswordErrorLbl.isHidden = false
+//            newPasswordErrorLbl.text = "Newpassword textField is Empty"
+//        } else
+//
+//        if conformPasswordTF.text == "" {
+//            conformPAsswordErrorLbl.isHidden = false
+//            conformPAsswordErrorLbl.text = "Conform password textField is Empty"
+//        } else
+//        if newPasswordTF.text != conformPasswordTF.text  {
+//            conformPAsswordErrorLbl.isHidden = false
+//            conformPAsswordErrorLbl.text = "Password aren't same"
+//        } else {
+//
+//            newPasswordErrorLbl.isHidden = true
+//            conformPAsswordErrorLbl.isHidden =  true
+//
+//            var parms = [String: Any]()
+//            parms["email"] = self.EmailAddress
+//            parms["password"] = self.conformPasswordTF.text
+//            defaults.set(GlobelAccessToken, forKey: UserDefaultsKeys.globalAT)
+//            self.viewmodel?.ResetPasswordApi(dictParam: parms)
+//        }
         
     }
 }
