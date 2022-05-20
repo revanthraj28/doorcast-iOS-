@@ -27,21 +27,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJQ-Wp-Hc5">
                         <rect key="frame" x="10" y="10" width="403" height="112"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHH-nK-NvJ">
-                                <rect key="frame" x="12" y="12" width="23.5" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHH-nK-NvJ">
+                                <rect key="frame" x="12" y="12" width="27" height="11.5"/>
+                                <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="14"/>
                                 <color key="textColor" name="designColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEF-0A-Tcd">
-                                <rect key="frame" x="356" y="12" width="35" height="24.5"/>
-                                <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="18"/>
+                                <rect key="frame" x="364" y="12" width="27" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="14"/>
                                 <color key="textColor" name="designColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dB6-tN-ao5">
-                                <rect key="frame" x="12" y="40.5" width="40.5" height="29"/>
-                                <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="21"/>
+                                <rect key="frame" x="12" y="35.5" width="48" height="34"/>
+                                <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -52,7 +52,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tf-Jx-run">
-                                <rect key="frame" x="371" y="45" width="20" height="20"/>
+                                <rect key="frame" x="371" y="42.5" width="20" height="20"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-fz-q6y">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>

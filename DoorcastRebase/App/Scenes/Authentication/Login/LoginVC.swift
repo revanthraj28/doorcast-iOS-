@@ -118,7 +118,7 @@ class LoginVC: UIViewController {
         forgetPassBtn.setTitleColor(.black, for: .normal)
         forgetPassBtn.titleLabel?.font = UIFont.oswaldMedium(size: 18)
         
-        versionLabl.text = "Version:...."
+        versionLabl.text = "Version:22.2.01"
         versionLabl.textColor = .white
         versionLabl.font = UIFont.oswaldMedium(size: 12)
         forgetPassBtn.titleLabel?.tintColor = .black
