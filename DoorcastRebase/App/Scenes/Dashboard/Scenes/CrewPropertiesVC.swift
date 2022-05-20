@@ -76,8 +76,8 @@ class CrewPropertiesVC: UIViewController {
         crewviewModel = CrewProperties(self)
         
         dateLabel.text =  Date().MonthDateDayFormatter?.uppercased()
-        userNameLabel.font = UIFont.oswaldRegular(size: 18)
-        dateLabel.font = UIFont.oswaldRegular(size: 18)
+        userNameLabel.font = UIFont.oswaldMedium(size: 18)
+        dateLabel.font = UIFont.oswaldMedium(size: 18)
         
         propertiesTV.allowsSelection = true
         propertiesTV.delegate = self
@@ -96,8 +96,8 @@ class CrewPropertiesVC: UIViewController {
     
     func updateFonts() {
         // to add fonts
-        dateLabel.font = UIFont.oswaldRegular(size: 18)
-        userNameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldMedium(size: 18)
+        userNameLabel.font = UIFont.oswaldMedium(size: 18)
         
     }
     

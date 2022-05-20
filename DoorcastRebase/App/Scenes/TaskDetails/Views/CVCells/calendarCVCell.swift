@@ -11,6 +11,7 @@ import JTAppleCalendar
 
 class calendarCVCell: JTAppleCell {
     
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var selectedView: UIView!
     
@@ -24,6 +25,7 @@ class calendarCVCell: JTAppleCell {
       func updateFont() {
         label.font = UIFont.poppinsMedium(size: 12)
         holderView.backgroundColor = UIColor.white
+    
       }
 
 }

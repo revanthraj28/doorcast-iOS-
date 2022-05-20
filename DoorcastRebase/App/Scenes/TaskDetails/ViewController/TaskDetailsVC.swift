@@ -137,7 +137,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         taskDetailsTableView.delegate = self
         taskDetailsTableView.dataSource = self
         
-        taskDetailsTableView.register(CheckboxInTaskDetailsTVCell.self, forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
+       
+        
+//        taskDetailsTableView.register(CheckboxInTaskDetailsTVCell.self, forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
         taskDetailsTableView.register(UINib(nibName: "CheckboxInTaskDetailsTVCell", bundle: nil), forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
         
         
@@ -221,11 +223,10 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var commonCell = UITableViewCell()
-        if let cell = taskDetailsTableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as? CheckboxInTaskDetailsTVCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as? CheckboxInTaskDetailsTVCell {
             
             let data = subtaskDetail?.data?.subtask?[indexPath.row]
-            cell.numbersLabel.text = data?.sub_task_name
-            
+            cell.numbersLabel?.text = data?.sub_task_name
             commonCell = cell
         }
         return commonCell
@@ -239,7 +240,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let cell = taskDetailsTableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as? CheckboxInTaskDetailsTVCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell") as? CheckboxInTaskDetailsTVCell {
             
             if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
                 cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")

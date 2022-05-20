@@ -125,6 +125,17 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                     case "Task is added for the crew" :
                         gotoCommonTaskDetailVC()
                         break
+                    case "Task Reassigned" :
+                        break
+                    case  "Your task has ended" :
+                        break
+                    case "Your day has been stopped since your idle for 1.5 hours" :
+                        break
+                    case "Your time has stopped" :
+                        break
+                    case "" :
+                        break
+                        
                     default:
                         break
                     }
@@ -140,7 +151,11 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         
         self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
         NSLog("%@: will present notification: %@", self.description, notification.request.content.userInfo)
-        completionHandler([.list, .sound, .banner])
+        if #available(iOS 14.0, *) {
+            completionHandler([.list, .sound, .banner])
+        } else {
+            // Fallback on earlier versions
+        }
         
         if let aps = notification.request.content.userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {
