@@ -39,7 +39,7 @@
                                 <rect key="frame" x="20" y="92" width="304" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZb-6g-XuB">
-                                        <rect key="frame" x="0.0" y="0.0" width="118" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="119.5" height="40"/>
                                         <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="INCOMPLETE"/>
@@ -48,7 +48,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOM-xi-RGZ">
-                                        <rect key="frame" x="123" y="0.0" width="181" height="40"/>
+                                        <rect key="frame" x="124.5" y="0.0" width="179.5" height="40"/>
                                         <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="COMPLETED TODAY"/>
