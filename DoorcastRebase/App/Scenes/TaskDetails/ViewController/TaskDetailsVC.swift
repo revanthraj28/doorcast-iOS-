@@ -87,12 +87,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
         companyLabel.text = defaults.string(forKey: UserDefaultsKeys.propertyname)
         propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
-        
         editBackgroundView.isHidden = true
         
     }
-    
-    
     
     @objc func dayTaskAction(notification:Notification) {
         

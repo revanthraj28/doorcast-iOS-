@@ -1209,7 +1209,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKd-BK-Sc0">
                                                 <rect key="frame" x="279" y="132.5" width="50" height="50"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startTimer" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-Sv-4Yj">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-Sv-4Yj">
                                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -1458,7 +1458,6 @@
         <image name="forceFinish" width="269" height="212"/>
         <image name="menu" width="50" height="50"/>
         <image name="reassignTask" width="146" height="127"/>
-        <image name="startTimer" width="78" height="78"/>
         <namedColor name="AppBackgroundColor">
             <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

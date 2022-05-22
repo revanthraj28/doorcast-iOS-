@@ -1362,6 +1362,10 @@
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "/Users/codebele-09/Documents/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1394,6 +1398,10 @@
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "/Users/codebele-09/Documents/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

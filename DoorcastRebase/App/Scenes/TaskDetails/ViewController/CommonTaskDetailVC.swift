@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class CommonTaskDetailVC: UIViewController {
     
     @IBOutlet weak var incompleteButton: UIButton!
