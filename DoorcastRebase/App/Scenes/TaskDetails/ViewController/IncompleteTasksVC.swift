@@ -18,6 +18,7 @@ class IncompleteTasksVC: UIViewController {
     var viewModel : TaskListViewModel!
     var incompleteTaskListModel : IncompleteTaskListModel?
     var IncompleteTaskList : IncompleteTaskListModelData?
+    var subtaskDetail : SubtaskDetailModel?
     
     var tastListShowBool = true
     let bottomView: TimerView = TimerView()
@@ -324,6 +325,7 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.address, forKey: UserDefaultsKeys.address)
             defaults.set(incompleteData.propertyname, forKey: UserDefaultsKeys.propertyname)
             defaults.set(incompleteData.role_name, forKey: UserDefaultsKeys.role_name)
+           
         }
         self.present(vc, animated: true)
     }
