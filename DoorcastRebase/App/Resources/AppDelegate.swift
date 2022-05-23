@@ -115,21 +115,21 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         //        completionHandler()
         if let aps = response.notification.request.content.userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {
-                let title = alert["title"] as? String
+                let data = alert["data"] as? String
+                
+                
                 if let message = alert["body"] as? NSString {
                     print(message)
                     switch message {
-                    case "Someone has logged in with your credeentials","Task is added","Task Reassigned" :
+                    case "Someone has logged in with your credeentials","Admin has removed you from the organisation" :
                         goToLogin()
                         break
-                    case "Task is added for the crew" :
-                        gotoCommonTaskDetailVC()
+                    case "Task is added for the crew", "Task is added","Task Reassigned" :
                         break
                     case "Task Reassigned" :
                         break
-                    case  "Your task has ended" :
-                        break
                     case "Your day has been stopped since your idle for 1.5 hours" :
+                        
                         break
                     case "Your time has stopped" :
                         break
@@ -140,8 +140,42 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                         break
                     }
                 }
+                
+                
+                if let title = alert["title"] as? NSString {
+                    print(title)
+                    switch title {
+                    case "Your task has ended":
+                        if defaults.string(forKey: UserDefaultsKeys.task_id) != "" {
+                            if let responsedata = response.notification.request.content.userInfo["data"] as? String {
+                                print(responsedata)
+                    //                                if let content = String(data: data, encoding: .utf8) {
+                                let data1 = responsedata.data(using: .utf8)!
+                                do {
+                                    if let jsonArray = try? JSONSerialization.jsonObject(with: data1 as Data, options: [.allowFragments]) as? [String:Any]
+                                    {
+                                       print(jsonArray) // use the json here
+                                        if let task_id = jsonArray["task_id"] as? String{
+                                            print(task_id)
+                                                if task_id == defaults.string(forKey: UserDefaultsKeys.task_id){
+                                                    print(defaults.string(forKey: UserDefaultsKeys.task_id))
+                                                    gotoCommonTaskDetailVC()
+                                                }
+                                            } else {
+                                                print("Error")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break
+                    default:
+                        break
+                    }
+                }
             }
         }
+        
     }
     
     
@@ -161,20 +195,64 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
             if let alert = aps["alert"] as? NSDictionary {
                 print("notification alert: \(alert)")
                 let title = alert["title"] as? String
+                
+                
                 if let message = alert["body"] as? NSString {
                     print(message)
                     switch message {
-                    case "Someone has logged in with your credeentials","Admin has removed you from the organisation":
+                    case "Someone has logged in with your credeentials","Admin has removed you from the organisation" :
                         goToLogin()
                         break
                     case "Task is added for the crew" :
-                        gotoCommonTaskDetailVC()
+                        break
+                    case "Your day has been stopped since your idle for 1.5 hours" :
+                        break
+                    case "Your time has stopped" :
+                        break
+                    case "" :
+                        break
+                        
+                    default:
+                        break
+                    }
+                }
+                
+                
+                if let title = alert["title"] as? NSString {
+                    print(title)
+                    switch title {
+                    case "Your task has ended":
+                        if defaults.string(forKey: UserDefaultsKeys.task_id) != "" {
+                            if let responsedata = notification.request.content.userInfo["data"] as? String {
+                                print(responsedata)
+                    //                                if let content = String(data: data, encoding: .utf8) {
+                                let data1 = responsedata.data(using: .utf8)!
+                                do {
+                                    if let jsonArray = try? JSONSerialization.jsonObject(with: data1 as Data, options: [.allowFragments]) as? [String:Any]
+                                    {
+                                       print(jsonArray) // use the json here
+                                        if let task_id = jsonArray["task_id"] as? String{
+                                            print(task_id)
+                                                if task_id == defaults.string(forKey: UserDefaultsKeys.task_id){
+                                                    print(defaults.string(forKey: UserDefaultsKeys.task_id))
+                                                    gotoCommonTaskDetailVC()
+                                                }
+                                            } else {
+                                                print("Error")
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         break
                     default:
                         break
                     }
                 }
             }
+            
+            
+
         }
         
     }
@@ -182,9 +260,74 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("userInfo:::\(userInfo)")
+        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                print("notification alert: \(alert)")
+                let title = alert["title"] as? String
+                
+                
+                if let message = alert["body"] as? NSString {
+                    print(message)
+                    switch message {
+                    case "Someone has logged in with your credeentials" , "Admin has removed you from the organisation" :
+                        goToLogin()
+                        break
+                    case "Task is added for the crew" :
+                        break
+                    case "Your day has been stopped since your idle for 1.5 hours" :
+                        goToOnBoardingVC()
+                        break
+                    case "Your time has stopped" :
+                        break
+                    case "" :
+                        break
+                        
+                    default:
+                        break
+                    }
+                }
+                
+                
+                if let title = alert["title"] as? NSString {
+                    print(title)
+                    switch title {
+                    case "Your task has ended":
+                        if defaults.string(forKey: UserDefaultsKeys.task_id) != "" {
+                            if let responsedata = userInfo["data"] as? String {
+                                print(responsedata)
+                    //                                if let content = String(data: data, encoding: .utf8) {
+                                let data1 = responsedata.data(using: .utf8)!
+                                do {
+                                    if let jsonArray = try? JSONSerialization.jsonObject(with: data1 as Data, options: [.allowFragments]) as? [String:Any]
+                                    {
+                                       print(jsonArray) // use the json here
+                                        if let task_id = jsonArray["task_id"] as? String{
+                                            print(task_id)
+                                                if task_id == defaults.string(forKey: UserDefaultsKeys.task_id){
+                                                    print(defaults.string(forKey: UserDefaultsKeys.task_id))
+                                                    gotoCommonTaskDetailVC()
+                                                } else {
+                                                    print("Error")
+                                                }
+                                            }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                        break
+                    default:
+                        break
+                    }
+                }
+            
+              }
+        }
         NSLog("%@: did receive remote notification completionhandler: %@", self.description, userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
-        print("userInfo:::\(userInfo)")
+       
     }
     
     func pushNotificationTapped(withCustomExtras customExtras: [AnyHashable : Any]!) {
@@ -257,6 +400,20 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         
         DispatchQueue.main.async {
             if let vc = LoginVC.newInstance {
+                let nav = UINavigationController(rootViewController: vc)
+                nav.isNavigationBarHidden = true
+                self.window?.rootViewController = nav
+                self.window?.makeKeyAndVisible()
+            }
+        }
+        
+    }
+    func goToOnBoardingVC(){
+        
+        //        self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+        
+        DispatchQueue.main.async {
+            if let vc = OnBoardingVC.newInstance {
                 let nav = UINavigationController(rootViewController: vc)
                 nav.isNavigationBarHidden = true
                 self.window?.rootViewController = nav

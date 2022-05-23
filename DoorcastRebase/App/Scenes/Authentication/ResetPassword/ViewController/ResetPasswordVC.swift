@@ -106,7 +106,7 @@ class ResetPasswordVC: UIViewController {
         // least one symbol
         //  min 8 characters total
         let password = password.trimmingCharacters(in: CharacterSet.whitespaces)
-        let passwordRegx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&<>*~:`-]).{8,}$"
+        let passwordRegx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"
         let passwordCheck = NSPredicate(format: "SELF MATCHES %@",passwordRegx)
         return passwordCheck.evaluate(with: password)
         
