@@ -44,27 +44,21 @@ struct ApiEndpoints {
     static let crewLoginApi = "exstream_crewlogin"
     static let getOrganizationApi = "get_organizations"
     static let newTaskListApi = "exstream_newtaskList"
-    
     static let crewlogoutApi = "signout"
     static let crewpropertyApi = "getproperty_Org"
-    
     static let ForgotPasswordApi = "exstream_forgotPassword"
     static let ResendOTPApi = "exstream_resendOtp"
     static let ResetPasswordApi = "exstream_resetPassword"
-    
     static let SubTaskListApi = "exstream-sub-task"
-    
     static let ReassignCrewApi = "exstream_getUserCompeltedTask"
     static let ReassignApi = "exstream_reassignTask"
-    
     static let getCrewListApi = "exstream_getCrewList"
     static let AddCrewApi = "exstream_add_crew"
-    
     static let forceFinishApi = "exstream_getInprogressTaskUser"
     static let forceStop = "exstream_forceStop"
-    
-    
     static let startDayCrewTask = "exstream_crewTaskLog"
+    
+    static let exstreamTaskLocation = "exstream_TaskLocation"
 }
 
 /*App messages*/
@@ -93,6 +87,15 @@ struct UserDefaultsKeys {
     static var org_id  = "org_id"
     static var propertyname = "propertyname"
     static var role_name = "role_name"
+}
+
+
+struct sessionMgrDefaults {
+    
+    static var userLoggedIn = "username"
+    static var loggedInStatus = "email"
+    static var globalAT = "mobile_no"
+    static var Base_url = "accesstoken"
 }
 
 

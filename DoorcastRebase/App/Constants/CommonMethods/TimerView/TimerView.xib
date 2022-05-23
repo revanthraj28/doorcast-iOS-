@@ -23,6 +23,7 @@
                 <outlet property="idleTimertitleLbl" destination="TSS-as-Vkp" id="329-rv-yMn"/>
                 <outlet property="playPauseImage" destination="PRQ-pj-a6F" id="yjy-5P-ZXg"/>
                 <outlet property="speechView" destination="wZv-Am-oIz" id="4yp-cK-Mdb"/>
+                <outlet property="startDayButton" destination="FjG-gS-ekT" id="8Y1-hM-pZG"/>
                 <outlet property="startDaylbl" destination="wWl-u3-GR6" id="Dcz-Z9-LPe"/>
                 <outlet property="timerButton" destination="teh-ym-Zyf" id="Shl-V4-gYl"/>
                 <outlet property="timerValueLbl" destination="Q6V-7G-qzg" id="Mga-I8-1Oh"/>
@@ -147,25 +148,26 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvo-sc-7cM">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="60"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjG-gS-ekT">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="55"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                     <connections>
-                                        <action selector="startStopDayAction:" destination="-1" eventType="touchUpInside" id="jWm-la-Nc7"/>
+                                        <action selector="startStopDayAction:" destination="-1" eventType="touchUpInside" id="Eau-sD-Mjy"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="wWl-u3-GR6" secondAttribute="bottom" constant="30" id="2he-2K-6FO"/>
+                                <constraint firstAttribute="bottom" secondItem="FjG-gS-ekT" secondAttribute="bottom" constant="25" id="4XY-ey-3W8"/>
+                                <constraint firstItem="FjG-gS-ekT" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="top" id="GLZ-3N-hrk"/>
                                 <constraint firstAttribute="width" constant="100" id="H7H-iP-Dxz"/>
-                                <constraint firstItem="Rvo-sc-7cM" firstAttribute="leading" secondItem="wZv-Am-oIz" secondAttribute="leading" id="Lng-3V-8lN"/>
-                                <constraint firstItem="Rvo-sc-7cM" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="top" id="MdR-qS-nLC"/>
+                                <constraint firstAttribute="trailing" secondItem="FjG-gS-ekT" secondAttribute="trailing" id="PEp-Wy-Rw6"/>
                                 <constraint firstAttribute="trailing" secondItem="wWl-u3-GR6" secondAttribute="trailing" id="R7j-tq-MHc"/>
                                 <constraint firstItem="wWl-u3-GR6" firstAttribute="leading" secondItem="wZv-Am-oIz" secondAttribute="leading" id="beI-ND-YtZ"/>
                                 <constraint firstAttribute="height" constant="80" id="eX2-1S-Lmp"/>
-                                <constraint firstAttribute="trailing" secondItem="Rvo-sc-7cM" secondAttribute="trailing" id="hub-dg-qUv"/>
-                                <constraint firstAttribute="bottom" secondItem="Rvo-sc-7cM" secondAttribute="bottom" constant="20" symbolic="YES" id="iBe-W4-zlc"/>
+                                <constraint firstItem="FjG-gS-ekT" firstAttribute="leading" secondItem="wZv-Am-oIz" secondAttribute="leading" id="vaA-Jk-FQ6"/>
                                 <constraint firstItem="wWl-u3-GR6" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="top" constant="5" id="zhj-Am-Kdt"/>
                             </constraints>
                         </view>

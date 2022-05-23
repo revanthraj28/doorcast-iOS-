@@ -22,7 +22,7 @@ class TimerView: UIView {
     
     @IBOutlet weak var speechView: SpeechBubble!
     @IBOutlet weak var startDaylbl: UILabel!
-//    @IBOutlet weak var startDayButton: UIButton!
+    @IBOutlet weak var startDayButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +47,7 @@ class TimerView: UIView {
         startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
         
         playPauseImage.image = UIImage(named: "startTimer")
+        startDayButton.setTitle("", for: .normal)
       //  self.contentView.bringSubviewToFront(self.startDayButton)
     }
     

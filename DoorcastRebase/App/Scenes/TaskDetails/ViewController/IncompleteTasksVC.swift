@@ -326,7 +326,6 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.role_name, forKey: UserDefaultsKeys.role_name)
         }
         self.present(vc, animated: true)
-        
     }
     
     

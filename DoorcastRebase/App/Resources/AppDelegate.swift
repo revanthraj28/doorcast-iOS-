@@ -346,7 +346,7 @@ extension AppDelegate:CLLocationManagerDelegate {
     // Below method will provide you current location.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print(" locationManager appdelegate")
+      
         let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
         
         KLat = String(locationValue.latitude)

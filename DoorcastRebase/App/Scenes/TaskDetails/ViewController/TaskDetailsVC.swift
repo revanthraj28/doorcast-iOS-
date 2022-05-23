@@ -41,8 +41,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var addcrewBgView: UIView!
     @IBOutlet weak var ReassignBtn: UIButton!
     
-    
-    
     @IBOutlet weak var timerView: TimerView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var tickMarkView: UIView!
@@ -69,7 +67,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var isVisible = false
     var mainVC: CommonTaskDetailVC?
     var viewModel : TaskListViewModel?
+    var viewModel1 : TaskDetailsViewModel?
     var day = String()
+    var task_id_check = String()
     
     static var newInstance: TaskDetailsVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -80,10 +80,18 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-       
-        if timerBool == true {
-            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+     
+        DispatchQueue.main.async {
             
+            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
+            
+        }
+        
+        
+        if timerBool == true {
+            self.timerView.bringSubviewToFront(self.timerView.speechView)
+            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+            self.timerView.startDaylbl.text = "Stop day"
             dayTaskAction()
         }
         
@@ -103,8 +111,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
         editBackgroundView.isHidden = true
         
-        
-        
+
     }
     
     
@@ -154,8 +161,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     @objc func setDistanceFromCurrentLocation(notification:Notification) {
         
-        print("setDistanceFromCurrentLocation")
-        
         let DestinationLocation = CLLocation(latitude: latdistance, longitude: longdistance)
         let currentLocation = CLLocation(latitude: Double(KLat) ?? 0.0, longitude: Double(KLong) ?? 0.0)
         let distance = DestinationLocation.distance(from: currentLocation)
@@ -172,6 +177,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         subTaskListViewModel = SubTaskListViewModel(self)
+        viewModel1 = TaskDetailsViewModel(view: self)
+
     }
     
     
@@ -309,11 +316,18 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension TaskDetailsVC : SubTaskListProtocol {
+extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate{
+    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
+        print("exstreamTaskLocationResponse = \(response)")
+    }
+
+    
+    
+    
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
-        print("subtaskDetailresponse = \(response)")
+      //  print("subtaskDetailresponse = \(response)")
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
@@ -321,13 +335,14 @@ extension TaskDetailsVC : SubTaskListProtocol {
         }
     }
     
+    
 }
 
 
 
 
 
-// on view will appear 
+// on view will appear
 //URL: ```https://staging.doorcast.tech/api/exstream_TaskLocation```
 //
 //Method: POST

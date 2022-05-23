@@ -183,8 +183,8 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func didTapOnTimerView(notification:Notification) {
-       // mainVC?.speechView.isHidden = false
-        mainVC?.timerView.speechView.isHidden = false
+        mainVC?.speechView.isHidden = false
+       // self.timerView.speechView.isHidden = false
     }
     
     
