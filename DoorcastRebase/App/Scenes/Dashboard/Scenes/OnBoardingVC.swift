@@ -78,8 +78,8 @@ class OnBoardingVC: UIViewController {
     func updateFonts() {
         // to add fonts
         allTasksLabel.font = UIFont.oswaldMedium(size: 22)
-        dateLabel.font = UIFont.oswaldRegular(size: 18)
-        usernameLabel.font = UIFont.oswaldRegular(size: 18)
+        dateLabel.font = UIFont.oswaldMedium(size: 18)
+        usernameLabel.font = UIFont.oswaldMedium(size: 18)
     }
 
     func updateColor() {

@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class CommonTaskDetailVC: UIViewController {
     
     @IBOutlet weak var incompleteButton: UIButton!
@@ -80,8 +77,8 @@ class CommonTaskDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNameLabel.font = UIFont.oswaldRegular(size: 18)
-        dateLabel.font = UIFont.oswaldRegular(size: 18)
+        userNameLabel.font = UIFont.oswaldMedium(size: 18)
+        dateLabel.font = UIFont.oswaldMedium(size: 18)
         configureUI()
         setupUI()
     }

@@ -10,8 +10,6 @@ import UIKit
 
 extension String {
     
-    
-    
     func secondsFromString (string: String) -> Int {
         var components: Array = string.components(separatedBy: ":")
         var hours = Int(components[0])! * 60 * 60

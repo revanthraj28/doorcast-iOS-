@@ -41,17 +41,54 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         }
         
         
+         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackgroundActive(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForegroundActive(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         setupLocationManager()
+        NotificationCenter.default.addObserver(self, selector: #selector(Drained), name: NSNotification.Name.init(rawValue: "Drained"), object: nil)
+        
+        
+        NotificationCenter.default.post(name: NSNotification.Name("Drained"), object: nil)
         
         return true
     }
     
+    @objc func Drained() {
+        print("battery2")
+        
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        let batteryLevel = UIDevice.current.batteryLevel
+        
+        if (UIDevice.current.batteryState == .unplugged || UIDevice.current.batteryState == .unknown)
+        {
+         if UIDevice.current.batteryLevel <= 0.2 && UIDevice.current.batteryLevel > 0.15 {
+            print("batteryLevel")
+          showAlert(message: "battery level")
+         } else if UIDevice.current.batteryLevel <= 0.15 && UIDevice.current.batteryLevel > 0.10 {
+             showAlert(message: "battery level")
+         } else if UIDevice.current.batteryLevel <= 0.10  {
+             showAlert(message: "battery level")
+         }
+    }
+ }
+   
+
+    
     static var standard : AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
+    func showAlert(message : String){
+        
+        let alert = UIAlertController(title: "Battery too low", message:"This application requires battery power of greater than 20%. please charge your phone", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // Create url which from we will get fresh data
@@ -125,6 +162,17 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                     case "Task is added for the crew" :
                         gotoCommonTaskDetailVC()
                         break
+                    case "Task Reassigned" :
+                        break
+                    case  "Your task has ended" :
+                        break
+                    case "Your day has been stopped since your idle for 1.5 hours" :
+                        break
+                    case "Your time has stopped" :
+                        break
+                    case "" :
+                        break
+                        
                     default:
                         break
                     }
@@ -140,7 +188,11 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         
         self.window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
         NSLog("%@: will present notification: %@", self.description, notification.request.content.userInfo)
-        completionHandler([.list, .sound, .banner])
+        if #available(iOS 14.0, *) {
+            completionHandler([.list, .sound, .banner])
+        } else {
+            // Fallback on earlier versions
+        }
         
         if let aps = notification.request.content.userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {

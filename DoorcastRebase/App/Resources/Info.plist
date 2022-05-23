@@ -57,6 +57,8 @@
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Will you allow this app to always know your location?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>please allow camera to access images</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Do you allow this app to know your current location?</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
