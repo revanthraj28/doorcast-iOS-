@@ -173,6 +173,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="5Tf-dV-SAq" secondAttribute="trailing" id="5Rz-IH-bkP"/>
+                        <constraint firstItem="8TW-Fr-QR3" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="bottom" constant="6" id="Cca-9v-IUU"/>
                         <constraint firstItem="NJ1-ow-8G5" firstAttribute="leading" secondItem="8TW-Fr-QR3" secondAttribute="trailing" constant="8.5" id="EOE-he-qmf"/>
                         <constraint firstItem="NJ1-ow-8G5" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="bottom" id="Hdi-Fb-vBE"/>
                         <constraint firstItem="wZv-Am-oIz" firstAttribute="centerX" secondItem="fhi-OB-AEi" secondAttribute="centerX" id="Pc7-63-Iwj"/>
@@ -183,10 +184,8 @@
                         <constraint firstItem="NJ1-ow-8G5" firstAttribute="top" secondItem="fhi-OB-AEi" secondAttribute="top" constant="46" id="g7d-If-6sE"/>
                         <constraint firstAttribute="height" constant="160" id="hzl-Ue-Yl4"/>
                         <constraint firstAttribute="bottom" secondItem="NJ1-ow-8G5" secondAttribute="bottom" id="j4R-ow-Xvs"/>
-                        <constraint firstItem="8TW-Fr-QR3" firstAttribute="top" secondItem="fhi-OB-AEi" secondAttribute="top" constant="52" id="l7c-T1-Yum"/>
                         <constraint firstAttribute="bottom" secondItem="5Tf-dV-SAq" secondAttribute="bottom" id="pcP-qR-JKq"/>
                         <constraint firstItem="8TW-Fr-QR3" firstAttribute="leading" secondItem="PSH-Eb-JjQ" secondAttribute="trailing" constant="9.5" id="sZI-2C-QdV"/>
-                        <constraint firstItem="8TW-Fr-QR3" firstAttribute="top" secondItem="fhi-OB-AEi" secondAttribute="top" constant="52" id="tqg-7J-zTr"/>
                         <constraint firstAttribute="bottom" secondItem="PSH-Eb-JjQ" secondAttribute="bottom" id="van-jF-iUE"/>
                         <constraint firstItem="5Tf-dV-SAq" firstAttribute="leading" secondItem="fhi-OB-AEi" secondAttribute="leading" id="z9a-Lq-EWO"/>
                     </constraints>

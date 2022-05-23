@@ -41,7 +41,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var addcrewBgView: UIView!
     @IBOutlet weak var ReassignBtn: UIButton!
     
-    @IBOutlet weak var TimerView: UIView!
+    
+    
+    @IBOutlet weak var timerView: TimerView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var tickMarkView: UIView!
     @IBOutlet weak var tickImage: UIImageView!
@@ -66,6 +68,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     var isVisible = false
     var mainVC: CommonTaskDetailVC?
+    var viewModel : TaskListViewModel?
+    var day = String()
     
     static var newInstance: TaskDetailsVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -76,12 +80,22 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+       
+        if timerBool == true {
+            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+            
+            dayTaskAction()
+        }
+        
+        
         // self.parentvc = self.parent as? CommonTaskDetailVC ?? UIViewController()
         
         // updateLocation
         NotificationCenter.default.addObserver(self, selector: #selector(setDistanceFromCurrentLocation(notification:)), name: NSNotification.Name.init(rawValue: "updateLocation"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
+        
+       // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
         
         setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
@@ -89,12 +103,51 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
         editBackgroundView.isHidden = true
         
+        
+        
     }
     
-    @objc func dayTaskAction(notification:Notification) {
+    
+    @objc func didTapOnTimerView(notification:Notification) {
+        print("didTapOnTimerView")
+        self.timerView.speechView.isHidden = false
+    }
+    
+    
+     func dayTaskAction() {
         
-        print("dayTaskAction")
-        mainVC?.timerView.timerButton.setImage(UIImage(named: ""), for: .normal)
+        print("dayTaskAction ==== TaskDetailsVC \(KLat)")
+        
+        mainVC?.speechView.isHidden = true
+       
+            
+         if self.day == "Start day" {
+                
+                defaults.set("start", forKey: "daytype")
+               // self.viewModel.startOrStopDayTask()
+                self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                
+                mainVC?.runTimer()
+                timerBool = true
+                
+            }else {
+                
+                defaults.set("stop", forKey: "daytype")
+                self.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                timerBool = false
+                gotoBackScreen()
+                
+            }
+        
+        
+    }
+    
+    
+    func gotoBackScreen() {
+        NotificationCenter.default.removeObserver(self)
+        guard let vc = OnBoardingVC.newInstance else {return}
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     
@@ -134,9 +187,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         taskDetailsTableView.delegate = self
         taskDetailsTableView.dataSource = self
         
-       
         
-//        taskDetailsTableView.register(CheckboxInTaskDetailsTVCell.self, forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
+        
+        //        taskDetailsTableView.register(CheckboxInTaskDetailsTVCell.self, forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
         taskDetailsTableView.register(UINib(nibName: "CheckboxInTaskDetailsTVCell", bundle: nil), forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
         
         
@@ -270,3 +323,202 @@ extension TaskDetailsVC : SubTaskListProtocol {
     
 }
 
+
+
+
+
+// on view will appear 
+//URL: ```https://staging.doorcast.tech/api/exstream_TaskLocation```
+//
+//Method: POST
+//
+//Authentication Headers:
+//```
+//  Content-Type: application\/json,
+//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU
+//```
+//
+//Payload: ```{
+//  "task_id_check" : "3304",
+//  "task_id" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjMzMDQi.76pOxjkRBi9kofiZzt-JvWqej1fPdYDo4BpLK9XJqXg"
+//}```
+//
+//Response: ```{
+//    data =     (
+//    );
+//    message = "Details are here";
+//    status = 1;
+//    time =     {
+//        "day_status" = 1;
+//        "ideal_time" = "00:00:05";
+//        "individual_working_time" = "00:00:29";
+//        "task_status" = NULL;
+//        "working_time" = "00:00:00";
+//    };
+//}```
+
+
+
+
+//start or stop on play button tap
+
+//URL: ```https://staging.doorcast.tech/api/exstream_crewTaskLog```
+//
+//Method: POST
+//
+//Authentication Headers:
+//```
+//  Content-Type: application\/json,
+//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU
+//```
+//
+//Payload: ```{
+//  "distance" : "",
+//  "task_id" : "3304",
+//  "longitude" : "76.922889",
+//  "device" : "iPhone SE (2nd generation)",
+//  "type" : "start",
+//  "os_type" : "15.4.1",
+//  "latitude" : "15.151513",
+//  "device_id" : "D462D210-77BB-44A7-A79C-B2B924A56F8D"
+//}```
+//
+//Response: ```{
+//    data =     {
+//        "ideal_time" = "00:01:12";
+//        "individual_taskworking_time" = "00:00:29";
+//        "working_time" = "00:00:00";
+//    };
+//    message = "Total ideal time for Task";
+//    status = 1;
+//}```
+//
+//____________
+
+
+
+//check or uncheck box tap
+
+//URL: ```https://staging.doorcast.tech/api/exstream_updateTaskStatus```
+//
+//Method: POST
+//
+//Authentication Headers:
+//```
+//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU,
+//  Content-Type: application\/json
+//```
+//
+//Payload: ```{
+//  "subtask_id" : "12624",
+//  "crew_role" : "CrewLead",
+//  "taskStatus" : "incomplete",
+//  "task_id" : ""
+//}```
+//
+//Response: ```{
+//    data = "<null>";
+//    message = "Updated successfully";
+//    status = 1;
+//}```
+
+
+
+// after write check button tap
+
+//URL: ```https://staging.doorcast.tech/api/exstream_updateTaskStatus```
+//
+//Method: POST
+//
+//Authentication Headers:
+//```
+//  Content-Type: application\/json,
+//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU
+//```
+//
+//Payload: ```{
+//  "crew_role" : "CrewLead",
+//  "taskStatus" : "complete",
+//  "task_id" : "3304",
+//  "subtask_id" : ""
+//}```
+//
+//Response: ```{
+//    data = "<null>";
+//    message = "Updated successfully";
+//    status = 1;
+//}```
+//
+//_____________________________
+//
+//
+//
+//200
+//JsonResult ={
+//    data = "<null>";
+//    message = "Please start the session";
+//    status = 1;
+//}
+//My res taskvc2 = Optional("Please start the session")
+//
+//
+//_____________________________
+//
+//Date: 23 May 2022 12:48:10.806 PM
+//
+//URL: ```https://staging.doorcast.tech/api/exstream_crewTaskLog```
+//
+//Method: POST
+//
+//Authentication Headers:
+//```
+//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU,
+//  Content-Type: application\/json
+//```
+//
+//Payload: ```{
+//  "distance" : "",
+//  "type" : "pause",
+//  "latitude" : "15.151517",
+//  "longitude" : "76.922867",
+//  "device" : "iPhone SE (2nd generation)",
+//  "device_id" : "D462D210-77BB-44A7-A79C-B2B924A56F8D",
+//  "os_type" : "15.4.1",
+//  "task_id" : "3304"
+//}```
+//
+//Response: ```{
+//    data = "<null>";
+//    message = "Please start the session";
+//    status = 1;
+//}```
+
+
+
+
+//image button tap
+
+//URL: ```https://staging.doorcast.tech/api/exstream_property_location```
+//
+//Method: POST
+//
+//Authentication Headers:
+//```
+//  Content-Type: application\/json,
+//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU
+//```
+//
+//Payload: ```{
+//  "task_id" : "3335",
+//  "longitude" : "76.922867",
+//  "task_pic" : "iVBORw0KGgoAAAANSUhEUgAAAu4AAALuCAIAAAB+fwSdAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAC7qADAAQAAAABAAAC7gAA
+//SLYAUN4LW\/dQyqlFm723E9m8oi4jwnUWvypqkFKLEPj6f3xVmFmfMU59\/stCMKFgghc8jfWdRkobja7VLjph\/9rbe3\/AfFTVM2cMENYAAAAAElFTkSuQmCC",
+//"latitude" : "15.151517"
+//}```
+//
+//Response: ```{
+//  data =     (
+//  );
+//  message = success;
+//  status = 1;
+//}```

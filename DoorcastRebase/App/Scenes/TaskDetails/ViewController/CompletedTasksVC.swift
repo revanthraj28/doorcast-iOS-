@@ -30,7 +30,7 @@ class CompletedTasksVC: UIViewController {
     var calEndDate = String()
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+       // NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,9 +142,8 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func dayTaskAction(notification:Notification) {
-        
-        CheckInternetConnection()
-        print("dayTaskAction CompletedTasksVC")
+
+        print("dayTaskAction ==== completeTasksVC")
         mainVC?.speechView.isHidden = true
         
         if let day = notification.object as? String {
@@ -175,7 +174,7 @@ class CompletedTasksVC: UIViewController {
     
     
     func gotoBackScreen() {
-        
+        NotificationCenter.default.removeObserver(self)
         guard let vc = OnBoardingVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)

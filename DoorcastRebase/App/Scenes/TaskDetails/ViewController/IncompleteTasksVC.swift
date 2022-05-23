@@ -29,6 +29,7 @@ class IncompleteTasksVC: UIViewController {
     var selectedSegmentIndex = Int()
     var selectedSegmentTitle = String()
     var seconds = 0
+    var day = String()
     
     static var newInstance: IncompleteTasksVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -39,7 +40,7 @@ class IncompleteTasksVC: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+       // NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,31 +128,33 @@ class IncompleteTasksVC: UIViewController {
     
     @objc func dayTaskAction(notification:Notification) {
         
+        print("dayTaskAction ==== IncompleteTasksVC")
+        
         mainVC?.speechView.isHidden = true
         if let day = notification.object as? String {
             
             if day == "Start day" {
                 
+                self.day = "Start day"
                 defaults.set("start", forKey: "daytype")
                 self.viewModel.startOrStopDayTask()
                 
                 self.taskListTableView.isUserInteractionEnabled = true
                 self.taskListTableView.alpha = 1
-                mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
-               // mainVC?.timerView.playPauseImage.image = UIImage(named: "pauseTimer")
-                
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
                 mainVC?.runTimer()
                 timerBool = true
+                
+                
+                
         
             }else {
                 
+                self.day = "stop day"
                 defaults.set("stop", forKey: "daytype")
                 self.viewModel.startOrStopDayTask()
         
-                mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
-              //  mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")
-//                timer?.invalidate()
-//                timer = nil
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")
                 timerBool = false
                 gotoBackScreen()
                 
@@ -162,6 +165,7 @@ class IncompleteTasksVC: UIViewController {
     
     
     func gotoBackScreen() {
+        NotificationCenter.default.removeObserver(self)
         guard let vc = OnBoardingVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -306,8 +310,11 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: self.day)
         guard let vc = TaskDetailsVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
+        vc.day = self.day
         if let incompleteData = incompleteTaskListModel?.data?[indexPath.row] {
             defaults.set(incompleteData.task_id, forKey: UserDefaultsKeys.task_id)
             defaults.set(incompleteData.task_id_cipher, forKey: UserDefaultsKeys.task_id_cipher)

@@ -11,10 +11,10 @@ import UIKit
 extension String {
     
     func secondsFromString (string: String) -> Int {
-        var components: Array = string.components(separatedBy: ":")
-        var hours = Int(components[0])! * 60 * 60
-        var minutes = Int(components[1])!
-        var seconds = Int(components[2])!
+        let components: Array = string.components(separatedBy: ":")
+        let hours = Int(components[0]) ?? 0 * 60 * 60
+        let minutes = Int(components[1]) ?? 0
+        let seconds = Int(components[2]) ?? 0
         return Int(hours + (minutes * 60) + seconds)
     }
     
