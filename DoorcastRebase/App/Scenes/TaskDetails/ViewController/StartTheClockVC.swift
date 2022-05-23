@@ -97,6 +97,20 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
         }
     }
     
+    func StartTheClock() {
+        startTheClockLabel.text = "START THE CLOCK"
+        startLabel.text = "You must start the task clock before you can complete sub-tasks."
+        cancelImage.image = UIImage(named: "cancel")
+        startTimerImage.image = UIImage(named: "startTimer")
+        
+    }
+    
+    func startCamera() {
+        startTheClockLabel.text = "START THE CLOCK"
+        startLabel.text = "You must start the task clock before you can complete sub-tasks."
+        cancelImage.image = UIImage(named: "cancel")
+        startTimerImage.image = UIImage(named: "camera-solid")
+    }
     
     
     
@@ -104,68 +118,3 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
 }
 
 
-
-//extension TaskDetailsVC : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-//
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        picker.delegate = self
-//        picker.dismiss(animated: true)
-//
-//        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-//        else {
-//            return
-//        }
-//    }
-//
-    
-//    func openGallery() {
-//        print("openGallery")
-//
-//
-//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-//            let picker = UIImagePickerController()
-//            picker.delegate = self
-//            picker.allowsEditing = true
-//            picker.sourceType = .photoLibrary
-//            picker.modalPresentationStyle = .fullScreen
-//            self.present(picker, animated: true, completion: nil)
-//
-//        }else {
-//            print("Device has no photo library...")
-//        }
-//    }
-    
-  
-    
-    
-    
-//    func showCamera() {
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.delegate = self
-//            imagePicker.allowsEditing = true
-//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-//            imagePicker.cameraCaptureMode = .photo
-//            imagePicker.modalPresentationStyle = .fullScreen
-//            self.present(imagePicker,animated: true,completion: nil)
-//        } else {
-//            print("Device has no camera")
-//            //MARK:- this set true because to run the completed app flow in simulator comment this which integrating api or push to appstore
-//        }
-//    }
-    
-    
-    
-//    public static func  convertImageToBase64String(image : UIImage ) -> String
-//    {
-//        let strBase64 =  image.pngData()?.base64EncodedString()
-//        return strBase64!
-//    }
-    
-    
-//}

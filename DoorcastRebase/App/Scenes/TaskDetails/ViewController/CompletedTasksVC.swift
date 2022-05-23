@@ -35,6 +35,9 @@ class CompletedTasksVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    
+            changeStatusBarColor(with: .ThemeColor)
+      
         
         print("crewPropertyALLIds  \(crewPropertyIds.joined(separator: ","))")
         
