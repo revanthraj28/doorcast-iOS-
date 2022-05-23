@@ -63,7 +63,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var latdistance = Double()
     var longdistance = Double()
     var coordinates = [CLLocationCoordinate2D]()
-    
+    var withInLocationBool = false
     var isVisible = false
     var mainVC: CommonTaskDetailVC?
     var viewModel : TaskListViewModel?
@@ -82,6 +82,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
      
         DispatchQueue.main.async {
+            print("=======")
+            print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher ))
+                  print(defaults.string(forKey: UserDefaultsKeys.task_id ))
             
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             
@@ -168,8 +171,11 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         print(String(format: "The distance to my buddy is %.01fm", distance))
         distanceLabel.text = "\(Int(distance))"
         
-        if distance > 500 {
+        if distance < 500 {
             print("less then 500")
+            withInLocationBool = true
+        }else {
+            withInLocationBool = false
         }
         
     }
@@ -267,6 +273,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBAction func sidearrowButtonAction(_ sender: Any) {
         dismissDetail()
     }
+    
+    
+    
+    
+    
+    
     
 }
 

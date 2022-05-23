@@ -86,7 +86,6 @@ class ServiceManager {
 
         
         if defaults.string(forKey: UserDefaultsKeys.globalAT) != "" {
-            
             req.addValue("\(defaults.string(forKey: UserDefaultsKeys.globalAT) ?? "")", forHTTPHeaderField: KAccesstoken)
         } else
         if SessionManager.loginInfo?.data?.accesstoken != "" {
@@ -94,8 +93,6 @@ class ServiceManager {
             req.addValue("\(SessionManager.loginInfo?.data?.accesstoken ?? "")", forHTTPHeaderField: KAccesstoken)
         }
         
-        
-       
     }
     
     static func isConnection() -> Bool {

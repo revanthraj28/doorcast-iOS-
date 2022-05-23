@@ -27,6 +27,8 @@ struct ReassignModel : Codable {
     }
 
 }
+
+
 struct ReassignModelData : Codable {
     let crew_id : String?
     let crew_name : String?
