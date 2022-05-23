@@ -145,6 +145,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let group_id = defaults.string(forKey: UserDefaultsKeys.group_id)
         let task_type = defaults.string(forKey: UserDefaultsKeys.task_type)
         let property_id = defaults.string(forKey: UserDefaultsKeys.property_id)
+//        let image_captured = defaults.string(forKey: UserDefaultsKeys.image_captured)
         subTaskListViewModel?.SubTaskListApi(task_id: taskId ?? "", task_id_check: task_id_check ?? "" , group_id: group_id ?? "" , type: task_type ?? "" )
         
         
