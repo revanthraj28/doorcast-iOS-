@@ -19,3 +19,6 @@ func changeStatusBarColor(with color: UIColor) {
     UIApplication.shared.windows.first?.addSubview(statusBar)
     
 }
+
+
+

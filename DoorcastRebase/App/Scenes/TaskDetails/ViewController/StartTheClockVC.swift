@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartTheClockVC: UIViewController {
+class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     static var newInstance: StartTheClockVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -26,7 +26,7 @@ class StartTheClockVC: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startView: UIView!
     
-    
+    var imagePicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +38,38 @@ class StartTheClockVC: UIViewController {
     
     
     @IBAction func startButtonAction(_ sender: Any) {
-    }
+        self.openGallery()
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        present(picker, animated: true)
+     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.delegate = self
+        picker.dismiss(animated: true, completion: nil)
+
+    }
+
+    
+    func openGallery() {
+            print("openGallery")
+    
+    
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.allowsEditing = true
+                picker.sourceType = .camera
+                picker.modalPresentationStyle = .fullScreen
+                self.present(picker, animated: true, completion: nil)
+    
+            }else {
+                print("Device has no photo library...")
+            }
+        }
+        
+      
     
     @IBAction func cancelButtonAction(_ sender: Any) {
         self.dismiss(animated: true)
@@ -72,3 +102,70 @@ class StartTheClockVC: UIViewController {
     
 
 }
+
+
+
+//extension TaskDetailsVC : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+//
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        picker.delegate = self
+//        picker.dismiss(animated: true)
+//
+//        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+//        else {
+//            return
+//        }
+//    }
+//
+    
+//    func openGallery() {
+//        print("openGallery")
+//
+//
+//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+//            let picker = UIImagePickerController()
+//            picker.delegate = self
+//            picker.allowsEditing = true
+//            picker.sourceType = .photoLibrary
+//            picker.modalPresentationStyle = .fullScreen
+//            self.present(picker, animated: true, completion: nil)
+//
+//        }else {
+//            print("Device has no photo library...")
+//        }
+//    }
+    
+  
+    
+    
+    
+//    func showCamera() {
+//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            let imagePicker = UIImagePickerController()
+//            imagePicker.delegate = self
+//            imagePicker.allowsEditing = true
+//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+//            imagePicker.cameraCaptureMode = .photo
+//            imagePicker.modalPresentationStyle = .fullScreen
+//            self.present(imagePicker,animated: true,completion: nil)
+//        } else {
+//            print("Device has no camera")
+//            //MARK:- this set true because to run the completed app flow in simulator comment this which integrating api or push to appstore
+//        }
+//    }
+    
+    
+    
+//    public static func  convertImageToBase64String(image : UIImage ) -> String
+//    {
+//        let strBase64 =  image.pngData()?.base64EncodedString()
+//        return strBase64!
+//    }
+    
+    
+//}

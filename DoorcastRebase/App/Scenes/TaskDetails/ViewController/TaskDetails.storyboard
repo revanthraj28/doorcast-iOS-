@@ -130,13 +130,13 @@
                                         <rect key="frame" x="35" y="43" width="339" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZNK-Q1-8Vg">
-                                                <rect key="frame" x="0.0" y="0.0" width="164.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="62" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7D-5H-Xk0">
-                                                <rect key="frame" x="184.5" y="0.0" width="154.5" height="20.5"/>
+                                                <rect key="frame" x="82" y="0.0" width="257" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1129,7 +1129,6 @@
                         <outlet property="ReassignBtn" destination="o9c-gj-2fB" id="Igh-Gf-Aod"/>
                         <outlet property="ReassignImage" destination="JG4-1d-Zsy" id="9z6-cH-WyR"/>
                         <outlet property="ReassignLabel" destination="0vb-AF-D2t" id="qte-UH-WWj"/>
-                        <outlet property="TimerView" destination="zC2-MT-T4d" id="HcN-xk-tLp"/>
                         <outlet property="addcrewBgView" destination="izO-98-Gf1" id="Dau-Xf-kam"/>
                         <outlet property="commonNavBar" destination="V0y-30-6tf" id="wfN-wf-mMc"/>
                         <outlet property="companyLabel" destination="wxY-wI-ubk" id="8Ho-Rf-OpX"/>
@@ -1155,6 +1154,7 @@
                         <outlet property="tickImage" destination="rpU-We-rfI" id="pdm-Y9-KwL"/>
                         <outlet property="tickMarkView" destination="dsW-va-920" id="0NT-hO-zDR"/>
                         <outlet property="timerLabel" destination="o5R-aF-4op" id="Mt7-gd-r9e"/>
+                        <outlet property="timerView" destination="YYJ-nO-KRw" id="rMa-pa-7oA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HiV-4k-ZSK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1209,7 +1209,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKd-BK-Sc0">
                                                 <rect key="frame" x="279" y="132.5" width="50" height="50"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startTimer" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-Sv-4Yj">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-Sv-4Yj">
                                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -1458,7 +1458,6 @@
         <image name="forceFinish" width="269" height="212"/>
         <image name="menu" width="50" height="50"/>
         <image name="reassignTask" width="146" height="127"/>
-        <image name="startTimer" width="78" height="78"/>
         <namedColor name="AppBackgroundColor">
             <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -30,7 +30,7 @@ class CompletedTasksVC: UIViewController {
     var calEndDate = String()
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+       // NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +89,8 @@ class CompletedTasksVC: UIViewController {
     
     func configureContents(){
         
-        callApi()
+        CheckInternetConnection()
+        //callApi()
         mainVC = self.parent as? CommonTaskDetailVC
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
         
@@ -116,7 +117,9 @@ class CompletedTasksVC: UIViewController {
         calStartDate = userinfo?["fromDate"] as? String ?? ""
         calEndDate = userinfo?["toDate"] as? String ?? ""
         
-        callApi()
+        
+        CheckInternetConnection()
+        // callApi()
         
     }
     
@@ -139,9 +142,8 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func dayTaskAction(notification:Notification) {
-        
-        CheckInternetConnection()
-        print("dayTaskAction CompletedTasksVC")
+
+        print("dayTaskAction ==== completeTasksVC")
         mainVC?.speechView.isHidden = true
         
         if let day = notification.object as? String {
@@ -172,7 +174,7 @@ class CompletedTasksVC: UIViewController {
     
     
     func gotoBackScreen() {
-       
+        NotificationCenter.default.removeObserver(self)
         guard let vc = OnBoardingVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -181,8 +183,8 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func didTapOnTimerView(notification:Notification) {
-        CheckInternetConnection()
         mainVC?.speechView.isHidden = false
+       // self.timerView.speechView.isHidden = false
     }
     
     
@@ -243,7 +245,9 @@ class CompletedTasksVC: UIViewController {
         self.selectedSegmentIndex = sender.selectedSegmentIndex
         self.selectedSegmentTitle = sender.titleForSegment(at: self.selectedSegmentIndex) ?? ""
         
-        callApi()
+        
+        self.CheckInternetConnection()
+        // callApi()
     }
 }
 

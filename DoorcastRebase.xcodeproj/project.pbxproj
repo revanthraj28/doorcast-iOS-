@@ -15,6 +15,7 @@
 		072937992833A0EB002F15D5 /* speechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072937982833A0EB002F15D5 /* speechBubble.swift */; };
 		0729379B2833BFA2002F15D5 /* CommonAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0729379A2833BFA2002F15D5 /* CommonAlert.storyboard */; };
 		073A097F28320F8F0069EA8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 073A097E28320F8F0069EA8B /* GoogleService-Info.plist */; };
+		0762D8B1283B8B5800FD9D85 /* TaskDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */; };
 		07689C20282C1B350058A5A9 /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07689C1F282C1B350058A5A9 /* TableViewHelper.swift */; };
 		07712BCC282CCB370074F948 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCB282CCB370074F948 /* SelectUserVC.swift */; };
 		07712BD0282CCB850074F948 /* CrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCD282CCB840074F948 /* CrewViewModel.swift */; };
@@ -146,6 +147,7 @@
 		072937982833A0EB002F15D5 /* speechBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = speechBubble.swift; sourceTree = "<group>"; };
 		0729379A2833BFA2002F15D5 /* CommonAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommonAlert.storyboard; sourceTree = "<group>"; };
 		073A097E28320F8F0069EA8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewModel.swift; sourceTree = "<group>"; };
 		07689C1F282C1B350058A5A9 /* TableViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
 		07712BCB282CCB370074F948 /* SelectUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
 		07712BCD282CCB840074F948 /* CrewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewViewModel.swift; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 				AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */,
 				AE812F8C2834CEA100AE6606 /* AddCrewViewModel.swift */,
 				AE59F458283620ED0051D426 /* ReassignViewModel.swift */,
+				0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1152,6 +1155,7 @@
 				AE812F8B2834CE1700AE6606 /* AddCrewModel.swift in Sources */,
 				135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */,
 				135EB04A282B8D8600194216 /* CheckboxInTaskDetailsTVCell.swift in Sources */,
+				0762D8B1283B8B5800FD9D85 /* TaskDetailsViewModel.swift in Sources */,
 				133A3AFB2833B8630054C75B /* CommonAlertVC.swift in Sources */,
 				E347D35A28225E1700122C8B /* StringExtension.swift in Sources */,
 				4E07C88F2828FFB60090D088 /* TaskAssignedTVCell.swift in Sources */,

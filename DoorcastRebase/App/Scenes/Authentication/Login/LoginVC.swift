@@ -195,8 +195,7 @@ class LoginVC: UIViewController {
         lblName.text = lblText
     }
     
-    
-    
+
     func logincallApi() {
       
         if emailTF.text != "" {
@@ -242,11 +241,6 @@ class LoginVC: UIViewController {
     }
     
     
-    
-    
-    
-    
-    
     @IBAction func loginButtonAction(_ sender: Any) {
         if emailTF.text != "" {
             if passwordTF.text != "" {
@@ -289,6 +283,10 @@ class LoginVC: UIViewController {
             validateLabel(lblName: emailErrorLabel, hide: false, lblText: "Enter Email")
         }
     }
+    
+    
+    
+    
 }
 
 extension LoginVC : LoginViewModelProtocol {
