@@ -138,6 +138,7 @@ class IncompleteTasksVC: UIViewController {
                 self.taskListTableView.isUserInteractionEnabled = true
                 self.taskListTableView.alpha = 1
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
+               // mainVC?.timerView.playPauseImage.image = UIImage(named: "pauseTimer")
                 
                 mainVC?.runTimer()
                 timerBool = true
@@ -148,6 +149,7 @@ class IncompleteTasksVC: UIViewController {
                 self.viewModel.startOrStopDayTask()
         
                 mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
+              //  mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")
 //                timer?.invalidate()
 //                timer = nil
                 timerBool = false
@@ -168,6 +170,8 @@ class IncompleteTasksVC: UIViewController {
 
     @objc func didTapOnTimerView(notification:Notification) {
         mainVC?.speechView.isHidden = false
+        
+      //  mainVC?.timerView.speechView.isHidden = false
     }
     
     

@@ -79,6 +79,8 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
     static var standard : AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
+    
+    
     func showAlert(message : String){
         
         let alert = UIAlertController(title: "Battery too low", message:"This application requires battery power of greater than 20%. please charge your phone", preferredStyle: UIAlertController.Style.alert)

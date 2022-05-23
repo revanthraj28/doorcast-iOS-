@@ -89,7 +89,8 @@ class CompletedTasksVC: UIViewController {
     
     func configureContents(){
         
-        callApi()
+        CheckInternetConnection()
+        //callApi()
         mainVC = self.parent as? CommonTaskDetailVC
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
         
@@ -116,7 +117,9 @@ class CompletedTasksVC: UIViewController {
         calStartDate = userinfo?["fromDate"] as? String ?? ""
         calEndDate = userinfo?["toDate"] as? String ?? ""
         
-        callApi()
+        
+        CheckInternetConnection()
+        // callApi()
         
     }
     
@@ -172,7 +175,7 @@ class CompletedTasksVC: UIViewController {
     
     
     func gotoBackScreen() {
-       
+        
         guard let vc = OnBoardingVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -181,8 +184,8 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func didTapOnTimerView(notification:Notification) {
-        CheckInternetConnection()
-        mainVC?.speechView.isHidden = false
+       // mainVC?.speechView.isHidden = false
+        mainVC?.timerView.speechView.isHidden = false
     }
     
     
@@ -243,7 +246,9 @@ class CompletedTasksVC: UIViewController {
         self.selectedSegmentIndex = sender.selectedSegmentIndex
         self.selectedSegmentTitle = sender.titleForSegment(at: self.selectedSegmentIndex) ?? ""
         
-        callApi()
+        
+        self.CheckInternetConnection()
+        // callApi()
     }
 }
 

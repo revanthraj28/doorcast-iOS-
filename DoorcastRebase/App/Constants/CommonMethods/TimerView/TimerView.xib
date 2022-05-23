@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,6 +21,9 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="UIm-f4-Vhw"/>
                 <outlet property="idleTimerValueLbl" destination="Tba-uT-WFx" id="hAO-NU-ble"/>
                 <outlet property="idleTimertitleLbl" destination="TSS-as-Vkp" id="329-rv-yMn"/>
+                <outlet property="playPauseImage" destination="PRQ-pj-a6F" id="yjy-5P-ZXg"/>
+                <outlet property="speechView" destination="wZv-Am-oIz" id="4yp-cK-Mdb"/>
+                <outlet property="startDaylbl" destination="wWl-u3-GR6" id="Dcz-Z9-LPe"/>
                 <outlet property="timerButton" destination="teh-ym-Zyf" id="Shl-V4-gYl"/>
                 <outlet property="timerValueLbl" destination="Q6V-7G-qzg" id="Mga-I8-1Oh"/>
                 <outlet property="totalTimeTitleLbl" destination="Cxo-5z-Fco" id="e2c-OU-eEs"/>
@@ -107,10 +111,16 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TW-Fr-QR3">
                             <rect key="frame" x="176" y="52" width="65" height="65"/>
                             <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PRQ-pj-a6F">
+                                    <rect key="frame" x="12.5" y="12.5" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="3Hy-iC-DvG"/>
+                                        <constraint firstAttribute="width" constant="40" id="ay3-qf-EoT"/>
+                                    </constraints>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teh-ym-Zyf">
-                                    <rect key="frame" x="12" y="8" width="45" height="49"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" image="startTimer"/>
                                     <connections>
                                         <action selector="timerButtonAction:" destination="-1" eventType="touchUpInside" id="v7l-Xe-1Do"/>
                                     </connections>
@@ -118,12 +128,45 @@
                             </subviews>
                             <color key="backgroundColor" name="CardBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="teh-ym-Zyf" firstAttribute="top" secondItem="8TW-Fr-QR3" secondAttribute="top" constant="8" id="6I1-Hs-p4V"/>
+                                <constraint firstItem="teh-ym-Zyf" firstAttribute="top" secondItem="8TW-Fr-QR3" secondAttribute="top" id="6I1-Hs-p4V"/>
                                 <constraint firstAttribute="width" constant="65" id="Gj1-UJ-oz1"/>
                                 <constraint firstAttribute="height" constant="65" id="Mnc-LA-saE"/>
-                                <constraint firstAttribute="bottom" secondItem="teh-ym-Zyf" secondAttribute="bottom" constant="8" id="hrg-WR-yca"/>
-                                <constraint firstAttribute="trailing" secondItem="teh-ym-Zyf" secondAttribute="trailing" constant="8" id="s0a-c2-W9D"/>
-                                <constraint firstItem="teh-ym-Zyf" firstAttribute="leading" secondItem="8TW-Fr-QR3" secondAttribute="leading" constant="12" id="yhR-sj-e96"/>
+                                <constraint firstItem="PRQ-pj-a6F" firstAttribute="centerY" secondItem="8TW-Fr-QR3" secondAttribute="centerY" id="ZeX-U0-OOS"/>
+                                <constraint firstAttribute="bottom" secondItem="teh-ym-Zyf" secondAttribute="bottom" id="hrg-WR-yca"/>
+                                <constraint firstItem="PRQ-pj-a6F" firstAttribute="centerX" secondItem="8TW-Fr-QR3" secondAttribute="centerX" id="oC1-7B-qRt"/>
+                                <constraint firstAttribute="trailing" secondItem="teh-ym-Zyf" secondAttribute="trailing" id="s0a-c2-W9D"/>
+                                <constraint firstItem="teh-ym-Zyf" firstAttribute="leading" secondItem="8TW-Fr-QR3" secondAttribute="leading" id="yhR-sj-e96"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZv-Am-oIz" customClass="SpeechBubble" customModule="DoorcastRebase" customModuleProvider="target">
+                            <rect key="frame" x="157" y="-34" width="100" height="80"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWl-u3-GR6">
+                                    <rect key="frame" x="0.0" y="5" width="100" height="45"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvo-sc-7cM">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="60"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <connections>
+                                        <action selector="startStopDayAction:" destination="-1" eventType="touchUpInside" id="jWm-la-Nc7"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="wWl-u3-GR6" secondAttribute="bottom" constant="30" id="2he-2K-6FO"/>
+                                <constraint firstAttribute="width" constant="100" id="H7H-iP-Dxz"/>
+                                <constraint firstItem="Rvo-sc-7cM" firstAttribute="leading" secondItem="wZv-Am-oIz" secondAttribute="leading" id="Lng-3V-8lN"/>
+                                <constraint firstItem="Rvo-sc-7cM" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="top" id="MdR-qS-nLC"/>
+                                <constraint firstAttribute="trailing" secondItem="wWl-u3-GR6" secondAttribute="trailing" id="R7j-tq-MHc"/>
+                                <constraint firstItem="wWl-u3-GR6" firstAttribute="leading" secondItem="wZv-Am-oIz" secondAttribute="leading" id="beI-ND-YtZ"/>
+                                <constraint firstAttribute="height" constant="80" id="eX2-1S-Lmp"/>
+                                <constraint firstAttribute="trailing" secondItem="Rvo-sc-7cM" secondAttribute="trailing" id="hub-dg-qUv"/>
+                                <constraint firstAttribute="bottom" secondItem="Rvo-sc-7cM" secondAttribute="bottom" constant="20" symbolic="YES" id="iBe-W4-zlc"/>
+                                <constraint firstItem="wWl-u3-GR6" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="top" constant="5" id="zhj-Am-Kdt"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -131,6 +174,8 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="5Tf-dV-SAq" secondAttribute="trailing" id="5Rz-IH-bkP"/>
                         <constraint firstItem="NJ1-ow-8G5" firstAttribute="leading" secondItem="8TW-Fr-QR3" secondAttribute="trailing" constant="8.5" id="EOE-he-qmf"/>
+                        <constraint firstItem="NJ1-ow-8G5" firstAttribute="top" secondItem="wZv-Am-oIz" secondAttribute="bottom" id="Hdi-Fb-vBE"/>
+                        <constraint firstItem="wZv-Am-oIz" firstAttribute="centerX" secondItem="fhi-OB-AEi" secondAttribute="centerX" id="Pc7-63-Iwj"/>
                         <constraint firstAttribute="trailing" secondItem="NJ1-ow-8G5" secondAttribute="trailing" id="Ug8-9c-owB"/>
                         <constraint firstItem="PSH-Eb-JjQ" firstAttribute="top" secondItem="fhi-OB-AEi" secondAttribute="top" constant="46" id="VLl-Hg-75S"/>
                         <constraint firstItem="8TW-Fr-QR3" firstAttribute="centerX" secondItem="fhi-OB-AEi" secondAttribute="centerX" constant="1.5" id="Z4d-JL-CeC"/>
@@ -159,7 +204,6 @@
         </view>
     </objects>
     <resources>
-        <image name="startTimer" width="78" height="78"/>
         <namedColor name="CardBackgroundColor">
             <color red="0.93699997663497925" green="0.93699997663497925" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -169,5 +213,8 @@
         <namedColor name="TimerBackgroundColor">
             <color red="0.19958490133285522" green="0.19958490133285522" blue="0.19958490133285522" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
