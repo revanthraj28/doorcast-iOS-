@@ -83,7 +83,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         DispatchQueue.main.async {
             
-           
+            print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
+            print(defaults.string(forKey: UserDefaultsKeys.task_id))
+            
+            
             
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             

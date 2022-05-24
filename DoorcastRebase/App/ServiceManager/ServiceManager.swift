@@ -84,7 +84,7 @@ class ServiceManager {
         //        req.addValue(tempAccessToken, forHTTPHeaderField: KAccesstoken)
         
 
-        
+
         if defaults.string(forKey: UserDefaultsKeys.globalAT) != "" {
             req.addValue("\(defaults.string(forKey: UserDefaultsKeys.globalAT) ?? "")", forHTTPHeaderField: KAccesstoken)
         } else

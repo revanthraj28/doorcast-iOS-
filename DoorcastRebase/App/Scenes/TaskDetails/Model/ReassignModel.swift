@@ -70,7 +70,7 @@ struct ExstreamTaskLocationModel : Codable {
     
     let status : Bool?
     let message : String?
-    let data1 : [String]?
+    var data1: [String]?
     let timedata : Timedata?
 
     enum CodingKeys: String, CodingKey {
