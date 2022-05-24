@@ -278,10 +278,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     
     @IBAction func playPauseButtonAction(_ sender: Any) {
+        
     }
     
     
     @IBAction func tickButtonAction(_ sender: Any) {
+        
     }
     
     
