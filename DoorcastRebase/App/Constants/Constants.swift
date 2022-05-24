@@ -32,6 +32,7 @@ var crewPropertyALLIds = [String]()
 var timerBool = false
 var KLat = String()
 var KLong = String()
+var incompleteScreen = String()
 
 let GlobelAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Im94Zm9yZCBjYXBzIg._nKgScZrZagPYMtl2D9cYgxsBV_EoDgqmuMFGDuEAek"
 
@@ -96,6 +97,7 @@ struct UserDefaultsKeys {
     static var incompletetasktype = "incompletetasktype"
     static var completetasktype = "completetasktype"
     static var sub_task_id = "sub_task_id"
+    static var screenlanding = "screen_landing"
 }
 
 

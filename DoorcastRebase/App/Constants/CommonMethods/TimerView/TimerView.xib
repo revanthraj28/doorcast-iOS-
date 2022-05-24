@@ -49,10 +49,10 @@
                             <rect key="frame" x="0.0" y="46" width="166.5" height="114"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ke2-1y-rPB">
-                                    <rect key="frame" x="40" y="55" width="86.5" height="44"/>
+                                    <rect key="frame" x="30" y="55" width="106.5" height="44"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL WORK TIME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxo-5z-Fco">
-                                            <rect key="frame" x="0.0" y="0.0" width="86.5" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="106.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="7sx-k3-Uap"/>
                                             </constraints>
@@ -61,7 +61,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6V-7G-qzg">
-                                            <rect key="frame" x="0.0" y="21" width="86.5" height="23"/>
+                                            <rect key="frame" x="0.0" y="21" width="106.5" height="23"/>
                                             <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -71,20 +71,20 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="Ke2-1y-rPB" secondAttribute="trailing" constant="40" id="60T-bS-hsj"/>
+                                <constraint firstAttribute="trailing" secondItem="Ke2-1y-rPB" secondAttribute="trailing" constant="30" id="60T-bS-hsj"/>
                                 <constraint firstItem="Ke2-1y-rPB" firstAttribute="top" secondItem="PSH-Eb-JjQ" secondAttribute="top" constant="55" id="RTn-AS-Vdi"/>
                                 <constraint firstAttribute="bottom" secondItem="Ke2-1y-rPB" secondAttribute="bottom" constant="15" id="Zlk-HN-gUf"/>
-                                <constraint firstItem="Ke2-1y-rPB" firstAttribute="leading" secondItem="PSH-Eb-JjQ" secondAttribute="leading" constant="40" id="h6W-do-28g"/>
+                                <constraint firstItem="Ke2-1y-rPB" firstAttribute="leading" secondItem="PSH-Eb-JjQ" secondAttribute="leading" constant="30" id="h6W-do-28g"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJ1-ow-8G5">
                             <rect key="frame" x="249.5" y="46" width="164.5" height="114"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MIb-qH-wKW">
-                                    <rect key="frame" x="40" y="55" width="84.5" height="44"/>
+                                    <rect key="frame" x="30" y="55" width="104.5" height="44"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL IDLE TIME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSS-as-Vkp">
-                                            <rect key="frame" x="0.0" y="0.0" width="84.5" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="104.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="ruf-Ac-0fP"/>
                                             </constraints>
@@ -93,7 +93,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tba-uT-WFx">
-                                            <rect key="frame" x="0.0" y="21" width="84.5" height="23"/>
+                                            <rect key="frame" x="0.0" y="21" width="104.5" height="23"/>
                                             <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -105,8 +105,8 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="MIb-qH-wKW" secondAttribute="bottom" constant="15" id="588-cI-Fa1"/>
                                 <constraint firstItem="MIb-qH-wKW" firstAttribute="top" secondItem="NJ1-ow-8G5" secondAttribute="top" constant="55" id="Stw-sS-WmD"/>
-                                <constraint firstItem="MIb-qH-wKW" firstAttribute="leading" secondItem="NJ1-ow-8G5" secondAttribute="leading" constant="40" id="W5t-bp-qR7"/>
-                                <constraint firstAttribute="trailing" secondItem="MIb-qH-wKW" secondAttribute="trailing" constant="40" id="zYN-sT-Sg2"/>
+                                <constraint firstItem="MIb-qH-wKW" firstAttribute="leading" secondItem="NJ1-ow-8G5" secondAttribute="leading" constant="30" id="W5t-bp-qR7"/>
+                                <constraint firstAttribute="trailing" secondItem="MIb-qH-wKW" secondAttribute="trailing" constant="30" id="zYN-sT-Sg2"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TW-Fr-QR3">

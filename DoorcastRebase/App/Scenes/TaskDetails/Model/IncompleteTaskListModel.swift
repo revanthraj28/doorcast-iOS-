@@ -11,7 +11,7 @@ import Foundation
 struct IncompleteTaskListModel : Codable {
     let status : Bool?
     let message : String?
-    let data : [IncompleteTaskListModelData]?
+    var data : [IncompleteTaskListModelData]?
     let time : IncompleteTaskListModelTime?
     let login_id : String?
     

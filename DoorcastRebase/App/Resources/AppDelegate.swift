@@ -52,6 +52,9 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
         
         NotificationCenter.default.post(name: NSNotification.Name("Drained"), object: nil)
         
+        
+        
+        
         return true
     }
     

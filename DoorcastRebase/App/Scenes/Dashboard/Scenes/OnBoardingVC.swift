@@ -38,10 +38,9 @@ class OnBoardingVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        defaults.set("", forKey: UserDefaultsKeys.screenlanding)
+        incompleteScreen = ""
         usernameLabel.text = UserDefaults.standard.string(forKey: "fullname")?.uppercased()
-        
-        
     }
     
     override func viewDidLoad() {
