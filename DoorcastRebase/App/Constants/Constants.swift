@@ -40,7 +40,6 @@ var BASE_URL = defaults.string(forKey: UserDefaultsKeys.Base_url) ?? "https://st
 /* URL endpoints */
 struct ApiEndpoints {
     static let UpdateProfilenApi = "update_empdetails"
-    
     static let crewLoginApi = "exstream_crewlogin"
     static let getOrganizationApi = "get_organizations"
     static let newTaskListApi = "exstream_newtaskList"
@@ -58,8 +57,14 @@ struct ApiEndpoints {
     static let forceStop = "exstream_forceStop"
     static let startDayCrewTask = "exstream_crewTaskLog"
     static let UpdateTaskStatus = "exstream_updateTaskStatus"
-    
     static let exstreamTaskLocation = "exstream_TaskLocation"
+    
+    
+//    2.exstream_crewTaskLogApi
+//
+//    4.exstream_propertyLocation
+//
+//    6.exstreamLocation
 }
 
 /*App messages*/

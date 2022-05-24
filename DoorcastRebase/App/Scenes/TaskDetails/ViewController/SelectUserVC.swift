@@ -308,6 +308,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
         
         if isSelected == "Add Crew" {
             
+            
             self.propertyUserList.append(getCrewResponseModel?.data?[indexPath.row].propertyUser_id ?? "")
             self.employeeList.append(getCrewResponseModel?.data?[indexPath.row].employee_id ?? "")
             cell.holderView.backgroundColor = UIColor(named: "InactiveStateColor")?.withAlphaComponent(0.3)

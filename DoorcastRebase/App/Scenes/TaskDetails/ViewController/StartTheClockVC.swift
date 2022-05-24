@@ -67,13 +67,9 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
             }else {
                 print("Device has no photo library...")
             }
-        
-        
-        
+   
         }
-        
-      
-    
+  
     @IBAction func cancelButtonAction(_ sender: Any) {
         self.dismiss(animated: true)
     }

@@ -359,19 +359,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             
             cell.selectDeselectImage.image = UIImage(named: "taskChecked")
             UpdateTaskStatusinCompleteApiCall()
-//            if cell.selectDeselectImage.image == UIImage(named: "taskChecked"){
-//                print("taskChecked")
-//            } else if cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
-//                print("taskUnCheck")
-//            }
-            
-//                if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
-//                    cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
-//                    UpdateTaskStatusinCompleteApiCall()
-//                } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
-//                    cell.selectDeselectImage.image = UIImage(named: "taskChecked")
-//                    UpdateTaskStatusCompleteApiCall()
-//                }
+
                 gotoNextScreen()
                 
             }else {
