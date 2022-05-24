@@ -211,6 +211,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let group_id = defaults.string(forKey: UserDefaultsKeys.group_id)
         let task_type = defaults.string(forKey: UserDefaultsKeys.task_type)
         let property_id = defaults.string(forKey: UserDefaultsKeys.property_id)
+//        let image_captured = defaults.string(forKey: UserDefaultsKeys.image_captured)
         subTaskListViewModel?.SubTaskListApi(task_id: taskId ?? "", task_id_check: task_id_check ?? "" , group_id: group_id ?? "" , type: task_type ?? "" )
         
         
@@ -276,8 +277,14 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     
     
+    @IBAction func playPauseButtonAction(_ sender: Any) {
+        
+    }
     
     
+    @IBAction func tickButtonAction(_ sender: Any) {
+        
+    }
     
     
 }
@@ -309,14 +316,22 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print(withInLocationBool)
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell") as? CheckboxInTaskDetailsTVCell {
-            
-            if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
-                cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
-            } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
-                cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+            if withInLocationBool == true {
+                
+                if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
+                    cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
+                } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
+                    cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+                }
+                gotoNextScreen()
+                
+            }else {
+                
+                self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
             }
-            gotoNextScreen()
+            
         }
     }
     
