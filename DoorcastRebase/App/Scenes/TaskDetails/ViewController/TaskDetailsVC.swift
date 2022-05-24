@@ -95,13 +95,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
             print("=======")
             print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher ))
                   print(defaults.string(forKey: UserDefaultsKeys.task_id ))
-            
-//
-            
-            
-            
-            
-            
+    
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             
         }
@@ -166,8 +160,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
             }
         
         
-    }
-    
+     }
     
     func gotoBackScreen() {
         NotificationCenter.default.removeObserver(self)
