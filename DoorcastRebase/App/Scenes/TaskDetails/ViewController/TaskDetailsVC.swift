@@ -420,9 +420,9 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
         print("startStopTaskLogResponse \(response)")
     }
     
-    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
-        print("exstreamTaskLocationResponse = \(response)")
-    }
+//    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
+//        print("exstreamTaskLocationResponse = \(response)")
+//    }
     
     
     
