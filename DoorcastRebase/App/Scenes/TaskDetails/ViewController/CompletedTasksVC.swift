@@ -30,14 +30,14 @@ class CompletedTasksVC: UIViewController {
     var calEndDate = String()
     
     override func viewWillDisappear(_ animated: Bool) {
-       // NotificationCenter.default.removeObserver(self)
+        // NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
-            changeStatusBarColor(with: .ThemeColor)
-      
+        
+        changeStatusBarColor(with: .ThemeColor)
+        
         
         print("crewPropertyALLIds  \(crewPropertyIds.joined(separator: ","))")
         
@@ -93,9 +93,8 @@ class CompletedTasksVC: UIViewController {
     func configureContents(){
         
         CheckInternetConnection()
-        //callApi()
         mainVC = self.parent as? CommonTaskDetailVC
-        self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
+        self.view.bringSubviewToFront(mainVC?.speechView ?? UIView())
         
     }
     
@@ -122,13 +121,12 @@ class CompletedTasksVC: UIViewController {
         
         
         CheckInternetConnection()
-        // callApi()
         
     }
     
     
     @objc func gotoOnBoardingVC(notification:Notification) {
-        CheckInternetConnection()
+
         if timerBool == false {
             guard let vc = OnBoardingVC.newInstance else {return}
             vc.modalPresentationStyle = .fullScreen
@@ -145,7 +143,7 @@ class CompletedTasksVC: UIViewController {
     
     
     @objc func dayTaskAction(notification:Notification) {
-
+        
         print("dayTaskAction ==== completeTasksVC")
         mainVC?.speechView.isHidden = true
         
@@ -154,7 +152,8 @@ class CompletedTasksVC: UIViewController {
                 
                 self.taskListTableView.isUserInteractionEnabled = true
                 self.taskListTableView.alpha = 1
-                mainVC?.timerView.timerButton.setImage(UIImage(named: "pauseTimer"), for: .normal)
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+               
                 
                 mainVC?.runTimer()
                 timerBool = true
@@ -162,10 +161,7 @@ class CompletedTasksVC: UIViewController {
                 
             }else {
                 
-                mainVC?.timerView.timerButton.setImage(UIImage(named: "startTimer"), for: .normal)
-                
-                //                timer?.invalidate()
-                //                timer = nil
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")
                 timerBool = false
                 
                 gotoBackScreen()
@@ -187,7 +183,7 @@ class CompletedTasksVC: UIViewController {
     
     @objc func didTapOnTimerView(notification:Notification) {
         mainVC?.speechView.isHidden = false
-       // self.timerView.speechView.isHidden = false
+        // self.timerView.speechView.isHidden = false
     }
     
     
@@ -250,7 +246,7 @@ class CompletedTasksVC: UIViewController {
         
         
         self.CheckInternetConnection()
-        // callApi()
+        
     }
 }
 

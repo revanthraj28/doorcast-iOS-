@@ -67,16 +67,17 @@ struct ReassignModelData : Codable {
 
 
 struct ExstreamTaskLocationModel : Codable {
+    
     let status : Bool?
     let message : String?
-    let data : [String]?
+    let data1 : [String]?
     let timedata : Timedata?
 
     enum CodingKeys: String, CodingKey {
 
         case status = "status"
         case message = "message"
-        case data = "data"
+        case data1 = "data"
         case timedata = "time"
     }
 
@@ -85,7 +86,7 @@ struct ExstreamTaskLocationModel : Codable {
         
         status = try values.decodeIfPresent(Bool.self, forKey: .status)
         message = try values.decodeIfPresent(String.self, forKey: .message)
-        data = try values.decodeIfPresent([String].self, forKey: .data)
+        data1 = try values.decodeIfPresent([String].self, forKey: .data1)
         timedata = try values.decodeIfPresent(Timedata.self, forKey: .timedata)
     }
 
@@ -111,6 +112,7 @@ struct Timedata : Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        
         working_time = try values.decodeIfPresent(String.self, forKey: .working_time)
         individual_working_time = try values.decodeIfPresent(String.self, forKey: .individual_working_time)
         ideal_time = try values.decodeIfPresent(String.self, forKey: .ideal_time)

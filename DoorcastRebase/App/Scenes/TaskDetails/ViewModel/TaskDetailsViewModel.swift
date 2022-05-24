@@ -11,6 +11,7 @@ import Foundation
 
 protocol TaskDetailsViewModelDelegate:BaseViewModelProtocol {
     func exstreamTaskLocationResponse(response:ExstreamTaskLocationModel?)
+    func startStopTaskLogResponse(response:CrewTaskLogModel?)
 }
 
 
@@ -46,6 +47,33 @@ class TaskDetailsViewModel {
     
     
     
-    
+    func startOrStopDayTask(){
+        
+        var parms = [String: Any]()
+        parms["distance"] = ""
+        parms["device"] = KDeviceModelName
+        parms["os_type"] = KOsType
+        parms["device_id"] = KDeviceID
+        parms["type"] = defaults.string(forKey: "daytype")
+        parms["latitude"] = KLat
+        parms["longitude"] = KLong
+        parms["task_id"] = defaults.string(forKey:UserDefaultsKeys.task_id) ?? ""
+        
+        print("url \(ApiEndpoints.startDayCrewTask)")
+        print("Payload = \(parms)")
+        self.view?.showLoader()
+        ServiceManager.postOrPutApiCall(endPoint: ApiEndpoints.startDayCrewTask, parameters: parms as NSDictionary, resultType: CrewTaskLogModel.self) { sucess, result, errorMessage in
+            DispatchQueue.main.async {
+                self.view?.hideLoader()
+                if sucess {
+                    guard let response = result else {return}
+                    self.view?.startStopTaskLogResponse(response: response)
+                } else {
+                    print("error = \(errorMessage ?? "")")
+                }
+            }
+        }
+    }
+
     
 }

@@ -41,7 +41,7 @@ class IncompleteTasksVC: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
-       // NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +49,7 @@ class IncompleteTasksVC: UIViewController {
         
         self.selectedSegmentIndex = meOrTeamSegment.selectedSegmentIndex
         self.selectedSegmentTitle = meOrTeamSegment.titleForSegment(at: self.selectedSegmentIndex) ?? ""
+        
         
         observeNotifcations()
         configureContents()
@@ -68,7 +69,8 @@ class IncompleteTasksVC: UIViewController {
     }
     
     func observeNotifcations(){
-        
+
+
         NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
         
         
@@ -76,9 +78,9 @@ class IncompleteTasksVC: UIViewController {
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(gotoOnBoardingVC(notification:)), name: NSNotification.Name.init(rawValue: "gotoOnBoardingVC"), object: nil)
-        
+
     }
-    
+
     func CheckInternetConnection() {
         if ServiceManager.isConnection() == true {
             print("Internet Connection Available!")
@@ -95,7 +97,7 @@ class IncompleteTasksVC: UIViewController {
     
     func configureContents() {
        
-        callApi()
+        self.CheckInternetConnection()
         
         mainVC = self.parent as? CommonTaskDetailVC
         self.taskListTableView.bringSubviewToFront(mainVC?.speechView ?? UIView())
@@ -118,7 +120,10 @@ class IncompleteTasksVC: UIViewController {
             self.present(vc, animated: true)
             
         }else {
-            
+            timerBool = false
+        
+            defaults.set("stop", forKey: "daytype")
+            self.viewModel.startOrStopDayTask()
             guard let vc = CommonAlertVC.newInstance else {return}
             vc.modalPresentationStyle = .overCurrentContext
             self.present(vc, animated: false)
@@ -132,9 +137,9 @@ class IncompleteTasksVC: UIViewController {
         print("dayTaskAction ==== IncompleteTasksVC")
         
         mainVC?.speechView.isHidden = true
-        if let day = notification.object as? String {
-            
-            if day == "Start day" {
+        if let day1 = notification.object as? String {
+           
+            if day1 == "Start day" {
                 
                 self.day = "Start day"
                 defaults.set("start", forKey: "daytype")
@@ -145,8 +150,6 @@ class IncompleteTasksVC: UIViewController {
                 mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
                 mainVC?.runTimer()
                 timerBool = true
-                
-                
                 
         
             }else {
@@ -167,6 +170,7 @@ class IncompleteTasksVC: UIViewController {
     
     func gotoBackScreen() {
         NotificationCenter.default.removeObserver(self)
+        timerBool = false
         guard let vc = OnBoardingVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -187,14 +191,18 @@ class IncompleteTasksVC: UIViewController {
         
         if self.selectedSegmentIndex == 0 {
             
+            
             if showproperty == "all" {
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyALLIds.joined(separator: ","))", crew_members: "me")
             } else {
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "me")
             }
+            
             defaults.set("me", forKey: UserDefaultsKeys.task_type)
             
+            
         }else {
+            
             
             
             if showproperty == "all" {
@@ -202,6 +210,7 @@ class IncompleteTasksVC: UIViewController {
             } else {
                 viewModel.InCompleteListApi(task_type: "incomplete", from_date: "all", to_date: "all", propertyid: "\(crewPropertyIds.joined(separator: ","))", crew_members: "team")
             }
+            
             defaults.set("team", forKey: UserDefaultsKeys.task_type)
             
         }
@@ -212,11 +221,11 @@ class IncompleteTasksVC: UIViewController {
     
     
     @IBAction func selectionSegment(_ sender: UISegmentedControl) {
-        CheckInternetConnection()
+
         self.selectedSegmentIndex = sender.selectedSegmentIndex
         self.selectedSegmentTitle = sender.titleForSegment(at: self.selectedSegmentIndex) ?? ""
-        
-        callApi()
+       
+        self.CheckInternetConnection()
         
     }
     
@@ -252,6 +261,28 @@ extension IncompleteTasksVC: TaskListProtocol {
         }
         
         
+       
+       
+            mainVC?.seconds = String().secondsFromString(string: response?.time?.ideal_time ?? "00:00:00")
+         
+        
+        if response?.time?.ideal_time != "00:00:00" {
+            
+            print("idel timeeeee :\(response?.time?.ideal_time)")
+            
+            DispatchQueue.main.async {[self] in
+
+                mainVC?.startDaylbl.text = "stop day"
+                taskListTableView.isUserInteractionEnabled = true
+                taskListTableView.alpha = 1
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                mainVC?.runTimer()
+                
+            }
+        }
+        
+        
+        
         DispatchQueue.main.async {
             self.taskListTableView.reloadData()
         }
@@ -260,10 +291,11 @@ extension IncompleteTasksVC: TaskListProtocol {
     
     
     func CrewTaskLogResponse(response: CrewTaskLogModel?) {
-        print(response?.data?.idealtime ?? "")
         
-        self.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "")
         
+        print("idel time ==== \(response?.data?.idealtime ?? "")")
+        
+        mainVC?.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "00:00:00")
         
     }
     
@@ -313,7 +345,7 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "daytask"), object: self.day)
+        
         guard let vc = TaskDetailsVC.newInstance else {return}
         vc.modalPresentationStyle = .fullScreen
         vc.day = self.day
@@ -326,7 +358,7 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.address, forKey: UserDefaultsKeys.address)
             defaults.set(incompleteData.propertyname, forKey: UserDefaultsKeys.propertyname)
             defaults.set(incompleteData.role_name, forKey: UserDefaultsKeys.role_name)
-           
+            
         }
         self.present(vc, animated: true)
     }

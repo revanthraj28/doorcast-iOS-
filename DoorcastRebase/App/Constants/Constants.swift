@@ -32,6 +32,7 @@ var crewPropertyALLIds = [String]()
 var timerBool = false
 var KLat = String()
 var KLong = String()
+var incompleteScreen = String()
 
 let GlobelAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Im94Zm9yZCBjYXBzIg._nKgScZrZagPYMtl2D9cYgxsBV_EoDgqmuMFGDuEAek"
 
@@ -87,6 +88,7 @@ struct UserDefaultsKeys {
     static var org_id  = "org_id"
     static var propertyname = "propertyname"
     static var role_name = "role_name"
+    static var screenlanding = "screen_landing"
 }
 
 

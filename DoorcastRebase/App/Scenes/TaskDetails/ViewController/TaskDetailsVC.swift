@@ -80,11 +80,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-     
+        
         DispatchQueue.main.async {
-            print("=======")
-            print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher ))
-                  print(defaults.string(forKey: UserDefaultsKeys.task_id ))
+            
+           
             
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             
@@ -106,7 +105,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
         
-       // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
+        // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
         
         setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
@@ -114,7 +113,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         propertyAddresLabel.text = defaults.string(forKey: UserDefaultsKeys.address)
         editBackgroundView.isHidden = true
         
-
+        
     }
     
     
@@ -124,30 +123,27 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     }
     
     
-     func dayTaskAction() {
-        
-        print("dayTaskAction ==== TaskDetailsVC \(KLat)")
+    func dayTaskAction() {
         
         mainVC?.speechView.isHidden = true
-       
+        
+        if self.day == "Start day" {
             
-         if self.day == "Start day" {
-                
-                defaults.set("start", forKey: "daytype")
-               // self.viewModel.startOrStopDayTask()
-                self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-                
-                mainVC?.runTimer()
-                timerBool = true
-                
-            }else {
-                
-                defaults.set("stop", forKey: "daytype")
-                self.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-                timerBool = false
-                gotoBackScreen()
-                
-            }
+            defaults.set("start", forKey: "daytype")
+            // self.viewModel.startOrStopDayTask()
+            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+            
+            mainVC?.runTimer()
+            timerBool = true
+            
+        }else {
+            
+            defaults.set("stop", forKey: "daytype")
+            self.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+            timerBool = false
+            gotoBackScreen()
+            
+        }
         
         
     }
@@ -182,9 +178,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
-
+        
     }
     
     
@@ -211,7 +208,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let group_id = defaults.string(forKey: UserDefaultsKeys.group_id)
         let task_type = defaults.string(forKey: UserDefaultsKeys.task_type)
         let property_id = defaults.string(forKey: UserDefaultsKeys.property_id)
-//        let image_captured = defaults.string(forKey: UserDefaultsKeys.image_captured)
+        //        let image_captured = defaults.string(forKey: UserDefaultsKeys.image_captured)
         subTaskListViewModel?.SubTaskListApi(task_id: taskId ?? "", task_id_check: task_id_check ?? "" , group_id: group_id ?? "" , type: task_type ?? "" )
         
         
@@ -236,7 +233,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
             editBackgroundView.isHidden = true
             isVisible = false
         }
-        
         
     }
     
@@ -287,6 +283,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     }
     
     
+    
+    
 }
 
 
@@ -316,7 +314,6 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(withInLocationBool)
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell") as? CheckboxInTaskDetailsTVCell {
             if withInLocationBool == true {
                 
@@ -344,23 +341,30 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate{
-    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
-        print("exstreamTaskLocationResponse = \(response)")
-    }
-
-    
     
     
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
-      //  print("subtaskDetailresponse = \(response)")
+        //  print("subtaskDetailresponse = \(response)")
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
             self.taskDetailsTableView.reloadData()
         }
     }
+    
+    
+    func startStopTaskLogResponse(response: CrewTaskLogModel?) {
+        print("startStopTaskLogResponse \(response)")
+    }
+    
+    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
+        print("exstreamTaskLocationResponse = \(response)")
+    }
+    
+    
+    
     
     
 }
@@ -505,6 +509,13 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate{
 //
 //
 //_____________________________
+
+
+
+
+
+
+
 //
 //Date: 23 May 2022 12:48:10.806 PM
 //

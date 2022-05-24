@@ -70,14 +70,7 @@ class TaskListViewModel {
     }
     
     
-    
-    //startTast or stopTast Api
-    
-    
-    
-    
-    
-    
+
     func getInCompleteTaskListMockData() {
         self.view?.showLoader()
         let responseJsonModel = IncompleteTaskListModel.fromJSON(jsonFile: LocalJsonFiles.incompleteTaskDetails) as IncompleteTaskListModel?
@@ -86,72 +79,3 @@ class TaskListViewModel {
     }
     
 }
-
-
-
-
-//URL: ```https://staging.doorcast.tech/api/exstream_crewTaskLog```
-//
-//Method: POST
-//
-//Authentication Headers:
-//```
-//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU,
-//  Content-Type: application\/json
-//```
-//
-//Payload: ```{
-//  "distance" : "",
-//  "device" : "iPhone SE (2nd generation)",
-//  "os_type" : "15.4.1",
-//  "device_id" : "D462D210-77BB-44A7-A79C-B2B924A56F8D",
-//  "type" : "start",
-//  "latitude" : 15.151603,
-//  "longitude" : 76.922963999999993,
-//  "task_id" : ""
-//}```
-//
-//Response: ```{
-//    data =     {
-//        "ideal_time" = "00:00:00";
-//        "individual_taskworking_time" = "00:00:00";
-//        "working_time" = "00:00:00";
-//    };
-//    message = "Total ideal time for crew";
-//    status = 1;
-//}```
-
-
-
-
-
-//URL: ```https://staging.doorcast.tech/api/exstream_crewTaskLog```
-//
-//Method: POST
-//
-//Authentication Headers:
-//```
-//  Content-Type: application\/json,
-//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU
-//```
-//
-//Payload: ```{
-//  "type" : "stop",
-//  "longitude" : 76.922963999999993,
-//  "device" : "iPhone SE (2nd generation)",
-//  "task_id" : "",
-//  "latitude" : 15.151603,
-//  "os_type" : "15.4.1",
-//  "device_id" : "D462D210-77BB-44A7-A79C-B2B924A56F8D",
-//  "distance" : ""
-//}```
-//
-//Response: ```{
-//    data =     {
-//        "ideal_time" = "00:00:00";
-//        "individual_taskworking_time" = "00:00:00";
-//        "working_time" = "00:00:00";
-//    };
-//    message = "Total ideal time for crew";
-//    status = 1;
-//}```

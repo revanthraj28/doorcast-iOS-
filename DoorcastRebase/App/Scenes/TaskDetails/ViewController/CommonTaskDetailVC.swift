@@ -62,8 +62,12 @@ class CommonTaskDetailVC: UIViewController {
     }()
     
     
+  
     
     override func viewWillAppear(_ animated: Bool) {
+        
+       
+        defaults.set("incompleteScreen", forKey: UserDefaultsKeys.screenlanding)
         
         self.view.bringSubviewToFront(self.speechView)
         
