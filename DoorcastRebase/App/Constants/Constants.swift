@@ -57,6 +57,7 @@ struct ApiEndpoints {
     static let forceFinishApi = "exstream_getInprogressTaskUser"
     static let forceStop = "exstream_forceStop"
     static let startDayCrewTask = "exstream_crewTaskLog"
+    static let UpdateTaskStatus = "exstream_updateTaskStatus"
     
     static let exstreamTaskLocation = "exstream_TaskLocation"
 }
@@ -87,6 +88,9 @@ struct UserDefaultsKeys {
     static var org_id  = "org_id"
     static var propertyname = "propertyname"
     static var role_name = "role_name"
+    static var incompletetasktype = "incompletetasktype"
+    static var completetasktype = "completetasktype"
+    static var sub_task_id = "sub_task_id"
 }
 
 

@@ -65,9 +65,19 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var coordinates = [CLLocationCoordinate2D]()
     var withInLocationBool = false
     var isVisible = false
+    
+    var parms = [String: Any]()
+    
     var mainVC: CommonTaskDetailVC?
     var viewModel : TaskListViewModel?
     var viewModel1 : TaskDetailsViewModel?
+    
+    var UpdateTaskStatusViewModel1 : UpdateTaskStatusViewModel?
+    var UpdateTaskStatusIncompleteResponse : UpdateTaskStatusModel?
+    
+    var UpdateTaskStatusCompleteViewModel1 : UpdateTaskStatusCompleteViewModel?
+    var UpdateTaskStatusCompleteResponse1 : UpdateTaskStatusCompleteModel?
+    
     var day = String()
     var task_id_check = String()
     
@@ -85,6 +95,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
             print("=======")
             print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher ))
                   print(defaults.string(forKey: UserDefaultsKeys.task_id ))
+            
+//
+            
+            
+            
+            
             
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             
@@ -184,7 +200,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         super.viewDidLoad()
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
+        UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
 
+        
     }
     
     
@@ -216,6 +234,25 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         
     }
+    
+    func UpdateTaskStatusinCompleteApiCall(){
+        
+        parms["task_id"] = ""
+        parms["subtask_id"] = defaults.string(forKey: UserDefaultsKeys.sub_task_id)
+        parms["taskStatus"] = defaults.string(forKey: UserDefaultsKeys.completetasktype)
+        parms["crew_role"] = defaults.value(forKey:UserDefaultsKeys.role_name)
+        
+        print(defaults.string(forKey: UserDefaultsKeys.sub_task_id))
+        print(defaults.string(forKey: UserDefaultsKeys.completetasktype))
+        print(defaults.value(forKey:UserDefaultsKeys.role_name))
+      
+       
+        self.UpdateTaskStatusViewModel1?.UpdateTaskStatus(dictParam: parms)
+
+    }
+
+    
+    
     
     
     @IBAction func menuButtonAction(_ sender: Any) {
@@ -298,14 +335,19 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var commonCell = UITableViewCell()
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as? CheckboxInTaskDetailsTVCell {
-            
-            let data = subtaskDetail?.data?.subtask?[indexPath.row]
-            cell.numbersLabel?.text = data?.sub_task_name
-            commonCell = cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell", for: indexPath) as! CheckboxInTaskDetailsTVCell
+        
+        let data = subtaskDetail?.data?.subtask?[indexPath.row]
+        cell.numbersLabel.text = data?.sub_task_name
+        
+        if data?.completed_status == "complete" {
+            self.taskDetailsTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+        }else{
+            self.taskDetailsTableView.deselectRow(at: indexPath, animated: false)
+            cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
         }
-        return commonCell
+        return cell
         
     }
     
@@ -317,14 +359,26 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print(withInLocationBool)
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CheckboxInTaskDetailsTVCell") as? CheckboxInTaskDetailsTVCell {
-            if withInLocationBool == true {
-                
-                if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
-                    cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
-                } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
-                    cell.selectDeselectImage.image = UIImage(named: "taskChecked")
-                }
+        
+        let cell = tableView.cellForRow(at: indexPath) as! CheckboxInTaskDetailsTVCell
+        
+        if withInLocationBool == true {
+            
+            cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+            UpdateTaskStatusinCompleteApiCall()
+//            if cell.selectDeselectImage.image == UIImage(named: "taskChecked"){
+//                print("taskChecked")
+//            } else if cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
+//                print("taskUnCheck")
+//            }
+            
+//                if cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskChecked") {
+//                    cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
+//                    UpdateTaskStatusinCompleteApiCall()
+//                } else if  cell.selectDeselectImage.isUserInteractionEnabled == true && cell.selectDeselectImage.image == UIImage(named: "taskUnCheck") {
+//                    cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+//                    UpdateTaskStatusCompleteApiCall()
+//                }
                 gotoNextScreen()
                 
             }else {
@@ -332,7 +386,6 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                 self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
             }
             
-        }
     }
     
     
@@ -343,18 +396,36 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate{
+extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol
+{
+    func UpdateTaskStatusCompleteSuccess(UpdateTaskStatusCompleteResponse: UpdateTaskStatusCompleteModel) {
+        self.UpdateTaskStatusCompleteResponse1 = UpdateTaskStatusCompleteResponse
+        print("UpdateTaskStatusCompleteResponse\(UpdateTaskStatusCompleteResponse1)")
+        
+    }
+    
+    
+    func UpdateTaskStatusSuccess(UpdateTaskStatusResponse: UpdateTaskStatusModel) {
+        self.UpdateTaskStatusIncompleteResponse = UpdateTaskStatusResponse
+        
+        print("UpdateTaskStatusIncompleteResponse\(UpdateTaskStatusIncompleteResponse)")
+        
+        
+    }
+    
     func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
         print("exstreamTaskLocationResponse = \(response)")
     }
 
     
     
-    
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
-      //  print("subtaskDetailresponse = \(response)")
+        defaults.set(subtaskDetail?.data?.subtask?.first?.sub_task_id, forKey: UserDefaultsKeys.sub_task_id)
+        defaults.set(subtaskDetail?.data?.subtask?.first?.completed_status, forKey: UserDefaultsKeys.completetasktype)
+        print("subtaskDetailresponse = \(response)")
+       
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
@@ -364,6 +435,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate{
     
     
 }
+
 
 
 

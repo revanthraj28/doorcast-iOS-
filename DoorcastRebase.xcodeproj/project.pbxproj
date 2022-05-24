@@ -91,6 +91,10 @@
 		638E5FCC3ED177D7172BAB15 /* Pods_DoorcastRebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */; };
 		AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */; };
 		AE198CCF2833A10D00252A74 /* ForceStopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE198CCE2833A10D00252A74 /* ForceStopModel.swift */; };
+		AE3FDA89283C9C9F005E59C4 /* UpdateTaskStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FDA88283C9C9F005E59C4 /* UpdateTaskStatusModel.swift */; };
+		AE3FDA8B283C9F11005E59C4 /* UpdateTaskStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FDA8A283C9F11005E59C4 /* UpdateTaskStatusViewModel.swift */; };
+		AE3FDA8E283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FDA8D283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift */; };
+		AE3FDA90283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */; };
 		AE59F457283620D70051D426 /* ReassignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59F456283620D60051D426 /* ReassignModel.swift */; };
 		AE59F459283620EE0051D426 /* ReassignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59F458283620ED0051D426 /* ReassignViewModel.swift */; };
 		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
@@ -226,6 +230,10 @@
 		4FBB7994D67F309A83301547 /* Pods_DoorcastRebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorcastRebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE198CCC2833A0B700252A74 /* ForceStopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopViewModel.swift; sourceTree = "<group>"; };
 		AE198CCE2833A10D00252A74 /* ForceStopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceStopModel.swift; sourceTree = "<group>"; };
+		AE3FDA88283C9C9F005E59C4 /* UpdateTaskStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTaskStatusModel.swift; sourceTree = "<group>"; };
+		AE3FDA8A283C9F11005E59C4 /* UpdateTaskStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTaskStatusViewModel.swift; sourceTree = "<group>"; };
+		AE3FDA8D283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTaskStatusCompleteViewModel.swift; sourceTree = "<group>"; };
+		AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTaskStatusCompleteModel.swift; sourceTree = "<group>"; };
 		AE59F456283620D60051D426 /* ReassignModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReassignModel.swift; sourceTree = "<group>"; };
 		AE59F458283620ED0051D426 /* ReassignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReassignViewModel.swift; sourceTree = "<group>"; };
 		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
@@ -764,6 +772,8 @@
 				AE812F8C2834CEA100AE6606 /* AddCrewViewModel.swift */,
 				AE59F458283620ED0051D426 /* ReassignViewModel.swift */,
 				0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */,
+				AE3FDA8A283C9F11005E59C4 /* UpdateTaskStatusViewModel.swift */,
+				AE3FDA8D283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -779,6 +789,8 @@
 				AE198CCE2833A10D00252A74 /* ForceStopModel.swift */,
 				AE812F8A2834CE1700AE6606 /* AddCrewModel.swift */,
 				AE59F456283620D60051D426 /* ReassignModel.swift */,
+				AE3FDA88283C9C9F005E59C4 /* UpdateTaskStatusModel.swift */,
+				AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1170,6 +1182,7 @@
 				AE80FC91282B7B6800EE5C0C /* ResetPasswordVC.swift in Sources */,
 				E304886E2822ABEF004ECA60 /* Decodable.swift in Sources */,
 				07712BD1282CCB850074F948 /* ForceFinishViewModel.swift in Sources */,
+				AE3FDA90283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift in Sources */,
 				E30488712822AC74004ECA60 /* IncompleteTaskListModel.swift in Sources */,
 				0771A2F82825348600758DD9 /* LoginViewModel.swift in Sources */,
 				0771A2DA282519F100758DD9 /* GetOrganizationsViewModel.swift in Sources */,
@@ -1195,11 +1208,14 @@
 				AE80FC85282B7B5C00EE5C0C /* ForgotPasswordModel.swift in Sources */,
 				07712BD6282CCB930074F948 /* ReassignCrewModel.swift in Sources */,
 				AE80FC90282B7B6800EE5C0C /* ResetPasswordModel.swift in Sources */,
+				AE3FDA89283C9C9F005E59C4 /* UpdateTaskStatusModel.swift in Sources */,
+				AE3FDA8E283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift in Sources */,
 				AE80FC82282B7B5C00EE5C0C /* OtpTVCell.swift in Sources */,
 				E347D368282286DA00122C8B /* ButtonExtension.swift in Sources */,
 				E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */,
 				0771A2E128251A5600758DD9 /* CompanyTVCell.swift in Sources */,
 				AE80FC84282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift in Sources */,
+				AE3FDA8B283C9F11005E59C4 /* UpdateTaskStatusViewModel.swift in Sources */,
 				E304886C2822ABB0004ECA60 /* TaskListViewModel.swift in Sources */,
 				0771A2D5282519E000758DD9 /* CrewPropertiesModel.swift in Sources */,
 				AE198CCD2833A0B700252A74 /* ForceStopViewModel.swift in Sources */,
@@ -1365,12 +1381,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS()/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Do you allow this app to know your current location?";
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS()/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;
@@ -1402,12 +1417,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS()/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Do you allow this app to know your current location?";
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS()/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Authentication;

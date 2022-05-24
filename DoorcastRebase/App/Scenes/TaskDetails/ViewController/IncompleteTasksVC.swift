@@ -262,7 +262,7 @@ extension IncompleteTasksVC: TaskListProtocol {
     func CrewTaskLogResponse(response: CrewTaskLogModel?) {
         print(response?.data?.idealtime ?? "")
         
-        self.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "")
+        self.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "00:00:00")
         
         
     }
@@ -326,7 +326,7 @@ extension IncompleteTasksVC: UITableViewDelegate, UITableViewDataSource {
             defaults.set(incompleteData.address, forKey: UserDefaultsKeys.address)
             defaults.set(incompleteData.propertyname, forKey: UserDefaultsKeys.propertyname)
             defaults.set(incompleteData.role_name, forKey: UserDefaultsKeys.role_name)
-           
+            
         }
         self.present(vc, animated: true)
     }
