@@ -41,6 +41,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var addcrewBgView: UIView!
     @IBOutlet weak var ReassignBtn: UIButton!
     
+    @IBOutlet weak var topTimerView: UIView!
     @IBOutlet weak var timerView: TimerView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var tickMarkView: UIView!
@@ -117,6 +118,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(setDistanceFromCurrentLocation(notification:)), name: NSNotification.Name.init(rawValue: "updateLocation"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(hidetimerView), name: NSNotification.Name("hidetimerView"), object: nil)
         
         // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
         
@@ -129,6 +132,17 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
     }
     
+    @objc func hidetimerView(notification: Notification) {
+        print("hideeeeeeeeeeee")
+        
+        self.topTimerView.backgroundColor = .white
+        self.playpauseView.isHidden = true
+        self.timerView.isHidden = true
+        self.timerLabel.isHidden = true
+        self.tickMarkView.isHidden = true
+        self.timerView.isHidden = false
+        
+    }
     
     @objc func didTapOnTimerView(notification:Notification) {
         print("didTapOnTimerView")

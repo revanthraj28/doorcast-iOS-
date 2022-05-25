@@ -59,12 +59,14 @@ struct ApiEndpoints {
     static let startDayCrewTask = "exstream_crewTaskLog"
     static let UpdateTaskStatus = "exstream_updateTaskStatus"
     static let exstreamTaskLocation = "exstream_TaskLocation"
+    static let exstreamCrewTaskLog = "exstream_crewTaskLog"
+    static let exstreamTaskPropertyLocation = "exstream_property_location"
+  
     
     
-//    2.exstream_crewTaskLogApi
-//
-//    4.exstream_propertyLocation
-//
+  
+
+
 //    6.exstreamLocation
 }
 
