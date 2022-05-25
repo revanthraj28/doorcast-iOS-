@@ -54,7 +54,7 @@ class SelectUserVC: UIViewController {
     var employeeList = [String]()
     var taskList = [String]()
     var user_type = [String]()
-    var selectedListCount = [String]()
+    var selectedListCount = Int()
     
     var deselectedIndex: Int?
     
@@ -353,6 +353,11 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 self.addUserBtn.isUserInteractionEnabled = false
             }
             
+//            if self.selectedListCount == 1 && self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress"{
+//                self.showAlertOnWindow(title: nil, message: "At least one person needs to be assigned to the task to proceed.", titles: ["Ok"], completionHanlder: {_ in
+//                })
+//            }else
+            
             if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
                 
                 ForceStopCallApi()
@@ -442,6 +447,12 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 self.user_type.remove(at: index)
                 print("\(user_type)")
             }
+//            if selectedListCount == 1 {
+//
+//            }else{
+//                ReassignApiCall()
+//            }
+            
             
         }
         
@@ -476,10 +487,11 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
 {
     func ReassignSuccess(ReassignResponse: ReassignModel) {
         self.ReassignResponseModel = ReassignResponse
-       
+        showAlertOnWindow(title: "", message: "Added successfully", titles: ["OK"], completionHanlder: {_ in})
         DispatchQueue.main.async {
            
             self.ReassignCrewCallAPI()
+           
         }
         print("ReassignResponseModel\(ReassignResponseModel?.data)")
     }
@@ -499,10 +511,11 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
         self.ForceStopResponseModel = ForceStopResponse
         
         print("ForceStopResponse\(ForceStopResponse)")
-        
+        showAlertOnWindow(title: "", message: "Updated successfully", titles: ["OK"], completionHanlder: {_ in})
         DispatchQueue.main.async {
     
             self.ReassignCrewCallAPI()
+            
         }
         
         
@@ -530,7 +543,7 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
     
     func CrewSuccess(CrewResponse: CrewModel) {
         self.getCrewResponseModel = CrewResponse
-        
+        showAlertOnWindow(title: "", message: "Crew added to the task Successfully", titles: ["OK"], completionHanlder: {_ in})
         
         if getCrewResponseModel?.data?.count == 0
         {

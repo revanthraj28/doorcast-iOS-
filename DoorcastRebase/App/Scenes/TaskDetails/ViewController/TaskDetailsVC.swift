@@ -5,7 +5,7 @@
 //  Created by Codebele 09 on 09/05/22.
 //
 
-import UIKit
+import UIKit 
 import CoreLocation
 
 class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
@@ -419,15 +419,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     func startStopTaskLogResponse(response: CrewTaskLogModel?) {
         print("startStopTaskLogResponse \(response)")
     }
-    
-    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
-        print("exstreamTaskLocationResponse = \(response)")
-    }
-    
-    
-    
-    
-    
+
 }
 
 
@@ -504,34 +496,6 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
 //____________
 
 
-
-//check or uncheck box tap
-
-//URL: ```https://staging.doorcast.tech/api/exstream_updateTaskStatus```
-//
-//Method: POST
-//
-//Authentication Headers:
-//```
-//  Accesstoken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Ijc0OSI.0SuocLrTA4szVKXCbZEMuaCYhqPSwToxOynGmWB82EU,
-//  Content-Type: application\/json
-//```
-//
-//Payload: ```{
-//  "subtask_id" : "12624",
-//  "crew_role" : "CrewLead",
-//  "taskStatus" : "incomplete",
-//  "task_id" : ""
-//}```
-//
-//Response: ```{
-//    data = "<null>";
-//    message = "Updated successfully";
-//    status = 1;
-//}```
-
-
-
 // after write check button tap
 
 //URL: ```https://staging.doorcast.tech/api/exstream_updateTaskStatus```
@@ -571,11 +535,6 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
 //
 //
 //_____________________________
-
-
-
-
-
 
 
 //

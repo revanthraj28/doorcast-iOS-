@@ -191,7 +191,6 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                         if defaults.string(forKey: UserDefaultsKeys.task_id) != "" {
                             if let responsedata = response.notification.request.content.userInfo["data"] as? String {
                                 print(responsedata)
-                    //                                if let content = String(data: data, encoding: .utf8) {
                                 let data1 = responsedata.data(using: .utf8)!
                                 do {
                                     if let jsonArray = try? JSONSerialization.jsonObject(with: data1 as Data, options: [.allowFragments]) as? [String:Any]
