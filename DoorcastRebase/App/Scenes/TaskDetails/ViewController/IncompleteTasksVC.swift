@@ -241,43 +241,41 @@ extension IncompleteTasksVC: TaskListProtocol {
         
         print(self.incompleteTaskListModel)
         
-        
-        self.roleName = self.incompleteTaskListModel?.data?.first?.role_name ?? ""
-        
-        if self.incompleteTaskListModel?.data?.first?.role_name ?? "" == "CrewLead"{
-            meOrTeamHeightConstraint.constant = 40
-            meOrTeamSegment.isHidden = false
-        } else {
-            meOrTeamHeightConstraint.constant = 0
-            meOrTeamSegment.isHidden = true
-        }
-        
+    
         if let count = self.incompleteTaskListModel?.data?.count {
             if count <= 0 {
+                
+                
                 TableViewHelper.EmptyMessage(message: "No Tasks Assigned", tableview: self.taskListTableView, vc: self)
             }else {
                 TableViewHelper.EmptyMessage(message: "", tableview: self.taskListTableView, vc: self)
-            }
-        }
-        
-        
-       
-       
-            mainVC?.seconds = String().secondsFromString(string: response?.time?.ideal_time ?? "00:00:00")
-         
-        
-        if response?.time?.ideal_time != "00:00:00" {
-            
-            print("idel timeeeee :\(response?.time?.ideal_time)")
-            
-            DispatchQueue.main.async {[self] in
-
-                mainVC?.startDaylbl.text = "stop day"
-                taskListTableView.isUserInteractionEnabled = true
-                taskListTableView.alpha = 1
-                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-                mainVC?.runTimer()
                 
+                self.roleName = self.incompleteTaskListModel?.data?.first?.role_name ?? ""
+                
+                if self.incompleteTaskListModel?.data?.first?.role_name ?? "" == "CrewLead"{
+                    meOrTeamHeightConstraint.constant = 40
+                    meOrTeamSegment.isHidden = false
+                } else {
+                    meOrTeamHeightConstraint.constant = 0
+                    meOrTeamSegment.isHidden = true
+                }
+                
+            
+                if response?.time?.ideal_time != "00:00:00" {
+                    print("idel timeeeee :\(response?.time?.ideal_time)")
+                    
+                    
+                    DispatchQueue.main.async {[self] in
+                        mainVC?.seconds = String().secondsFromString(string: response?.time?.ideal_time ?? "00:00:00")
+
+                        mainVC?.startDaylbl.text = "stop day"
+                        taskListTableView.isUserInteractionEnabled = true
+                        taskListTableView.alpha = 1
+                        mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                        mainVC?.runTimer()
+                        
+                    }
+                }
             }
         }
         
