@@ -58,6 +58,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var taskname:String?
     var address:String?
     var propertyname:String?
+    var imageBase64 = String()
     
     var dayStartedFlag = false
     var locationDistance = CLLocationDistance()
@@ -70,6 +71,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var subTaskID = String()
     var subTaskStatus = String()
     var completedSubtasksCount:Int = 0
+    var captured = String()
     
     let locationManager = CLLocationManager()
     var locationOne = CLLocation()
@@ -108,6 +110,13 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        
+        DispatchQueue.main.async {
+       
+            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
+            
+        }
         print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
         print(defaults.string(forKey: UserDefaultsKeys.task_id))
         
@@ -145,6 +154,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         
     }
+    
+   
     
     @objc func hidetimerView(notification: Notification) {
         print("hideeeeeeeeeeee")
@@ -369,8 +380,10 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
         }
         
+       
         
         
+      
         return cell
     }
     
@@ -390,95 +403,34 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             cell.selectDeselectImage.image = UIImage(named: "taskChecked")
             UpdateTaskStatusinCompleteApiCall()
             
-            gotoNextScreen()
+           if subtaskDetail?.image_captured == "Captured" {
+               print("subbbbbbbbb")
+               guard let vc = StartTheClockVC.newInstance else {return}
+               vc.modalPresentationStyle = .overCurrentContext
+               vc.captured = "true"
+               self.present(vc, animated: true, completion: nil)
+//               NotificationCenter.default.post(name: Notification.Name("showTheClock"), object: nil)
             
-        }else {
-            
-            self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
-        }
-        
-        DispatchQueue.main.async {
-            
-            if self.dayStartedFlag == false {
-                print("day startedFlag is False")
-                if self.locationDistance < 500{
-                    if self.isAssigned == true{
-                        //                        self.showStartDayPopUP()
-                        tableView.deselectRow(at: indexPath, animated: false)
-                    }else{
-                        self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
-                    }
-                    
-                }else{
-                    self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
-                        
-                        self.showAlertOnce = true
-                        self.hidePopup = true
-                        self.showInAlert = false
-                    })
-                }
+            } else {
+                print("startCamera")
                 
-                
-            }else if self.clockStartedFlag == false {
-                print("clock started Flag is False")
-                if self.isAssigned == true{
-                    
-                    if self.locationDistance < 500 {
-                        //                        self.showStartClockPopUP()
-                        tableView.deselectRow(at: indexPath, animated: false)
-                    } else {
-                        self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
-                            
-                            //                            self.showAlertOnce = true
-                            self.hidePopup = true
-                            self.showInAlert = false
-                        })
-                    }
-                    
-                    //
-                    //                    self.showStartClockPopUP()
-                    //                    tableView.deselectRow(at: indexPath, animated: false)
-                }else{
-                    self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
-                }
+                guard let vc = StartTheClockVC.newInstance else {return}
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.captured = "false"
+                self.present(vc, animated: true, completion: nil)
+
+//                NotificationCenter.default.post(name: NSNotification.Name("startCamera"), object: nil)
+            }
                 
             }else {
-                let cell: CheckboxInTaskDetailsTVCell = self.taskDetailsTableView.cellForRow(at: indexPath) as! CheckboxInTaskDetailsTVCell
                 
-                if self.subTaskListArray[indexPath.row].completed_status == "complete"{
-                    
-                    self.subTaskListArray[indexPath.row].completed_status = "incomplete"
-                    self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
-                    self.subTaskStatus = "incomplete"
-                    if  self.completedSubtasksCount > 0 {
-                        self.completedSubtasksCount -= 1
-                    }
-                    print(self.completedSubtasksCount)
-                    self.selectedRow = indexPath
-                    //                    self.callSubTaskAPI()
-                    
-                }else{
-                    self.subTaskStatus = "complete"
-                    self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
-                    self.subTaskListArray[indexPath.row].completed_status = "complete"
-                    //                    self.subTaskStatus = "complete"
-                    self.completedSubtasksCount =  (self.completedSubtasksCount + 1)
-                    print(self.completedSubtasksCount)
-                    self.selectedRow = indexPath
-                    //                    self.callSubTaskAPI()
-                    
-                }
+                self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
             }
-        }
         
+
+            
     }
-    
-    
-    func gotoNextScreen() {
-        guard let vc = StartTheClockVC.newInstance else {return}
-        vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: true, completion: nil)
-    }
+
 }
 
 

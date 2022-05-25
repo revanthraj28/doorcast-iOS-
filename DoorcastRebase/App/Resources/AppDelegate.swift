@@ -245,7 +245,8 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                     case "Someone has logged in with your credeentials","Admin has removed you from the organisation" :
                         goToLogin()
                         break
-                    case "Task is added for the crew" :
+                    case  "Task is added for the crew", "Task is added","Task Reassigned" :
+                        gotoCommonTaskDetailVC()
                         break
                     case "Your day has been stopped since your idle for 1.5 hours" :
                         break

@@ -27,27 +27,78 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
     @IBOutlet weak var startView: UIView!
     
     var imagePicker: UIImagePickerController!
+    var captured = String()
+    var openCamera = Bool()
+    var imageBase64 = String()
+    var imageData = NSData()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+   
+        
+        if captured == "true" {
+            StartTheClock()
+        } else {
+            startCamera()
+        }
+        
+        
+     
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         updateUI()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         CheckInternetConnection()
+        
+      
     }
     
+   
+    @objc func showTheClock() {
+        print("startTheClockLabel")
+        startTheClockLabel.text = "START THE CLOCK"
+        startLabel.text = "You must start the task clock before you can complete sub-tasks."
+        cancelImage.image = UIImage(named: "cancel")
+        startTimerImage.image = UIImage(named: "startTimer")
+    }
+    
+    @objc func startCamera() {
+          startTheClockLabel.text = "UNIT REQUIRES PHOTO"
+          startLabel.text = "This unit does not have a photo on record. Please take a photo of the front door before starting the timer."
+          cancelImage.image = UIImage(named: "cancel")
+          startTimerImage.image = UIImage(named: "camera-solid")
+          self.openCamera = true
+      }
     
     @IBAction func startButtonAction(_ sender: Any) {
-        self.openGallery()
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        present(picker, animated: true)
+        
+        if openCamera == true {
+            self.openGallery()
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = self
+            present(picker, animated: true)
+             
+        } else  {
+            print("nothing")
+        }
      }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         picker.delegate = self
-        picker.dismiss(animated: true, completion: nil)
+        let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            startTimerImage.image  = tempImage
+        print("tempImage = \(tempImage)")
+        
+        let imageStringData = convertImageToBase64(image: tempImage)
+                print("IMAGE base64 String: \(imageStringData)")
+        
+        let base64 = imageData.base64EncodedData(options: .lineLength64Characters)
+            self.dismiss(animated: true, completion: nil)
+        
 
     }
 
@@ -101,18 +152,14 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
         startLabel.text = "You must start the task clock before you can complete sub-tasks."
         cancelImage.image = UIImage(named: "cancel")
         startTimerImage.image = UIImage(named: "startTimer")
+        self.openCamera = false
         
     }
     
     
    
     
-    func startCamera() {
-        startTheClockLabel.text = "UNIT REQUIRES PHOTO"
-        startLabel.text = "This unit does not have a photo on record. Please take a photo of the front door before starting the timer."
-        cancelImage.image = UIImage(named: "cancel")
-        startTimerImage.image = UIImage(named: "camera-solid")
-    }
+ 
     
     
     

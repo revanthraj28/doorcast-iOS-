@@ -45,7 +45,10 @@ extension String {
         let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
+    
+   
 }
+
 
 
 
@@ -136,7 +139,10 @@ extension String{
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
-    
+    func convertImageToBase64(image: UIImage) -> String {
+          let imageData = image.pngData()!
+          return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+      }
     
 }
 extension NSMutableAttributedString {
