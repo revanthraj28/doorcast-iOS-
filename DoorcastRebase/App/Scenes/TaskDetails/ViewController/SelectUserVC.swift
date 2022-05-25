@@ -427,7 +427,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             
             
             if count == 1 && self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
-                
+                showAlertOnWindow(title: "", message: "At least one person needs to be assigned to the task to proceed.", titles: ["OK"], completionHanlder: { _ in })
                 print("only one is left .......")
             }else {
                 if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
