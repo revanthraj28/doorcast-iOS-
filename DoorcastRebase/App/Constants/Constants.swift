@@ -61,6 +61,7 @@ struct ApiEndpoints {
     static let exstreamTaskLocation = "exstream_TaskLocation"
     static let exstreamCrewTaskLog = "exstream_crewTaskLog"
     static let exstreamTaskPropertyLocation = "exstream_property_location"
+   
   
     
     
@@ -100,6 +101,7 @@ struct UserDefaultsKeys {
     static var completetasktype = "completetasktype"
     static var sub_task_id = "sub_task_id"
     static var screenlanding = "screen_landing"
+    static let sub_task_cipher = "sub_task_cipher"
 }
 
 

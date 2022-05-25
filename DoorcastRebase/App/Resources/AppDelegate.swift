@@ -167,6 +167,7 @@ class AppDelegate: UIResponder,MessagingDelegate, UIApplicationDelegate, UNUserN
                         goToLogin()
                         break
                     case "Task is added for the crew", "Task is added","Task Reassigned" :
+                        gotoCommonTaskDetailVC()
                         break
                     case "Task Reassigned" :
                         break

@@ -93,6 +93,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var UpdateTaskStatusCompleteViewModel1 : UpdateTaskStatusCompleteViewModel?
     var UpdateTaskStatusCompleteResponse1 : UpdateTaskStatusCompleteModel?
     
+    var ExstreamTaskLocationViewModel1 : ExstreamTaskLocationViewModel?
+    var ExstreamTaskLocationReasponse : ExstreamTaskLocationModel?
+    
     var day = String()
     var task_id_check = String()
     
@@ -105,12 +108,16 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
+        print(defaults.string(forKey: UserDefaultsKeys.task_id))
         
-        DispatchQueue.main.async {
-       
-            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
-            
-        }
+        ExstreamTaskLocationApiCall()
+        
+        //        DispatchQueue.main.async {
+        //
+        //            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
+        //
+        //        }
         
         
         if timerBool == true {
@@ -125,7 +132,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(setDistanceFromCurrentLocation(notification:)), name: NSNotification.Name.init(rawValue: "updateLocation"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
-       
+        
         NotificationCenter.default.addObserver(self, selector: #selector(hidetimerView), name: NSNotification.Name("hidetimerView"), object: nil)
         
         // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
@@ -180,7 +187,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         }
         
         
-     }
+    }
     
     func gotoBackScreen() {
         NotificationCenter.default.removeObserver(self)
@@ -215,7 +222,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
-        
+        ExstreamTaskLocationViewModel1 = ExstreamTaskLocationViewModel(self)
         
     }
     
@@ -258,15 +265,20 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         print(defaults.string(forKey: UserDefaultsKeys.sub_task_id))
         print(defaults.string(forKey: UserDefaultsKeys.completetasktype))
         print(defaults.value(forKey:UserDefaultsKeys.role_name))
-      
-       
+        
+        
         self.UpdateTaskStatusViewModel1?.UpdateTaskStatus(dictParam: parms)
-
+        
     }
-
     
+    func ExstreamTaskLocationApiCall(){
+        parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id_cipher)
+        parms["task_id_check"] = defaults.string(forKey: UserDefaultsKeys.task_id)
+        
+       
+        self.ExstreamTaskLocationViewModel1?.ExstreamTaskLocationViewModel(dictParam: parms)
     
-    
+    }
     
     @IBAction func menuButtonAction(_ sender: Any) {
         guard let vc = NotificationCenterVC.newInstance else {return}
@@ -299,8 +311,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         self.present(vc, animated: true, completion: nil)
     }
     
-    
-    
     @IBAction func addCrewBtnAction(_ sender: Any) {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "TaskDetails", bundle: nil)
@@ -323,9 +333,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBAction func sidearrowButtonAction(_ sender: Any) {
         dismissDetail()
     }
-    
-    
-    
     @IBAction func playPauseButtonAction(_ sender: Any) {
         
     }
@@ -362,20 +369,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
         }
         
-       
         
-        
-//        if  data?.sub_task_assined_to_this_crew == false {
-//            self.topTimerView.backgroundColor = .white
-//            self.playpauseView.isHidden = true
-//            self.timerView.isHidden = true
-//            self.timerLabel.isHidden = true
-//            self.tickMarkView.isHidden = true
-//            self.timerView.isHidden = false
-//        } else {
-//            print("NotificationCenter")
-//
-//        }
         
         return cell
     }
@@ -395,13 +389,13 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             
             cell.selectDeselectImage.image = UIImage(named: "taskChecked")
             UpdateTaskStatusinCompleteApiCall()
-
-                gotoNextScreen()
-                
-            }else {
-                
-                self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
-            }
+            
+            gotoNextScreen()
+            
+        }else {
+            
+            self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
+        }
         
         DispatchQueue.main.async {
             
@@ -409,7 +403,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                 print("day startedFlag is False")
                 if self.locationDistance < 500{
                     if self.isAssigned == true{
-//                        self.showStartDayPopUP()
+                        //                        self.showStartDayPopUP()
                         tableView.deselectRow(at: indexPath, animated: false)
                     }else{
                         self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
@@ -430,7 +424,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                 if self.isAssigned == true{
                     
                     if self.locationDistance < 500 {
-//                        self.showStartClockPopUP()
+                        //                        self.showStartClockPopUP()
                         tableView.deselectRow(at: indexPath, animated: false)
                     } else {
                         self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
@@ -451,11 +445,8 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             }else {
                 let cell: CheckboxInTaskDetailsTVCell = self.taskDetailsTableView.cellForRow(at: indexPath) as! CheckboxInTaskDetailsTVCell
                 
-                
-                //                self.tableView_TaskDetail.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                 if self.subTaskListArray[indexPath.row].completed_status == "complete"{
-                    //                    self.tableView_TaskDetail.deselectRow(at: indexPath, animated: false)
-         
+                    
                     self.subTaskListArray[indexPath.row].completed_status = "incomplete"
                     self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
                     self.subTaskStatus = "incomplete"
@@ -464,7 +455,7 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                     }
                     print(self.completedSubtasksCount)
                     self.selectedRow = indexPath
-//                    self.callSubTaskAPI()
+                    //                    self.callSubTaskAPI()
                     
                 }else{
                     self.subTaskStatus = "complete"
@@ -474,12 +465,12 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                     self.completedSubtasksCount =  (self.completedSubtasksCount + 1)
                     print(self.completedSubtasksCount)
                     self.selectedRow = indexPath
-//                    self.callSubTaskAPI()
+                    //                    self.callSubTaskAPI()
                     
                 }
             }
         }
-            
+        
     }
     
     
@@ -490,8 +481,14 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol
+
+extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol , ExstreamTaskLocationViewModelProtocol
 {
+    func ExstreamTaskLocationSuccess(ExstreamTaskLocationViewModelResponse: ExstreamTaskLocationModel) {
+        self.ExstreamTaskLocationReasponse = ExstreamTaskLocationViewModelResponse
+        print("ExstreamTaskLocationReasponse\(ExstreamTaskLocationReasponse)")
+    }
+    
     func UpdateTaskStatusCompleteSuccess(UpdateTaskStatusCompleteResponse: UpdateTaskStatusCompleteModel) {
         self.UpdateTaskStatusCompleteResponse1 = UpdateTaskStatusCompleteResponse
         print("UpdateTaskStatusCompleteResponse\(UpdateTaskStatusCompleteResponse1)")
@@ -501,27 +498,20 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     
     func UpdateTaskStatusSuccess(UpdateTaskStatusResponse: UpdateTaskStatusModel) {
         self.UpdateTaskStatusIncompleteResponse = UpdateTaskStatusResponse
-        
         print("UpdateTaskStatusIncompleteResponse\(UpdateTaskStatusIncompleteResponse)")
         
         
     }
     
-    func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
-        print("exstreamTaskLocationResponse = \(response)")
-    }
-
     
     
     func subTaskList(response: SubtaskDetailModel?) {
         
         self.subtaskDetail = response
         defaults.set(subtaskDetail?.data?.subtask?.first?.sub_task_id, forKey: UserDefaultsKeys.sub_task_id)
-        
-        
+        defaults.set(subtaskDetail?.data?.subtask?.first?.sub_task_cipher, forKey: UserDefaultsKeys.sub_task_cipher)
         defaults.set(subtaskDetail?.data?.subtask?.first?.completed_status, forKey: UserDefaultsKeys.completetasktype)
         print("subtaskDetailresponse = \(response)")
-        
         
         if subtaskDetail?.data?.subtask?.count ?? 0 > 0{
             subtaskDetail?.data?.subtask?.forEach({ i in
@@ -541,7 +531,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
             print("sub_task_assined_to_this_crew")
             
         }
-       
+        
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
@@ -553,7 +543,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     func startStopTaskLogResponse(response: CrewTaskLogModel?) {
         print("startStopTaskLogResponse \(response)")
     }
-
+    
 }
 
 

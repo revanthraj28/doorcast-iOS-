@@ -101,6 +101,8 @@
 		AE3FDA90283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */; };
 		AE59F457283620D70051D426 /* ReassignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59F456283620D60051D426 /* ReassignModel.swift */; };
 		AE59F459283620EE0051D426 /* ReassignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59F458283620ED0051D426 /* ReassignViewModel.swift */; };
+		AE78EA17283E4D980000B726 /* ExstreamTaskLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE78EA16283E4D980000B726 /* ExstreamTaskLocationModel.swift */; };
+		AE78EA19283E4E040000B726 /* ExstreamTaskLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE78EA18283E4E040000B726 /* ExstreamTaskLocationViewModel.swift */; };
 		AE80FC7F282B7B5C00EE5C0C /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */; };
 		AE80FC80282B7B5C00EE5C0C /* ResendOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */; };
 		AE80FC81282B7B5C00EE5C0C /* OtpTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */; };
@@ -244,6 +246,8 @@
 		AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTaskStatusCompleteModel.swift; sourceTree = "<group>"; };
 		AE59F456283620D60051D426 /* ReassignModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReassignModel.swift; sourceTree = "<group>"; };
 		AE59F458283620ED0051D426 /* ReassignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReassignViewModel.swift; sourceTree = "<group>"; };
+		AE78EA16283E4D980000B726 /* ExstreamTaskLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExstreamTaskLocationModel.swift; sourceTree = "<group>"; };
+		AE78EA18283E4E040000B726 /* ExstreamTaskLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExstreamTaskLocationViewModel.swift; sourceTree = "<group>"; };
 		AE80FC6F282B7B5C00EE5C0C /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
 		AE80FC71282B7B5C00EE5C0C /* ResendOTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResendOTPModel.swift; sourceTree = "<group>"; };
 		AE80FC74282B7B5C00EE5C0C /* OtpTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtpTVCell.xib; sourceTree = "<group>"; };
@@ -784,6 +788,7 @@
 				AE3FDA8D283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift */,
 				13757FD0283DECE5003349DA /* CrewTaskLogViewModel.swift */,
 				13757FD2283DF332003349DA /* crewTaskPropertyLocationViewModel.swift */,
+				AE78EA18283E4E040000B726 /* ExstreamTaskLocationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */,
 				13757FCE283DEC26003349DA /* CrewTaskLogModel.swift */,
 				13757FD4283DF427003349DA /* CrewPropertyTaskLocationModel.swift */,
+				AE78EA16283E4D980000B726 /* ExstreamTaskLocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1208,6 +1214,7 @@
 				E30488732822BFB7004ECA60 /* UIKitHelper.swift in Sources */,
 				AE80FC86282B7B5C00EE5C0C /* ForgotPasswordVC.swift in Sources */,
 				E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */,
+				AE78EA17283E4D980000B726 /* ExstreamTaskLocationModel.swift in Sources */,
 				13757FD5283DF427003349DA /* CrewPropertyTaskLocationModel.swift in Sources */,
 				0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */,
 				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
@@ -1223,6 +1230,7 @@
 				AE80FC85282B7B5C00EE5C0C /* ForgotPasswordModel.swift in Sources */,
 				07712BD6282CCB930074F948 /* ReassignCrewModel.swift in Sources */,
 				AE80FC90282B7B6800EE5C0C /* ResetPasswordModel.swift in Sources */,
+				AE78EA19283E4E040000B726 /* ExstreamTaskLocationViewModel.swift in Sources */,
 				AE3FDA89283C9C9F005E59C4 /* UpdateTaskStatusModel.swift in Sources */,
 				AE3FDA8E283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift in Sources */,
 				AE80FC82282B7B5C00EE5C0C /* OtpTVCell.swift in Sources */,

@@ -15,6 +15,6 @@ func setSegmentedUI(selectedButton: UIButton, UnSelectButton: UIButton) {
     UnSelectButton.isUserInteractionEnabled = true
 //    selectedButton.titleLabel?.font = UIFont.segmentSelectedFont
 //    UnSelectButton.titleLabel?.font = UIFont.segmentDeSelectedFont
-    selectedButton.addBottomBorderWithColor(color: UIColor(named: "designColor")!, width: 2)
-    UnSelectButton.addBottomBorderWithColor(color: UIColor(named: "AppBackgroundColor")!, width: 2)
+    selectedButton.addBottomBorderWithColor(color: UIColor.ErrorLabelColor, width: 0.2)
+    UnSelectButton.addBottomBorderWithColor(color: UIColor.AppBackgroundColor, width: 0.2)
 }

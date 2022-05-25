@@ -358,13 +358,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             
             print("name of properties in array \(employeeList)")
         }
-        
-        //        if ForceStopResponseModel?.data?[indexPath.section].sub_task_assined_to_this_crew == false {
-        //            NotificationCenter.default.post(name: NSNotification.Name("hidetimerView"), object: nil)
-        //
-        //        } else {
-        //            print("NotificationCenter")
-        //        }
+ 
         
     }
     
