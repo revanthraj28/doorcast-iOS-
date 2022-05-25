@@ -14,8 +14,8 @@
             filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/SelectUserVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "tableView(_:didDeselectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/SelectUserVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "tableView(_:didDeselectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -65,6 +65,22 @@
             startingLineNumber = "187"
             endingLineNumber = "187"
             landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C8ABC4D-0045-4BB3-9133-D05692E60DFE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/SelectUserVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

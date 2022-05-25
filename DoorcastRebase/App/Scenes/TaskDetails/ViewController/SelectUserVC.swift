@@ -223,105 +223,6 @@ class SelectUserVC: UIViewController {
     
 }
 
-
-
-
-
-extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , ForceFinishViewModelProtocol , ForceStopViewModelProtocol , AddCrewViewModelProtocol , ReassignViewModelProtocol
-{
-    func ReassignSuccess(ReassignResponse: ReassignModel) {
-        self.ReassignResponseModel = ReassignResponse
-        
-        DispatchQueue.main.async {
-            
-            self.ReassignCrewCallAPI()
-        }
-        print("ReassignResponseModel\(ReassignResponseModel?.data)")
-    }
-    
-    func AddCrewSuccess(AddCrewResponse: AddCrewModel) {
-        self.AddCrewResponseModel = AddCrewResponse
-        
-        
-        DispatchQueue.main.async {
-            
-            self.ReassignCrewCallAPI()
-        }
-        print("AddCrewResponseModel\(AddCrewResponseModel?.data)")
-    }
-    
-    func ForceStopSuccess(ForceStopResponse: ForceModel) {
-        self.ForceStopResponseModel = ForceStopResponse
-        
-        print("ForceStopResponse\(ForceStopResponse)")
-        
-        DispatchQueue.main.async {
-            
-            self.ReassignCrewCallAPI()
-        }
-        
-        
-        
-    }
-    
-    func ForceFinishSuccess(ForceFinishResponse: ForceFinishModel) {
-        self.ForceFinishResponseModel = ForceFinishResponse
-        print("j,ashvd\(ForceFinishResponseModel)")
-        DispatchQueue.main.async {
-            
-            
-            if self.ForceFinishResponseModel?.data?.count == 0
-            {
-                self.emptyMessageLabel.isHidden = false
-                self.emptyMessageLabel.text = "No data found"
-                self.userTV.isHidden = true
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.userTV.reloadData()
-        }
-    }
-    
-    func CrewSuccess(CrewResponse: CrewModel) {
-        self.getCrewResponseModel = CrewResponse
-        
-        
-        if getCrewResponseModel?.data?.count == 0
-        {
-            self.emptyMessageLabel.isHidden = false
-            self.emptyMessageLabel.text = "No data found"
-            self.userTV.isHidden = true
-        }
-        
-        DispatchQueue.main.async {
-            self.userTV.reloadData()
-        }
-    }
-    
-    
-    func ReassignCrewSuccess(ReassignCrewResponse: reassignCrewModel) {
-        self.ReassignCrewResponseModel = ReassignCrewResponse
-       
-        print("ReassignCrewResponseModel\(ReassignCrewResponseModel?.data)")
-        count = 0
-        ReassignCrewResponseModel?.data?.forEach({ i in
-            if i.user_type == "inprogress" {
-                
-                count = count + 1
-                print("ReassignCrewResponseModel_inprogress_count : \(count)")
-            }
-        })
-        
-       
-        
-        DispatchQueue.main.async {
-            self.userTV.reloadData()
-        }
-    }
-}
-
-
 extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -426,13 +327,9 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 self.addUserBtn.isUserInteractionEnabled = false
             }
             
-//            if self.selectedListCount == 1 && self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress"{
-//                self.showAlertOnWindow(title: nil, message: "At least one person needs to be assigned to the task to proceed.", titles: ["Ok"], completionHanlder: {_ in
-//                })
-//            }else
-            
             if count == 1 && self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
                 showAlertOnWindow(title: "", message: "At least one person needs to be assigned to the task to proceed.", titles: ["OK"], completionHanlder: { _ in })
+                
                 print("only one is left .......")
             }else {
                 if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
@@ -443,9 +340,6 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                     ReassignApiCall()
                 }
             }
-            
-           
-            
         }
         
         else if isSelected == "Force Finish" {
@@ -465,13 +359,13 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             print("name of properties in array \(employeeList)")
         }
         
-//        if ForceStopResponseModel?.data?[indexPath.section].sub_task_assined_to_this_crew == false {
-//            NotificationCenter.default.post(name: NSNotification.Name("hidetimerView"), object: nil)
-//
-//        } else {
-//            print("NotificationCenter")
-//        }
-    
+        //        if ForceStopResponseModel?.data?[indexPath.section].sub_task_assined_to_this_crew == false {
+        //            NotificationCenter.default.post(name: NSNotification.Name("hidetimerView"), object: nil)
+        //
+        //        } else {
+        //            print("NotificationCenter")
+        //        }
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -528,11 +422,11 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 self.user_type.remove(at: index)
                 print("\(user_type)")
             }
-//            if selectedListCount == 1 {
-//
-//            }else{
-//                ReassignApiCall()
-//            }
+            //            if selectedListCount == 1 {
+            //
+            //            }else{
+            //                ReassignApiCall()
+            //            }
             
             
         }
@@ -571,9 +465,9 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
         self.ReassignResponseModel = ReassignResponse
         showAlertOnWindow(title: "", message: "Added successfully", titles: ["OK"], completionHanlder: {_ in})
         DispatchQueue.main.async {
-           
+            
             self.ReassignCrewCallAPI()
-           
+            
         }
         print("ReassignResponseModel\(ReassignResponseModel?.data)")
     }
@@ -583,7 +477,7 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
         
         
         DispatchQueue.main.async {
-
+            
             self.ReassignCrewCallAPI()
         }
         print("AddCrewResponseModel\(AddCrewResponseModel?.data)")
@@ -595,7 +489,7 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
         print("ForceStopResponse\(ForceStopResponse)")
         showAlertOnWindow(title: "", message: "Updated successfully", titles: ["OK"], completionHanlder: {_ in})
         DispatchQueue.main.async {
-    
+            
             self.ReassignCrewCallAPI()
             
         }
@@ -644,6 +538,13 @@ extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , Forc
         self.ReassignCrewResponseModel = ReassignCrewResponse
         
         print("ReassignCrewResponseModel\(ReassignCrewResponseModel?.data)")
+        count = 0
+        ReassignCrewResponseModel?.data?.forEach({ i in
+            if i.user_type == "inprogress" {
+                count = count + 1
+                print("ReassignCrewResponseModel_inprogress_count : \(count)")
+            }
+        })
         DispatchQueue.main.async {
             self.userTV.reloadData()
         }
