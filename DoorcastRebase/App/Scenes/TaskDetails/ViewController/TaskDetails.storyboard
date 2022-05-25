@@ -133,13 +133,13 @@
                                         <rect key="frame" x="35" y="63" width="339" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZNK-Q1-8Vg">
-                                                <rect key="frame" x="0.0" y="0.0" width="164.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="62" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7D-5H-Xk0">
-                                                <rect key="frame" x="184.5" y="0.0" width="154.5" height="20.5"/>
+                                                <rect key="frame" x="82" y="0.0" width="257" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1165,6 +1165,7 @@
                         <outlet property="timerLabel" destination="o5R-aF-4op" id="Mt7-gd-r9e"/>
                         <outlet property="timerView" destination="YYJ-nO-KRw" id="rMa-pa-7oA"/>
                         <outlet property="topTimerView" destination="zC2-MT-T4d" id="8d6-CW-7Z0"/>
+                        <outlet property="topTimerViewHeightConstraint" destination="tbL-c0-yOk" id="ogi-ag-x4L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HiV-4k-ZSK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -104,9 +104,12 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
         
     }
     
+    
+   
+    
     func startCamera() {
-        startTheClockLabel.text = "START THE CLOCK"
-        startLabel.text = "You must start the task clock before you can complete sub-tasks."
+        startTheClockLabel.text = "UNIT REQUIRES PHOTO"
+        startLabel.text = "This unit does not have a photo on record. Please take a photo of the front door before starting the timer."
         cancelImage.image = UIImage(named: "cancel")
         startTimerImage.image = UIImage(named: "camera-solid")
     }

@@ -70,7 +70,7 @@ struct Subtask : Codable {
     let sub_task_close_date : String?
     let sub_task_photo_required : String?
     let sub_task_close_summary : String?
-    let completed_status : String?
+    var completed_status : String?
     let sub_task_assined_to_this_crew : Bool?
     let subTaskAssined : Bool?
 

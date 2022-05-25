@@ -27,6 +27,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var sidearrowImage: UIImageView!
     @IBOutlet weak var sidearrowButton: UIButton!
     
+    @IBOutlet weak var topTimerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var ForceFinishBtn: UIButton!
     @IBOutlet weak var ForceFinishLabel: UILabel!
     @IBOutlet weak var ForceFinishImage: UIImageView!
@@ -58,6 +59,18 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var address:String?
     var propertyname:String?
     
+    var dayStartedFlag = false
+    var locationDistance = CLLocationDistance()
+    var isAssigned = Bool()
+    var showAlertOnce = Bool()
+    var hidePopup = Bool()
+    var showInAlert = Bool()
+    var clockStartedFlag = false
+    var subTaskListArray = [Subtask]()
+    var subTaskID = String()
+    var subTaskStatus = String()
+    var completedSubtasksCount:Int = 0
+    
     let locationManager = CLLocationManager()
     var locationOne = CLLocation()
     let locationTwo = CLLocation()
@@ -66,6 +79,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var coordinates = [CLLocationCoordinate2D]()
     var withInLocationBool = false
     var isVisible = false
+    var selectedRow = IndexPath()
     
     var parms = [String: Any]()
     
@@ -208,7 +222,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
-
+        
         
     }
     
@@ -355,8 +369,23 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             self.taskDetailsTableView.deselectRow(at: indexPath, animated: false)
             cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
         }
-        return cell
         
+       
+        
+        
+//        if  data?.sub_task_assined_to_this_crew == false {
+//            self.topTimerView.backgroundColor = .white
+//            self.playpauseView.isHidden = true
+//            self.timerView.isHidden = true
+//            self.timerLabel.isHidden = true
+//            self.tickMarkView.isHidden = true
+//            self.timerView.isHidden = false
+//        } else {
+//            print("NotificationCenter")
+//
+//        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -381,6 +410,83 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                 
                 self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
             }
+        
+        DispatchQueue.main.async {
+            
+            if self.dayStartedFlag == false {
+                print("day startedFlag is False")
+                if self.locationDistance < 500{
+                    if self.isAssigned == true{
+//                        self.showStartDayPopUP()
+                        tableView.deselectRow(at: indexPath, animated: false)
+                    }else{
+                        self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
+                    }
+                    
+                }else{
+                    self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
+                        
+                        self.showAlertOnce = true
+                        self.hidePopup = true
+                        self.showInAlert = false
+                    })
+                }
+                
+                
+            }else if self.clockStartedFlag == false {
+                print("clock started Flag is False")
+                if self.isAssigned == true{
+                    
+                    if self.locationDistance < 500 {
+//                        self.showStartClockPopUP()
+                        tableView.deselectRow(at: indexPath, animated: false)
+                    } else {
+                        self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
+                            
+                            //                            self.showAlertOnce = true
+                            self.hidePopup = true
+                            self.showInAlert = false
+                        })
+                    }
+                    
+                    //
+                    //                    self.showStartClockPopUP()
+                    //                    tableView.deselectRow(at: indexPath, animated: false)
+                }else{
+                    self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
+                }
+                
+            }else {
+                let cell: CheckboxInTaskDetailsTVCell = self.taskDetailsTableView.cellForRow(at: indexPath) as! CheckboxInTaskDetailsTVCell
+                
+                
+                //                self.tableView_TaskDetail.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                if self.subTaskListArray[indexPath.row].completed_status == "complete"{
+                    //                    self.tableView_TaskDetail.deselectRow(at: indexPath, animated: false)
+         
+                    self.subTaskListArray[indexPath.row].completed_status = "incomplete"
+                    self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
+                    self.subTaskStatus = "incomplete"
+                    if  self.completedSubtasksCount > 0 {
+                        self.completedSubtasksCount -= 1
+                    }
+                    print(self.completedSubtasksCount)
+                    self.selectedRow = indexPath
+//                    self.callSubTaskAPI()
+                    
+                }else{
+                    self.subTaskStatus = "complete"
+                    self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
+                    self.subTaskListArray[indexPath.row].completed_status = "complete"
+                    //                    self.subTaskStatus = "complete"
+                    self.completedSubtasksCount =  (self.completedSubtasksCount + 1)
+                    print(self.completedSubtasksCount)
+                    self.selectedRow = indexPath
+//                    self.callSubTaskAPI()
+                    
+                }
+            }
+        }
             
     }
     
@@ -419,8 +525,30 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
         
         self.subtaskDetail = response
         defaults.set(subtaskDetail?.data?.subtask?.first?.sub_task_id, forKey: UserDefaultsKeys.sub_task_id)
+        
+        
         defaults.set(subtaskDetail?.data?.subtask?.first?.completed_status, forKey: UserDefaultsKeys.completetasktype)
         print("subtaskDetailresponse = \(response)")
+        
+        
+        if subtaskDetail?.data?.subtask?.count ?? 0 > 0{
+            subtaskDetail?.data?.subtask?.forEach({ i in
+                if i.sub_task_assined_to_this_crew == false {
+                    self.topTimerViewHeightConstraint.constant = 0
+                    self.topTimerView.backgroundColor = .white
+                    self.playpauseView.isHidden = true
+                    self.timerView.isHidden = true
+                    self.timerLabel.isHidden = true
+                    self.tickMarkView.isHidden = true
+                    self.timerView.isHidden = false
+                }
+            })
+            
+        } else {
+            
+            print("sub_task_assined_to_this_crew")
+            
+        }
        
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
