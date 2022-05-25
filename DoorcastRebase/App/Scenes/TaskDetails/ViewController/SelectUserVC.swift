@@ -76,6 +76,10 @@ class SelectUserVC: UIViewController {
         propertiename.removeAll()
         taskList.removeAll()
         user_type.removeAll()
+//        sub_task_assined_to_this_crew
+        
+        
+        
         
         if isSelected == "Reassign Crew"{
             
@@ -104,6 +108,7 @@ class SelectUserVC: UIViewController {
             addUserView.addCornerRadiusWithShadow(color: .lightGray, borderColor: .clear, cornerRadius: addUserView.layer.frame.size.width / 2)
             
             ForceFinishCallAPI()
+           
         }
         else {
             self.addUserView.alpha = 0.6
@@ -160,7 +165,7 @@ class SelectUserVC: UIViewController {
     }
     
     func ForceStopCallApi(){
-        
+      
         parms["crew_list"] = self.employeeList.joined(separator: ",")
         parms["task_list"] = self.taskList.joined(separator: ",")
         parms["main_task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
@@ -217,14 +222,21 @@ class SelectUserVC: UIViewController {
     @IBAction func AddUserButtonAction(_ sender: Any) {
         
         if isSelected == "Add Crew" {
+            
             AddcrewApiCall()
         } else if isSelected == "Force Finish" {
             ForceStopCallApi()
+
+
         } else if isSelected == "Reassign Crew" {
             
         }
         
+        
         dismiss(animated: false, completion: nil)
+        
+        
+        
     }
     @IBAction func CancelButtonAction(_ sender: Any) {
         
@@ -250,7 +262,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             print("ReassignCrewResponseModel")
             return self.ReassignCrewResponseModel?.data!.count ?? 1
         }
-        
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -295,6 +307,8 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             //            defaults.set(data2?.task_id , forKey: UserDefaultsKeys.task_id)
             return cell
         }
+        
+        
         
         return cell
         
@@ -369,7 +383,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
         }
         
         else if isSelected == "Force Finish" {
-            
+         
             cell.holderView.backgroundColor = UIColor(named: "InactiveStateColor")?.withAlphaComponent(0.3)
             
             self.taskList.append(ForceFinishResponseModel?.data?[indexPath.row].task_id ?? "")
@@ -385,6 +399,13 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             print("name of properties in array \(employeeList)")
         }
         
+        if ForceStopResponseModel?.data?[indexPath.section].sub_task_assined_to_this_crew == false {
+            NotificationCenter.default.post(name: NSNotification.Name("hidetimerView"), object: nil)
+           
+        } else {
+            print("NotificationCenter")
+        }
+    
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -447,6 +468,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
         
         if isSelected == "Force Finish" {
             
+           
             cell.holderView.backgroundColor = UIColor.white
             let item =  ForceFinishResponseModel?.data?[indexPath.row].crew_name
             //deselect employeeList

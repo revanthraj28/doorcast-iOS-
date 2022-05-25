@@ -57,6 +57,10 @@
 		135EB04B282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */; };
 		135EB04E282B8DB100194216 /* SubTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB04D282B8DB100194216 /* SubTaskViewModel.swift */; };
 		135EB050282B8DC500194216 /* SubTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135EB04F282B8DC500194216 /* SubTaskModel.swift */; };
+		13757FCF283DEC26003349DA /* CrewTaskLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13757FCE283DEC26003349DA /* CrewTaskLogModel.swift */; };
+		13757FD1283DECE5003349DA /* CrewTaskLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13757FD0283DECE5003349DA /* CrewTaskLogViewModel.swift */; };
+		13757FD3283DF332003349DA /* crewTaskPropertyLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13757FD2283DF332003349DA /* crewTaskPropertyLocationViewModel.swift */; };
+		13757FD5283DF427003349DA /* CrewPropertyTaskLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13757FD4283DF427003349DA /* CrewPropertyTaskLocationModel.swift */; };
 		13891FE228327EAC005DE6A6 /* CommonMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13891FE128327EAC005DE6A6 /* CommonMethods.swift */; };
 		13B3EC60282BC3970068200B /* TaskDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B3EC5F282BC3970068200B /* TaskDetails.storyboard */; };
 		4E07C83E282291870090D088 /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E07C838282291870090D088 /* Poppins-BoldItalic.otf */; };
@@ -193,6 +197,10 @@
 		135EB049282B8D8600194216 /* CheckboxInTaskDetailsTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckboxInTaskDetailsTVCell.xib; sourceTree = "<group>"; };
 		135EB04D282B8DB100194216 /* SubTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTaskViewModel.swift; sourceTree = "<group>"; };
 		135EB04F282B8DC500194216 /* SubTaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTaskModel.swift; sourceTree = "<group>"; };
+		13757FCE283DEC26003349DA /* CrewTaskLogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewTaskLogModel.swift; sourceTree = "<group>"; };
+		13757FD0283DECE5003349DA /* CrewTaskLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewTaskLogViewModel.swift; sourceTree = "<group>"; };
+		13757FD2283DF332003349DA /* crewTaskPropertyLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crewTaskPropertyLocationViewModel.swift; sourceTree = "<group>"; };
+		13757FD4283DF427003349DA /* CrewPropertyTaskLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPropertyTaskLocationModel.swift; sourceTree = "<group>"; };
 		13891FE128327EAC005DE6A6 /* CommonMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMethods.swift; sourceTree = "<group>"; };
 		13B3EC5F282BC3970068200B /* TaskDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskDetails.storyboard; sourceTree = "<group>"; };
 		3584D486E8CE52563A0F70EA /* Pods-DoorcastRebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorcastRebase.release.xcconfig"; path = "Target Support Files/Pods-DoorcastRebase/Pods-DoorcastRebase.release.xcconfig"; sourceTree = "<group>"; };
@@ -774,6 +782,8 @@
 				0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */,
 				AE3FDA8A283C9F11005E59C4 /* UpdateTaskStatusViewModel.swift */,
 				AE3FDA8D283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift */,
+				13757FD0283DECE5003349DA /* CrewTaskLogViewModel.swift */,
+				13757FD2283DF332003349DA /* crewTaskPropertyLocationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -791,6 +801,8 @@
 				AE59F456283620D60051D426 /* ReassignModel.swift */,
 				AE3FDA88283C9C9F005E59C4 /* UpdateTaskStatusModel.swift */,
 				AE3FDA8F283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift */,
+				13757FCE283DEC26003349DA /* CrewTaskLogModel.swift */,
+				13757FD4283DF427003349DA /* CrewPropertyTaskLocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1184,6 +1196,7 @@
 				07712BD1282CCB850074F948 /* ForceFinishViewModel.swift in Sources */,
 				AE3FDA90283CA7DD005E59C4 /* UpdateTaskStatusCompleteModel.swift in Sources */,
 				E30488712822AC74004ECA60 /* IncompleteTaskListModel.swift in Sources */,
+				13757FCF283DEC26003349DA /* CrewTaskLogModel.swift in Sources */,
 				0771A2F82825348600758DD9 /* LoginViewModel.swift in Sources */,
 				0771A2DA282519F100758DD9 /* GetOrganizationsViewModel.swift in Sources */,
 				AE80FC83282B7B5C00EE5C0C /* OtpVC.swift in Sources */,
@@ -1195,11 +1208,13 @@
 				E30488732822BFB7004ECA60 /* UIKitHelper.swift in Sources */,
 				AE80FC86282B7B5C00EE5C0C /* ForgotPasswordVC.swift in Sources */,
 				E31C92CA2822466700600CEE /* StoryboardExtension.swift in Sources */,
+				13757FD5283DF427003349DA /* CrewPropertyTaskLocationModel.swift in Sources */,
 				0771A2D9282519F100758DD9 /* CrewPropertyViewModel.swift in Sources */,
 				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
 				4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */,
 				0771A2BE2823F88400758DD9 /* Loader.swift in Sources */,
 				0771A3272825460600758DD9 /* ServiceManager.swift in Sources */,
+				13757FD1283DECE5003349DA /* CrewTaskLogViewModel.swift in Sources */,
 				135EB04E282B8DB100194216 /* SubTaskViewModel.swift in Sources */,
 				4E07C8662822925A0090D088 /* FontManager.swift in Sources */,
 				0771A2C32823F8FE00758DD9 /* TimerView.swift in Sources */,
@@ -1212,6 +1227,7 @@
 				AE3FDA8E283CA7B8005E59C4 /* UpdateTaskStatusCompleteViewModel.swift in Sources */,
 				AE80FC82282B7B5C00EE5C0C /* OtpTVCell.swift in Sources */,
 				E347D368282286DA00122C8B /* ButtonExtension.swift in Sources */,
+				13757FD3283DF332003349DA /* crewTaskPropertyLocationViewModel.swift in Sources */,
 				E30488652822A788004ECA60 /* TaskListTVCell.swift in Sources */,
 				0771A2E128251A5600758DD9 /* CompanyTVCell.swift in Sources */,
 				AE80FC84282B7B5C00EE5C0C /* ForgotPasswordViewModel.swift in Sources */,
@@ -1381,7 +1397,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS()/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-09/Documents/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
@@ -1417,7 +1433,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele07/Desktop/doorcast-iOS()/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-09/Documents/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
