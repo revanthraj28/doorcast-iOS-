@@ -55,7 +55,7 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
     func openGallery() {
             print("openGallery")
     
-    
+    print("UIImagePickerController")
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let picker = UIImagePickerController()
                 picker.delegate = self
@@ -67,10 +67,9 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
             }else {
                 print("Device has no photo library...")
             }
+   
         }
-        
-      
-    
+  
     @IBAction func cancelButtonAction(_ sender: Any) {
         self.dismiss(animated: true)
     }

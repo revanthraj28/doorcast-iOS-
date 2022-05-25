@@ -291,11 +291,10 @@ extension IncompleteTasksVC: TaskListProtocol {
     
     
     func CrewTaskLogResponse(response: CrewTaskLogModel?) {
+        print(response?.data?.idealtime ?? "")
         
+        self.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "00:00:00")
         
-        print("idel time ==== \(response?.data?.idealtime ?? "")")
-        
-        mainVC?.seconds = String().secondsFromString(string: response?.data?.idealtime ?? "00:00:00")
         
     }
     

@@ -14,8 +14,8 @@
             filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/SelectUserVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "476"
-            endingLineNumber = "476"
+            startingLineNumber = "477"
+            endingLineNumber = "477"
             landmarkName = "ReassignSuccess(ReassignResponse:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/SelectUserVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "486"
-            endingLineNumber = "486"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "AddCrewSuccess(AddCrewResponse:)"
             landmarkType = "7">
          </BreakpointContent>
