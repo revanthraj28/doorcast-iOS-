@@ -27,25 +27,18 @@ class SelectUserVC: UIViewController {
     
     //var used to select perticular data
     var isSelected = String()
-    
     var ReassignCrewResponseModel : reassignCrewModel?
     var vmodel : ReassignCrewViewModel?
-    
     var ReassignResponseModel : ReassignModel?
     var ReassignViewModel1 : ReassignViewModel?
-    
     var getCrewResponseModel : CrewModel?
     var ViewModel : CrewViewModel?
-    
     var ForceFinishResponseModel : ForceFinishModel?
     var ViewModel1 : ForceFinishViewModel?
-    
     var ForceStopResponseModel : ForceModel?
     var ForceStopViewModel1 : ForceStopViewModel?
-    
     var AddCrewResponseModel : AddCrewModel?
     var addViewMOdel : AddCrewViewModel?
-    
     var parms = [String: Any]()
     
     //var used to append data in a array
@@ -55,11 +48,8 @@ class SelectUserVC: UIViewController {
     var taskList = [String]()
     var user_type = [String]()
     var selectedListCount = [String]()
-    
     var deselectedIndex: Int?
-    
-    
-    
+    var count = 0
     
     static var newInstance: SelectUserVC? {
         let storyboard = UIStoryboard(name: Storyboard.taskDetails.name,
@@ -76,10 +66,6 @@ class SelectUserVC: UIViewController {
         propertiename.removeAll()
         taskList.removeAll()
         user_type.removeAll()
-//        sub_task_assined_to_this_crew
-        
-        
-        
         
         if isSelected == "Reassign Crew"{
             
@@ -89,9 +75,7 @@ class SelectUserVC: UIViewController {
             addUserView.backgroundColor = UIColor.ThemeColor
             addUserView.addCornerRadiusWithShadow(color: .lightGray, borderColor: .clear, cornerRadius: addUserView.layer.frame.size.width / 2)
             addUserImage.image = UIImage(named: "cancel")
-            //            userTV.allowsMultipleSelection = false
             userTV.reloadData()
-            
             ReassignCrewCallAPI()
             
         }  else if  isSelected == "Add Crew"{
@@ -108,7 +92,7 @@ class SelectUserVC: UIViewController {
             addUserView.addCornerRadiusWithShadow(color: .lightGray, borderColor: .clear, cornerRadius: addUserView.layer.frame.size.width / 2)
             
             ForceFinishCallAPI()
-           
+            
         }
         else {
             self.addUserView.alpha = 0.6
@@ -165,7 +149,7 @@ class SelectUserVC: UIViewController {
     }
     
     func ForceStopCallApi(){
-      
+        
         parms["crew_list"] = self.employeeList.joined(separator: ",")
         parms["task_list"] = self.taskList.joined(separator: ",")
         parms["main_task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id)
@@ -222,29 +206,118 @@ class SelectUserVC: UIViewController {
     @IBAction func AddUserButtonAction(_ sender: Any) {
         
         if isSelected == "Add Crew" {
-            
             AddcrewApiCall()
         } else if isSelected == "Force Finish" {
             ForceStopCallApi()
-
-
         } else if isSelected == "Reassign Crew" {
             
         }
-        
-        
         dismiss(animated: false, completion: nil)
-        
-        
-        
     }
+    
     @IBAction func CancelButtonAction(_ sender: Any) {
-        
         dismiss(animated: false, completion: nil)
-        
     }
     
     
+}
+
+
+
+
+
+extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , ForceFinishViewModelProtocol , ForceStopViewModelProtocol , AddCrewViewModelProtocol , ReassignViewModelProtocol
+{
+    func ReassignSuccess(ReassignResponse: ReassignModel) {
+        self.ReassignResponseModel = ReassignResponse
+        
+        DispatchQueue.main.async {
+            
+            self.ReassignCrewCallAPI()
+        }
+        print("ReassignResponseModel\(ReassignResponseModel?.data)")
+    }
+    
+    func AddCrewSuccess(AddCrewResponse: AddCrewModel) {
+        self.AddCrewResponseModel = AddCrewResponse
+        
+        
+        DispatchQueue.main.async {
+            
+            self.ReassignCrewCallAPI()
+        }
+        print("AddCrewResponseModel\(AddCrewResponseModel?.data)")
+    }
+    
+    func ForceStopSuccess(ForceStopResponse: ForceModel) {
+        self.ForceStopResponseModel = ForceStopResponse
+        
+        print("ForceStopResponse\(ForceStopResponse)")
+        
+        DispatchQueue.main.async {
+            
+            self.ReassignCrewCallAPI()
+        }
+        
+        
+        
+    }
+    
+    func ForceFinishSuccess(ForceFinishResponse: ForceFinishModel) {
+        self.ForceFinishResponseModel = ForceFinishResponse
+        print("j,ashvd\(ForceFinishResponseModel)")
+        DispatchQueue.main.async {
+            
+            
+            if self.ForceFinishResponseModel?.data?.count == 0
+            {
+                self.emptyMessageLabel.isHidden = false
+                self.emptyMessageLabel.text = "No data found"
+                self.userTV.isHidden = true
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.userTV.reloadData()
+        }
+    }
+    
+    func CrewSuccess(CrewResponse: CrewModel) {
+        self.getCrewResponseModel = CrewResponse
+        
+        
+        if getCrewResponseModel?.data?.count == 0
+        {
+            self.emptyMessageLabel.isHidden = false
+            self.emptyMessageLabel.text = "No data found"
+            self.userTV.isHidden = true
+        }
+        
+        DispatchQueue.main.async {
+            self.userTV.reloadData()
+        }
+    }
+    
+    
+    func ReassignCrewSuccess(ReassignCrewResponse: reassignCrewModel) {
+        self.ReassignCrewResponseModel = ReassignCrewResponse
+       
+        print("ReassignCrewResponseModel\(ReassignCrewResponseModel?.data)")
+        count = 0
+        ReassignCrewResponseModel?.data?.forEach({ i in
+            if i.user_type == "inprogress" {
+                
+                count = count + 1
+                print("ReassignCrewResponseModel_inprogress_count : \(count)")
+            }
+        })
+        
+       
+        
+        DispatchQueue.main.async {
+            self.userTV.reloadData()
+        }
+    }
 }
 
 
@@ -253,16 +326,13 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if isSelected == "Force Finish" {
-            print("ForceFinish.....")
             return self.ForceFinishResponseModel?.data!.count ?? 1
         } else if isSelected == "Add Crew" {
-            print("getCrewResponseModel")
             return self.getCrewResponseModel?.data!.count ?? 1
         } else  {
-            print("ReassignCrewResponseModel")
             return self.ReassignCrewResponseModel?.data!.count ?? 1
         }
-       
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -290,10 +360,8 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 cell.backgroundColor = .white
                 
             }
-            
-            
-            
             return cell
+            
         } else if isSelected == "Add Crew" {
             
             cell.commomLabel.textColor = .black
@@ -304,12 +372,8 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
             
             cell.commomLabel.text = data2?.crew_name
             cell.commomLabel.textColor = .black
-            //            defaults.set(data2?.task_id , forKey: UserDefaultsKeys.task_id)
             return cell
         }
-        
-        
-        
         return cell
         
     }
@@ -317,11 +381,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = userTV.cellForRow(at: indexPath) as! LabelTVCell
-        
-        
-        
         if isSelected == "Add Crew" {
-            
             
             self.propertyUserList.append(getCrewResponseModel?.data?[indexPath.row].propertyUser_id ?? "")
             self.employeeList.append(getCrewResponseModel?.data?[indexPath.row].employee_id ?? "")
@@ -338,17 +398,15 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 self.addUserBtn.isUserInteractionEnabled = false
                 
             }
-            print(propertyUserList)
-            print(employeeList)
         }
         
         
         else if isSelected == "Reassign Crew" {
+            
             self.taskList.removeAll()
             self.employeeList.removeAll()
             self.user_type.removeAll()
             
-            //            cell.checkImage.backgroundColor = .red
             cell.holderView.backgroundColor = UIColor(named: "InactiveStateColor")?.withAlphaComponent(0.3)
             
             self.taskList.append(ReassignCrewResponseModel?.data?[indexPath.row].task_id ?? "")
@@ -367,23 +425,26 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
                 self.addUserBtn.isUserInteractionEnabled = false
             }
             
-            if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
+            
+            if count == 1 && self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
                 
-                ForceStopCallApi()
-//                cell.checkImage.image = UIImage(named: "taskUnCheck")
-                //
-            } else if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "new" {
-                
-                AddcrewApiCall()
-                //cell.checkImage.image = UIImage(named: "taskUnCheck")
-            } else if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "existing"{
-                ReassignApiCall()
+                print("only one is left .......")
+            }else {
+                if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "inprogress" {
+                    ForceStopCallApi()
+                } else if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "new" {
+                    AddcrewApiCall()
+                } else if self.ReassignCrewResponseModel?.data?[indexPath.row].user_type == "existing"{
+                    ReassignApiCall()
+                }
             }
+            
+           
             
         }
         
         else if isSelected == "Force Finish" {
-         
+            
             cell.holderView.backgroundColor = UIColor(named: "InactiveStateColor")?.withAlphaComponent(0.3)
             
             self.taskList.append(ForceFinishResponseModel?.data?[indexPath.row].task_id ?? "")
@@ -401,17 +462,16 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
         
         if ForceStopResponseModel?.data?[indexPath.section].sub_task_assined_to_this_crew == false {
             NotificationCenter.default.post(name: NSNotification.Name("hidetimerView"), object: nil)
-           
+            
         } else {
             print("NotificationCenter")
         }
-    
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
         let cell = userTV.cellForRow(at: indexPath) as! LabelTVCell
-        
         
         if isSelected == "Add Crew" {
             
@@ -468,7 +528,7 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
         
         if isSelected == "Force Finish" {
             
-           
+            
             cell.holderView.backgroundColor = UIColor.white
             let item =  ForceFinishResponseModel?.data?[indexPath.row].crew_name
             //deselect employeeList
@@ -494,85 +554,5 @@ extension SelectUserVC :  UITableViewDelegate, UITableViewDataSource {
     
     
 }
-extension SelectUserVC: ReassignCrewModelProtocol , CrewViewModelProtocol , ForceFinishViewModelProtocol , ForceStopViewModelProtocol , AddCrewViewModelProtocol , ReassignViewModelProtocol
-{
-    func ReassignSuccess(ReassignResponse: ReassignModel) {
-        self.ReassignResponseModel = ReassignResponse
-       
-        DispatchQueue.main.async {
-           
-            self.ReassignCrewCallAPI()
-        }
-        print("ReassignResponseModel\(ReassignResponseModel?.data)")
-    }
-    
-    func AddCrewSuccess(AddCrewResponse: AddCrewModel) {
-        self.AddCrewResponseModel = AddCrewResponse
-        
-        
-        DispatchQueue.main.async {
 
-            self.ReassignCrewCallAPI()
-        }
-        print("AddCrewResponseModel\(AddCrewResponseModel?.data)")
-    }
-    
-    func ForceStopSuccess(ForceStopResponse: ForceModel) {
-        self.ForceStopResponseModel = ForceStopResponse
-        
-        print("ForceStopResponse\(ForceStopResponse)")
-        
-        DispatchQueue.main.async {
-    
-            self.ReassignCrewCallAPI()
-        }
-        
-        
-        
-    }
-    
-    func ForceFinishSuccess(ForceFinishResponse: ForceFinishModel) {
-        self.ForceFinishResponseModel = ForceFinishResponse
-        print("j,ashvd\(ForceFinishResponseModel)")
-        DispatchQueue.main.async {
-            
-            
-            if self.ForceFinishResponseModel?.data?.count == 0
-            {
-                self.emptyMessageLabel.isHidden = false
-                self.emptyMessageLabel.text = "No data found"
-                self.userTV.isHidden = true
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.userTV.reloadData()
-        }
-    }
-    
-    func CrewSuccess(CrewResponse: CrewModel) {
-        self.getCrewResponseModel = CrewResponse
-        
-        
-        if getCrewResponseModel?.data?.count == 0
-        {
-            self.emptyMessageLabel.isHidden = false
-            self.emptyMessageLabel.text = "No data found"
-            self.userTV.isHidden = true
-        }
-        
-        DispatchQueue.main.async {
-            self.userTV.reloadData()
-        }
-    }
-    
-    
-    func ReassignCrewSuccess(ReassignCrewResponse: reassignCrewModel) {
-        self.ReassignCrewResponseModel = ReassignCrewResponse
-        
-        print("ReassignCrewResponseModel\(ReassignCrewResponseModel?.data)")
-        DispatchQueue.main.async {
-            self.userTV.reloadData()
-        }
-    }
-}
+
