@@ -82,12 +82,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         
         DispatchQueue.main.async {
-            
-            print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
-            print(defaults.string(forKey: UserDefaultsKeys.task_id))
-            
-            
-            
+       
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             
         }
@@ -100,8 +95,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
             dayTaskAction()
         }
         
-        
-        // self.parentvc = self.parent as? CommonTaskDetailVC ?? UIViewController()
         
         // updateLocation
         NotificationCenter.default.addObserver(self, selector: #selector(setDistanceFromCurrentLocation(notification:)), name: NSNotification.Name.init(rawValue: "updateLocation"), object: nil)
@@ -199,7 +192,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         taskDetailsTableView.delegate = self
         taskDetailsTableView.dataSource = self
-        
         
         
         //        taskDetailsTableView.register(CheckboxInTaskDetailsTVCell.self, forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
