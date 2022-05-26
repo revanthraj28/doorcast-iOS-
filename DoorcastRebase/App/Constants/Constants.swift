@@ -101,6 +101,7 @@ struct UserDefaultsKeys {
     static var completetasktype = "completetasktype"
     static var sub_task_id = "sub_task_id"
     static var screenlanding = "screen_landing"
+    static var startTheClock = "startTheClock"
     static let sub_task_cipher = "sub_task_cipher"
 }
 

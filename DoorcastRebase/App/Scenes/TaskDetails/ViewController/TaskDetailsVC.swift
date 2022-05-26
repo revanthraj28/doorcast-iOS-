@@ -58,6 +58,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var taskname:String?
     var address:String?
     var propertyname:String?
+    var imageBase64 = String()
     
     var dayStartedFlag = false
     var locationDistance = CLLocationDistance()
@@ -70,6 +71,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var subTaskID = String()
     var subTaskStatus = String()
     var completedSubtasksCount:Int = 0
+    var captured = String()
     
     let locationManager = CLLocationManager()
     var locationOne = CLLocation()
@@ -98,6 +100,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     var timer : Timer?
     var seconds = 0
+    var ExstreamTaskpropertyLocation : CrewTaskPropertyLocationModel?
+    var ExstreamTaskpropertyLocationResponse : crewpropertyLocationModel?
     
     var day = String()
     var task_id_check = String()
@@ -111,6 +115,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+    
         print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
         print(defaults.string(forKey: UserDefaultsKeys.task_id))
         
@@ -132,7 +138,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(hidetimerView), name: NSNotification.Name("hidetimerView"), object: nil)
         
-        // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(takePhoto), name: NSNotification.Name.init(rawValue: "takePhoto"), object: nil)
+        
+         
         
         setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
@@ -142,6 +150,21 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         
     }
+    
+  
+    @objc func takePhoto(notification : NSNotification) {
+        print("taken a photo")
+       
+        self.imageBase64 = notification.object as? String ?? ""
+        ExstreamTaskPropertyLocationApiCall()
+        print("imageeebase64 = \(self.imageBase64)")
+//        ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
+        
+
+      
+        
+    }
+   
     
     @objc func hidetimerView(notification: Notification) {
         print("hideeeeeeeeeeee")
@@ -220,6 +243,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
         ExstreamTaskLocationViewModel1 = ExstreamTaskLocationViewModel(self)
+        ExstreamTaskpropertyLocation = CrewTaskPropertyLocationModel(self)
         
     }
     
@@ -276,6 +300,18 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         self.ExstreamTaskLocationViewModel1?.ExstreamTaskLocationViewModel(dictParam: parms)
         
     }
+
+    func ExstreamTaskPropertyLocationApiCall() {
+        
+        parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.sub_task_id)
+        parms["longitude"] = KLat
+        parms["task_pic"] = self.imageBase64
+        parms["latitude"] = KLong
+        self.ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
+       
+        
+    }
+    
     
     @IBAction func menuButtonAction(_ sender: Any) {
         guard let vc = NotificationCenterVC.newInstance else {return}
@@ -330,6 +366,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBAction func sidearrowButtonAction(_ sender: Any) {
         dismissDetail()
     }
+    
     @IBAction func playPauseButtonAction(_ sender: Any) {
         
     }
@@ -338,9 +375,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBAction func tickButtonAction(_ sender: Any) {
         
     }
-    
-    
-    
     
 }
 
@@ -366,8 +400,10 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
         }
         
+       
         
         
+      
         return cell
     }
     
@@ -387,100 +423,41 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             cell.selectDeselectImage.image = UIImage(named: "taskChecked")
             UpdateTaskStatusinCompleteApiCall()
             
-            gotoNextScreen()
+           if subtaskDetail?.image_captured == "Captured" {
+               guard let vc = StartTheClockVC.newInstance else {return}
+               vc.modalPresentationStyle = .overCurrentContext
+               vc.captured = "true"
+               self.present(vc, animated: true, completion: nil)
+//               NotificationCenter.default.post(name: Notification.Name("showTheClock"), object: nil)
             
-        }else {
-            
-            self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
-        }
-        
-        DispatchQueue.main.async {
-            
-            if self.dayStartedFlag == false {
-                print("day startedFlag is False")
-                if self.locationDistance < 500{
-                    if self.isAssigned == true{
-                        //                        self.showStartDayPopUP()
-                        tableView.deselectRow(at: indexPath, animated: false)
-                    }else{
-                        self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
-                    }
-                    
-                }else{
-                    self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
-                        
-                        self.showAlertOnce = true
-                        self.hidePopup = true
-                        self.showInAlert = false
-                    })
-                }
+            } else {
+                print("startCamera")
                 
-                
-            }else if self.clockStartedFlag == false {
-                print("clock started Flag is False")
-                if self.isAssigned == true{
-                    
-                    if self.locationDistance < 500 {
-                        //                        self.showStartClockPopUP()
-                        tableView.deselectRow(at: indexPath, animated: false)
-                    } else {
-                        self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["Ok"], completionHanlder: {_ in ()
-                            
-                            //                            self.showAlertOnce = true
-                            self.hidePopup = true
-                            self.showInAlert = false
-                        })
-                    }
-                    
-                    //
-                    //                    self.showStartClockPopUP()
-                    //                    tableView.deselectRow(at: indexPath, animated: false)
-                }else{
-                    self.showToast(message: "You are not assigned to this task.", font: UIFont.oswaldRegular(size: 17), color: UIColor.red)
-                }
+                guard let vc = StartTheClockVC.newInstance else {return}
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.captured = "false"
+                self.present(vc, animated: true, completion: nil)
+
+//                NotificationCenter.default.post(name: NSNotification.Name("startCamera"), object: nil)
+            }
                 
             }else {
-                let cell: CheckboxInTaskDetailsTVCell = self.taskDetailsTableView.cellForRow(at: indexPath) as! CheckboxInTaskDetailsTVCell
                 
-                if self.subTaskListArray[indexPath.row].completed_status == "complete"{
-                    
-                    self.subTaskListArray[indexPath.row].completed_status = "incomplete"
-                    self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
-                    self.subTaskStatus = "incomplete"
-                    if  self.completedSubtasksCount > 0 {
-                        self.completedSubtasksCount -= 1
-                    }
-                    print(self.completedSubtasksCount)
-                    self.selectedRow = indexPath
-                    //                    self.callSubTaskAPI()
-                    
-                }else{
-                    self.subTaskStatus = "complete"
-                    self.subTaskID = self.subTaskListArray[indexPath.row].sub_task_id ?? ""
-                    self.subTaskListArray[indexPath.row].completed_status = "complete"
-                    //                    self.subTaskStatus = "complete"
-                    self.completedSubtasksCount =  (self.completedSubtasksCount + 1)
-                    print(self.completedSubtasksCount)
-                    self.selectedRow = indexPath
-                    //                    self.callSubTaskAPI()
-                    
-                }
+                self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
             }
-        }
         
+
+            
     }
-    
-    
-    func gotoNextScreen() {
-        guard let vc = StartTheClockVC.newInstance else {return}
-        vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: true, completion: nil)
-    }
+
 }
 
 
-extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol , ExstreamTaskLocationViewModelProtocol
+extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol , ExstreamTaskLocationViewModelProtocol, crewTaskPropertyLocationViewModelProtocol
 {
+   
+   
+    
     func ExstreamTaskLocationSuccess(ExstreamTaskLocationViewModelResponse: ExstreamTaskLocationModel) {
         self.ExstreamTaskLocationReasponse = ExstreamTaskLocationViewModelResponse
         print("ExstreamTaskLocationReasponse\(ExstreamTaskLocationReasponse)")
@@ -519,8 +496,13 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
         
         
     }
+    func crewTaskPropertyLocationSuccess(CrewTaskpropertyLocation: crewpropertyLocationModel) {
+        
+        self.ExstreamTaskpropertyLocationResponse = CrewTaskpropertyLocation
+        print("ExstreamTaskpropertyLocationResponse\(ExstreamTaskpropertyLocationResponse)")
+    }
     
-    
+   
     
     func subTaskList(response: SubtaskDetailModel?) {
         

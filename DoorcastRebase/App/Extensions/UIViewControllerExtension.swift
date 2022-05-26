@@ -9,6 +9,13 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+    
+    func convertImageToBase64(image: UIImage) -> String {
+          let imageData = image.pngData()!
+          return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+      }
+    
     func showLogin() {
         DispatchQueue.main.async {
             if let vc = LoginVC.newInstance {
@@ -115,3 +122,4 @@ extension UIViewController {
         })
     }
 }
+
