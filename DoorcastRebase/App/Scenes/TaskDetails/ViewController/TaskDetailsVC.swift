@@ -52,6 +52,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var playpauseButton: UIButton!
     
     
+    @IBOutlet weak var speechView: SpeechBubble!
+    @IBOutlet weak var startDaylbl: UILabel!
+    
+    
+    
+    
     
     var subTaskList: TaskDataModel?
     var subTaskListViewModel : SubTaskListViewModel?
@@ -126,12 +132,14 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         ExstreamTaskLocationApiCall()
         
         
-        if timerBool == true {
-            self.timerView.bringSubviewToFront(self.timerView.speechView)
-            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-            self.timerView.startDaylbl.text = "Stop day"
-            dayTaskAction()
-        }
+        self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+        
+        
+        //        if timerBool == true {
+        //            self.timerView.bringSubviewToFront(self.timerView.speechView)
+        //            self.timerView.startDaylbl.text = "Stop day"
+        //            dayTaskAction()
+        //        }
         
         
         // updateLocation
@@ -183,38 +191,29 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     @objc func didTapOnTimerView(notification:Notification) {
         print("didTapOnTimerView")
-        // self.timerView.speechView.isHidden = false
-        // self.mainVC?.speechView.isHidden = false
-        
-        guard let dialog = DayTaskPopviewVC.newInstance else {return}
-        dialog.modalPresentationStyle = .popover
-        dialog.preferredContentSize = CGSize(width: 100, height: 50)
-        dialog.popoverPresentationController?.delegate = self
-        dialog.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
-        dialog.popoverPresentationController?.sourceView = self.timerView.timerButton
-        dialog.popoverPresentationController?.sourceRect = self.timerView.timerButton.frame
-        self.present(dialog, animated: true, completion: nil)
+        self.speechView.isHidden = false
     }
     
     
+
+    
     func dayTaskAction() {
         
-        mainVC?.speechView.isHidden = true
-        
-        if self.day == "Start day" {
+        if self.startDaylbl.text == "Start day" {
             
-            defaults.set("start", forKey: "daytype")
-            // self.viewModel.startOrStopDayTask()
-            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-            
-            mainVC?.runTimer()
-            timerBool = true
+//            defaults.set("start", forKey: "daytype")
+//            // self.viewModel.startOrStopDayTask()
+//            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+//
+//            mainVC?.runTimer()
+//            timerBool = true
             
         }else {
             
             defaults.set("stop", forKey: "daytype")
-            self.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-            timerBool = false
+            self.viewModel1?.startOrStopDayTask()
+            self.timerView.playPauseImage.image = UIImage(named: "startTimer")
+            
             gotoBackScreen()
             
         }
@@ -237,11 +236,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let currentLocation = CLLocation(latitude: Double(KLat) ?? 0.0, longitude: Double(KLong) ?? 0.0)
         let distance = DestinationLocation.distance(from: currentLocation)
         
-        print(String(format: "The distance to my buddy is %.01fm", distance))
+        // print(String(format: "The distance to my buddy is %.01fm", distance))
         distanceLabel.text = "\(Int(distance))"
         
         if distance < 500 {
-            print("less then 500")
             withInLocationBool = true
         }else {
             withInLocationBool = false
@@ -287,6 +285,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel?.SubTaskListApi(task_id: taskId ?? "", task_id_check: task_id_check ?? "" , group_id: group_id ?? "" , type: task_type ?? "" )
         
         
+        speechView.backgroundColor = UIColor.clear
+        speechView.isHidden = true
+        startDaylbl.text = "Stop day"
+        startDaylbl.textColor = UIColor.white
+        startDaylbl.textAlignment = .center
+        startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
     }
     
     func UpdateTaskStatusinCompleteApiCall(){
@@ -584,22 +588,6 @@ extension TaskDetailsVC {
     }
 }
 
-
-
-extension TaskDetailsVC: UIPopoverPresentationControllerDelegate {
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
-    
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        
-    }
-    
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        return true
-    }
-}
 
 
 

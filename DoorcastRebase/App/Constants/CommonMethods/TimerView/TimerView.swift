@@ -20,10 +20,6 @@ class TimerView: UIView {
     @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var playPauseImage: UIImageView!
     
-    @IBOutlet weak var speechView: SpeechBubble!
-    @IBOutlet weak var startDaylbl: UILabel!
-    @IBOutlet weak var startDayButton: UIButton!
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -40,16 +36,7 @@ class TimerView: UIView {
         addSubview(contentView)
         actionView.layer.cornerRadius = actionView.frame.size.height / 2
         
-        speechView.backgroundColor = UIColor.clear
-        speechView.isHidden = true
-        startDaylbl.text = "Start day"
-        startDaylbl.textColor = UIColor.white
-        startDaylbl.textAlignment = .center
-        startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
-        
         playPauseImage.image = UIImage(named: "startTimer")
-        startDayButton.setTitle("", for: .normal)
-      //  self.contentView.bringSubviewToFront(self.startDayButton)
     }
     
     
@@ -58,11 +45,7 @@ class TimerView: UIView {
         NotificationCenter.default.post(name: NSNotification.Name("timer"), object: nil)
     }
     
-    
-    @IBAction func startStopDayAction(_ sender: Any) {
-        print("startStopDayAction")
-       // NotificationCenter.default.post(name: NSNotification.Name("stopday"), object: nil)
-    }
+
     
     
 }
