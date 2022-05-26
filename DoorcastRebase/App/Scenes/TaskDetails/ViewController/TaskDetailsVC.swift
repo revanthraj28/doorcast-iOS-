@@ -170,7 +170,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         }else {
             
             defaults.set("stop", forKey: "daytype")
-            self.viewModel?.startOrStopDayTask()
+            self.viewModel1?.startOrStopDayTask()
             self.timerView.playPauseImage.image = UIImage(named: "startTimer")
             
             gotoBackScreen()

@@ -43,6 +43,7 @@ class TaskListViewModel {
     
     func startOrStopDayTask(){
         
+        
         var parms = [String: Any]()
         parms["distance"] = ""
         parms["device"] = KDeviceModelName
