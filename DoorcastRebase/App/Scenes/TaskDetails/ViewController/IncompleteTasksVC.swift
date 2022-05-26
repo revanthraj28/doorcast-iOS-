@@ -275,6 +275,9 @@ extension IncompleteTasksVC: TaskListProtocol {
                         mainVC?.runTimer()
                         
                     }
+                }else {
+                    taskListTableView.isUserInteractionEnabled = false
+                    taskListTableView.alpha = 0.3
                 }
             }
         }
