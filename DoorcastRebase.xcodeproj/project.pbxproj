@@ -15,6 +15,7 @@
 		072937992833A0EB002F15D5 /* speechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072937982833A0EB002F15D5 /* speechBubble.swift */; };
 		0729379B2833BFA2002F15D5 /* CommonAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0729379A2833BFA2002F15D5 /* CommonAlert.storyboard */; };
 		073A097F28320F8F0069EA8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 073A097E28320F8F0069EA8B /* GoogleService-Info.plist */; };
+		075DD04C283E4C9400049461 /* DayTaskPopviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075DD04B283E4C9400049461 /* DayTaskPopviewVC.swift */; };
 		0762D8B1283B8B5800FD9D85 /* TaskDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */; };
 		07689C20282C1B350058A5A9 /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07689C1F282C1B350058A5A9 /* TableViewHelper.swift */; };
 		07712BCC282CCB370074F948 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07712BCB282CCB370074F948 /* SelectUserVC.swift */; };
@@ -155,6 +156,7 @@
 		072937982833A0EB002F15D5 /* speechBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = speechBubble.swift; sourceTree = "<group>"; };
 		0729379A2833BFA2002F15D5 /* CommonAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommonAlert.storyboard; sourceTree = "<group>"; };
 		073A097E28320F8F0069EA8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		075DD04B283E4C9400049461 /* DayTaskPopviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTaskPopviewVC.swift; sourceTree = "<group>"; };
 		0762D8B0283B8B5800FD9D85 /* TaskDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewModel.swift; sourceTree = "<group>"; };
 		07689C1F282C1B350058A5A9 /* TableViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
 		07712BCB282CCB370074F948 /* SelectUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
@@ -976,6 +978,7 @@
 				072191122823D03500116F43 /* CalendarVC.swift */,
 				135EB043282B8CF400194216 /* TaskDetailsVC.swift */,
 				135EB041282B8CEA00194216 /* StartTheClockVC.swift */,
+				075DD04B283E4C9400049461 /* DayTaskPopviewVC.swift */,
 				13B3EC5F282BC3970068200B /* TaskDetails.storyboard */,
 			);
 			path = ViewController;
@@ -1213,6 +1216,7 @@
 				0771A2CE282519D300758DD9 /* CrewPropertiesVC.swift in Sources */,
 				4E07C8892828E94D0090D088 /* NotificationCenterVC.swift in Sources */,
 				0771A2BE2823F88400758DD9 /* Loader.swift in Sources */,
+				075DD04C283E4C9400049461 /* DayTaskPopviewVC.swift in Sources */,
 				0771A3272825460600758DD9 /* ServiceManager.swift in Sources */,
 				13757FD1283DECE5003349DA /* CrewTaskLogViewModel.swift in Sources */,
 				135EB04E282B8DB100194216 /* SubTaskViewModel.swift in Sources */,
@@ -1397,7 +1401,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";
@@ -1433,7 +1437,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34T48J4647;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOSnew/DoorcastRebase/App/Resources/Info.plist";
+				INFOPLIST_FILE = "/Users/codebele-01/Desktop/doorcast-iOS/DoorcastRebase/App/Resources/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "please allow camera to access image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Do you allow this app to know your current location?";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Will you allow this app to always know your location?";

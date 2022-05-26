@@ -51,6 +51,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var playpauseButton: UIButton!
     
     
+    
     var subTaskList: TaskDataModel?
     var subTaskListViewModel : SubTaskListViewModel?
     var subtaskDetail : SubtaskDetailModel?
@@ -89,11 +90,13 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         return vc
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         
         
         DispatchQueue.main.async {
-       
+            
             self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
             
         }
@@ -111,7 +114,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(setDistanceFromCurrentLocation(notification:)), name: NSNotification.Name.init(rawValue: "updateLocation"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(didTapOnTimerView(notification:)), name: NSNotification.Name.init(rawValue: "timer"), object: nil)
-       
+        
         NotificationCenter.default.addObserver(self, selector: #selector(hidetimerView), name: NSNotification.Name("hidetimerView"), object: nil)
         
         // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
@@ -139,7 +142,17 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     @objc func didTapOnTimerView(notification:Notification) {
         print("didTapOnTimerView")
-        self.timerView.speechView.isHidden = false
+        // self.timerView.speechView.isHidden = false
+        // self.mainVC?.speechView.isHidden = false
+        
+        guard let dialog = DayTaskPopviewVC.newInstance else {return}
+        dialog.modalPresentationStyle = .popover
+        dialog.preferredContentSize = CGSize(width: 100, height: 50)
+        dialog.popoverPresentationController?.delegate = self
+        dialog.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+        dialog.popoverPresentationController?.sourceView = self.timerView.timerButton
+        dialog.popoverPresentationController?.sourceRect = self.timerView.timerButton.frame
+        self.present(dialog, animated: true, completion: nil)
     }
     
     
@@ -166,7 +179,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         }
         
         
-     }
+    }
     
     func gotoBackScreen() {
         NotificationCenter.default.removeObserver(self)
@@ -201,7 +214,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
-
+        
         
     }
     
@@ -241,15 +254,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         parms["taskStatus"] = defaults.string(forKey: UserDefaultsKeys.completetasktype)
         parms["crew_role"] = defaults.value(forKey:UserDefaultsKeys.role_name)
         
-        print(defaults.string(forKey: UserDefaultsKeys.sub_task_id))
-        print(defaults.string(forKey: UserDefaultsKeys.completetasktype))
-        print(defaults.value(forKey:UserDefaultsKeys.role_name))
-      
-       
         self.UpdateTaskStatusViewModel1?.UpdateTaskStatus(dictParam: parms)
-
+        
     }
-
+    
     
     
     
@@ -366,14 +374,14 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             
             cell.selectDeselectImage.image = UIImage(named: "taskChecked")
             UpdateTaskStatusinCompleteApiCall()
-
-                gotoNextScreen()
-                
-            }else {
-                
-                self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
-            }
             
+            gotoNextScreen()
+            
+        }else {
+            
+            self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
+        }
+        
     }
     
     
@@ -404,7 +412,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     func exstreamTaskLocationResponse(response: ExstreamTaskLocationModel?) {
         print("exstreamTaskLocationResponse = \(response)")
     }
-
+    
     
     
     func subTaskList(response: SubtaskDetailModel?) {
@@ -413,7 +421,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
         defaults.set(subtaskDetail?.data?.subtask?.first?.sub_task_id, forKey: UserDefaultsKeys.sub_task_id)
         defaults.set(subtaskDetail?.data?.subtask?.first?.completed_status, forKey: UserDefaultsKeys.completetasktype)
         print("subtaskDetailresponse = \(response)")
-       
+        
         latdistance = Double(subtaskDetail?.latitude ?? "") ?? 0.0
         longdistance = Double(subtaskDetail?.longitude ?? "") ?? 0.0
         DispatchQueue.main.async {
@@ -430,7 +438,20 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
 }
 
 
-
+extension TaskDetailsVC: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        
+    }
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
+}
 
 
 
