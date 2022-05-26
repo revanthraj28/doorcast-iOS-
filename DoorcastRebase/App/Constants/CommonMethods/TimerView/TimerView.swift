@@ -33,6 +33,7 @@ class TimerView: UIView {
         super.init(coder: coder)
         commonInit()
     }
+    
     func commonInit() {
         Bundle.main.loadNibNamed("TimerView", owner: self, options: nil)
         contentView.frame = self.bounds
@@ -60,6 +61,7 @@ class TimerView: UIView {
     
     @IBAction func startStopDayAction(_ sender: Any) {
         print("startStopDayAction")
+       // NotificationCenter.default.post(name: NSNotification.Name("stopday"), object: nil)
     }
     
     

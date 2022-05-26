@@ -52,6 +52,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var playpauseButton: UIButton!
     
     
+    
     var subTaskList: TaskDataModel?
     var subTaskListViewModel : SubTaskListViewModel?
     var subtaskDetail : SubtaskDetailModel?
@@ -112,6 +113,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let vc = storyboard.instantiateViewController(withIdentifier: self.className()) as? TaskDetailsVC
         return vc
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -180,7 +183,17 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     @objc func didTapOnTimerView(notification:Notification) {
         print("didTapOnTimerView")
-        self.timerView.speechView.isHidden = false
+        // self.timerView.speechView.isHidden = false
+        // self.mainVC?.speechView.isHidden = false
+        
+        guard let dialog = DayTaskPopviewVC.newInstance else {return}
+        dialog.modalPresentationStyle = .popover
+        dialog.preferredContentSize = CGSize(width: 100, height: 50)
+        dialog.popoverPresentationController?.delegate = self
+        dialog.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+        dialog.popoverPresentationController?.sourceView = self.timerView.timerButton
+        dialog.popoverPresentationController?.sourceRect = self.timerView.timerButton.frame
+        self.present(dialog, animated: true, completion: nil)
     }
     
     
@@ -291,6 +304,8 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         self.UpdateTaskStatusViewModel1?.UpdateTaskStatus(dictParam: parms)
         
     }
+    
+    
     
     func ExstreamTaskLocationApiCall(){
         parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id_cipher)
@@ -502,6 +517,7 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
         print("ExstreamTaskpropertyLocationResponse\(ExstreamTaskpropertyLocationResponse)")
     }
     
+    
    
     
     func subTaskList(response: SubtaskDetailModel?) {
@@ -570,7 +586,20 @@ extension TaskDetailsVC {
 
 
 
-
+extension TaskDetailsVC: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        
+    }
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
+}
 
 
 
