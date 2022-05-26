@@ -93,13 +93,13 @@
                                         <rect key="frame" x="35" y="63" width="339" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZNK-Q1-8Vg">
-                                                <rect key="frame" x="0.0" y="0.0" width="62" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="164.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7D-5H-Xk0">
-                                                <rect key="frame" x="82" y="0.0" width="257" height="20.5"/>
+                                                <rect key="frame" x="184.5" y="0.0" width="154.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1101,6 +1101,40 @@
                                     <constraint firstAttribute="height" constant="70" id="z7K-S7-81K"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EY4-4f-UrU" customClass="SpeechBubble" customModule="DoorcastRebase" customModuleProvider="target">
+                                <rect key="frame" x="157" y="716" width="100" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPQ-d4-Wc2">
+                                        <rect key="frame" x="0.0" y="5" width="100" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3M-sB-1xQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="7ze-7A-8zT"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="startStopDayAction:" destination="5vD-2o-eYM" eventType="touchUpInside" id="fWC-s7-2O2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="E3M-sB-1xQ" firstAttribute="leading" secondItem="EY4-4f-UrU" secondAttribute="leading" id="3v2-ZD-GcK"/>
+                                    <constraint firstAttribute="height" constant="80" id="BTc-Ke-Bek"/>
+                                    <constraint firstAttribute="bottom" secondItem="QPQ-d4-Wc2" secondAttribute="bottom" constant="30" id="JDJ-HC-iSG"/>
+                                    <constraint firstItem="QPQ-d4-Wc2" firstAttribute="top" secondItem="EY4-4f-UrU" secondAttribute="top" constant="5" id="OXp-ND-Zma"/>
+                                    <constraint firstAttribute="width" constant="100" id="UoG-aX-3Ou"/>
+                                    <constraint firstItem="QPQ-d4-Wc2" firstAttribute="leading" secondItem="EY4-4f-UrU" secondAttribute="leading" id="avm-Q2-a2P"/>
+                                    <constraint firstItem="E3M-sB-1xQ" firstAttribute="top" secondItem="EY4-4f-UrU" secondAttribute="top" id="cdm-E6-6Mx"/>
+                                    <constraint firstAttribute="trailing" secondItem="E3M-sB-1xQ" secondAttribute="trailing" id="i5p-fq-MHV"/>
+                                    <constraint firstAttribute="trailing" secondItem="QPQ-d4-Wc2" secondAttribute="trailing" id="pvj-JH-RHW"/>
+                                    <constraint firstAttribute="bottom" secondItem="E3M-sB-1xQ" secondAttribute="bottom" constant="20" id="vsP-VS-v4v"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Wr-nz-qXj"/>
                         <color key="backgroundColor" name="AppBackgroundColor"/>
@@ -1117,8 +1151,10 @@
                             <constraint firstItem="qFv-Ap-a0P" firstAttribute="top" secondItem="cfZ-U2-SLo" secondAttribute="bottom" id="aao-Kc-Ik2"/>
                             <constraint firstItem="zC2-MT-T4d" firstAttribute="trailing" secondItem="qFv-Ap-a0P" secondAttribute="trailing" id="fnE-fm-CtQ"/>
                             <constraint firstItem="YYJ-nO-KRw" firstAttribute="leading" secondItem="3Wr-nz-qXj" secondAttribute="leading" id="foA-bU-Mvb"/>
+                            <constraint firstItem="zC2-MT-T4d" firstAttribute="top" secondItem="EY4-4f-UrU" secondAttribute="bottom" constant="-100" id="hne-rl-ylh"/>
                             <constraint firstItem="zC2-MT-T4d" firstAttribute="top" secondItem="qFv-Ap-a0P" secondAttribute="bottom" id="hun-cX-DSw"/>
                             <constraint firstItem="cfZ-U2-SLo" firstAttribute="leading" secondItem="3Wr-nz-qXj" secondAttribute="leading" id="jMq-7J-1bG"/>
+                            <constraint firstItem="EY4-4f-UrU" firstAttribute="centerX" secondItem="nEd-9q-6Pl" secondAttribute="centerX" id="llU-ef-f1Y"/>
                             <constraint firstItem="cfZ-U2-SLo" firstAttribute="top" secondItem="V0y-30-6tf" secondAttribute="bottom" id="niJ-j1-YDr"/>
                             <constraint firstAttribute="bottom" secondItem="YYJ-nO-KRw" secondAttribute="bottom" id="uUk-1l-dn6"/>
                         </constraints>
@@ -1153,6 +1189,8 @@
                         <outlet property="sidearrowButton" destination="NfV-wi-HKK" id="UIe-UZ-TDu"/>
                         <outlet property="sidearrowImage" destination="akP-i6-OId" id="ORu-LO-rwI"/>
                         <outlet property="sidearrowView" destination="2JI-Sn-zMU" id="wbd-pN-3Hs"/>
+                        <outlet property="speechView" destination="EY4-4f-UrU" id="LSS-xD-toI"/>
+                        <outlet property="startDaylbl" destination="QPQ-d4-Wc2" id="nd5-qD-Z6p"/>
                         <outlet property="taskDetailsTableView" destination="qFv-Ap-a0P" id="d2B-kp-4BP"/>
                         <outlet property="taskName" destination="yrK-Em-9pq" id="00V-Ce-Av2"/>
                         <outlet property="tickButton" destination="Yee-Zd-FT5" id="OO9-n7-yFY"/>

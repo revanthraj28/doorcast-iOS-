@@ -51,6 +51,15 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var playpauseButton: UIButton!
     
     
+    @IBOutlet weak var speechView: SpeechBubble!
+    @IBOutlet weak var startDaylbl: UILabel!
+    
+    @IBAction func startStopDayAction(_ sender: Any) {
+        print("startStopDayAction")
+        self.speechView.isHidden = true
+    }
+    
+    
     
     var subTaskList: TaskDataModel?
     var subTaskListViewModel : SubTaskListViewModel?
@@ -102,12 +111,14 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         }
         
         
-        if timerBool == true {
-            self.timerView.bringSubviewToFront(self.timerView.speechView)
-            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-            self.timerView.startDaylbl.text = "Stop day"
-            dayTaskAction()
-        }
+        self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+
+        
+//        if timerBool == true {
+//            self.timerView.bringSubviewToFront(self.timerView.speechView)
+//            self.timerView.startDaylbl.text = "Stop day"
+//            dayTaskAction()
+//        }
         
         
         // updateLocation
@@ -142,17 +153,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     
     @objc func didTapOnTimerView(notification:Notification) {
         print("didTapOnTimerView")
-        // self.timerView.speechView.isHidden = false
-        // self.mainVC?.speechView.isHidden = false
-        
-        guard let dialog = DayTaskPopviewVC.newInstance else {return}
-        dialog.modalPresentationStyle = .popover
-        dialog.preferredContentSize = CGSize(width: 100, height: 50)
-        dialog.popoverPresentationController?.delegate = self
-        dialog.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
-        dialog.popoverPresentationController?.sourceView = self.timerView.timerButton
-        dialog.popoverPresentationController?.sourceRect = self.timerView.timerButton.frame
-        self.present(dialog, animated: true, completion: nil)
+        self.speechView.isHidden = false
     }
     
     
@@ -214,8 +215,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
-        
-        
+    
     }
     
     
@@ -245,6 +245,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel?.SubTaskListApi(task_id: taskId ?? "", task_id_check: task_id_check ?? "" , group_id: group_id ?? "" , type: task_type ?? "" )
         
         
+        speechView.backgroundColor = UIColor.clear
+        speechView.isHidden = true
+        startDaylbl.text = "Stop day"
+        startDaylbl.textColor = UIColor.white
+        startDaylbl.textAlignment = .center
+        startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
     }
     
     func UpdateTaskStatusinCompleteApiCall(){
@@ -435,22 +441,6 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     }
     
     
-}
-
-
-extension TaskDetailsVC: UIPopoverPresentationControllerDelegate {
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
-    
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        
-    }
-    
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        return true
-    }
 }
 
 
