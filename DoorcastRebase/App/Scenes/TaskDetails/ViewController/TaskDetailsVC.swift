@@ -96,6 +96,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var ExstreamTaskLocationViewModel1 : ExstreamTaskLocationViewModel?
     var ExstreamTaskLocationReasponse : ExstreamTaskLocationModel?
     
+    var timer : Timer?
+    var seconds = 0
+    
     var day = String()
     var task_id_check = String()
     
@@ -112,12 +115,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         print(defaults.string(forKey: UserDefaultsKeys.task_id))
         
         ExstreamTaskLocationApiCall()
-        
-        //        DispatchQueue.main.async {
-        //
-        //            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
-        //
-        //        }
         
         
         if timerBool == true {
@@ -275,9 +272,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id_cipher)
         parms["task_id_check"] = defaults.string(forKey: UserDefaultsKeys.task_id)
         
-       
+        
         self.ExstreamTaskLocationViewModel1?.ExstreamTaskLocationViewModel(dictParam: parms)
-    
+        
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
@@ -487,6 +484,26 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     func ExstreamTaskLocationSuccess(ExstreamTaskLocationViewModelResponse: ExstreamTaskLocationModel) {
         self.ExstreamTaskLocationReasponse = ExstreamTaskLocationViewModelResponse
         print("ExstreamTaskLocationReasponse\(ExstreamTaskLocationReasponse)")
+        
+        print("ExstreamTaskLocationReasponseideal_time\(ExstreamTaskLocationReasponse?.time?.ideal_time)")
+        
+        if ExstreamTaskLocationReasponse?.time?.ideal_time != "00:00:00" {
+            timerView.idleTimerValueLbl.text = ExstreamTaskLocationReasponse?.time?.ideal_time
+            DispatchQueue.main.async {[self] in
+                self.seconds = String().secondsFromString(string: ExstreamTaskLocationReasponse?.time?.ideal_time ?? "00:00:00")
+                
+                //                self.startDaylbl.text = "stop day"
+                //            taskListTableView.isUserInteractionEnabled = true
+                //            taskListTableView.alpha = 1
+                self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                self.runTimer()
+                
+            }
+        }
+        
+        
+        
+        
     }
     
     func UpdateTaskStatusCompleteSuccess(UpdateTaskStatusCompleteResponse: UpdateTaskStatusCompleteModel) {
@@ -545,6 +562,30 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
     }
     
 }
+extension TaskDetailsVC {
+    
+    
+    func runTimer() {
+        if !(timer?.isValid ?? false) {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        }else {
+            timer?.invalidate()
+        }
+    }
+    
+    @objc func updateTimer() {
+        seconds += 1
+        self.timerView.idleTimerValueLbl.text = timeString(time: TimeInterval(seconds))
+    }
+    
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+    }
+}
+
 
 
 

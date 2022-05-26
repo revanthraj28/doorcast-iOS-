@@ -78,25 +78,9 @@
             filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/TaskDetailsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
-            landmarkName = "TaskDetailsVC"
-            landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A2EE60CA-1937-4F5C-BA62-CE8A6529A14D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoorcastRebase/App/Scenes/TaskDetails/ViewController/TaskDetailsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
+            landmarkName = "ExstreamTaskLocationSuccess(ExstreamTaskLocationViewModelResponse:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
