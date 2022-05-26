@@ -54,10 +54,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var speechView: SpeechBubble!
     @IBOutlet weak var startDaylbl: UILabel!
     
-    @IBAction func startStopDayAction(_ sender: Any) {
-        print("startStopDayAction")
-        self.speechView.isHidden = true
-    }
+    
     
     
     
@@ -112,13 +109,13 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         
         self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-
         
-//        if timerBool == true {
-//            self.timerView.bringSubviewToFront(self.timerView.speechView)
-//            self.timerView.startDaylbl.text = "Stop day"
-//            dayTaskAction()
-//        }
+        
+        //        if timerBool == true {
+        //            self.timerView.bringSubviewToFront(self.timerView.speechView)
+        //            self.timerView.startDaylbl.text = "Stop day"
+        //            dayTaskAction()
+        //        }
         
         
         // updateLocation
@@ -157,24 +154,25 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     }
     
     
+
+    
     func dayTaskAction() {
         
-        mainVC?.speechView.isHidden = true
-        
-        if self.day == "Start day" {
+        if self.startDaylbl.text == "Start day" {
             
-            defaults.set("start", forKey: "daytype")
-            // self.viewModel.startOrStopDayTask()
-            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-            
-            mainVC?.runTimer()
-            timerBool = true
+//            defaults.set("start", forKey: "daytype")
+//            // self.viewModel.startOrStopDayTask()
+//            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+//
+//            mainVC?.runTimer()
+//            timerBool = true
             
         }else {
             
             defaults.set("stop", forKey: "daytype")
-            self.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-            timerBool = false
+            self.viewModel?.startOrStopDayTask()
+            self.timerView.playPauseImage.image = UIImage(named: "startTimer")
+            
             gotoBackScreen()
             
         }
@@ -197,11 +195,10 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         let currentLocation = CLLocation(latitude: Double(KLat) ?? 0.0, longitude: Double(KLong) ?? 0.0)
         let distance = DestinationLocation.distance(from: currentLocation)
         
-        print(String(format: "The distance to my buddy is %.01fm", distance))
+        // print(String(format: "The distance to my buddy is %.01fm", distance))
         distanceLabel.text = "\(Int(distance))"
         
         if distance < 500 {
-            print("less then 500")
             withInLocationBool = true
         }else {
             withInLocationBool = false
@@ -215,7 +212,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         subTaskListViewModel = SubTaskListViewModel(self)
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
-    
+        
     }
     
     
@@ -265,7 +262,11 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     }
     
     
-    
+    @IBAction func startStopDayAction(_ sender: Any) {
+        print("startStopDayAction")
+        self.speechView.isHidden = true
+        dayTaskAction()
+    }
     
     
     @IBAction func menuButtonAction(_ sender: Any) {
