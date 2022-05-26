@@ -31,10 +31,12 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
     var openCamera = Bool()
     var imageBase64 = String()
     var imageData = NSData()
+    var imagebase64 = String()
     
     
     override func viewWillAppear(_ animated: Bool) {
-   
+        
+       
         
         if captured == "true" {
             StartTheClock()
@@ -45,6 +47,9 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
         
      
     }
+    
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,12 +96,15 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
         picker.delegate = self
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
             startTimerImage.image  = tempImage
-        print("tempImage = \(tempImage)")
+//        print("tempImage = \(tempImage)")
         
         let imageStringData = convertImageToBase64(image: tempImage)
-                print("IMAGE base64 String: \(imageStringData)")
+//                print("IMAGE base64 String: \(imageStringData)")
         
         let base64 = imageData.base64EncodedData(options: .lineLength64Characters)
+        
+        NotificationCenter.default.post(name: Notification.Name("takePhoto"), object: imageStringData)
+        
             self.dismiss(animated: true, completion: nil)
         
 
@@ -106,7 +114,7 @@ class StartTheClockVC: UIViewController, UIImagePickerControllerDelegate & UINav
     func openGallery() {
             print("openGallery")
     
-    print("UIImagePickerController")
+   
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let picker = UIImagePickerController()
                 picker.delegate = self

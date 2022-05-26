@@ -98,6 +98,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     var ExstreamTaskLocationViewModel1 : ExstreamTaskLocationViewModel?
     var ExstreamTaskLocationReasponse : ExstreamTaskLocationModel?
     
+    var ExstreamTaskpropertyLocation : CrewTaskPropertyLocationModel?
+    var ExstreamTaskpropertyLocationResponse : crewpropertyLocationModel?
+    
     var day = String()
     var task_id_check = String()
     
@@ -111,23 +114,12 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         
-        
-        DispatchQueue.main.async {
-       
-            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
-            
-        }
+    
         print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
         print(defaults.string(forKey: UserDefaultsKeys.task_id))
         
         ExstreamTaskLocationApiCall()
-        
-        //        DispatchQueue.main.async {
-        //
-        //            self.viewModel1?.callExstreamTaskLocationAPI(taskidcheck: defaults.string(forKey: UserDefaultsKeys.task_id_cipher) ?? "", taskid: defaults.string(forKey: UserDefaultsKeys.task_id) ?? "")
-        //
-        //        }
-        
+       
         
         if timerBool == true {
             self.timerView.bringSubviewToFront(self.timerView.speechView)
@@ -144,7 +136,9 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(hidetimerView), name: NSNotification.Name("hidetimerView"), object: nil)
         
-        // NotificationCenter.default.addObserver(self, selector: #selector(dayTaskAction(notification:)), name: NSNotification.Name.init(rawValue: "daytask"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(takePhoto), name: NSNotification.Name.init(rawValue: "takePhoto"), object: nil)
+        
+         
         
         setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
@@ -155,6 +149,19 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
     }
     
+  
+    @objc func takePhoto(notification : NSNotification) {
+        print("taken a photo")
+       
+        self.imageBase64 = notification.object as? String ?? ""
+        ExstreamTaskPropertyLocationApiCall()
+        print("imageeebase64 = \(self.imageBase64)")
+//        ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
+        
+
+      
+        
+    }
    
     
     @objc func hidetimerView(notification: Notification) {
@@ -234,6 +241,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         viewModel1 = TaskDetailsViewModel(view: self)
         UpdateTaskStatusViewModel1 = UpdateTaskStatusViewModel(self)
         ExstreamTaskLocationViewModel1 = ExstreamTaskLocationViewModel(self)
+        ExstreamTaskpropertyLocation = CrewTaskPropertyLocationModel(self)
         
     }
     
@@ -286,10 +294,21 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.task_id_cipher)
         parms["task_id_check"] = defaults.string(forKey: UserDefaultsKeys.task_id)
         
-       
         self.ExstreamTaskLocationViewModel1?.ExstreamTaskLocationViewModel(dictParam: parms)
     
     }
+
+    func ExstreamTaskPropertyLocationApiCall() {
+        
+        parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.sub_task_id)
+        parms["longitude"] = KLat
+        parms["task_pic"] = self.imageBase64
+        parms["latitude"] = KLong
+        self.ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
+       
+        
+    }
+    
     
     @IBAction func menuButtonAction(_ sender: Any) {
         guard let vc = NotificationCenterVC.newInstance else {return}
@@ -344,6 +363,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBAction func sidearrowButtonAction(_ sender: Any) {
         dismissDetail()
     }
+    
     @IBAction func playPauseButtonAction(_ sender: Any) {
         
     }
@@ -352,9 +372,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     @IBAction func tickButtonAction(_ sender: Any) {
         
     }
-    
-    
-    
     
 }
 
@@ -404,7 +421,6 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             UpdateTaskStatusinCompleteApiCall()
             
            if subtaskDetail?.image_captured == "Captured" {
-               print("subbbbbbbbb")
                guard let vc = StartTheClockVC.newInstance else {return}
                vc.modalPresentationStyle = .overCurrentContext
                vc.captured = "true"
@@ -434,8 +450,11 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
 }
 
 
-extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol , ExstreamTaskLocationViewModelProtocol
+extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol , ExstreamTaskLocationViewModelProtocol, crewTaskPropertyLocationViewModelProtocol
 {
+   
+   
+    
     func ExstreamTaskLocationSuccess(ExstreamTaskLocationViewModelResponse: ExstreamTaskLocationModel) {
         self.ExstreamTaskLocationReasponse = ExstreamTaskLocationViewModelResponse
         print("ExstreamTaskLocationReasponse\(ExstreamTaskLocationReasponse)")
@@ -454,8 +473,13 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
         
         
     }
+    func crewTaskPropertyLocationSuccess(CrewTaskpropertyLocation: crewpropertyLocationModel) {
+        
+        self.ExstreamTaskpropertyLocationResponse = CrewTaskpropertyLocation
+        print("ExstreamTaskpropertyLocationResponse\(ExstreamTaskpropertyLocationResponse)")
+    }
     
-    
+   
     
     func subTaskList(response: SubtaskDetailModel?) {
         
