@@ -147,7 +147,7 @@ class IncompleteTasksVC: UIViewController {
                 
                 self.taskListTableView.isUserInteractionEnabled = true
                 self.taskListTableView.alpha = 1
-                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
                 mainVC?.runTimer()
                 timerBool = true
                 
@@ -158,7 +158,7 @@ class IncompleteTasksVC: UIViewController {
                 defaults.set("stop", forKey: "daytype")
                 self.viewModel.startOrStopDayTask()
         
-                mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
                 timerBool = false
                 gotoBackScreen()
                 
@@ -271,7 +271,7 @@ extension IncompleteTasksVC: TaskListProtocol {
                         mainVC?.startDaylbl.text = "stop day"
                         taskListTableView.isUserInteractionEnabled = true
                         taskListTableView.alpha = 1
-                        mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                        mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
                         mainVC?.runTimer()
                         
                     }

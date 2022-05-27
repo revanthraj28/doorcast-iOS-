@@ -125,14 +125,14 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         
-    
+        
         print(defaults.string(forKey: UserDefaultsKeys.task_id_cipher))
         print(defaults.string(forKey: UserDefaultsKeys.task_id))
         
         ExstreamTaskLocationApiCall()
         
         
-        self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+        self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
         
         
         //        if timerBool == true {
@@ -151,7 +151,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(takePhoto), name: NSNotification.Name.init(rawValue: "takePhoto"), object: nil)
         
-         
+        
         
         setupui()
         taskName.text = defaults.string(forKey: UserDefaultsKeys.taskname)
@@ -162,20 +162,20 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
     }
     
-  
+    
     @objc func takePhoto(notification : NSNotification) {
         print("taken a photo")
-       
+        
         self.imageBase64 = notification.object as? String ?? ""
         ExstreamTaskPropertyLocationApiCall()
         print("imageeebase64 = \(self.imageBase64)")
-//        ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
+        //        ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
         
-
-      
+        
+        
         
     }
-   
+    
     
     @objc func hidetimerView(notification: Notification) {
         print("hideeeeeeeeeeee")
@@ -195,24 +195,23 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
     }
     
     
-
+    
     
     func dayTaskAction() {
         
         if self.startDaylbl.text == "Start day" {
             
-//            defaults.set("start", forKey: "daytype")
-//            // self.viewModel.startOrStopDayTask()
-//            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
-//
-//            mainVC?.runTimer()
-//            timerBool = true
+            defaults.set("start", forKey: "daytype")
+            self.viewModel?.startOrStopDayTask()
+            self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
+            self.runTimer()
+            timerBool = true
             
         }else {
             
             defaults.set("stop", forKey: "daytype")
             self.viewModel1?.startOrStopDayTask()
-            self.timerView.playPauseImage.image = UIImage(named: "startTimer")
+            self.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
             
             gotoBackScreen()
             
@@ -227,8 +226,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
-    
-    
     
     @objc func setDistanceFromCurrentLocation(notification:Notification) {
         
@@ -271,7 +268,6 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         taskDetailsTableView.delegate = self
         taskDetailsTableView.dataSource = self
         
-        
         //        taskDetailsTableView.register(CheckboxInTaskDetailsTVCell.self, forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
         taskDetailsTableView.register(UINib(nibName: "CheckboxInTaskDetailsTVCell", bundle: nil), forCellReuseIdentifier: "CheckboxInTaskDetailsTVCell")
         
@@ -287,7 +283,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         
         speechView.backgroundColor = UIColor.clear
         speechView.isHidden = true
-        startDaylbl.text = "Stop day"
+//        startDaylbl.text = "Stop day"
         startDaylbl.textColor = UIColor.white
         startDaylbl.textAlignment = .center
         startDaylbl.font = UIFont.poppinsSemiBold(size: 14)
@@ -319,7 +315,7 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         self.ExstreamTaskLocationViewModel1?.ExstreamTaskLocationViewModel(dictParam: parms)
         
     }
-
+    
     func ExstreamTaskPropertyLocationApiCall() {
         
         parms["task_id"] = defaults.string(forKey: UserDefaultsKeys.sub_task_id)
@@ -327,7 +323,16 @@ class TaskDetailsVC: UIViewController,CLLocationManagerDelegate {
         parms["task_pic"] = self.imageBase64
         parms["latitude"] = KLong
         self.ExstreamTaskpropertyLocation?.CrewTaskPropertyLocationApi(dictParam: parms)
-       
+        
+        
+    }
+    
+    @IBAction func startStopDayAction(_ sender: Any) {
+        
+        print("startStopDayAction")
+        
+        self.speechView.isHidden = true
+        dayTaskAction()
         
     }
     
@@ -419,10 +424,10 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
             cell.selectDeselectImage.image = UIImage(named: "taskUnCheck")
         }
         
-       
         
         
-      
+        
+        
         return cell
     }
     
@@ -439,16 +444,15 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
         
         if withInLocationBool == true {
             
-            cell.selectDeselectImage.image = UIImage(named: "taskChecked")
             UpdateTaskStatusinCompleteApiCall()
-            
-           if subtaskDetail?.image_captured == "Captured" {
-               guard let vc = StartTheClockVC.newInstance else {return}
-               vc.modalPresentationStyle = .overCurrentContext
-               vc.captured = "true"
-               self.present(vc, animated: true, completion: nil)
-//               NotificationCenter.default.post(name: Notification.Name("showTheClock"), object: nil)
-            
+            cell.selectDeselectImage.image = UIImage(named: "taskChecked")
+            if subtaskDetail?.image_captured == "Captured" {
+                guard let vc = StartTheClockVC.newInstance else {return}
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.captured = "true"
+                self.present(vc, animated: true, completion: nil)
+                //               NotificationCenter.default.post(name: Notification.Name("showTheClock"), object: nil)
+                
             } else {
                 print("startCamera")
                 
@@ -456,26 +460,21 @@ extension TaskDetailsVC : UITableViewDelegate, UITableViewDataSource {
                 vc.modalPresentationStyle = .overCurrentContext
                 vc.captured = "false"
                 self.present(vc, animated: true, completion: nil)
-
-//                NotificationCenter.default.post(name: NSNotification.Name("startCamera"), object: nil)
-            }
                 
-            }else {
-                
-                self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
+                //                NotificationCenter.default.post(name: NSNotification.Name("startCamera"), object: nil)
             }
-        
-
             
+        }else {
+            
+            self.showAlertOnWindow(title: "", message: "Idle time has begun. You have been away from the unit for 5 minutes", titles: ["OK"], completionHanlder: nil)
+        }
     }
-
+    
 }
 
 
 extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , UpdateTaskStatusViewModelProtocol , UpdateTaskStatusCompleteViewModelProtocol , ExstreamTaskLocationViewModelProtocol, crewTaskPropertyLocationViewModelProtocol
 {
-   
-   
     
     func ExstreamTaskLocationSuccess(ExstreamTaskLocationViewModelResponse: ExstreamTaskLocationModel) {
         self.ExstreamTaskLocationReasponse = ExstreamTaskLocationViewModelResponse
@@ -487,42 +486,29 @@ extension TaskDetailsVC : SubTaskListProtocol,TaskDetailsViewModelDelegate , Upd
             timerView.idleTimerValueLbl.text = ExstreamTaskLocationReasponse?.time?.ideal_time
             DispatchQueue.main.async {[self] in
                 self.seconds = String().secondsFromString(string: ExstreamTaskLocationReasponse?.time?.ideal_time ?? "00:00:00")
-                
-                //                self.startDaylbl.text = "stop day"
-                //            taskListTableView.isUserInteractionEnabled = true
-                //            taskListTableView.alpha = 1
-                self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                self.startDaylbl.text = "stop day"
+                self.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
                 self.runTimer()
                 
             }
         }
-        
-        
-        
-        
     }
     
     func UpdateTaskStatusCompleteSuccess(UpdateTaskStatusCompleteResponse: UpdateTaskStatusCompleteModel) {
         self.UpdateTaskStatusCompleteResponse1 = UpdateTaskStatusCompleteResponse
         print("UpdateTaskStatusCompleteResponse\(UpdateTaskStatusCompleteResponse1)")
-        
     }
-    
-    
     func UpdateTaskStatusSuccess(UpdateTaskStatusResponse: UpdateTaskStatusModel) {
         self.UpdateTaskStatusIncompleteResponse = UpdateTaskStatusResponse
         print("UpdateTaskStatusIncompleteResponse\(UpdateTaskStatusIncompleteResponse)")
-        
-        
     }
     func crewTaskPropertyLocationSuccess(CrewTaskpropertyLocation: crewpropertyLocationModel) {
-        
         self.ExstreamTaskpropertyLocationResponse = CrewTaskpropertyLocation
         print("ExstreamTaskpropertyLocationResponse\(ExstreamTaskpropertyLocationResponse)")
     }
     
     
-   
+    
     
     func subTaskList(response: SubtaskDetailModel?) {
         

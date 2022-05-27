@@ -36,7 +36,7 @@ class TimerView: UIView {
         addSubview(contentView)
         actionView.layer.cornerRadius = actionView.frame.size.height / 2
         
-        playPauseImage.image = UIImage(named: "startTimer")
+        playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
     }
     
     

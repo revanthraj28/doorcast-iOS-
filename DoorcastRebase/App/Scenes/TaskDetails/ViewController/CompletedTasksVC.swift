@@ -152,7 +152,7 @@ class CompletedTasksVC: UIViewController {
                 
                 self.taskListTableView.isUserInteractionEnabled = true
                 self.taskListTableView.alpha = 1
-                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.red)
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "Stop")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
                
                 
                 mainVC?.runTimer()
@@ -161,7 +161,7 @@ class CompletedTasksVC: UIViewController {
                 
             }else {
                 
-                mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")
+                mainVC?.timerView.playPauseImage.image = UIImage(named: "startTimer")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
                 timerBool = false
                 
                 gotoBackScreen()
